@@ -12,6 +12,7 @@
 sudo rm -rf ~/.vimrc > /dev/null 2>&1
 sudo rm -rf ~/.zshrc > /dev/null 2>&1
 sudo rm -rf ~/.gitconfig > /dev/null 2>&1
+sudo rm -rf ~/.gitignore_global > /dev/null 2>&1
 
 #==============
 # Create symlinks in the home folder
@@ -20,6 +21,7 @@ sudo rm -rf ~/.gitconfig > /dev/null 2>&1
 ln -sf ~/dotfiles/vimrc ~/.vimrc
 ln -sf ~/dotfiles/zshrc ~/.zshrc
 ln -sf ~/dotfiles/gitconfig ~/.gitconfig
+ln -sf ~/dotfiles/gitignore_global ~/.gitignore_global
 
 #==============
 # Set zsh as the default shell

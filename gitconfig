@@ -1,9 +1,9 @@
 [core]
-	excludesfile = /Users/j.steinke/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [user]
 	name = Jan Steinke
 	email = jan.steinke@gmail.com
 [commit]
-	template = /Users/j.steinke/.stCommitMsg
+	template = ~/.stCommitMsg
 [includeIf "gitdir:~/DevBase/"]
 	path = ~/DevBase/gitconfig
