@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/bin/bash
 #===============================================================================
 #
 #             NOTES: For this to work you must have cloned the github
@@ -9,10 +9,10 @@
 #==============
 # Remove old dot flies
 #==============
-sudo rm -rf ~/.vimrc > /dev/null 2>&1
-sudo rm -rf ~/.zshrc > /dev/null 2>&1
-sudo rm -rf ~/.gitconfig > /dev/null 2>&1
-sudo rm -rf ~/.gitignore_global > /dev/null 2>&1
+rm -rf ~/.vimrc > /dev/null 2>&1
+rm -rf ~/.zshrc > /dev/null 2>&1
+rm -rf ~/.gitconfig > /dev/null 2>&1
+rm -rf ~/.gitignore_global > /dev/null 2>&1
 
 #==============
 # Create symlinks in the home folder
