@@ -1,2 +1,4 @@
 .sw?
 .*.sw?
+.DS_Store
+.idea
