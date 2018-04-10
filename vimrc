@@ -17,6 +17,9 @@ set mouse=a
 set list
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 
+" tmux support
+set ttymouse=xterm2
+
 " Change cursor shape between insert, replace and normal mode
 " https://stackoverflow.com/questions/6488683/how-do-i-change-the-vim-cursor-in-insert-normal-mode
 let &t_SI = "\e[6 q"
