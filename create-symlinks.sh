@@ -20,6 +20,7 @@ rm -rf ~/.gitconfig > /dev/null 2>&1
 rm -rf ~/.gitignore_global > /dev/null 2>&1
 rm -rf ~/.tmux.conf > /dev/null 2>&1
 rm -rf ~/.tmux > /dev/null 2>&1
+rm -rf ~/.iterm2 > /dev/null 2>&1
 
 #==============
 # Create symlinks in the home folder
@@ -31,11 +32,18 @@ ln -sf ~/dotfiles/gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/gitignore_global ~/.gitignore_global
 ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/tmux ~/.tmux
+ln -sf ~/dotfiles/iterm2 ~/.iterm2
 
 #==============
 # Set zsh as the default shell
 #==============
 chsh -s /bin/zsh
+
+#==============
+# configure iTerm2
+#==============
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${HOME}/.iterm2"
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
 #==============
 # And we are done
