@@ -4,3 +4,30 @@
 [submodule "tmux/themes/nord-tmux"]
 	path = tmux/themes/nord-tmux
 	url = https://github.com/arcticicestudio/nord-tmux
+[submodule "vim/pack/plugins/start/vim-go"]
+	path = vim/pack/plugins/start/vim-go
+	url = https://github.com/fatih/vim-go.git
+[submodule "vim/pack/plugins/start/tagbar"]
+	path = vim/pack/plugins/start/tagbar
+	url = https://github.com/majutsushi/tagbar
+[submodule "vim/pack/plugins/start/nerdtree"]
+	path = vim/pack/plugins/start/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vim/pack/plugins/start/syntastic"]
+	path = vim/pack/plugins/start/syntastic
+	url = https://github.com/vim-syntastic/syntastic
+[submodule "vim/pack/plugins/start/YouCompleteMe"]
+	path = vim/pack/plugins/start/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe
+[submodule "vim/pack/plugins/start/vim-sensible"]
+	path = vim/pack/plugins/start/vim-sensible
+	url = https://github.com/tpope/vim-sensible
+[submodule "vim/pack/plugins/start/python-mode"]
+	path = vim/pack/plugins/start/python-mode
+	url = https://github.com/python-mode/python-mode
+[submodule "vim/pack/plugins/start/vim-airline"]
+	path = vim/pack/plugins/start/vim-airline
+	url = https://github.com/vim-airline/vim-airline
+[submodule "vim/pack/plugins/start/vim-fugitive"]
+	path = vim/pack/plugins/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive

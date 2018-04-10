@@ -1,15 +1,3 @@
-" Installed Plugins:
-" git clone https://github.com/fatih/vim-go.git ~/.vim/pack/plugins/start/vim-go
-" git clone https://github.com/majutsushi/tagbar ~/.vim/pack/plugins/start/tagbar
-" git clone https://github.com/scrooloose/nerdtree.git ~/.vim/pack/plugins/start/nerdtree
-" git clone https://github.com/vim-syntastic/syntastic ~/.vim/pack/plugins/start/syntastic
-" git clone https://github.com/Valloric/YouCompleteMe ~/.vim/pack/plugins/start/YouCompleteMe
-" git clone https://github.com/tpope/vim-sensible ~/.vim/pack/plugins/start/vim-sensible
-" git clone https://github.com/python-mode/python-mode ~/.vim/pack/plugins/start/python-mode
-" git clone https://github.com/vim-airline/vim-airline ~/.vim/pack/plugins/start/vim-airline
-" git clone https://github.com/tpope/vim-fugitive ~/.vim/pack/plugins/start/vim-fugitive
-
-
 " general
 syntax on
 set number

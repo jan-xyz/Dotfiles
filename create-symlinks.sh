@@ -15,6 +15,7 @@ git submodule update --init --recursive
 # Remove old dot flies
 #==============
 rm -rf ~/.vimrc > /dev/null 2>&1
+rm -rf ~/.vim > /dev/null 2>&1
 rm -rf ~/.zshrc > /dev/null 2>&1
 rm -rf ~/.gitconfig > /dev/null 2>&1
 rm -rf ~/.gitignore_global > /dev/null 2>&1
@@ -27,6 +28,7 @@ rm -rf ~/.iterm2 > /dev/null 2>&1
 # Allow overriding with files of matching names in the custom-configs dir
 #==============
 ln -sf ~/dotfiles/vimrc ~/.vimrc
+ln -sf ~/dotfiles/vim ~/.vim
 ln -sf ~/dotfiles/zshrc ~/.zshrc
 ln -sf ~/dotfiles/gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/gitignore_global ~/.gitignore_global
