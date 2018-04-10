@@ -7,13 +7,19 @@
 #===============================================================================
 
 #==============
+# update all plugins
+#==============
+git submodule update --init --recursive
+
+#==============
 # Remove old dot flies
 #==============
 rm -rf ~/.vimrc > /dev/null 2>&1
 rm -rf ~/.zshrc > /dev/null 2>&1
 rm -rf ~/.gitconfig > /dev/null 2>&1
 rm -rf ~/.gitignore_global > /dev/null 2>&1
-rm -rf ~/tmux.conf > /dev/null 2>&1
+rm -rf ~/.tmux.conf > /dev/null 2>&1
+rm -rf ~/.tmux > /dev/null 2>&1
 
 #==============
 # Create symlinks in the home folder
@@ -24,6 +30,7 @@ ln -sf ~/dotfiles/zshrc ~/.zshrc
 ln -sf ~/dotfiles/gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/gitignore_global ~/.gitignore_global
 ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
+ln -sf ~/dotfiles/tmux ~/.tmux
 
 #==============
 # Set zsh as the default shell

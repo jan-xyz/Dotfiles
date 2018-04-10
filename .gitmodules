@@ -1,0 +1,6 @@
+[submodule "tmux/plugins/tpm"]
+	path = tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
+[submodule "tmux/themes/nord-tmux"]
+	path = tmux/themes/nord-tmux
+	url = https://github.com/arcticicestudio/nord-tmux
