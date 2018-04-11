@@ -4,7 +4,10 @@ set number
 set mouse=a
 set list
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+
+" theming
 colorscheme nord
+let g:airline_theme='nord'
 
 " tmux support
 set ttymouse=xterm2
