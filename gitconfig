@@ -5,5 +5,7 @@
 	email = jan.steinke@gmail.com
 [commit]
 	template = ~/.stCommitMsg
-[includeIf "gitdir:~/DevBase/"]
-	path = ~/DevBase/gitconfig
+[includeIf "gitdir:~/WorkBase/"]
+	path = ~/WorkBase/gitconfig
+[includeIf "gitdir:~/Go/src/bitbucket.emetriq.com/"]
+	path = ~/Go/src/bitbucket.emetriq.com/gitconfig
