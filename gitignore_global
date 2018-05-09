@@ -4,3 +4,4 @@
 .idea
 Pipfile*
 .ropeproject
+.pytest_cache
