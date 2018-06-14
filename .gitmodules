@@ -34,3 +34,6 @@
 [submodule "nord/nord-vim"]
 	path = nord/nord-vim
 	url = https://github.com/arcticicestudio/nord-vim
+[submodule "vim/pack/plugins/start/pytest"]
+	path = vim/pack/plugins/start/pytest
+	url = https://github.com/alfredodeza/pytest.vim
