@@ -1,7 +1,6 @@
 .sw?
 .*.sw?
 .DS_Store
-.idea
 Pipfile*
 .ropeproject
 .pytest_cache
