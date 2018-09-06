@@ -37,6 +37,11 @@ ln -sf ~/dotfiles/tmux ~/.tmux
 ln -sf ~/dotfiles/iterm2 ~/.iterm2
 
 #==============
+# install vim plugins
+#==============
+~/dotfiles/vim/pack/plugins/start/YouCompleteMe/install.py
+
+#==============
 # Set zsh as the default shell
 #==============
 chsh -s /bin/zsh
