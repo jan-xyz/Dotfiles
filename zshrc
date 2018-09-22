@@ -6,7 +6,7 @@
 #
 
 # autostart tmux
-if [ "$TMUX" = "" ]; then tmux; fi
+# if [ "$TMUX" = "" ]; then tmux; fi
 
 # Environment Vars
 export LC_ALL=en_US.UTF-8
