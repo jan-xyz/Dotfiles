@@ -1,39 +1,52 @@
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+    branch = master
 [submodule "tmux/themes/nord-tmux"]
 	path = tmux/themes/nord-tmux
 	url = https://github.com/arcticicestudio/nord-tmux
+    branch = master
 [submodule "vim/pack/plugins/start/vim-go"]
 	path = vim/pack/plugins/start/vim-go
 	url = https://github.com/fatih/vim-go.git
+    branch = master
 [submodule "vim/pack/plugins/start/tagbar"]
 	path = vim/pack/plugins/start/tagbar
 	url = https://github.com/majutsushi/tagbar
+    branch = master
 [submodule "vim/pack/plugins/start/nerdtree"]
 	path = vim/pack/plugins/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
+    branch = master
 [submodule "vim/pack/plugins/start/syntastic"]
 	path = vim/pack/plugins/start/syntastic
 	url = https://github.com/vim-syntastic/syntastic
+    branch = master
 [submodule "vim/pack/plugins/start/YouCompleteMe"]
 	path = vim/pack/plugins/start/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe
+    branch = master
 [submodule "vim/pack/plugins/start/vim-sensible"]
 	path = vim/pack/plugins/start/vim-sensible
 	url = https://github.com/tpope/vim-sensible
+    branch = master
 [submodule "vim/pack/plugins/start/python-mode"]
 	path = vim/pack/plugins/start/python-mode
 	url = https://github.com/python-mode/python-mode
+    branch = master
 [submodule "vim/pack/plugins/start/vim-airline"]
 	path = vim/pack/plugins/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline
+    branch = master
 [submodule "vim/pack/plugins/start/vim-fugitive"]
 	path = vim/pack/plugins/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
+    branch = master
 [submodule "nord/nord-vim"]
 	path = nord/nord-vim
 	url = https://github.com/arcticicestudio/nord-vim
+    branch = master
 [submodule "vim/pack/plugins/start/pytest"]
 	path = vim/pack/plugins/start/pytest
 	url = https://github.com/alfredodeza/pytest.vim
+    branch = master
