@@ -44,7 +44,10 @@ ln -sf ~/dotfiles/iterm2 ~/.iterm2
 #==============
 # Set zsh as the default shell
 #==============
-chsh -s /bin/zsh
+if [[ "${SHELL}" != "/bin/zsh" ]] ; then
+    echo "you're shell is not /bin/zsh and I'm attempting to change that!"
+    chsh -s /bin/zsh
+fi
 
 #==============
 # configure iTerm2
