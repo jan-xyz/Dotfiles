@@ -22,6 +22,7 @@ rm -rf ~/.gitignore_global > /dev/null 2>&1
 rm -rf ~/.tmux.conf > /dev/null 2>&1
 rm -rf ~/.tmux > /dev/null 2>&1
 rm -rf ~/.iterm2 > /dev/null 2>&1
+rm -rf ~/.prezto > /dev/null 2>&1
 
 #==============
 # Create symlinks in the home folder
@@ -35,6 +36,7 @@ ln -sf ~/dotfiles/gitignore_global ~/.gitignore_global
 ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/tmux ~/.tmux
 ln -sf ~/dotfiles/iterm2 ~/.iterm2
+ln -sf ~/dotfiles/prezto ~/.zprezto
 
 #==============
 # install vim plugins
