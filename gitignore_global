@@ -5,3 +5,6 @@ Pipfile*
 .ropeproject
 .pytest_cache
 target
+.venv
+.env
+*.retry
