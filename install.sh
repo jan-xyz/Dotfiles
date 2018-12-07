@@ -8,6 +8,7 @@
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
+BANNER='\033[32;5;7m'
 NOCOLOR='\033[0m'
 
 #==============
@@ -126,6 +127,7 @@ defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 #==============
 # And we are done
 #==============
-echo -e "\\n====== All Done!! ======\\n"
 echo
-echo "Enjoy -Jan"
+echo -e "${BANNER}====== All Done!! ======"
+echo             "                        "
+echo -e          "  Enjoy -Jan            ${NOCOLOR}"
