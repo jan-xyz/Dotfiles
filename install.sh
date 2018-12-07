@@ -9,7 +9,6 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 NOCOLOR='\033[0m'
-BLINK='\033[5m'
 
 #==============
 # install homebrew
@@ -57,11 +56,13 @@ done
 #==============
 # update all plugins
 #==============
-git submodule update --init --recursive
+echo -e "${YELLOW}Updating submodules${NOCOLOR}"
+git submodule update --init --recursive > /dev/null 2>&1
 
 #==============
 # Remove old dot flies
 #==============
+echo -e "${YELLOW}Removing old symlinks${NOCOLOR}"
 rm -rf ~/.vimrc > /dev/null 2>&1
 rm -rf ~/.vim > /dev/null 2>&1
 rm -rf ~/.zshrc > /dev/null 2>&1
@@ -79,6 +80,7 @@ rm -rf ~/.zprofile > /dev/null 2>&1
 # Create symlinks in the home folder
 # Allow overriding with files of matching names in the custom-configs dir
 #==============
+echo -e "${YELLOW}Creating symlinks${NOCOLOR}"
 ln -sf ~/dotfiles/vimrc ~/.vimrc
 ln -sf ~/dotfiles/vim ~/.vim
 ln -sf ~/dotfiles/gitconfig ~/.gitconfig
@@ -95,19 +97,22 @@ ln -sf ~/dotfiles/zprofile ~/.zprofile
 #==============
 # install vim plugins
 #==============
-~/dotfiles/vim/pack/plugins/start/YouCompleteMe/install.py
+echo -e "${YELLOW}Building YCM${NOCOLOR}"
+~/dotfiles/vim/pack/plugins/start/YouCompleteMe/install.py --go-completer --java-completer > /dev/null 2>&1
 
 #==============
 # Set zsh as the default shell
 #==============
+echo -e "${YELLOW}Setting shell${NOCOLOR}"
 if [[ "${SHELL}" != "/bin/zsh" ]] ; then
-    echo "you're shell is not /bin/zsh and I'm attempting to change that!"
+    echo -e "${RED}you're shell is not /bin/zsh and I'm attempting to change that!${NOCOLOR}"
     chsh -s /bin/zsh
 fi
 
 #==============
 # configure iTerm2
 #==============
+echo -e "${YELLOW}setting iTerm settings${NOCOLOR}"
 defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${HOME}/.iterm2"
 defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
