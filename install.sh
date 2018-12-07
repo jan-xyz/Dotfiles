@@ -22,7 +22,10 @@ rm -rf ~/.gitignore_global > /dev/null 2>&1
 rm -rf ~/.tmux.conf > /dev/null 2>&1
 rm -rf ~/.tmux > /dev/null 2>&1
 rm -rf ~/.iterm2 > /dev/null 2>&1
-rm -rf ~/.prezto > /dev/null 2>&1
+rm -rf ~/.zprezto > /dev/null 2>&1
+rm -rf ~/.zpreztorc > /dev/null 2>&1
+rm -rf ~/.zshenv > /dev/null 2>&1
+rm -rf ~/.zprofile > /dev/null 2>&1
 
 #==============
 # Create symlinks in the home folder
@@ -30,13 +33,16 @@ rm -rf ~/.prezto > /dev/null 2>&1
 #==============
 ln -sf ~/dotfiles/vimrc ~/.vimrc
 ln -sf ~/dotfiles/vim ~/.vim
-ln -sf ~/dotfiles/zshrc ~/.zshrc
 ln -sf ~/dotfiles/gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/gitignore_global ~/.gitignore_global
 ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/tmux ~/.tmux
 ln -sf ~/dotfiles/iterm2 ~/.iterm2
+ln -sf ~/dotfiles/zshrc ~/.zshrc
 ln -sf ~/dotfiles/prezto ~/.zprezto
+ln -sf ~/dotfiles/zpreztorc ~/.zpreztorc
+ln -sf ~/dotfiles/zshenv ~/.zshenv
+ln -sf ~/dotfiles/zprofile ~/.zprofile
 
 #==============
 # install vim plugins
