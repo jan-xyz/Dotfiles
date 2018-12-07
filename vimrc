@@ -8,6 +8,10 @@ set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 " terminal setup
 "autocmd VimEnter * belowright terminal ++rows=14
 
+" gitgutter
+let g:gitgutter_realtime = 1
+set updatetime=50
+
 " theming
 colorscheme nord
 let g:airline_theme='nord'
