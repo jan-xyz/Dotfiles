@@ -5,6 +5,54 @@
 #                    repo to your home folder as ~/dotfiles/
 #
 #===============================================================================
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+NOCOLOR='\033[0m'
+BLINK='\033[5m'
+
+#==============
+# install homebrew
+#==============
+echo -e "${YELLOW}Checking homebrew${NOCOLOR}"
+if ! command -v brew > /dev/null 2>&1
+then
+    echo -e "${RED}Homebrew is not installed${NOCOLOR}"
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+else
+    echo -e "${GREEN}Homebrew is installed.${NOCOLOR}"
+fi
+
+
+#==============
+# install bottles
+#==============
+echo -e "${YELLOW}Installing bottles${NOCOLOR}"
+for BOTTLE in pyenv zsh shellcheck python3 go cmake
+do
+    if ! brew list $BOTTLE > /dev/null 2>&1
+    then
+        echo -e "${RED}${BOTTLE} is not installed${NOCOLOR}"
+        brew install $BOTTLE
+    else
+        echo -e "${GREEN}${BOTTLE} is already installed${NOCOLOR}"
+    fi
+done
+
+#==============
+# install casks
+#==============
+echo -e "${YELLOW}Installing casks${NOCOLOR}"
+for CASK in spotify atom telegram github iterm2 slack visual-studio-code postman iterm2
+do
+    if ! brew cask list $CASK > /dev/null 2>&1
+    then
+        echo -e "${RED}${CASK} is not installed ${NOCOLOR}"
+        brew cask install $CASK
+    else
+        echo -e "${GREEN}$CASK is already installed${NOCOLOR}"
+    fi
+done
 
 #==============
 # update all plugins
