@@ -104,9 +104,16 @@ echo -e "${YELLOW}Building YCM${NOCOLOR}"
 # Set zsh as the default shell
 #==============
 echo -e "${YELLOW}Setting shell${NOCOLOR}"
-if [[ "${SHELL}" != "/bin/zsh" ]] ; then
-    echo -e "${RED}you're shell is not /bin/zsh and I'm attempting to change that!${NOCOLOR}"
-    chsh -s /bin/zsh
+if [[ "${SHELL}" != "/usr/local/bin/zsh" ]] ; then
+    if ! grep /usr/local/bin/zsh /etc/shells > /dev/null 2>&1
+    then
+        echo -e "${RED}Appending /usr/local/bin/zsh to /etc/shells${NOCOLOR}"
+        echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells
+    fi
+    echo -e "${RED}you're shell is not /usr/local/bin/zsh and I'm attempting to change that!${NOCOLOR}"
+    chsh -s /usr/local/bin/zsh
+else
+    echo -e "${GREEN}shell is /usr/local/bin/zsh${NOCOLOR}"
 fi
 
 #==============
