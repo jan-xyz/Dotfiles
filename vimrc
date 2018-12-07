@@ -38,6 +38,7 @@ let g:pymode_lint_checkers = ['flake8', 'mccabe']
 " IDE setup
 nmap <F8> :TagbarToggle<CR>
 autocmd vimenter * NERDTree
+autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " syntatstic settings
