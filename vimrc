@@ -27,6 +27,7 @@ let &t_SR = "\e[4 q"
 
 " Go development
 filetype plugin indent on
+let g:go_gocode_unimported_packages = 1
 
 " Python development
 let g:pymode = 1
@@ -39,6 +40,7 @@ let g:pymode_lint_checkers = ['flake8', 'mccabe']
 nmap <F8> :TagbarToggle<CR>
 autocmd vimenter * NERDTree
 autocmd VimEnter * wincmd p
+:set colorcolumn=80
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " syntatstic settings
