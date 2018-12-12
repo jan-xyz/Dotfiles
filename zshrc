@@ -16,7 +16,7 @@ export VISUAL=/usr/local/bin/vim
 export PATH=/usr/local/bin:$PATH
 
 # Java configuration
-export JAVA_HOME=$(/usr/libexec/java_home)
+#export JAVA_HOME=$(/usr/libexec/java_home)
 
 # Source Prezto
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -24,15 +24,18 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # virtualenv configuration
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/DevBase
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
-export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
-source /usr/local/bin/virtualenvwrapper.sh
+#export WORKON_HOME=$HOME/.virtualenvs
+#export PROJECT_HOME=$HOME/DevBase
+#export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+#export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+#export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+#source /usr/local/bin/virtualenvwrapper.sh
+
+# pyenv
+#eval "$(pyenv init -)"
 
 # rbenv configuration
-eval "$(rbenv init -)"
+#eval "$(rbenv init -)"
 
 # Go configuration (installed with brew)
 export GOPATH=$HOME/Go
