@@ -55,6 +55,23 @@ do
 done
 
 #==============
+# Install python packages
+#==============
+echo -e "${YELLOW}Installing pip packages${NOCOLOR}"
+for PACKAGE in autopep8 pylint flake8 pyflakes
+do
+    if ! pip3 show $PACKAGE > /dev/null 2>&1
+    then
+        echo -e "${RED}${PACKAGE} is not installed ${NOCOLOR}"
+        pip3 install $PACKAGE
+    else
+        echo -e "${GREEN}$PACKAGE is already installed${NOCOLOR}"
+    fi
+done
+
+
+
+#==============
 # update all plugins
 #==============
 echo -e "${YELLOW}Updating submodules${NOCOLOR}"
