@@ -56,3 +56,9 @@
 [submodule "vim/pack/plugins/start/vim-gitgutter"]
 	path = vim/pack/plugins/start/vim-gitgutter
 	url = git://github.com/airblade/vim-gitgutter.git
+[submodule "vim/pack/plugins/start/vim-autopep8"]
+	path = vim/pack/plugins/start/vim-autopep8
+	url = git@github.com:tell-k/vim-autopep8.git
+[submodule "vim/pack/plugins/start/ropevim"]
+	path = vim/pack/plugins/start/ropevim
+	url = git@github.com:python-rope/ropevim.git
