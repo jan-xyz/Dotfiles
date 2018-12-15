@@ -69,8 +69,6 @@ do
     fi
 done
 
-
-
 #==============
 # update all plugins
 #==============
@@ -90,7 +88,6 @@ then
 else
     echo -e "${GREEN}$FONT_NAME is already installed${NOCOLOR}"
 fi
-    
 
 #==============
 # Remove old dot flies
