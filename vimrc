@@ -35,6 +35,7 @@ let g:pymode_rope = 1
 let g:pymode_virtualenv = 1
 let g:pymode_python = 'python3'
 let g:pymode_lint_checkers = ['flake8', 'mccabe']
+let g:pymode_rope_completion = 0
 
 " IDE setup
 nmap <F8> :TagbarToggle<CR>
