@@ -43,7 +43,7 @@ done
 # install casks
 #==============
 echo -e "${YELLOW}Installing casks${NOCOLOR}"
-for CASK in spotify atom telegram github iterm2 slack visual-studio-code postman iterm2
+for CASK in spotify telegram github iterm2 slack visual-studio-code postman iterm2 docker
 do
     if ! brew cask list $CASK > /dev/null 2>&1
     then
@@ -53,6 +53,23 @@ do
         echo -e "${GREEN}$CASK is already installed${NOCOLOR}"
     fi
 done
+
+#==============
+# Install python packages
+#==============
+echo -e "${YELLOW}Installing pip packages${NOCOLOR}"
+for PACKAGE in autopep8 pylint flake8 pyflakes
+do
+    if ! pip3 show $PACKAGE > /dev/null 2>&1
+    then
+        echo -e "${RED}${PACKAGE} is not installed ${NOCOLOR}"
+        pip3 install $PACKAGE
+    else
+        echo -e "${GREEN}$PACKAGE is already installed${NOCOLOR}"
+    fi
+done
+
+
 
 #==============
 # update all plugins
