@@ -61,6 +61,21 @@ echo -e "${YELLOW}Updating submodules${NOCOLOR}"
 git submodule update --init --recursive > /dev/null 2>&1
 
 #==============
+# install Font
+#==============
+echo -e "${YELLOW}Installing Powerline Font${NOCOLOR}"
+FONT_NAME="Meslo LG M Regular for Powerline.ttf"
+DOWNLOAD_LOCATION="https://github.com/powerline/fonts/raw/master/Meslo%20Slashed/Meslo%20LG%20M%20Regular%20for%20Powerline.ttf"
+if [[ ! -f ~/Library/Fonts/${FONT_NAME} ]]
+then
+    echo -e "${RED}${FONT_NAME} is not installed ${NOCOLOR}"
+    curl -H 'Accept: application/vnd.github.v3.raw' -L ${DOWNLOAD_LOCATION} -o "${HOME}/Library/Fonts/${FONT_NAME}" > /dev/null 2>&1
+else
+    echo -e "${GREEN}$FONT_NAME is already installed${NOCOLOR}"
+fi
+    
+
+#==============
 # Remove old dot flies
 #==============
 echo -e "${YELLOW}Removing old symlinks${NOCOLOR}"
