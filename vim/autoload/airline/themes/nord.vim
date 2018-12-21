@@ -1,1 +1,0 @@
-../../../../nord/nord-vim/autoload/airline/themes/nord.vim

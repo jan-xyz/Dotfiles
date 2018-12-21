@@ -28,7 +28,7 @@ fi
 # install bottles
 #==============
 echo -e "${YELLOW}Installing bottles${NOCOLOR}"
-for BOTTLE in pyenv zsh shellcheck python3 go cmake
+for BOTTLE in pyenv zsh shellcheck python3 go cmake neovim
 do
     if ! brew list $BOTTLE > /dev/null 2>&1
     then
