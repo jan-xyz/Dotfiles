@@ -4,16 +4,7 @@ call plug#begin()
   Plug 'tell-k/vim-autopep8'
   Plug 'python-rope/ropevim'
   Plug 'arcticicestudio/nord-vim'
-
-  set number
-  set mouse=a
-  set colorcolumn=80
-
-  " linting
   Plug 'neomake/neomake'
-  let g:neomake_open_list = 2
-
-  " completions
   Plug 'ncm2/ncm2' " completion manager
   Plug 'roxma/nvim-yarp'
   Plug 'ncm2/ncm2-jedi'
@@ -23,21 +14,30 @@ call plug#begin()
   Plug 'ncm2/ncm2-path'
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'scrooloose/nerdtree'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+call plug#end()
+
+  set number
+  set mouse=a
+  set colorcolumn=80
+  colorscheme nord
+
+  " linting
+  let g:neomake_open_list = 2
+  call neomake#configure#automake('w')
+
+  " completions
   set completeopt=noinsert,menuone,noselect
+  autocmd BufEnter * call ncm2#enable_for_buffer()
 
   " gitgutter
-  Plug 'airblade/vim-gitgutter'
   let g:gitgutter_realtime = 1
   set updatetime=50
 
   " NedTree Config
-  Plug 'scrooloose/nerdtree'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
   autocmd vimenter * NERDTree
   autocmd VimEnter * wincmd p
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-call plug#end()
 
-colorscheme nord
-autocmd BufEnter * call ncm2#enable_for_buffer()
-call neomake#configure#automake('w')
