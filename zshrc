@@ -11,8 +11,8 @@
 # Environment Vars
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-export EDITOR=/usr/local/bin/vim
-export VISUAL=/usr/local/bin/vim
+export EDITOR=nvim
+export VISUAL=nvim
 export PATH=/usr/local/bin:$PATH
 
 # Java configuration
