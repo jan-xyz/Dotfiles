@@ -3,6 +3,7 @@ call plug#begin()
   Plug 'vim-airline/vim-airline'
   Plug 'tell-k/vim-autopep8'
   Plug 'python-rope/ropevim'
+  Plug 'arcticicestudio/nord-vim'
 
   set number
   set mouse=a
@@ -37,5 +38,6 @@ call plug#begin()
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 call plug#end()
 
+colorscheme nord
 autocmd BufEnter * call ncm2#enable_for_buffer()
 call neomake#configure#automake('w')
