@@ -17,8 +17,11 @@ call plug#begin()
   Plug 'roxma/nvim-yarp'
   Plug 'ncm2/ncm2-jedi'
   Plug 'ncm2/ncm2-go'
-  Plug 'ncm2/ncm2-go'
-  autocmd BufEnter * call ncm2#enable_for_buffer()
+  Plug 'ncm2/ncm2-ultisnips'
+  Plug 'ncm2/ncm2-bufword'
+  Plug 'ncm2/ncm2-path'
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
   set completeopt=noinsert,menuone,noselect
 
   " gitgutter
@@ -34,5 +37,5 @@ call plug#begin()
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 call plug#end()
 
-
+autocmd BufEnter * call ncm2#enable_for_buffer()
 call neomake#configure#automake('w')
