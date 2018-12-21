@@ -26,7 +26,7 @@ call plug#end()
 
   " linting
   let g:neomake_open_list = 2
-  call neomake#configure#automake('w')
+  call neomake#configure#automake('rw')
 
   " completions
   set completeopt=noinsert,menuone,noselect
