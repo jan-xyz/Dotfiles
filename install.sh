@@ -58,7 +58,7 @@ done
 # Install python packages
 #==============
 echo -e "${YELLOW}Installing pip packages${NOCOLOR}"
-for PACKAGE in autopep8 pylint flake8 pyflakes
+for PACKAGE in autopep8 pylint flake8 pyflakes neovim
 do
     if ! pip3 show $PACKAGE > /dev/null 2>&1
     then
