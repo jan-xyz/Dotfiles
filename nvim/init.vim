@@ -23,6 +23,7 @@ call plug#end()
   set mouse=a
   set colorcolumn=80
   colorscheme nord
+  tnoremap <Esc> <C-\><C-n>
 
   " linting
   let g:neomake_open_list = 2
