@@ -2,7 +2,7 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
   Plug 'vim-airline/vim-airline'
   Plug 'tell-k/vim-autopep8'
-  Plug 'python-rope/ropevim'
+  Plug 'davidhalter/jedi-vim'
   Plug 'arcticicestudio/nord-vim'
   Plug 'neomake/neomake'
   Plug 'ncm2/ncm2' " completion manager
@@ -28,6 +28,10 @@ call plug#end()
   " linting
   let g:neomake_open_list = 2
   call neomake#configure#automake('rw')
+
+  " python config
+  let g:autopep8_disable_show_diff=1 " do not show autopep8 diff window
+  let g:autopep8_on_save = 1 " autopep8 on safe
 
   " completions
   set completeopt=noinsert,menuone,noselect
