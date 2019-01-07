@@ -70,6 +70,21 @@ do
 done
 
 #==============
+# Install VS Code extensions
+#==============
+echo -e "${YELLOW}Installing VS Code extensions${NOCOLOR}"
+for EXTENSION in ms-python.python vscodevim.vim ms-vsts.team ms-vscode.go
+do
+    if ! code --list-extensions | grep $EXTENSION > /dev/null 2>&1
+    then
+        echo -e "${RED}${EXTENSION} is not installed ${NOCOLOR}"
+        code --install-extension $EXTENSION
+    else
+        echo -e "${GREEN}$EXTENSION is already installed${NOCOLOR}"
+    fi
+done
+
+#==============
 # update all plugins
 #==============
 echo -e "${YELLOW}Updating submodules${NOCOLOR}"
