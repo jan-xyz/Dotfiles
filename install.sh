@@ -73,7 +73,7 @@ done
 # Install VS Code extensions
 #==============
 echo -e "${YELLOW}Installing VS Code extensions${NOCOLOR}"
-for EXTENSION in ms-python.python vscodevim.vim ms-vsts.team ms-vscode.go
+for EXTENSION in ms-python.python vscodevim.vim ms-vsts.team ms-vscode.go samuelcolvin.jinjahtml ms-mssql.mssql arcticicestudio.nord-visual-studio-code
 do
     if ! code --list-extensions | grep $EXTENSION > /dev/null 2>&1
     then
@@ -108,8 +108,6 @@ fi
 # Remove old dot flies
 #==============
 echo -e "${YELLOW}Removing old symlinks${NOCOLOR}"
-rm -rf ~/.vimrc > /dev/null 2>&1
-rm -rf ~/.vim > /dev/null 2>&1
 rm -rf ~/.zshrc > /dev/null 2>&1
 rm -rf ~/.gitconfig > /dev/null 2>&1
 rm -rf ~/.gitignore_global > /dev/null 2>&1
@@ -126,8 +124,8 @@ rm -rf ~/.zprofile > /dev/null 2>&1
 # Allow overriding with files of matching names in the custom-configs dir
 #==============
 echo -e "${YELLOW}Creating symlinks${NOCOLOR}"
-ln -sf ~/dotfiles/vimrc ~/.vimrc
-ln -sf ~/dotfiles/vim ~/.vim
+mkdir -p ~/.config/
+ln -sf ~/dotfiles/nvim ~/.config/nvim
 ln -sf ~/dotfiles/gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/gitignore_global ~/.gitignore_global
 ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
