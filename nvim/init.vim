@@ -24,6 +24,8 @@ call plug#end()
   set colorcolumn=80
   colorscheme nord
   tnoremap <Esc> <C-\><C-n>
+  let g:python_host_prog = '/usr/local/bin/python'
+  let g:python3_host_prog = '/usr/local/bin/python3'
 
   " linting
   let g:neomake_open_list = 2
