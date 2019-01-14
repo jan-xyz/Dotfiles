@@ -28,7 +28,7 @@ fi
 # install bottles
 #==============
 echo -e "${YELLOW}Installing bottles${NOCOLOR}"
-for BOTTLE in pyenv zsh shellcheck python3 go cmake neovim
+for BOTTLE in pyenv zsh shellcheck python3 python2 go cmake neovim
 do
     if ! brew list $BOTTLE > /dev/null 2>&1
     then
@@ -55,15 +55,32 @@ do
 done
 
 #==============
-# Install python packages
+# Install python2 packages
 #==============
 echo -e "${YELLOW}Installing pip packages${NOCOLOR}"
-for PACKAGE in autopep8 pylint flake8 pyflakes jedi neovim mypy
+PYTHON_BIN=/usr/local/bin/python
+for PACKAGE in autopep8 pylint flake8 rope mccabe pyflakes jedi neovim
 do
-    if ! pip3 show $PACKAGE > /dev/null 2>&1
+    if ! ${PYTHON_BIN} -m pip show $PACKAGE > /dev/null 2>&1
     then
         echo -e "${RED}${PACKAGE} is not installed ${NOCOLOR}"
-        pip3 install $PACKAGE
+        ${PYTHON_BIN} -m pip install $PACKAGE
+    else
+        echo -e "${GREEN}$PACKAGE is already installed${NOCOLOR}"
+    fi
+done
+
+#==============
+# Install python3 packages
+#==============
+echo -e "${YELLOW}Installing pip packages${NOCOLOR}"
+PYTHON_BIN=/usr/local/bin/python3
+for PACKAGE in autopep8 pylint flake8 rope mccabe pyflakes jedi neovim mypy
+do
+    if ! ${PYTHON_BIN} -m pip show $PACKAGE > /dev/null 2>&1
+    then
+        echo -e "${RED}${PACKAGE} is not installed ${NOCOLOR}"
+        ${PYTHON_BIN} -m pip install $PACKAGE
     else
         echo -e "${GREEN}$PACKAGE is already installed${NOCOLOR}"
     fi
@@ -73,7 +90,7 @@ done
 # Install VS Code extensions
 #==============
 echo -e "${YELLOW}Installing VS Code extensions${NOCOLOR}"
-for EXTENSION in ms-python.python vscodevim.vim ms-vsts.team ms-vscode.go samuelcolvin.jinjahtml ms-mssql.mssql arcticicestudio.nord-visual-studio-code
+for EXTENSION in ms-python.python vscodevim.vim ms-vsts.team ms-vscode.go samuelcolvin.jinjahtml ms-mssql.mssql arcticicestudio.nord-visual-studio-code peterjausovec.vscode-docker
 do
     if ! code --list-extensions | grep $EXTENSION > /dev/null 2>&1
     then
