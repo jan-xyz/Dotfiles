@@ -28,7 +28,6 @@ call plug#end()
   let g:python3_host_prog = '/usr/local/bin/python3'
 
   " linting
-  let g:neomake_open_list = 2
   call neomake#configure#automake('rw')
 
   " python config
