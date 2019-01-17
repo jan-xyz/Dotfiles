@@ -59,3 +59,4 @@ export GROOVY_HOME=/usr/local/opt/groovy/libexec
 # completion
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
+source <(kubectl completion zsh)
