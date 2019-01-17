@@ -57,7 +57,7 @@ done
 #==============
 # Install python2 packages
 #==============
-echo -e "${YELLOW}Installing pip packages${NOCOLOR}"
+echo -e "${YELLOW}Installing python2 packages${NOCOLOR}"
 PYTHON_BIN=/usr/local/bin/python
 for PACKAGE in autopep8 pylint flake8 rope mccabe pyflakes jedi neovim
 do
@@ -73,7 +73,7 @@ done
 #==============
 # Install python3 packages
 #==============
-echo -e "${YELLOW}Installing pip packages${NOCOLOR}"
+echo -e "${YELLOW}Installing python3 packages${NOCOLOR}"
 PYTHON_BIN=/usr/local/bin/python3
 for PACKAGE in autopep8 pylint flake8 rope mccabe pyflakes jedi neovim mypy
 do
