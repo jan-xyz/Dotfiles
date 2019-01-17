@@ -28,7 +28,7 @@ fi
 # install bottles
 #==============
 echo -e "${YELLOW}Installing bottles${NOCOLOR}"
-for BOTTLE in pyenv zsh shellcheck python3 python2 go cmake neovim
+for BOTTLE in pyenv zsh shellcheck python3 python2 go cmake neovim kubernetes-cli
 do
     if ! brew list $BOTTLE > /dev/null 2>&1
     then
