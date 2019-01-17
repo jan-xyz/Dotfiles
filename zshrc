@@ -8,6 +8,9 @@
 # autostart tmux
 # if [ "$TMUX" = "" ]; then tmux; fi
 
+# vim config
+alias vim=nvim
+
 # Environment Vars
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
