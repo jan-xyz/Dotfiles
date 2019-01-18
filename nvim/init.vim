@@ -17,6 +17,7 @@ call plug#begin()
   Plug 'airblade/vim-gitgutter'
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
   set number
