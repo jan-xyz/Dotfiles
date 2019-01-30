@@ -9,15 +9,13 @@ call plug#begin()
   Plug 'roxma/nvim-yarp'
   Plug 'ncm2/ncm2-jedi'
   Plug 'ncm2/ncm2-go'
-  Plug 'ncm2/ncm2-ultisnips'
   Plug 'ncm2/ncm2-bufword'
   Plug 'ncm2/ncm2-path'
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
   Plug 'airblade/vim-gitgutter'
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  Plug 'stamblerre/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 call plug#end()
 
   set number
@@ -29,7 +27,7 @@ call plug#end()
   let g:python3_host_prog = '/usr/local/bin/python3'
 
   " linting
-  call neomake#configure#automake('rw')
+  call neomake#configure#automake('nrwi', 750)
 
   " python config
   let g:autopep8_disable_show_diff=1 " do not show autopep8 diff window
