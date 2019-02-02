@@ -98,7 +98,7 @@ go get -u golang.org/x/tools/cmd/gopls
 echo -e "${YELLOW}Installing VS Code extensions${NOCOLOR}"
 for EXTENSION in ms-python.python vscodevim.vim ms-vsts.team ms-vscode.go samuelcolvin.jinjahtml ms-mssql.mssql arcticicestudio.nord-visual-studio-code peterjausovec.vscode-docker
 do
-    if ! code --list-extensions | grep $EXTENSION > /dev/null 2>&1
+    if ! code --list-extensions | grep --ignore-case $EXTENSION > /dev/null 2>&1
     then
         echo -e "${RED}${EXTENSION} is not installed ${NOCOLOR}"
         code --install-extension $EXTENSION
