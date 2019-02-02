@@ -1,11 +1,3 @@
-[submodule "tmux/plugins/tpm"]
-	path = tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
-        branch = master
-[submodule "tmux/themes/nord-tmux"]
-	path = tmux/themes/nord-tmux
-	url = https://github.com/arcticicestudio/nord-tmux
-        branch = master
 [submodule "nord/nord-vim"]
 	path = nord/nord-vim
 	url = https://github.com/arcticicestudio/nord-vim
@@ -13,8 +5,4 @@
 [submodule "prezto"]
 	path = prezto
 	url = https://github.com/sorin-ionescu/prezto.git
-        branch = master
-[submodule "nvim/site/autoload/vim-plug"]
-	path = nvim/site/autoload/vim-plug
-	url = https://github.com/junegunn/vim-plug
         branch = master
