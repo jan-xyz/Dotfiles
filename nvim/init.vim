@@ -4,6 +4,9 @@ call plug#begin()
   Plug 'scrooloose/nerdtree'
   Plug 'arcticicestudio/nord-vim'
 
+  " Language Extras
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
   " Git support
   Plug 'airblade/vim-gitgutter'
   Plug 'Xuyuanp/nerdtree-git-plugin'
