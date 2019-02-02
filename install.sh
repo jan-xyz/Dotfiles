@@ -125,6 +125,7 @@ fi
 # Remove old dot flies
 #==============
 echo -e "${YELLOW}Removing old symlinks${NOCOLOR}"
+rm -rf ~/.config/nvim 2>&1
 rm -rf ~/.zshrc > /dev/null 2>&1
 rm -rf ~/.gitconfig > /dev/null 2>&1
 rm -rf ~/.gitignore_global > /dev/null 2>&1
@@ -153,12 +154,6 @@ ln -sf ~/dotfiles/prezto ~/.zprezto
 ln -sf ~/dotfiles/zpreztorc ~/.zpreztorc
 ln -sf ~/dotfiles/zshenv ~/.zshenv
 ln -sf ~/dotfiles/zprofile ~/.zprofile
-
-#==============
-# install vim plugins
-#==============
-echo -e "${YELLOW}Building YCM${NOCOLOR}"
-~/dotfiles/vim/pack/plugins/start/YouCompleteMe/install.py --go-completer --java-completer > /dev/null 2>&1
 
 #==============
 # Set zsh as the default shell
