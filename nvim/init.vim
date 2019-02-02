@@ -21,6 +21,10 @@ call plug#end()
   set number
   set mouse=a
   set colorcolumn=80
+  set expandtab
+  set shiftwidth=2
+  set softtabstop=2
+  set tabstop=2
   colorscheme nord
   tnoremap <Esc> <C-\><C-n>
   let g:python_host_prog = '/usr/local/bin/python'
