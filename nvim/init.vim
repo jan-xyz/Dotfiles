@@ -17,6 +17,7 @@ call plug#begin()
 call plug#end()
 
   set number
+  set list
   set mouse=a
   set colorcolumn=80
   set expandtab
@@ -29,17 +30,20 @@ call plug#end()
   let g:python3_host_prog = '/usr/local/bin/python3'
 
   " linting
+  let g:lsp_signs_error = {'text': '✗'}
+  let g:lsp_signs_warning = {'text': '⚠'}
   let g:lsp_signs_enabled = 1
   let g:asyncomplete_auto_popup = 1
-	set completeopt-=preview
-	if executable('pyls')
+  let g:lsp_diagnostics_echo_cursor = 1
+  set completeopt-=preview
+  if executable('pyls')
     au User lsp_setup call lsp#register_server({
     \ 'name': 'pyls',
     \ 'cmd': {server_info->['pyls']},
     \ 'whitelist': ['python'],
     \ })
   endif
-	if executable('gopls')
+  if executable('gopls')
     au User lsp_setup call lsp#register_server({
     \ 'name': 'gopls',
     \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
