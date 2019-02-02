@@ -1,10 +1,15 @@
 call plug#begin()
-  Plug 'tpope/vim-fugitive'
+  " Window Add-Ons
   Plug 'vim-airline/vim-airline'
-  Plug 'arcticicestudio/nord-vim'
-  Plug 'airblade/vim-gitgutter'
   Plug 'scrooloose/nerdtree'
+  Plug 'arcticicestudio/nord-vim'
+
+  " Git support
+  Plug 'airblade/vim-gitgutter'
   Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'tpope/vim-fugitive'
+
+  " autocompletion and linting
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/async.vim'
   Plug 'prabirshrestha/vim-lsp'
