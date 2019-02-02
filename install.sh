@@ -59,7 +59,7 @@ done
 #==============
 echo -e "${YELLOW}Installing python2 packages${NOCOLOR}"
 PYTHON_BIN=/usr/local/bin/python
-for PACKAGE in autopep8 pylint flake8 rope mccabe pyflakes jedi neovim
+for PACKAGE in autopep8 pylint flake8 rope mccabe pyflakes jedi neovim python-language-server
 do
     if ! ${PYTHON_BIN} -m pip show $PACKAGE > /dev/null 2>&1
     then
@@ -75,7 +75,7 @@ done
 #==============
 echo -e "${YELLOW}Installing python3 packages${NOCOLOR}"
 PYTHON_BIN=/usr/local/bin/python3
-for PACKAGE in autopep8 pylint flake8 rope mccabe pyflakes jedi neovim mypy
+for PACKAGE in autopep8 pylint flake8 rope mccabe pyflakes jedi neovim mypy python-language-server
 do
     if ! ${PYTHON_BIN} -m pip show $PACKAGE > /dev/null 2>&1
     then
@@ -85,6 +85,12 @@ do
         echo -e "${GREEN}$PACKAGE is already installed${NOCOLOR}"
     fi
 done
+
+#==============
+# Install golang packages
+#==============
+echo -e "${YELLOW}Installing golang packages${NOCOLOR}"
+go get -u golang.org/x/tools/cmd/gopls
 
 #==============
 # Install VS Code extensions
