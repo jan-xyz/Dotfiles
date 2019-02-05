@@ -17,6 +17,7 @@ call plug#begin()
   Plug 'prabirshrestha/async.vim'
   Plug 'prabirshrestha/vim-lsp'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  Plug 'majutsushi/tagbar'
 call plug#end()
 
   set number
@@ -31,6 +32,7 @@ call plug#end()
   tnoremap <Esc> <C-\><C-n>
   let g:python_host_prog = '/usr/local/bin/python'
   let g:python3_host_prog = '/usr/local/bin/python3'
+  nmap <F8> :TagbarToggle<CR>
 
   " linting
   let g:lsp_signs_error = {'text': '✗'}
