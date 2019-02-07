@@ -61,3 +61,10 @@ fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 source <(kubectl completion zsh)
 unsetopt correct
+
+# local configuration sourcing
+if [ -d ~/.config/zsh/ ]; then
+  for file in ~/.config/zsh/*.zsh(.); do
+    source $file;
+  done
+fi
