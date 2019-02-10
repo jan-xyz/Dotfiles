@@ -9,6 +9,7 @@
 # if [ "$TMUX" = "" ]; then tmux; fi
 
 # vim config
+bindkey -v
 alias vim=nvim
 
 # Environment Vars
@@ -16,6 +17,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=nvim
 export VISUAL=nvim
+export KEYTIMEOUT=1 # lag between switching vi modes
 export PATH=/usr/local/bin:$PATH
 
 # Java configuration
