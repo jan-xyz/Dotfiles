@@ -12,6 +12,9 @@ fi
 
 # vim config
 bindkey -v
+bindkey '^r' history-incremental-search-backward
+bindkey '^w' backward-kill-word
+
 alias vim=nvim
 
 # Environment Vars
