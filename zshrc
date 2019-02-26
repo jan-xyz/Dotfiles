@@ -50,3 +50,5 @@ if [ -d ~/.config/zsh/ ]; then
     source $file;
   done
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
