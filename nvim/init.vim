@@ -4,6 +4,10 @@ call plug#begin()
   Plug 'scrooloose/nerdtree'
   Plug 'arcticicestudio/nord-vim'
 
+  " Misc
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
+
   " Language Extras
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
@@ -40,7 +44,8 @@ call plug#end()
   let g:lsp_signs_enabled = 1
   let g:asyncomplete_auto_popup = 1
   let g:lsp_diagnostics_echo_cursor = 1
-  set completeopt-=preview
+  let g:lsp_diagnostics_enabled = 1
+  set completeopt+=preview
   if executable('pyls')
     au User lsp_setup call lsp#register_server({
     \ 'name': 'pyls',
