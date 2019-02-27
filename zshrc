@@ -16,6 +16,7 @@ bindkey '^r' history-incremental-search-backward
 bindkey '^w' backward-kill-word
 
 alias vim=nvim
+alias diff=colordiff
 
 # Environment Vars
 export LC_ALL=en_US.UTF-8
