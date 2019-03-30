@@ -3,6 +3,7 @@ call plug#begin()
   Plug 'vim-airline/vim-airline'
   Plug 'scrooloose/nerdtree'
   Plug 'arcticicestudio/nord-vim'
+  Plug 'majutsushi/tagbar'
 
   " Misc
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -17,14 +18,12 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
 
   " autocompletion and linting
-  Plug 'prabirshrestha/asyncomplete.vim'
-  Plug 'prabirshrestha/async.vim'
-  Plug 'prabirshrestha/vim-lsp'
-  Plug 'prabirshrestha/asyncomplete-lsp.vim'
-  Plug 'majutsushi/tagbar'
+  Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
 call plug#end()
 
   set number
+  set hidden
+  set signcolumn=yes
   set list
   set mouse=a
   set colorcolumn=80
@@ -39,28 +38,23 @@ call plug#end()
   nmap <F8> :TagbarToggle<CR>
 
   " linting
-  let g:lsp_signs_error = {'text': '✗'}
-  let g:lsp_signs_warning = {'text': '⚠'}
-  let g:lsp_signs_enabled = 1
-  let g:asyncomplete_auto_popup = 1
-  let g:lsp_diagnostics_echo_cursor = 1
-  let g:lsp_diagnostics_enabled = 1
-  set completeopt+=preview
-  if executable('pyls')
-    au User lsp_setup call lsp#register_server({
-    \ 'name': 'pyls',
-    \ 'cmd': {server_info->['pyls']},
-    \ 'whitelist': ['python'],
-    \ })
-  endif
-  if executable('gopls')
-    au User lsp_setup call lsp#register_server({
-    \ 'name': 'gopls',
-    \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-    \ 'whitelist': ['go'],
-    \ })
-  endif
-
+  let g:LanguageClient_serverCommands = {
+    \ 'go': ['bingo'],
+    \ 'python': ['pyls'],
+    \ }
+  let g:LanguageClient_rootMarkers = {
+        \ 'go': ['.git', 'go.mod'],
+        \ }
+  function! LC_maps()
+    if has_key(g:LanguageClient_serverCommands, &filetype)
+      nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<cr>
+      nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+      nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+    endif
+  endfunction
+  autocmd FileType * call LC_maps()
+  set completefunc=LanguageClient#complete
+  set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
 
   " gitgutter
   let g:gitgutter_realtime = 1
