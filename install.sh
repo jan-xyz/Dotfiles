@@ -181,6 +181,12 @@ defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${HOME}/.i
 defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
 #==============
+# run post steps
+#==============
+echo -e "${YELLOW}run post steps${NOCOLOR}"
+$(brew --prefix)/opt/fzf/install --all # fzf
+
+#==============
 # And we are done
 #==============
 echo
