@@ -9,9 +9,6 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
 
-  " Language Extras
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
   " Git support
   Plug 'airblade/vim-gitgutter'
   Plug 'Xuyuanp/nerdtree-git-plugin'
