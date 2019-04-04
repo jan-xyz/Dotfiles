@@ -39,7 +39,7 @@ call plug#end()
 
   " linting
   let g:LanguageClient_serverCommands = {
-    \ 'go': ['bingo'],
+    \ 'go': ['gopls'],
     \ 'python': ['pyls'],
     \ }
   let g:LanguageClient_rootMarkers = {
