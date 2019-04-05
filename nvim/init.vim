@@ -9,9 +9,6 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
 
-  " Language Extras
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
   " Git support
   Plug 'airblade/vim-gitgutter'
   Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -39,20 +36,20 @@ call plug#end()
 
   " linting
   let g:LanguageClient_serverCommands = {
-    \ 'go': ['bingo'],
+    \ 'go': ['gopls'],
     \ 'python': ['pyls'],
     \ }
   let g:LanguageClient_rootMarkers = {
         \ 'go': ['.git', 'go.mod'],
         \ }
-  function! LC_maps()
-    if has_key(g:LanguageClient_serverCommands, &filetype)
-      nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<cr>
-      nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
-      nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-    endif
-  endfunction
-  autocmd FileType * call LC_maps()
+  " Go: Run gofmt and goimports on save
+  autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+
+  " General: keyboard mappings
+  nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+  nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+  nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+  nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
   set completefunc=LanguageClient#complete
   set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
 
