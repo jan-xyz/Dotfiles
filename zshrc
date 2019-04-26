@@ -46,6 +46,10 @@ autoload -Uz compinit && compinit -i
 source <(kubectl completion zsh)
 unsetopt correct
 
+# Kubernetes cluster and namespace in PS1
+source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+PS1='$(kube_ps1)'$PS1
+
 # local configuration sourcing
 if [ -d ~/.config/zsh/ ]; then
   for file in ~/.config/zsh/*.zsh(.); do
