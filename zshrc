@@ -26,12 +26,13 @@ export VISUAL=nvim
 export KEYTIMEOUT=1 # lag between switching vi modes
 export PATH=/usr/local/bin:$PATH
 
-# pyenv
+# python configuration
 if command -v pyenv > /dev/null 2>&1
 then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 fi
+export WORKON_HOME=~/Envs
 
 # Go configuration (installed with brew)
 export GO111MODULE=on

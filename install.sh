@@ -59,7 +59,7 @@ done
 #==============
 echo -e "${YELLOW}Installing python2 packages${NOCOLOR}"
 PYTHON_BIN=/usr/local/bin/python
-for PACKAGE in autopep8 pylint flake8 rope mccabe pyflakes jedi neovim python-language-server
+for PACKAGE in autopep8 pylint flake8 rope mccabe pyflakes jedi neovim python-language-server virtualenvwrapper
 do
     if ! ${PYTHON_BIN} -m pip show $PACKAGE > /dev/null 2>&1
     then
@@ -75,7 +75,7 @@ done
 #==============
 echo -e "${YELLOW}Installing python3 packages${NOCOLOR}"
 PYTHON_BIN=/usr/local/bin/python3
-for PACKAGE in autopep8 pylint flake8 rope mccabe pyflakes jedi neovim mypy python-language-server
+for PACKAGE in autopep8 pylint flake8 rope mccabe pyflakes jedi neovim mypy python-language-server virtualenvwrapper
 do
     if ! ${PYTHON_BIN} -m pip show $PACKAGE > /dev/null 2>&1
     then
