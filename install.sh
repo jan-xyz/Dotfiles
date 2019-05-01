@@ -142,6 +142,7 @@ rm -rf ~/.zprezto > /dev/null 2>&1
 rm -rf ~/.zpreztorc > /dev/null 2>&1
 rm -rf ~/.zshenv > /dev/null 2>&1
 rm -rf ~/.zprofile > /dev/null 2>&1
+rm -rf ~/.zsh > /dev/null 2>&1
 
 #==============
 # Create symlinks in the home folder
@@ -158,6 +159,7 @@ ln -sf ~/dotfiles/prezto ~/.zprezto
 ln -sf ~/dotfiles/zpreztorc ~/.zpreztorc
 ln -sf ~/dotfiles/zshenv ~/.zshenv
 ln -sf ~/dotfiles/zprofile ~/.zprofile
+ln -sf ~/dotfiles/zsh ~/.zsh
 
 #==============
 # Set zsh as the default shell
