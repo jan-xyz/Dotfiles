@@ -90,7 +90,9 @@ done
 # Install golang packages
 #==============
 echo -e "${YELLOW}Installing golang packages${NOCOLOR}"
+pushd ~/Go
 go get -u golang.org/x/tools/cmd/gopls
+popd
 
 #==============
 # Install VS Code extensions
