@@ -129,6 +129,16 @@ else
     echo -e "${GREEN}$FONT_NAME is already installed${NOCOLOR}"
 fi
 
+FONT_NAME="Source Code Pro for Powerline.otf"
+DOWNLOAD_LOCATION="https://github.com/powerline/fonts/raw/master/SourceCodePro/Source%20Code%20Pro%20for%20Powerline.otf"
+if [[ ! -f ~/Library/Fonts/${FONT_NAME} ]]
+then
+    echo -e "${RED}${FONT_NAME} is not installed ${NOCOLOR}"
+    curl -H 'Accept: application/vnd.github.v3.raw' -L ${DOWNLOAD_LOCATION} -o "${HOME}/Library/Fonts/${FONT_NAME}" > /dev/null 2>&1
+else
+    echo -e "${GREEN}$FONT_NAME is already installed${NOCOLOR}"
+fi
+
 #==============
 # Remove old dot flies
 #==============
@@ -143,6 +153,7 @@ rm -rf ~/.zpreztorc > /dev/null 2>&1
 rm -rf ~/.zshenv > /dev/null 2>&1
 rm -rf ~/.zprofile > /dev/null 2>&1
 rm -rf ~/.zsh > /dev/null 2>&1
+rm -rf ~/.hyper.js > /dev/null 2>&1
 
 #==============
 # Create symlinks in the home folder
@@ -160,6 +171,7 @@ ln -sf ~/dotfiles/zpreztorc ~/.zpreztorc
 ln -sf ~/dotfiles/zshenv ~/.zshenv
 ln -sf ~/dotfiles/zprofile ~/.zprofile
 ln -sf ~/dotfiles/zsh ~/.zsh
+ln -sf ~/dotfiles/hyper.js ~/.hyper.js
 
 #==============
 # Set zsh as the default shell
