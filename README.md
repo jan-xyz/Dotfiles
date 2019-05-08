@@ -2,10 +2,10 @@
 my Dotfiles
 
 ## configuration for
-* vim 8
+* neovim
 * zsh
-* tmux
 * iterm2
+* hyper
 
 
 ## install
