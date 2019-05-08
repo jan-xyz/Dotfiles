@@ -53,6 +53,10 @@ call plug#end()
   set completefunc=LanguageClient#complete
   set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
 
+  " airline
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#buffer_nr_show = 1
+
   " gitgutter
   let g:gitgutter_realtime = 1
   set updatetime=50
