@@ -1,8 +1,13 @@
 [core]
 	excludesfile = ~/.gitignore_global
+	editor = vim
 [user]
 	name = Jan Steinke
 	email = jan.steinke@gmail.com
+[pull]
+	rebase = true
+[push]
+	default = simple
 [commit]
 	template = ~/.stCommitMsg
 [includeIf "gitdir:~/WorkBase/"]
@@ -21,6 +26,6 @@
 	process = git-lfs filter-process
 	required = true
 [url "ssh://git@github.com/"]
-    insteadOf = https://github.com/
+	insteadOf = https://github.com/
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
