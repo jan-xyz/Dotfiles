@@ -25,6 +25,22 @@ fi
 
 
 #==============
+# add homebrew taps
+#==============
+echo -e "${YELLOW}Adding Homebrew Taps${NOCOLOR}"
+for TAP in homebrew/cask-fonts
+do
+    if ! brew tap | grep $TAP > /dev/null 2>&1
+    then
+        echo -e "${RED}${TAP} is not tapped${NOCOLOR}"
+        brew tap $TAP
+    else
+        echo -e "${GREEN}${TAP} is already tapped${NOCOLOR}"
+    fi
+done
+
+
+#==============
 # install bottles
 #==============
 echo -e "${YELLOW}Installing bottles${NOCOLOR}"
@@ -43,7 +59,7 @@ done
 # install casks
 #==============
 echo -e "${YELLOW}Installing casks${NOCOLOR}"
-for CASK in spotify telegram github iterm2 slack visual-studio-code postman iterm2 docker scroll-reverser hyper aerial brooklyn
+for CASK in spotify telegram github iterm2 slack visual-studio-code postman iterm2 docker scroll-reverser hyper aerial brooklyn font-fira-code
 do
     if ! brew cask list $CASK > /dev/null 2>&1
     then
