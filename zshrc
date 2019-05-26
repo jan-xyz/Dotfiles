@@ -5,6 +5,21 @@
 #   Jan Steinke <jan.steinke@gmail.com>
 #
 
+# custom themes
+fpath=(~/.zsh/custom_themes $fpath)
+autoload -U promptinit && promptinit
+
+BULLETTRAIN_PROMPT_ORDER=(
+  time
+  status
+  dir
+  git
+  go
+  virtualenv
+  cmd_exec_time
+)
+BULLETTRAIN_VIRTUALENV_FG=black
+
 # Source Prezto
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
