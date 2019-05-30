@@ -15,8 +15,7 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
 
   " autocompletion and linting
-  Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 call plug#end()
 
   set number
@@ -37,31 +36,20 @@ call plug#end()
   nmap <C-n> :bn<CR>  " Next buffer in list
   nmap <C-p> :bp<CR>  " Previous buffer in list
 
-  " Autocomplete:
-  let g:deoplete#enable_at_startup = 1
-
-  " Linting: config
-  let g:LanguageClient_serverCommands = {
-    \ 'go': ['gopls'],
-    \ 'python': ['pyls'],
-    \ }
-  let g:LanguageClient_rootMarkers = {
-        \ 'go': ['.git', 'go.mod'],
-        \ }
   " Go: Run gofmt and goimports on save
-  autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
-
-  " General: keyboard mappings
-  nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-  nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-  nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-  nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-  set completefunc=LanguageClient#complete
-  set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+  " CoC:
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
+  nmap <F2> <Plug>(coc-rename)
 
   " Airline: config
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#buffer_nr_show = 1
+  let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+  let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
   " Gitgutter: Config
   let g:gitgutter_realtime = 1
