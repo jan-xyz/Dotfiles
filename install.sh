@@ -75,15 +75,32 @@ done
 #==============
 echo -e "${YELLOW}Installing python2 packages${NOCOLOR}"
 PYTHON_BIN=/usr/local/bin/python
-${PYTHON_BIN} -m pip install -U \
-  autopep8 pylint flake8 rope mccabe pyflakes jedi neovim python-language-server virtualenvwrapper
+for PACKAGE in autopep8 pylint flake8 rope mccabe pyflakes jedi neovim python-language-server virtualenvwrapper
+do
+    if ! ${PYTHON_BIN} -m pip show $PACKAGE > /dev/null 2>&1
+    then
+        echo -e "${RED}${PACKAGE} is not installed ${NOCOLOR}"
+        ${PYTHON_BIN} -m pip install $PACKAGE
+    else
+        echo -e "${GREEN}$PACKAGE is already installed${NOCOLOR}"
+    fi
+done
 
 #==============
 # Install python3 packages
 #==============
 echo -e "${YELLOW}Installing python3 packages${NOCOLOR}"
 PYTHON_BIN=/usr/local/bin/python3
-${PYTHON_BIN} -m pip install -U $PACKAGES autopep8 pylint flake8 rope mccabe pyflakes jedi neovim mypy python-language-server virtualenvwrapper
+for PACKAGE in autopep8 pylint flake8 rope mccabe pyflakes jedi neovim mypy python-language-server virtualenvwrapper
+do
+    if ! ${PYTHON_BIN} -m pip show $PACKAGE > /dev/null 2>&1
+    then
+        echo -e "${RED}${PACKAGE} is not installed ${NOCOLOR}"
+        ${PYTHON_BIN} -m pip install $PACKAGE
+    else
+        echo -e "${GREEN}$PACKAGE is already installed${NOCOLOR}"
+    fi
+done
 
 #==============
 # Install golang packages
