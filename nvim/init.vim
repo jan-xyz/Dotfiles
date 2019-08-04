@@ -19,17 +19,17 @@ call plug#begin()
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
-  set number
-  set hidden
-  set signcolumn=yes
-  set list
-  set mouse=a
-  set colorcolumn=80
-  set expandtab
-  set shiftwidth=2
-  set softtabstop=2
-  set tabstop=2
-  colorscheme nord
+  set number         " Add line numbers
+  set hidden         " Enable hidden buffers
+  set signcolumn=yes " Show signs in number column (e.g. errors and warnings)
+  set list           " Show tabs, spaces and line ends
+  set mouse=a        " Enable all mouse support
+  set colorcolumn=80 " Show a line at the 80th character
+  set expandtab      " Expand tabs to spaces per default
+  set shiftwidth=2   " Set default auto-indent width
+  set softtabstop=2  " Set default virtual tabstop width
+  set tabstop=2      " Set default tabstop width
+  colorscheme nord   " Set color scheme
   tnoremap <Esc> <C-\><C-n>
   let g:python_host_prog = '/usr/local/bin/python'
   let g:python3_host_prog = '/usr/local/bin/python3'
