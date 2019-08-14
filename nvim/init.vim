@@ -17,6 +17,7 @@ call plug#begin()
   " autocompletion and linting
   Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'udalov/kotlin-vim'
 call plug#end()
 
   set number         " Add line numbers
