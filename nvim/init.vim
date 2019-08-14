@@ -29,6 +29,8 @@ call plug#end()
   set shiftwidth=2   " Set default auto-indent width
   set softtabstop=2  " Set default virtual tabstop width
   set tabstop=2      " Set default tabstop width
+  set title          " set the window title
+  set titlestring=(%{fnamemodify(getcwd(),\ \":t\")})\ %f " set the content of the window title
   colorscheme nord   " Set color scheme
   tnoremap <Esc> <C-\><C-n>
   let g:python_host_prog = '/usr/local/bin/python'
