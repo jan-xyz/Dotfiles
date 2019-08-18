@@ -74,9 +74,9 @@ done
 # Install python2 packages
 #==============
 echo -e "${YELLOW}Installing python2 packages${NOCOLOR}"
-PYTHON_BIN=/usr/local/bin/python
+PYTHON_BIN=/usr/local/bin/python2
 PACKAGES=(autopep8 pylint flake8 rope mccabe pyflakes jedi neovim python-language-server virtualenvwrapper)
-${PYTHON_BIN} -m pip install -U $PACKAGES 2>&1
+${PYTHON_BIN} -m pip install --user -U $PACKAGES 2>&1
 
 #==============
 # Install python3 packages
@@ -84,7 +84,7 @@ ${PYTHON_BIN} -m pip install -U $PACKAGES 2>&1
 echo -e "${YELLOW}Installing python3 packages${NOCOLOR}"
 PYTHON_BIN=/usr/local/bin/python3
 PACKAGES=( autopep8 pylint flake8 rope mccabe pyflakes jedi neovim mypy python-language-server virtualenvwrapper)
-${PYTHON_BIN} -m pip install -U $PACKAGES 2>&1
+${PYTHON_BIN} -m pip install --user -U $PACKAGES 2>&1
 
 #==============
 # Install golang packages
