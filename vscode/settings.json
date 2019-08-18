@@ -1,0 +1,29 @@
+{
+    "git.autofetch": true,
+    "workbench.startupEditor": "newUntitledFile",
+    "team.showWelcomeMessage": false,
+    "workbench.colorTheme": "Nord",
+    "go.useLanguageServer": true,
+    "go.alternateTools": {
+        "go-langserver": "gopls"
+    },
+    "go.languageServerExperimentalFeatures": {
+            "diagnostics": true, // for build and vet errors as you type
+            "rename": true
+    },
+    "[go]": {
+        "editor.snippetSuggestions": "none",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "gopls": {
+        "usePlaceholders": true // add parameter placeholders when completing a function
+    },
+    "files.eol": "\n",
+    "editor.fontFamily": "\"Fira Code\", Menlo, \"DejaVu Sans Mono\", Consolas, \"Lucida Console\", monospace",
+    "editor.fontLigatures": true,
+    "editor.renderWhitespace": "boundary",
+    "editor.minimap.enabled": false, // formatting only supports LF line endings
+}

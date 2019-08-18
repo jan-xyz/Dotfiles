@@ -59,7 +59,7 @@ done
 # install casks
 #==============
 echo -e "${YELLOW}Installing casks${NOCOLOR}"
-for CASK in spotify telegram github iterm2 slack visual-studio-code postman iterm2 docker scroll-reverser hyper aerial brooklyn font-fira-code
+for CASK in spotify telegram github iterm2 slack visual-studio-code postman iterm2 docker scroll-reverser aerial brooklyn font-fira-code
 do
     if ! brew cask list $CASK > /dev/null 2>&1
     then
@@ -153,7 +153,7 @@ rm -rf ~/.zpreztorc > /dev/null 2>&1
 rm -rf ~/.zshenv > /dev/null 2>&1
 rm -rf ~/.zprofile > /dev/null 2>&1
 rm -rf ~/.zsh > /dev/null 2>&1
-rm -rf ~/.hyper.js > /dev/null 2>&1
+rm -rf ~/Library/Application\ Support/Code/User/settings.json 2>&1
 
 #==============
 # Create symlinks in the home folder
@@ -171,7 +171,7 @@ ln -sf ~/dotfiles/zpreztorc ~/.zpreztorc
 ln -sf ~/dotfiles/zshenv ~/.zshenv
 ln -sf ~/dotfiles/zprofile ~/.zprofile
 ln -sf ~/dotfiles/zsh ~/.zsh
-ln -sf ~/dotfiles/hyper.js ~/.hyper.js
+ln -sf ~/dotfiles/vscode/User/settings.json ~/Library/Application\ Support/Code/User/settings.json
 
 #==============
 # Set zsh as the default shell
