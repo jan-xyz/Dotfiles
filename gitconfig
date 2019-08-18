@@ -12,11 +12,6 @@
 	template = ~/.stCommitMsg
 [includeIf "gitdir:~/WorkBase/"]
 	path = ~/WorkBase/gitconfig
-[includeIf "gitdir:~/Go/src/bitbucket.emetriq.com/"]
-	path = ~/Go/src/bitbucket.emetriq.com/gitconfig
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
 [mergetool "sourcetree"]
 	cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
 [filter "lfs"]
