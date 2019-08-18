@@ -42,6 +42,7 @@ call plug#end()
 
   " Autocomplete:
   let g:deoplete#enable_at_startup = 1
+  set completeopt=menu,noinsert " select first item in list
 
   " Linting: config
   let g:LanguageClient_serverCommands = {
