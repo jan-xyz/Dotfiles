@@ -5,7 +5,8 @@ my Dotfiles
 * neovim
 * zsh
 * iterm2
-* hyper
+* vscode
+* homebrew
 
 
 ## install
