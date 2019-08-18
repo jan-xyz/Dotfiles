@@ -10,9 +10,13 @@
 	default = simple
 [commit]
 	template = ~/.stCommitMsg
+[merge]
+	tool = nvim
+[mergetool]
+	keepBackup = false
 [includeIf "gitdir:~/WorkBase/"]
 	path = ~/WorkBase/gitconfig
-[mergetool "sourcetree"]
+[mergetool "nvim"]
 	cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
 [filter "lfs"]
 	clean = git-lfs clean -- %f
