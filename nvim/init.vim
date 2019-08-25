@@ -77,4 +77,5 @@ call plug#end()
   autocmd vimenter * NERDTree
   autocmd VimEnter * wincmd p
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+  map <leader>f :NERDTreeFind<cr>
 
