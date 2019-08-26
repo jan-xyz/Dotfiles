@@ -98,7 +98,7 @@ popd
 # Install VS Code extensions
 #==============
 echo -e "${YELLOW}Installing VS Code extensions${NOCOLOR}"
-for EXTENSION in ms-python.python vscodevim.vim ms-vsts.team ms-vscode.go samuelcolvin.jinjahtml ms-mssql.mssql arcticicestudio.nord-visual-studio-code ms-azuretools.vscode-docker
+for EXTENSION in ms-python.python vscodevim.vim ms-vsts.team ms-vscode.go arcticicestudio.nord-visual-studio-code ms-azuretools.vscode-docker ms-kubernetes-tools.vscode-kubernetes-tools
 do
     if ! code --list-extensions | grep --ignore-case $EXTENSION > /dev/null 2>&1
     then
