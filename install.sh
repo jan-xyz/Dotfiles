@@ -171,7 +171,7 @@ ln -sf ~/dotfiles/zpreztorc ~/.zpreztorc
 ln -sf ~/dotfiles/zshenv ~/.zshenv
 ln -sf ~/dotfiles/zprofile ~/.zprofile
 ln -sf ~/dotfiles/zsh ~/.zsh
-ln -sf ~/dotfiles/vscode/User/settings.json ~/Library/Application\ Support/Code/User/settings.json
+ln -sf ~/dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
 
 #==============
 # Set zsh as the default shell
