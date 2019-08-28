@@ -443,7 +443,7 @@
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>478 310 808 543 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>2864 214 640 248 1680 0 2560 1417 </string>
+	<string>641 48 570 422 0 0 1680 1027 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1176,7 +1176,7 @@
 								<key>base: priority</key>
 								<real>5</real>
 								<key>format</key>
-								<string>MM/dd/yy h:mm</string>
+								<string> HH:mm MMM dd, yyyy</string>
 								<key>localize</key>
 								<integer>0</integer>
 								<key>shared text color</key>
@@ -1184,13 +1184,13 @@
 									<key>Alpha Component</key>
 									<real>1</real>
 									<key>Blue Component</key>
-									<real>0.62999999523162842</real>
+									<real>0.63</real>
 									<key>Color Space</key>
 									<string>sRGB</string>
 									<key>Green Component</key>
-									<real>0.62999999523162842</real>
+									<real>0.63</real>
 									<key>Red Component</key>
-									<real>0.89999997615814209</real>
+									<real>0.90000000000000002</real>
 								</dict>
 							</dict>
 							<key>layout advanced configuration dictionary value</key>
@@ -1220,13 +1220,13 @@
 									<key>Alpha Component</key>
 									<real>1</real>
 									<key>Blue Component</key>
-									<real>0.62999999523162842</real>
+									<real>0.63</real>
 									<key>Color Space</key>
 									<string>sRGB</string>
 									<key>Green Component</key>
-									<real>0.89999997615814209</real>
+									<real>0.90000000000000002</real>
 									<key>Red Component</key>
-									<real>0.76499998569488525</real>
+									<real>0.76500000000000001</real>
 								</dict>
 							</dict>
 							<key>layout advanced configuration dictionary value</key>
@@ -1279,8 +1279,6 @@
 						<dict>
 							<key>knobs</key>
 							<dict>
-								<key>base: compression resistance</key>
-								<integer>1</integer>
 								<key>base: priority</key>
 								<real>5</real>
 								<key>shared text color</key>
@@ -1301,8 +1299,6 @@
 							<dict>
 								<key>algorithm</key>
 								<integer>1</integer>
-								<key>font</key>
-								<string>.AppleSystemUIFont 12</string>
 							</dict>
 						</dict>
 					</dict>
@@ -1999,7 +1995,7 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1680, 1050}}</string>
 		<key>topLeft</key>
-		<string>{453, 865}</string>
+		<string>{357, 936}</string>
 	</dict>
 	<key>NoSyncHaveRequestedFullDiskAccess</key>
 	<true/>
@@ -2008,7 +2004,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>2FC92A98-57C2-44B6-AC29-845E9B9CAF79</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>9</integer>
+	<integer>10</integer>
 	<key>NoSyncNextAnnoyanceTime</key>
 	<real>586857114.31295097</real>
 	<key>NoSyncOnboardingWindowHasBeenShown</key>
