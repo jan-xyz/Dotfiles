@@ -17,7 +17,10 @@ call plug#begin()
   " autocompletion and linting
   Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+  " language specific support
   Plug 'udalov/kotlin-vim'
+  Plug 'sebdah/vim-delve'
 call plug#end()
 
   set number         " Add line numbers
