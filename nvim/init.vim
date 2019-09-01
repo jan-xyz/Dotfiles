@@ -71,6 +71,7 @@ call plug#end()
   " Airline: config
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#buffer_nr_show = 1
+  let airline#extensions#tabline#middle_click_preserves_windows = 1
 
   " Gitgutter: Config
   let g:gitgutter_realtime = 1
