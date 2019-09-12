@@ -161,6 +161,15 @@ fi
 if [ ! -n "${BULLETTRAIN_KCTX_PREFIX+1}" ]; then
   BULLETTRAIN_KCTX_PREFIX="⎈"
 fi
+if [ ! -n "${BULLETTRAIN_KCTX_KCONFIG+1}" ]; then
+  BULLETTRAIN_KCTX_KCONFIG="${HOME}/.kube/config"
+fi
+if [ ! -n "${BULLETTRAIN_KCTX_KUBECTL+1}" ]; then
+  BULLETTRAIN_KCTX_KUBECTL="true"
+fi
+if [ ! -n "${BULLETTRAIN_KCTX_NAMESPACE+1}" ]; then
+  BULLETTRAIN_KCTX_NAMESPACE="true"
+fi
 
 # ELIXIR
 if [ ! -n "${BULLETTRAIN_ELIXIR_BG+1}" ]; then
@@ -321,100 +330,11 @@ if [ ! -n "${BULLETTRAIN_EXEC_TIME_FG+1}" ]; then
   BULLETTRAIN_EXEC_TIME_FG=black
 fi
 
-
 # ------------------------------------------------------------------------------
-# SEGMENT DRAWING
-# A few functions to make it easy and re-usable to draw segmented prompts
-# ------------------------------------------------------------------------------
-
-CURRENT_BG='NONE'
-SEGMENT_SEPARATOR=''
-
-# Begin a segment
-# Takes three arguments, background, foreground and text. All of them can be omitted,
-# rendering default background/foreground and no text.
-prompt_segment() {
-  local bg fg
-  [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
-  [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
-  if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
-    echo -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
-  else
-    echo -n "%{$bg%}%{$fg%} "
-  fi
-  CURRENT_BG=$1
-  [[ -n $3 ]] && echo -n $3
-}
-
-# End the prompt, closing any open segments
-prompt_end() {
-  if [[ -n $CURRENT_BG ]]; then
-    echo -n " %{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
-  else
-    echo -n "%{%k%}"
-  fi
-  echo -n "%{%f%}"
-  CURRENT_BG=''
-}
-
-# ------------------------------------------------------------------------------
-# PROMPT COMPONENTS
-# Each component will draw itself, and hide itself if no information needs
-# to be shown
+# GIT FUNCTIONS
+# This section was taken from Oh-My-ZSH to make the theme compatible with prezto
 # ------------------------------------------------------------------------------
 
-# Context: user@hostname (who am I and where am I)
-context() {
-  local user="$(whoami)"
-  [[ "$user" != "$BULLETTRAIN_CONTEXT_DEFAULT_USER" || -n "$BULLETTRAIN_IS_SSH_CLIENT" ]] && echo -n "${user}@$BULLETTRAIN_CONTEXT_HOSTNAME"
-}
-
-prompt_context() {
-  local _context="$(context)"
-  [[ -n "$_context" ]] && prompt_segment $BULLETTRAIN_CONTEXT_BG $BULLETTRAIN_CONTEXT_FG "$_context"
-}
-
-# Based on http://stackoverflow.com/a/32164707/3859566
-function displaytime {
-  local T=$1
-  local D=$((T/60/60/24))
-  local H=$((T/60/60%24))
-  local M=$((T/60%60))
-  local S=$((T%60))
-  [[ $D > 0 ]] && printf '%dd' $D
-  [[ $H > 0 ]] && printf '%dh' $H
-  [[ $M > 0 ]] && printf '%dm' $M
-  printf '%ds' $S
-}
-
-# Prompt previous command execution time
-preexec() {
-  cmd_timestamp=`date +%s`
-}
-
-precmd() {
-  local stop=`date +%s`
-  local start=${cmd_timestamp:-$stop}
-  let BULLETTRAIN_last_exec_duration=$stop-$start
-  cmd_timestamp=''
-}
-
-prompt_cmd_exec_time() {
-  [ $BULLETTRAIN_last_exec_duration -gt $BULLETTRAIN_EXEC_TIME_ELAPSED ] && prompt_segment $BULLETTRAIN_EXEC_TIME_BG $BULLETTRAIN_EXEC_TIME_FG "$(displaytime $BULLETTRAIN_last_exec_duration)"
-}
-
-# Custom
-prompt_custom() {
-  if [[ $BULLETTRAIN_CUSTOM_MSG == false ]]; then
-    return
-  fi
-
-  local custom_msg
-  eval custom_msg=$BULLETTRAIN_CUSTOM_MSG
-  [[ -n "${custom_msg}" ]] && prompt_segment $BULLETTRAIN_CUSTOM_BG $BULLETTRAIN_CUSTOM_FG "${custom_msg}"
-}
-
-# Git
 function git_prompt_status() {
   local status_prompt=""
 
@@ -517,6 +437,99 @@ function git_prompt_info() {
   echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 
+# ------------------------------------------------------------------------------
+# SEGMENT DRAWING
+# A few functions to make it easy and re-usable to draw segmented prompts
+# ------------------------------------------------------------------------------
+
+CURRENT_BG='NONE'
+SEGMENT_SEPARATOR=''
+
+# Begin a segment
+# Takes three arguments, background, foreground and text. All of them can be omitted,
+# rendering default background/foreground and no text.
+prompt_segment() {
+  local bg fg
+  [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
+  [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
+  if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
+    echo -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
+  else
+    echo -n "%{$bg%}%{$fg%} "
+  fi
+  CURRENT_BG=$1
+  [[ -n $3 ]] && echo -n $3
+}
+
+# End the prompt, closing any open segments
+prompt_end() {
+  if [[ -n $CURRENT_BG ]]; then
+    echo -n " %{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
+  else
+    echo -n "%{%k%}"
+  fi
+  echo -n "%{%f%}"
+  CURRENT_BG=''
+}
+
+# ------------------------------------------------------------------------------
+# PROMPT COMPONENTS
+# Each component will draw itself, and hide itself if no information needs
+# to be shown
+# ------------------------------------------------------------------------------
+
+# Context: user@hostname (who am I and where am I)
+context() {
+  local user="$(whoami)"
+  [[ "$user" != "$BULLETTRAIN_CONTEXT_DEFAULT_USER" || -n "$BULLETTRAIN_IS_SSH_CLIENT" ]] && echo -n "${user}@$BULLETTRAIN_CONTEXT_HOSTNAME"
+}
+
+prompt_context() {
+  local _context="$(context)"
+  [[ -n "$_context" ]] && prompt_segment $BULLETTRAIN_CONTEXT_BG $BULLETTRAIN_CONTEXT_FG "$_context"
+}
+
+# Based on http://stackoverflow.com/a/32164707/3859566
+function displaytime {
+  local T=$1
+  local D=$((T/60/60/24))
+  local H=$((T/60/60%24))
+  local M=$((T/60%60))
+  local S=$((T%60))
+  [[ $D > 0 ]] && printf '%dd' $D
+  [[ $H > 0 ]] && printf '%dh' $H
+  [[ $M > 0 ]] && printf '%dm' $M
+  printf '%ds' $S
+}
+
+# Prompt previous command execution time
+preexec() {
+  cmd_timestamp=`date +%s`
+}
+
+precmd() {
+  local stop=`date +%s`
+  local start=${cmd_timestamp:-$stop}
+  let BULLETTRAIN_last_exec_duration=$stop-$start
+  cmd_timestamp=''
+}
+
+prompt_cmd_exec_time() {
+  [ $BULLETTRAIN_last_exec_duration -gt $BULLETTRAIN_EXEC_TIME_ELAPSED ] && prompt_segment $BULLETTRAIN_EXEC_TIME_BG $BULLETTRAIN_EXEC_TIME_FG "$(displaytime $BULLETTRAIN_last_exec_duration)"
+}
+
+# Custom
+prompt_custom() {
+  if [[ $BULLETTRAIN_CUSTOM_MSG == false ]]; then
+    return
+  fi
+
+  local custom_msg
+  eval custom_msg=$BULLETTRAIN_CUSTOM_MSG
+  [[ -n "${custom_msg}" ]] && prompt_segment $BULLETTRAIN_CUSTOM_BG $BULLETTRAIN_CUSTOM_FG "${custom_msg}"
+}
+
+# Git
 prompt_git() {
   if [[ "$(command git config --get oh-my-zsh.hide-status 2>/dev/null)" == "1" ]]; then
     return
@@ -654,13 +667,14 @@ prompt_rust() {
 
 # Kubernetes Context
 prompt_kctx() {
-  if [[ ! -n $BULLETTRAIN_KCTX_KCONFIG ]]; then
-    return
-  fi
-  if command -v kubectl > /dev/null 2>&1; then
-    if [[ -f $BULLETTRAIN_KCTX_KCONFIG ]]; then
-      prompt_segment $BULLETTRAIN_KCTX_BG $BULLETTRAIN_KCTX_FG $BULLETTRAIN_KCTX_PREFIX" $(cat $BULLETTRAIN_KCTX_KCONFIG|grep current-context| awk '{print $2}')"
-    fi  
+  if [[ "$BULLETTRAIN_KCTX_KUBECTL" == "true" ]] && command -v kubectl > /dev/null 2>&1; then
+    local jsonpath='{.current-context}'
+    if [[ "$BULLETTRAIN_KCTX_NAMESPACE" == "true" ]]; then
+      jsonpath="${jsonpath}{':'}{..namespace}"
+    fi
+    prompt_segment $BULLETTRAIN_KCTX_BG $BULLETTRAIN_KCTX_FG $BULLETTRAIN_KCTX_PREFIX" $(kubectl config view --minify --output "jsonpath=${jsonpath}" 2>/dev/null)"
+  elif [[ -f $BULLETTRAIN_KCTX_KCONFIG ]]; then
+    prompt_segment $BULLETTRAIN_KCTX_BG $BULLETTRAIN_KCTX_FG $BULLETTRAIN_KCTX_PREFIX" $(cat $BULLETTRAIN_KCTX_KCONFIG | grep current-context | awk '{print $2}')"
   fi
 }
 
