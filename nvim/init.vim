@@ -17,6 +17,8 @@ call plug#begin()
   " autocompletion and linting
   Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'uber/prototool', { 'rtp':'vim/prototool' }
+  Plug 'w0rp/ale'
 
   " language specific support
   Plug 'udalov/kotlin-vim'
@@ -46,6 +48,11 @@ call plug#end()
   " Autocomplete:
   let g:deoplete#enable_at_startup = 1
   set completeopt=menu,noinsert " select first item in list
+
+  let g:ale_linters_explicit = 1
+  let g:ale_linters = {
+    \   'proto': ['prototool-lint'],
+    \ }
 
   " Linting: config
   let g:LanguageClient_serverCommands = {
