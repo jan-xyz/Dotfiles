@@ -91,7 +91,7 @@ ${PYTHON_BIN} -m pip install --user -U $PACKAGES 2>&1
 #==============
 echo -e "${YELLOW}Installing golang packages${NOCOLOR}"
 pushd ~/Go
-go get -u golang.org/x/tools/gopls
+go get -u golang.org/x/tools/gopls@master
 popd
 
 #==============
