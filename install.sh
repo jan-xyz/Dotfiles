@@ -97,6 +97,12 @@ popd
 #==============
 # Install VS Code extensions
 #==============
+echo -e "${YELLOW}Installing neovim plugins${NOCOLOR}"
+nvim +PlugInstall +qall
+
+#==============
+# Install VS Code extensions
+#==============
 echo -e "${YELLOW}Installing VS Code extensions${NOCOLOR}"
 for EXTENSION in ms-python.python vscodevim.vim ms-vsts.team ms-vscode.go arcticicestudio.nord-visual-studio-code ms-azuretools.vscode-docker ms-kubernetes-tools.vscode-kubernetes-tools
 do

@@ -6,3 +6,6 @@
 	path = prezto
 	url = https://github.com/sorin-ionescu/prezto.git
 	branch = master
+[submodule "vim-plug"]
+	path = vim-plug
+	url = git@github.com:junegunn/vim-plug.git
