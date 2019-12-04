@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/Users/jan/Dotfiles/nvim/site/autoload'
+let g:netrw_dirhist_3='/Users/jan/Dotfiles/nvim/site'
+let g:netrw_dirhist_2='/Users/jan/Dotfiles/nvim'
+let g:netrw_dirhist_1='/Users/jan/Dotfiles'
