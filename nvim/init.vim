@@ -55,6 +55,7 @@ call plug#end()
     \ }
 
   " Linting: config
+  let g:LanguageClient_windowLogMessageLevel="Error"
   let g:LanguageClient_serverCommands = {
     \ 'go': ['gopls'],
     \ 'python': ['pyls'],
