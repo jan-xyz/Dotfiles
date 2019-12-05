@@ -98,7 +98,7 @@ popd
 # Install VS Code extensions
 #==============
 echo -e "${YELLOW}Installing neovim plugins${NOCOLOR}"
-nvim +PlugInstall +qall
+nvim +PlugInstall +PlugUpdate +PlugClean! +qall
 
 #==============
 # Install VS Code extensions
