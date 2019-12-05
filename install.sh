@@ -76,7 +76,7 @@ done
 echo -e "${YELLOW}Installing python2 packages${NOCOLOR}"
 PYTHON_BIN=/usr/local/bin/python2
 PACKAGES=(autopep8 pylint flake8 rope mccabe pyflakes jedi neovim python-language-server virtualenvwrapper)
-${PYTHON_BIN} -m pip install --user -U $PACKAGES 2>&1
+${PYTHON_BIN} -m pip install --user -U $PACKAGES > /dev/null 2>&1
 
 #==============
 # Install python3 packages
@@ -84,14 +84,14 @@ ${PYTHON_BIN} -m pip install --user -U $PACKAGES 2>&1
 echo -e "${YELLOW}Installing python3 packages${NOCOLOR}"
 PYTHON_BIN=/usr/local/bin/python3
 PACKAGES=( autopep8 pylint flake8 rope mccabe pyflakes jedi neovim mypy python-language-server virtualenvwrapper)
-${PYTHON_BIN} -m pip install --user -U $PACKAGES 2>&1
+${PYTHON_BIN} -m pip install --user -U $PACKAGES > /dev/null 2>&1
 
 #==============
 # Install golang packages
 #==============
 echo -e "${YELLOW}Installing golang packages${NOCOLOR}"
 pushd ~/Go
-go get -u golang.org/x/tools/gopls
+go get -u golang.org/x/tools/gopls > /dev/null 2>&1
 popd
 
 #==============
@@ -206,7 +206,8 @@ defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 # run post steps
 #==============
 echo -e "${YELLOW}run post steps${NOCOLOR}"
-$(brew --prefix)/opt/fzf/install --all # fzf
+echo -e "${GREEN} fzf ${NOCOLOR}"
+$(brew --prefix)/opt/fzf/install --all > /dev/null 2>&1
 
 #==============
 # And we are done
