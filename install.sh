@@ -44,7 +44,7 @@ done
 # install bottles
 #==============
 echo -e "${YELLOW}Installing bottles${NOCOLOR}"
-for BOTTLE in fzf pyenv pyenv-virtualenv zsh shellcheck python3 python2 go cmake neovim kubernetes-cli ctags colordiff kube-ps1 ripgrep ddate
+for BOTTLE in fzf pyenv pyenv-virtualenv zsh shellcheck python3 python2 go cmake neovim kubernetes-cli ctags colordiff kube-ps1 ripgrep ddate node
 do
     if ! brew list $BOTTLE > /dev/null 2>&1
     then
@@ -90,9 +90,24 @@ ${PYTHON_BIN} -m pip install --user -U $PACKAGES > /dev/null 2>&1
 # Install golang packages
 #==============
 echo -e "${YELLOW}Installing golang packages${NOCOLOR}"
-pushd ~/Go
+pushd ${GOPATH}
 go get -u golang.org/x/tools/gopls > /dev/null 2>&1
 popd
+
+#==============
+# Install NPM packages
+#==============
+echo -e "${YELLOW}Installing NPM packages${NOCOLOR}"
+for MODULE in dockerfile-language-server-nodejs bash-language-server
+do
+    if ! npm list -g ${MODULE} > /dev/null 2>&1
+    then
+        echo -e "${RED}${MODULE} is not installed ${NOCOLOR}"
+        npm install -g ${MODULE}
+    else
+        echo -e "${GREEN}${MODULE} is already installed${NOCOLOR}"
+    fi
+done
 
 #==============
 # Install VS Code extensions
