@@ -80,5 +80,10 @@
             "value": "#42b883"
         }
     ],
-    "window.zoomLevel": 0, // formatting only supports LF line endings
+    "window.zoomLevel": 0,
+    "vs-kubernetes": {
+        "vs-kubernetes.helm-path": "/Users/jan/.vs-kubernetes/tools/helm/darwin-amd64/helm",
+        "vs-kubernetes.draft-path": "/Users/jan/.vs-kubernetes/tools/draft/darwin-amd64/draft",
+        "vs-kubernetes.minikube-path": "/Users/jan/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
+    }, // formatting only supports LF line endings
 }
