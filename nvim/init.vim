@@ -48,6 +48,7 @@ call plug#end()
 
   " Terminal:
   let g:floaterm_keymap_toggle = '<Leader>t'
+  let g:floaterm_position = 'center'
 
   " Autocomplete:
   let g:deoplete#enable_at_startup = 1
