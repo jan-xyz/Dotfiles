@@ -44,7 +44,7 @@ done
 # install bottles
 #==============
 echo -e "${YELLOW}Installing bottles${NOCOLOR}"
-for BOTTLE in fzf pyenv pyenv-virtualenv zsh shellcheck python3 python2 go cmake neovim kubernetes-cli ctags colordiff kube-ps1 ripgrep ddate node awscli watch htop
+for BOTTLE in fzf pyenv pyenv-virtualenv zsh shellcheck python go cmake neovim kubernetes-cli ctags colordiff kube-ps1 ripgrep ddate node awscli watch htop
 do
     if ! brew list $BOTTLE > /dev/null 2>&1
     then
@@ -69,14 +69,6 @@ do
         echo -e "${GREEN}$CASK is already installed${NOCOLOR}"
     fi
 done
-
-#==============
-# Install python2 packages
-#==============
-echo -e "${YELLOW}Installing python2 packages${NOCOLOR}"
-PYTHON_BIN=/usr/local/bin/python2
-PACKAGES=(autopep8 pylint flake8 rope mccabe pyflakes jedi neovim python-language-server virtualenvwrapper)
-${PYTHON_BIN} -m pip install --user -U $PACKAGES > /dev/null 2>&1
 
 #==============
 # Install python3 packages
