@@ -39,7 +39,7 @@ call plug#end()
   set titlestring=(%{fnamemodify(getcwd(),\ \":t\")})\ %f " set the content of the window title
   colorscheme nord   " Set color scheme
   tnoremap <Esc> <C-\><C-n>
-  let g:python_host_prog = '/usr/local/bin/python'
+  let g:python_host_prog = '/usr/local/bin/python3'
   let g:python3_host_prog = '/usr/local/bin/python3'
   nmap <F8> :TagbarToggle<CR> " Toggle tag bar
   nmap <C-n> :bn<CR>  " Next buffer in list
