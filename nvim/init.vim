@@ -4,6 +4,7 @@ call plug#begin()
   Plug 'scrooloose/nerdtree'
   Plug 'arcticicestudio/nord-vim'
   Plug 'majutsushi/tagbar'
+  Plug 'voldikss/vim-floaterm'
 
   " Misc
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -44,6 +45,9 @@ call plug#end()
   nmap <F8> :TagbarToggle<CR> " Toggle tag bar
   nmap <C-n> :bn<CR>  " Next buffer in list
   nmap <C-p> :bp<CR>  " Previous buffer in list
+
+  " Terminal:
+  let g:floaterm_keymap_toggle = '<Leader>t'
 
   " Autocomplete:
   let g:deoplete#enable_at_startup = 1
