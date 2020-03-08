@@ -59,7 +59,7 @@ done
 # install casks
 #==============
 echo -e "${YELLOW}Installing casks${NOCOLOR}"
-for CASK in spotify telegram github iterm2 slack visual-studio-code postman iterm2 docker scroll-reverser aerial brooklyn font-fira-code homebrew/cask-versions/java11
+for CASK in spotify telegram github iterm2 slack visual-studio-code postman docker scroll-reverser aerial brooklyn font-fira-code homebrew/cask-versions/java11
 do
     if ! brew cask list $CASK > /dev/null 2>&1
     then
