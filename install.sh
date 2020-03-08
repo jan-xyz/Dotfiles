@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #===============================================================================
 #
 #             NOTES: For this to work you must have cloned the github
