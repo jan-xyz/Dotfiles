@@ -1,2 +1,2 @@
-  autocmd BufNewFile,BufRead *.dk set syntax=Dockerfile
+  autocmd BufNewFile,BufRead *.dk set filetype=dockerfile
 
