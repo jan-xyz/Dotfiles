@@ -113,6 +113,14 @@ do
 done
 
 #==============
+# Kotlin language server
+#==============
+echo -e "${YELLOW}Installing Kotlin Language Server${NOCOLOR}"
+./kotlin-language-server/gradlew -p "kotlin-language-server" :server:installDist > /dev/null 2>&1
+/bin/cp ./kotlin-language-server/server/build/install/server/bin/kotlin-language-server /usr/local/bin/
+/bin/cp ./kotlin-language-server/server/build/install/server/lib/* /usr/local/lib/
+
+#==============
 # Install VS Code extensions
 #==============
 echo -e "${YELLOW}Installing neovim plugins${NOCOLOR}"

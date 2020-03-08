@@ -9,3 +9,6 @@
 [submodule "vim-plug"]
 	path = vim-plug
 	url = git@github.com:junegunn/vim-plug.git
+[submodule "kotlin-language-server"]
+	path = kotlin-language-server
+	url = https://github.com/fwcd/kotlin-language-server
