@@ -44,7 +44,7 @@ done
 # install bottles
 #==============
 echo -e "${YELLOW}Installing bottles${NOCOLOR}"
-for BOTTLE in fzf pyenv pyenv-virtualenv zsh shellcheck python go cmake neovim kubernetes-cli ctags colordiff kube-ps1 ripgrep ddate node awscli watch htop
+for BOTTLE in fzf pyenv pyenv-virtualenv zsh shellcheck python go cmake neovim kubernetes-cli ctags colordiff kube-ps1 ripgrep ddate node awscli watch htop gradle
 do
     if ! brew list $BOTTLE > /dev/null 2>&1
     then
