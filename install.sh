@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 #===============================================================================
 #
 #             NOTES: For this to work you must have cloned the github
@@ -75,8 +75,19 @@ done
 #==============
 echo -e "${YELLOW}Installing python3 packages${NOCOLOR}"
 PYTHON_BIN=/usr/local/bin/python3
-PACKAGES=( autopep8 pylint flake8 rope mccabe pyflakes jedi neovim mypy python-language-server virtualenvwrapper)
-${PYTHON_BIN} -m pip install --user -U $PACKAGES > /dev/null 2>&1
+${PYTHON_BIN} -m pip install --user -U \
+  autopep8 \
+  pylint \
+  flake8 \
+  rope \
+  mccabe \
+  pyflakes \
+  jedi \
+  neovim \
+  mypy \
+  'python-language-server[all]' \
+  virtualenvwrapper \
+  > /dev/null 2>&1
 
 #==============
 # Install golang packages
