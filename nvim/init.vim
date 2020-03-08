@@ -65,7 +65,7 @@ call plug#end()
     \ 'go': ['gopls'],
     \ 'python': ['pyls'],
     \ 'sh': ['bash-language-server', 'start'],
-    \ 'docker': ['docker-langserver'],
+    \ 'dockerfile': ['docker-langserver', '--stdio'],
     \ }
   let g:LanguageClient_rootMarkers = {
         \ 'go': ['.git', 'go.mod'],
