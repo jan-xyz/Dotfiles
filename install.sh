@@ -44,7 +44,29 @@ done
 # install bottles
 #==============
 echo -e "${YELLOW}Installing bottles${NOCOLOR}"
-for BOTTLE in fzf pyenv pyenv-virtualenv zsh shellcheck python go cmake neovim kubernetes-cli ctags colordiff kube-ps1 ripgrep ddate node awscli watch htop gradle
+for BOTTLE in \
+  awscli \
+  ctags \
+  cmake \
+  colordiff \
+  ddate \
+  fzf \
+  go \
+  gradle \
+  htop \
+  jawshooah/pyenv/pyenv-default-packages \
+  kubernetes-cli \
+  kube-ps1 \
+  neovim \
+  node \
+  python \
+  pyenv \
+  pyenv-virtualenv \
+  ripgrep \
+  shellcheck \
+  watch \
+  zsh \
+
 do
     if ! brew list $BOTTLE > /dev/null 2>&1
     then
@@ -59,7 +81,21 @@ done
 # install casks
 #==============
 echo -e "${YELLOW}Installing casks${NOCOLOR}"
-for CASK in spotify telegram github iterm2 slack visual-studio-code postman docker scroll-reverser aerial brooklyn font-fira-code homebrew/cask-versions/java11
+for CASK in \
+  spotify \
+  telegram \
+  github \
+  iterm2 \
+  slack \
+  visual-studio-code \
+  postman \
+  docker \
+  scroll-reverser \
+  aerial \
+  brooklyn \
+  font-fira-code \
+  homebrew/cask-versions/java11 \
+
 do
     if ! brew cask list $CASK > /dev/null 2>&1
     then
@@ -84,6 +120,7 @@ ${PYTHON_BIN} -m pip install --user -U \
   pyflakes \
   jedi \
   neovim \
+  neovim-remote \
   mypy \
   'python-language-server[all]' \
   virtualenvwrapper \
@@ -101,7 +138,10 @@ popd
 # Install NPM packages
 #==============
 echo -e "${YELLOW}Installing NPM packages${NOCOLOR}"
-for MODULE in dockerfile-language-server-nodejs bash-language-server
+for MODULE in \
+  dockerfile-language-server-nodejs \
+  bash-language-server \
+
 do
     if ! npm list -g ${MODULE} > /dev/null 2>&1
     then
@@ -130,7 +170,15 @@ nvim +PlugInstall +PlugUpdate +PlugClean! +qall
 # Install VS Code extensions
 #==============
 echo -e "${YELLOW}Installing VS Code extensions${NOCOLOR}"
-for EXTENSION in ms-python.python vscodevim.vim ms-vsts.team ms-vscode.go arcticicestudio.nord-visual-studio-code ms-azuretools.vscode-docker ms-kubernetes-tools.vscode-kubernetes-tools
+for EXTENSION in \
+  ms-python.python \
+  vscodevim.vim \
+  ms-vsts.team \
+  ms-vscode.go \
+  arcticicestudio.nord-visual-studio-code \
+  ms-azuretools.vscode-docker \
+  ms-kubernetes-tools.vscode-kubernetes-tools \
+
 do
     if ! code --list-extensions | grep --ignore-case $EXTENSION > /dev/null 2>&1
     then
