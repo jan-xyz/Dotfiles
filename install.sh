@@ -54,7 +54,6 @@ for BOTTLE in \
   go \
   gradle \
   htop \
-  jawshooah/pyenv/pyenv-default-packages \
   kubernetes-cli \
   kube-ps1 \
   neovim \
