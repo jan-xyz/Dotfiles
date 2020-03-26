@@ -68,9 +68,12 @@ PS1='$(kube_ps1)'$PS1
 
 # local configuration sourcing
 if [ -d ~/.config/zsh/ ]; then
-  for file in ~/.config/zsh/*.zsh(.); do
-    source $file;
-  done
+  # only load if there are any files
+  if test -n "$(find . -maxdepth 1 -name '~/.config/zsh/*.zsh(.)' -print -quit)"; then
+    for file in ~/.config/zsh/*.zsh(.); do
+      source $file;
+    done
+  fi
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
