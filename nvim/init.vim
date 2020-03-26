@@ -7,7 +7,7 @@ call plug#begin()
   Plug 'voldikss/vim-floaterm'
 
   " Misc
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
   " Git support
