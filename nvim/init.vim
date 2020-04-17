@@ -98,10 +98,11 @@ call plug#end()
 	      \ 'columns': 'mark:indent:git:icon:filename:type',
         \ 'split': 'floating',
         \ 'show_ignored_files': 1,
+        \ 'toggle': 1,
 	      \ })
   autocmd vimenter * Defx
   nnoremap <silent> <leader>f :<C-u>Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
-  nnoremap <silent> <leader>g :<C-u>Defx -toggle<CR>
+  nnoremap <silent> <leader>g :<C-u>Defx<CR>
   autocmd FileType defx call s:defx_my_settings()
 	function! s:defx_my_settings() abort
 	  " Define mappings
