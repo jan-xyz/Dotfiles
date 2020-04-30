@@ -50,7 +50,6 @@ fi
 export WORKON_HOME=~/Envs
 
 # Go configuration (installed with brew)
-export GO111MODULE=on
 export GOPATH=$HOME/Go
 export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
