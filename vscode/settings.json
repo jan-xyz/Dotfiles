@@ -1,4 +1,8 @@
 {
+    "files.associations": {
+        "*.dk": "dockerfile",
+        "*.mk": "makefile"
+    },
     "git.autofetch": true,
     "workbench.startupEditor": "newUntitledFile",
     "team.showWelcomeMessage": false,
