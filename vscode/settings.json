@@ -40,5 +40,6 @@
         "vs-kubernetes.minikube-path": "/Users/jan/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
         "vs-kubernetes.minikube-path.mac": "/Users/jan/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
     },
-    "liveshare.audio.joinCallBehavior": "accept", // formatting only supports LF line endings
+    "liveshare.audio.joinCallBehavior": "accept",
+    "editor.suggestSelection": "first"
 }
