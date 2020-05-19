@@ -60,6 +60,9 @@ let g:ale_linters = {
   \ }
 
 " Linting: config
+" Open/Close quickfix window on save
+autocmd BufWritePost * :cw
+
 let g:LanguageClient_windowLogMessageLevel="Error"
 let g:LanguageClient_serverCommands = {
   \ 'go': ['gopls'],
