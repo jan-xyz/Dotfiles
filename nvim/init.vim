@@ -1,7 +1,7 @@
 call plug#begin()
   " Window Add-Ons
   Plug 'vim-airline/vim-airline'
-  Plug 'arcticicestudio/nord-vim'
+  Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
   Plug 'majutsushi/tagbar'
   Plug 'voldikss/vim-floaterm'
   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
