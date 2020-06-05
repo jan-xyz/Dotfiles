@@ -69,6 +69,26 @@ lua << END
   require'nvim_lsp'.pyls.setup{}
   require'nvim_lsp'.gopls.setup{}
   require'nvim_lsp'.kotlin_language_server.setup{}
+
+-- add Diagnostics to quickfix list
+-- https://github.com/neovim/nvim-lsp/issues/69#issuecomment-616816555
+do
+  local method = "textDocument/publishDiagnostics"
+  local default_callback = vim.lsp.callbacks[method]
+  vim.lsp.callbacks[method] = function(err, method, result, client_id)
+    default_callback(err, method, result, client_id)
+    if result and result.diagnostics then
+      for _, v in ipairs(result.diagnostics) do
+        v.bufnr = client_id
+        v.lnum = v.range.start.line + 1
+        v.col = v.range.start.character + 1
+        v.text = v.message
+      end
+      vim.lsp.util.set_qflist(result.diagnostics)
+    end
+  end
+end
+
 END
 " Go: Run gofmt and goimports on save
 autocmd BufWritePre *.go :call v:lua.vim.lsp.buf.formatting()
