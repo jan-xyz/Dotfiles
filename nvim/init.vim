@@ -18,6 +18,7 @@ call plug#begin()
   " autocompletion and linting
   Plug 'neovim/nvim-lsp'
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/deoplete-lsp'
   Plug 'uber/prototool', { 'rtp':'vim/prototool' }
   Plug 'w0rp/ale'
 
