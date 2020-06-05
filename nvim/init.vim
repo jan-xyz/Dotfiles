@@ -74,7 +74,7 @@ END
 autocmd BufWritePre *.go :call v:lua.vim.lsp.buf.formatting()
 
 " General: keyboard mappings
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <F2>  <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <F3>  <cmd>lua vim.lsp.buf.code_action()<CR>
