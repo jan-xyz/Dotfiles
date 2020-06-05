@@ -16,7 +16,7 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
 
   " autocompletion and linting
-  Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
+  Plug 'neovim/nvim-lsp'
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'uber/prototool', { 'rtp':'vim/prototool' }
   Plug 'w0rp/ale'
@@ -63,29 +63,23 @@ let g:ale_linters = {
 " Open/Close quickfix window on save
 autocmd BufWritePost * :cw
 
-let g:LanguageClient_windowLogMessageLevel="Error"
-let g:LanguageClient_serverCommands = {
-  \ 'go': ['gopls'],
-  \ 'python': ['pyls'],
-  \ 'sh': ['bash-language-server', 'start'],
-  \ 'dockerfile': ['docker-langserver', '--stdio'],
-  \ 'kotlin': ["kotlin-language-server"],
-  \ }
-let g:LanguageClient_rootMarkers = {
-      \ 'go': ['.git', 'go.mod'],
-      \ }
+lua << END
+  require'nvim_lsp'.bashls.setup{}
+  require'nvim_lsp'.dockerls.setup{}
+  require'nvim_lsp'.pyls.setup{}
+  require'nvim_lsp'.gopls.setup{}
+  require'nvim_lsp'.kotlin_language_server.setup{}
+END
 " Go: Run gofmt and goimports on save
-autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+autocmd BufWritePre *.go :call v:lua.vim.lsp.buf.formatting()
 
 " General: keyboard mappings
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-nnoremap <silent> <F3> :call LanguageClient#textDocument_codeAction()<CR>
-nnoremap <silent> <F4> :call LanguageClient#textDocument_references()<CR>
-nnoremap <silent> <F5> :call LanguageClient_contextMenu()<CR>
-set completefunc=LanguageClient#complete
-set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <F2>  <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> <F3>  <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> <F4>  <cmd>lua vim.lsp.buf.references()<CR>
+set omnifunc=v:lua.vim.lsp.omnifunc
 
 " Airline: config
 let g:airline#extensions#tabline#enabled = 1
