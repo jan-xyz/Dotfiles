@@ -177,6 +177,7 @@ for EXTENSION in \
   arcticicestudio.nord-visual-studio-code \
   ms-azuretools.vscode-docker \
   ms-kubernetes-tools.vscode-kubernetes-tools \
+  fwcd.kotlin \
 
 do
     if ! code --list-extensions | grep --ignore-case $EXTENSION > /dev/null 2>&1
