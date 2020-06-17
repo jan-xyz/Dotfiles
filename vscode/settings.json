@@ -41,5 +41,6 @@
         "vs-kubernetes.minikube-path.mac": "/Users/jan/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
     },
     "liveshare.audio.joinCallBehavior": "accept",
-    "editor.suggestSelection": "first"
+    "editor.suggestSelection": "first",
+    "kotlin.languageServer.path": "/usr/local/bin/kotlin-language-server"
 }
