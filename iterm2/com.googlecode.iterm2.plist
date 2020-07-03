@@ -385,6 +385,12 @@
 	<integer>4</integer>
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
+	<key>NSNavLastRootDirectory</key>
+	<string>~</string>
+	<key>NSNavLastUserSetHideExtensionButtonState</key>
+	<false/>
+	<key>NSNavPanelExpandedSizeForSaveMode</key>
+	<string>{841, 448}</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -428,10 +434,14 @@
 	</dict>
 	<key>NSWindow Frame NSColorPanel</key>
 	<string>0 147 224 275 0 0 1920 1057 </string>
+	<key>NSWindow Frame NSNavPanelAutosaveName</key>
+	<string>539 457 841 470 0 0 1920 1080 </string>
+	<key>NSWindow Frame SUStatusFrame</key>
+	<string>760 713 400 129 0 0 1920 1080 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>650 514 620 392 0 0 1920 1057 </string>
+	<string>650 516 620 392 0 0 1920 1080 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>539 310 1131 573 0 0 1920 1080 </string>
+	<string>134 139 1390 888 0 0 1920 1080 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>105 189 1488 753 0 0 1680 1027 </string>
 	<key>New Bookmarks</key>
@@ -1313,6 +1323,8 @@
 			<array/>
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
+			<key>Thin Strokes</key>
+			<integer>3</integer>
 			<key>Transparency</key>
 			<real>0.0</real>
 			<key>Unlimited Scrollback</key>
@@ -1975,20 +1987,22 @@
 	</array>
 	<key>NoSyncAllAppVersions</key>
 	<array>
-		<string>3.3.7</string>
 		<string>3.3.9</string>
+		<string>3.3.11</string>
+		<string>3.3.7</string>
+		<string>3.3.12</string>
 	</array>
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1920, 1080}}</string>
 		<key>topLeft</key>
-		<string>{536, 726}</string>
+		<string>{437, 819}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>1EA8E6BC-E9E3-4972-9B76-C5B8481E1480</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>31</integer>
+	<integer>41</integer>
 	<key>NoSyncNextAnnoyanceTime</key>
 	<real>597840520.00578904</real>
 	<key>NoSyncOnboardingWindowHasBeenShown</key>
@@ -2755,9 +2769,11 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-04-29T07:29:16Z</date>
+	<date>2020-07-03T06:58:11Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
+	<key>SUUpdateGroupIdentifier</key>
+	<integer>2940914362</integer>
 	<key>SUUpdateRelaunchingMarker</key>
 	<false/>
 	<key>SoundForEsc</key>
@@ -2781,7 +2797,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.3.9</string>
+	<string>3.3.12</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
