@@ -104,7 +104,7 @@ call defx#custom#option('_', {
       \ 'toggle': 1,
       \ })
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | Defx | endif
-nnoremap <silent> <leader>f :<C-u>Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
+nnoremap <silent> <leader>f :<C-u>Defx -search=`expand('%:p')` `getcwd()`<CR>
 nnoremap <silent> <leader>g :<C-u>Defx<CR>
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
