@@ -129,8 +129,6 @@ function! s:defx_my_settings() abort
         \ defx#do_action('new_directory')
   nnoremap <silent><buffer><expr> N
         \ defx#do_action('new_file')
-  nnoremap <silent><buffer><expr> M
-        \ defx#do_action('new_multiple_files')
   nnoremap <silent><buffer><expr> d
         \ defx#do_action('remove')
   nnoremap <silent><buffer><expr> r
