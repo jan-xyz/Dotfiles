@@ -58,7 +58,7 @@ for BOTTLE in \
   kube-ps1 \
   neovim \
   node \
-  python \
+  python@3 \
   pyenv \
   pyenv-virtualenv \
   ripgrep \
