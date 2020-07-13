@@ -119,7 +119,7 @@ call defx#custom#option('_', {
       \ 'toggle': 1,
       \ })
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | Defx | endif
-nnoremap <silent> <leader>f :<C-u>Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
+nnoremap <silent> <leader>f :<C-u>Defx -search=`expand('%:p')` `getcwd()`<CR>
 nnoremap <silent> <leader>g :<C-u>Defx<CR>
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
@@ -144,8 +144,6 @@ function! s:defx_my_settings() abort
         \ defx#do_action('new_directory')
   nnoremap <silent><buffer><expr> N
         \ defx#do_action('new_file')
-  nnoremap <silent><buffer><expr> M
-        \ defx#do_action('new_multiple_files')
   nnoremap <silent><buffer><expr> d
         \ defx#do_action('remove')
   nnoremap <silent><buffer><expr> r
