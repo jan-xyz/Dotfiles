@@ -437,11 +437,11 @@
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
 	<string>539 457 841 470 0 0 1920 1080 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
-	<string>760 713 400 129 0 0 1920 1080 </string>
+	<string>760 712 400 129 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>650 516 620 392 0 0 1920 1080 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>134 139 1390 888 0 0 1920 1080 </string>
+	<string>101 584 585 438 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>105 189 1488 753 0 0 1680 1027 </string>
 	<key>New Bookmarks</key>
@@ -1159,6 +1159,8 @@
 				<dict>
 					<key>algorithm</key>
 					<integer>1</integer>
+					<key>auto-rainbow style</key>
+					<integer>0</integer>
 					<key>font</key>
 					<string>.AppleSystemUIFont 12</string>
 				</dict>
@@ -1197,6 +1199,8 @@
 							<dict>
 								<key>algorithm</key>
 								<integer>1</integer>
+								<key>auto-rainbow style</key>
+								<integer>0</integer>
 								<key>font</key>
 								<string>.AppleSystemUIFont 12</string>
 							</dict>
@@ -1226,13 +1230,55 @@
 									<key>Green Component</key>
 									<real>0.90000000000000002</real>
 									<key>Red Component</key>
-									<real>0.76500000000000001</real>
+									<real>0.87515999999999994</real>
 								</dict>
 							</dict>
 							<key>layout advanced configuration dictionary value</key>
 							<dict>
 								<key>algorithm</key>
 								<integer>1</integer>
+								<key>auto-rainbow style</key>
+								<integer>0</integer>
+								<key>font</key>
+								<string>.AppleSystemUIFont 12</string>
+							</dict>
+						</dict>
+					</dict>
+					<dict>
+						<key>class</key>
+						<string>iTermStatusBarSpringComponent</string>
+						<key>configuration</key>
+						<dict>
+							<key>knobs</key>
+							<dict>
+								<key>base: compression resistance</key>
+								<integer>1</integer>
+								<key>base: priority</key>
+								<real>5</real>
+								<key>iTermStatusBarSpringComponentSizeMultipleKey</key>
+								<integer>1</integer>
+								<key>iTermStatusBarSpringComponentSpringConstantKey</key>
+								<real>0.01</real>
+								<key>shared text color</key>
+								<dict>
+									<key>Alpha Component</key>
+									<real>1</real>
+									<key>Blue Component</key>
+									<real>0.67968000000000006</real>
+									<key>Color Space</key>
+									<string>sRGB</string>
+									<key>Green Component</key>
+									<real>0.90000000000000002</real>
+									<key>Red Component</key>
+									<real>0.63</real>
+								</dict>
+							</dict>
+							<key>layout advanced configuration dictionary value</key>
+							<dict>
+								<key>algorithm</key>
+								<integer>1</integer>
+								<key>auto-rainbow style</key>
+								<integer>0</integer>
 								<key>font</key>
 								<string>.AppleSystemUIFont 12</string>
 							</dict>
@@ -1258,7 +1304,7 @@
 									<key>Color Space</key>
 									<string>sRGB</string>
 									<key>Green Component</key>
-									<real>0.90000000000000002</real>
+									<real>0.82547999999999988</real>
 									<key>Red Component</key>
 									<real>0.63</real>
 								</dict>
@@ -1267,6 +1313,8 @@
 							<dict>
 								<key>algorithm</key>
 								<integer>1</integer>
+								<key>auto-rainbow style</key>
+								<integer>0</integer>
 								<key>font</key>
 								<string>.AppleSystemUIFont 12</string>
 							</dict>
@@ -1292,13 +1340,53 @@
 									<key>Green Component</key>
 									<real>0.63</real>
 									<key>Red Component</key>
-									<real>0.76500000000000001</real>
+									<real>0.72936000000000012</real>
 								</dict>
 							</dict>
 							<key>layout advanced configuration dictionary value</key>
 							<dict>
 								<key>algorithm</key>
 								<integer>1</integer>
+								<key>auto-rainbow style</key>
+								<integer>0</integer>
+								<key>font</key>
+								<string>.AppleSystemUIFont 12</string>
+							</dict>
+						</dict>
+					</dict>
+					<dict>
+						<key>class</key>
+						<string>iTermStatusBarNetworkUtilizationComponent</string>
+						<key>configuration</key>
+						<dict>
+							<key>knobs</key>
+							<dict>
+								<key>base: compression resistance</key>
+								<integer>1</integer>
+								<key>base: priority</key>
+								<real>5</real>
+								<key>shared text color</key>
+								<dict>
+									<key>Alpha Component</key>
+									<real>1</real>
+									<key>Blue Component</key>
+									<real>0.77580000000000027</real>
+									<key>Color Space</key>
+									<string>sRGB</string>
+									<key>Green Component</key>
+									<real>0.63</real>
+									<key>Red Component</key>
+									<real>0.90000000000000002</real>
+								</dict>
+							</dict>
+							<key>layout advanced configuration dictionary value</key>
+							<dict>
+								<key>algorithm</key>
+								<integer>1</integer>
+								<key>auto-rainbow style</key>
+								<integer>0</integer>
+								<key>font</key>
+								<string>.AppleSystemUIFont 12</string>
 							</dict>
 						</dict>
 					</dict>
@@ -1995,14 +2083,14 @@
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{0, 0}, {1920, 1080}}</string>
+		<string>{{0, 0}, {1680, 1050}}</string>
 		<key>topLeft</key>
-		<string>{437, 819}</string>
+		<string>{288, 816}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>1EA8E6BC-E9E3-4972-9B76-C5B8481E1480</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>41</integer>
+	<integer>44</integer>
 	<key>NoSyncNextAnnoyanceTime</key>
 	<real>597840520.00578904</real>
 	<key>NoSyncOnboardingWindowHasBeenShown</key>
@@ -2769,7 +2857,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-07-03T06:58:11Z</date>
+	<date>2020-07-17T06:49:56Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
