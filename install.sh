@@ -118,8 +118,7 @@ ${PYTHON_BIN} -m pip install --user -U \
   mccabe \
   pyflakes \
   jedi \
-  neovim \
-  neovim-remote \
+  pynvim \
   mypy \
   'python-language-server[all]' \
   virtualenvwrapper \
