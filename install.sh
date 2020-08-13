@@ -163,7 +163,12 @@ echo -e "${YELLOW}Installing Kotlin Language Server${NOCOLOR}"
 # Install VS Code extensions
 #==============
 echo -e "${YELLOW}Installing neovim plugins${NOCOLOR}"
-nvim +PlugInstall +PlugUpdate +PlugClean! +qall
+nvim \
+  +PlugInstall \
+  +PlugUpdate \
+  +PlugClean! \
+  +'LspInstall metals' \
+  +qall
 
 #==============
 # Install VS Code extensions
