@@ -139,6 +139,7 @@ echo -e "${YELLOW}Installing NPM packages${NOCOLOR}"
 for MODULE in \
   dockerfile-language-server-nodejs \
   bash-language-server \
+  vim-language-server \
 
 do
     if ! npm list -g ${MODULE} > /dev/null 2>&1

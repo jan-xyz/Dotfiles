@@ -70,6 +70,7 @@ lua << END
   require'nvim_lsp'.pyls.setup{}
   require'nvim_lsp'.gopls.setup{}
   require'nvim_lsp'.kotlin_language_server.setup{}
+  require'nvim_lsp'.vimls.setup{}
 
 -- add Diagnostics to quickfix list
 -- https://github.com/neovim/nvim-lsp/issues/69#issuecomment-616816555
