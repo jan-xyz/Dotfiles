@@ -65,13 +65,15 @@ let g:ale_linters = {
 autocmd BufWritePost * :cw
 
 lua << END
-  require'nvim_lsp'.bashls.setup{}
-  require'nvim_lsp'.dockerls.setup{}
-  require'nvim_lsp'.pyls.setup{}
-  require'nvim_lsp'.gopls.setup{}
-  require'nvim_lsp'.kotlin_language_server.setup{}
-  require'nvim_lsp'.vimls.setup{}
-  require'nvim_lsp'.metals.setup{}
+  local nvim_lsp = require'nvim_lsp'
+
+  nvim_lsp.bashls.setup{}
+  nvim_lsp.dockerls.setup{}
+  nvim_lsp.pyls.setup{}
+  nvim_lsp.gopls.setup{}
+  nvim_lsp.kotlin_language_server.setup{}
+  nvim_lsp.vimls.setup{}
+  nvim_lsp.metals.setup{}
 
 -- add Diagnostics to quickfix list
 -- https://github.com/neovim/nvim-lsp/issues/69#issuecomment-616816555
