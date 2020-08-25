@@ -169,7 +169,8 @@ nvim \
   +PlugUpdate \
   +PlugClean! \
   +'LspInstall metals' \
-  +qall
+  +qall \
+  --headless > /dev/null 2>&1
 
 #==============
 # Install VS Code extensions
