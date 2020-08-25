@@ -267,13 +267,14 @@ ln -sf ~/dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/
 #==============
 echo -e "${YELLOW}Installing R packages${NOCOLOR}"
 for PACKAGE in \
+  devtools \
   languageserver \
 
 do
-  if ! R -e "if (!require($PACKAGE)) {quit(1)}" > /dev/null 2>&1
+  if ! R -e "if (!require(\"$PACKAGE\")) {quit(1)}" > /dev/null 2>&1
     then
         echo -e "${RED}${PACKAGE} is not installed ${NOCOLOR}"
-        R -e "install.packages($PACKAGE)"
+        R -e "install.packages(\"$PACKAGE\")"
 
     else
         echo -e "${GREEN}${PACKAGE} is already installed${NOCOLOR}"
