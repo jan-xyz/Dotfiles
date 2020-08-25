@@ -61,6 +61,7 @@ for BOTTLE in \
   python@3 \
   pyenv \
   pyenv-virtualenv \
+  r \
   ripgrep \
   shellcheck \
   watch \
@@ -238,6 +239,7 @@ rm -rf ~/.zpreztorc > /dev/null 2>&1
 rm -rf ~/.zshenv > /dev/null 2>&1
 rm -rf ~/.zprofile > /dev/null 2>&1
 rm -rf ~/.zsh > /dev/null 2>&1
+rm -rf ~/.RProfile > /dev/null 2>&1
 rm -rf ~/Library/Application\ Support/Code/User/settings.json 2>&1
 
 #==============
@@ -256,7 +258,27 @@ ln -sf ~/dotfiles/zpreztorc ~/.zpreztorc
 ln -sf ~/dotfiles/zshenv ~/.zshenv
 ln -sf ~/dotfiles/zprofile ~/.zprofile
 ln -sf ~/dotfiles/zsh ~/.zsh
+ln -sf ~/dotfiles/R/RProfile ~/.RProfile
 ln -sf ~/dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+
+#==============
+# Install R packages
+#==============
+echo -e "${YELLOW}Installing R packages${NOCOLOR}"
+for PACKAGE in \
+  languageserver \
+
+do
+  if ! R -e "if (!require($PACKAGE)) {quit(1)}" > /dev/null 2>&1
+    then
+        echo -e "${RED}${PACKAGE} is not installed ${NOCOLOR}"
+        R -e "install.packages($PACKAGE)"
+
+    else
+        echo -e "${GREEN}${PACKAGE} is already installed${NOCOLOR}"
+    fi
+
+done
 
 #==============
 # Set zsh as the default shell
