@@ -76,6 +76,7 @@ lua << END
   }
   nvim_lsp.vimls.setup{}
   nvim_lsp.metals.setup{}
+  nvim_lsp.r_language_server.setup{}
 
 -- add Diagnostics to quickfix list
 -- https://github.com/neovim/nvim-lsp/issues/69#issuecomment-616816555
