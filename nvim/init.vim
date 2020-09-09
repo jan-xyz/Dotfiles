@@ -3,6 +3,7 @@ call plug#begin()
   Plug 'vim-airline/vim-airline'
   Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
   Plug 'majutsushi/tagbar'
+  Plug 'liuchengxu/vista.vim'
   Plug 'voldikss/vim-floaterm'
   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 
@@ -59,6 +60,10 @@ let g:ale_linters_explicit = 1
 let g:ale_linters = {
   \   'proto': ['prototool-lint'],
   \ }
+
+" Tag: config
+let g:vista_default_executive = 'nvim_lsp'
+nnoremap <silent> <leader>c :Vista!!<CR>
 
 " Linting: config
 " Open/Close quickfix window on save
