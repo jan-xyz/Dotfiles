@@ -179,7 +179,6 @@ echo -e "${YELLOW}Installing VS Code extensions${NOCOLOR}"
 for EXTENSION in \
   ms-python.python \
   vscodevim.vim \
-  ms-vsts.team \
   golang.go \
   arcticicestudio.nord-visual-studio-code \
   ms-azuretools.vscode-docker \
