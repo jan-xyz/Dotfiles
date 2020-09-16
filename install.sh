@@ -129,8 +129,8 @@ ${PYTHON_BIN} -m pip install --user -U \
 # Install golang packages
 #==============
 echo -e "${YELLOW}Installing golang packages${NOCOLOR}"
-pushd ${GOPATH}
-go get -u golang.org/x/tools/gopls@latest > /dev/null 2>&1
+pushd ${HOME}
+  GO111MODULE=on go get golang.org/x/tools/gopls@latest > /dev/null 2>&1
 popd
 
 #==============
