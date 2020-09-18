@@ -652,7 +652,7 @@ prompt_go() {
   setopt extended_glob
   if [[ (-f *.go(#qN) || -d Godeps || -f glide.yaml || -f go.mod) ]]; then
     if command -v go > /dev/null 2>&1; then
-      prompt_segment $BULLETTRAIN_GO_BG $BULLETTRAIN_GO_FG $BULLETTRAIN_GO_PREFIX" $(go version | grep --colour=never -oE '[[:digit:]].[[:digit:]]+')"
+      prompt_segment $BULLETTRAIN_GO_BG $BULLETTRAIN_GO_FG $BULLETTRAIN_GO_PREFIX" $(go version | awk '{print substr($3, 3)}')"
     fi
   fi
 }
