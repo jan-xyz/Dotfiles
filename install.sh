@@ -54,6 +54,7 @@ for BOTTLE in \
   go \
   gradle \
   htop \
+  java11 \
   kubernetes-cli \
   kube-ps1 \
   neovim \
@@ -94,7 +95,6 @@ for CASK in \
   aerial \
   brooklyn \
   font-fira-code \
-  homebrew/cask-versions/java11 \
 
 do
     if ! brew cask list $CASK > /dev/null 2>&1
