@@ -9,16 +9,22 @@
 fpath=(~/.zsh/custom_themes $fpath)
 autoload -U promptinit && promptinit
 
+# Theme config
 BULLETTRAIN_PROMPT_ORDER=(
   time
   status
   dir
   git
   go
+  kctx
+  aws
   virtualenv
   cmd_exec_time
 )
 BULLETTRAIN_VIRTUALENV_FG=black
+BULLETTRAIN_DIR_BG=magenta
+BULLETTRAIN_AWS_BG=red
+BULLETTRAIN_KCTX_BG=blue
 
 # Source Prezto
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -64,6 +70,11 @@ unsetopt correct
 # Kubernetes cluster and namespace in PS1
 source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
 PS1='$(kube_ps1)'$PS1
+
+# AWS
+if [ -f ~/.aws/config ]; then
+  export AWS_PROFILE=$(aws configure list-profiles 2>&1 | head -n 1)
+fi
 
 # local configuration sourcing
 if [ -d ~/.config/zsh/ ]; then
