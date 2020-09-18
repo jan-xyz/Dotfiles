@@ -18,10 +18,14 @@ call plug#begin()
 
   " autocompletion and linting
   Plug 'neovim/nvim-lsp'
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'Shougo/deoplete-lsp'
   Plug 'uber/prototool', { 'rtp':'vim/prototool' }
   Plug 'w0rp/ale'
+  Plug 'nvim-lua/completion-nvim'
+  Plug 'nvim-lua/diagnostic-nvim'
+
+  " Snippet support
+  Plug 'hrsh7th/vim-vsnip'
+  Plug 'hrsh7th/vim-vsnip-integ'
 
   " language specific support
   Plug 'udalov/kotlin-vim'
@@ -56,8 +60,8 @@ let g:floaterm_keymap_toggle = '<Leader>t'
 let g:floaterm_position = 'center'
 
 " Autocomplete:
-let g:deoplete#enable_at_startup = 1
-set completeopt=menu,noinsert " select first item in list
+autocmd BufEnter * lua require'completion'.on_attach()
+set completeopt=menuone,noinsert,noselect
 
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
@@ -69,8 +73,8 @@ let g:vista_default_executive = 'nvim_lsp'
 nnoremap <silent> <leader>c :Vista!!<CR>
 
 " Linting: config
-" Open/Close quickfix window on save
-autocmd BufWritePost * :cw
+autocmd BufEnter * lua require'diagnostic'.on_attach()
+let g:diagnostic_enable_virtual_text = 1
 
 " Go: Run gofmt and goimports on save
 autocmd BufWritePre *.go :call v:lua.vim.lsp.buf.formatting()
