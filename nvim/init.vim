@@ -78,6 +78,7 @@ let g:diagnostic_enable_virtual_text = 1
 
 " Go: Run gofmt and goimports on save
 autocmd BufWritePre *.go :call v:lua.vim.lsp.buf.formatting()
+autocmd BufWritePre *.py :call v:lua.vim.lsp.buf.formatting()
 
 " General: keyboard mappings
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
