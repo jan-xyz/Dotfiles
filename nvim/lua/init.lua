@@ -2,7 +2,9 @@ local nvim_lsp = require'nvim_lsp'
 
 nvim_lsp.bashls.setup{}
 nvim_lsp.dockerls.setup{}
-nvim_lsp.pyls.setup{}
+nvim_lsp.pyls.setup{
+  cmd = {'/usr/local/bin/python3', '-m', 'pyls'};
+}
 nvim_lsp.gopls.setup{}
 nvim_lsp.kotlin_language_server.setup{
   cmd = {'kotlin-language-server'};

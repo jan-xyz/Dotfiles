@@ -121,6 +121,7 @@ ${PYTHON_BIN} -m pip install --user -U \
   jedi \
   pynvim \
   mypy \
+  pyls-black \
   'python-language-server[all]' \
   virtualenvwrapper \
   > /dev/null 2>&1
