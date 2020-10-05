@@ -18,8 +18,8 @@ call plug#begin()
 
   " autocompletion and linting
   Plug 'neovim/nvim-lsp'
-  Plug 'uber/prototool', { 'rtp':'vim/prototool' }
-  Plug 'w0rp/ale'
+  Plug 'bufbuild/vim-buf'
+  Plug 'dense-analysis/ale'
   Plug 'nvim-lua/completion-nvim'
   Plug 'nvim-lua/diagnostic-nvim'
 
@@ -65,7 +65,7 @@ set completeopt=menuone,noinsert,noselect
 
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
-  \   'proto': ['prototool-lint'],
+  \   'proto': ['buf-check-lint'],
   \ }
 
 " Tag: config
