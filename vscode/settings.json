@@ -13,9 +13,11 @@
     "go.alternateTools": {
         "go-langserver": "gopls"
     },
+    "gopls": {
+        "staticcheck": true
+    },
     "go.languageServerExperimentalFeatures": {
             "diagnostics": true, // for build and vet errors as you type
-            "rename": true
     },
     "[python]": {
         "editor.formatOnSave": true,
