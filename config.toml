@@ -68,3 +68,10 @@ extensions = [
   "ms-kubernetes-tools.vscode-kubernetes-tools",
   "fwcd.kotlin",
 ]
+
+[npm]
+packages = [
+  "dockerfile-language-server-nodejs",
+  "bash-language-server",
+  "vim-language-server",
+]

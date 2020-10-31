@@ -37,25 +37,6 @@ pushd ${HOME}
 popd
 
 #==============
-# Install NPM packages
-#==============
-echo -e "${YELLOW}Installing NPM packages${NOCOLOR}"
-for MODULE in \
-  dockerfile-language-server-nodejs \
-  bash-language-server \
-  vim-language-server \
-
-do
-    if ! npm list -g ${MODULE} > /dev/null 2>&1
-    then
-        echo -e "${RED}${MODULE} is not installed ${NOCOLOR}"
-        npm install -g ${MODULE}
-    else
-        echo -e "${GREEN}${MODULE} is already installed${NOCOLOR}"
-    fi
-done
-
-#==============
 # Kotlin language server
 #==============
 echo -e "${YELLOW}Installing Kotlin Language Server${NOCOLOR}"
