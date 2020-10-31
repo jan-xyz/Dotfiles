@@ -19,9 +19,9 @@ func TestGetMissingPythonPackage(t *testing.T) {
 		packages:  []string{"bar", "foo"},
 		commander: commander.Output,
 	}
-	missing_packages, err := p.getMissingPackages()
+	missingPackages, err := p.getMissingPackages()
 	assert.NoError(t, err)
-	assert.Equal(t, []string{"foo"}, missing_packages)
+	assert.Equal(t, []string{"foo"}, missingPackages)
 }
 
 func TestInstallingPythonPackage(t *testing.T) {
