@@ -30,8 +30,10 @@ func main() {
 	pythonPackages := viper.GetStringSlice("python.packages")
 	bottles := viper.GetStringSlice("homebrew.bottles")
 	casks := viper.GetStringSlice("homebrew.casks")
+	taps := viper.GetStringSlice("homebrew.taps")
 
 	handlers := []packageHandler{
+		brewTaps{packages: taps, commander: execCommander},
 		brewBottles{packages: bottles, commander: execCommander},
 		brewCasks{packages: casks, commander: execCommander},
 		python{packages: pythonPackages, commander: execCommander},
