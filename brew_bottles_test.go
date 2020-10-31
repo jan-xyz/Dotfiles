@@ -24,7 +24,7 @@ func TestGetMissingBrewPackage(t *testing.T) {
 	commander := mockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("brew", []string{"list"}, []byte("bar"), nil)
-	b := brew{
+	b := brewBottles{
 		packages:  []string{"bar", "foo"},
 		commander: commander.Output,
 	}
@@ -37,7 +37,7 @@ func TestInstallingBrewPackage(t *testing.T) {
 	commander := mockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("brew", []string{"install", "bar", "foo"}, nil, nil)
-	b := brew{
+	b := brewBottles{
 		commander: commander.Output,
 	}
 	err := b.installPackages([]string{"bar", "foo"})
@@ -47,7 +47,7 @@ func TestInstallingBrewPackage(t *testing.T) {
 func TestTryingToInstallBrewPackageWithEmptyListDoesNotCallBrew(t *testing.T) {
 	commander := mockCommander{}
 	defer commander.AssertExpectations(t)
-	b := brew{
+	b := brewBottles{
 		commander: commander.Output,
 	}
 	err := b.installPackages([]string{})
