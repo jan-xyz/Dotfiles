@@ -3,6 +3,7 @@ package main
 import (
 	"os/exec"
 
+	"github.com/prometheus/common/log"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
@@ -33,6 +34,9 @@ func main() {
 	taps := viper.GetStringSlice("homebrew.taps")
 	vscodeExt := viper.GetStringSlice("vscode.extensions")
 	npmPackages := viper.GetStringSlice("npm.packages")
+	var gCfg []goModule
+	viper.UnmarshalKey("go.modules", &gCfg)
+	log.Info(gCfg)
 
 	handlers := []packageHandler{
 		brewTaps{packages: taps, commander: execCommander},
@@ -41,6 +45,7 @@ func main() {
 		python{packages: pythonPackages, commander: execCommander},
 		vscode{packages: vscodeExt, commander: execCommander},
 		npm{packages: npmPackages, commander: execCommander},
+		golang{packages: gCfg, commander: execCommander},
 	}
 
 	for _, handler := range handlers {
