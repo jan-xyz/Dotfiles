@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os/exec"
 	"strings"
 
@@ -19,60 +18,87 @@ var (
 	python_args = []string{"-m", "pip", "freeze"}
 )
 
-func main() {
-	installed_bottles, err := getInstalledBottles()
-	if err != nil {
-		logrus.WithError(err).Error("cannot get brew bottles")
-	} else {
-		for _, bottle := range bottles {
-			if _, ok := installed_bottles[bottle]; !ok {
-				fmt.Println("installing", bottle)
-			} else {
-				fmt.Println("already installed", bottle)
-			}
-		}
+type packageHandler interface {
+	getMissingPackages() ([]string, error)
+	installPackages([]string) error
+}
+
+var (
+	handlers = []packageHandler{
+		brew{packages: bottles},
+		python{packages: pips},
 	}
-	installed_pips, err := getInstalledPips()
-	if err != nil {
-		logrus.WithError(err).Error("cannot get python packages")
-	} else {
-		for _, pip := range pips {
-			if _, ok := installed_pips[pip]; !ok {
-				fmt.Println("installing", pip)
-			} else {
-				fmt.Println("already installed", pip)
-			}
+)
+
+func main() {
+	for _, handler := range handlers {
+		if missing_packages, err := handler.getMissingPackages(); err != nil {
+			logrus.WithError(err).Error("cannot get packages")
+		} else {
+			handler.installPackages(missing_packages)
 		}
 	}
 }
 
-func getInstalledBottles() (map[string]bool, error) {
+type brew struct {
+	packages []string
+}
+
+func (b brew) getMissingPackages() ([]string, error) {
 	cmd := exec.Command(brew_exe, brew_args...)
 	stdout, err := cmd.Output()
 	if err != nil {
 		return nil, err
 	}
-	installed_packages := strings.Split(string(stdout), "\n")
+	installed_bottles := strings.Split(string(stdout), "\n")
 	installed_map := map[string]bool{}
-	for _, p := range installed_packages {
+	for _, p := range installed_bottles {
 		installed_map[p] = true
 	}
 
-	return installed_map, nil
+	missing_bottles := []string{}
+	for _, bottle := range b.packages {
+		if ok := installed_map[bottle]; !ok {
+			missing_bottles = append(missing_bottles, bottle)
+		}
+	}
+
+	return missing_bottles, nil
 }
 
-func getInstalledPips() (map[string]bool, error) {
+func (b brew) installPackages(packages []string) error {
+	logrus.Info(packages)
+	return nil
+}
+
+type python struct {
+	packages []string
+}
+
+func (b python) getMissingPackages() ([]string, error) {
 	cmd := exec.Command(python_exe, python_args...)
 	stdout, err := cmd.Output()
 	if err != nil {
 		return nil, err
 	}
-	installed_packages := strings.Split(string(stdout), "\n")
+	installed_pips := strings.Split(string(stdout), "\n")
 	installed_map := map[string]bool{}
-	for _, p := range installed_packages {
+	for _, p := range installed_pips {
 		name_and_version := strings.Split(p, "==")
 		installed_map[name_and_version[0]] = true
 	}
 
-	return installed_map, nil
+	missing_pips := []string{}
+	for _, bottle := range b.packages {
+		if ok := installed_map[bottle]; !ok {
+			missing_pips = append(missing_pips, bottle)
+		}
+	}
+
+	return missing_pips, nil
+}
+
+func (b python) installPackages(packages []string) error {
+	logrus.Info(packages)
+	return nil
 }
