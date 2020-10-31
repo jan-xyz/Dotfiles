@@ -9,7 +9,7 @@ import (
 var (
 	bottles = []string{"awscli", "ctags", "notInstalledBottle"}
 
-	brew_exe = "brew"
+	brewExe = "brew"
 )
 
 type brew struct {
@@ -18,30 +18,30 @@ type brew struct {
 }
 
 func (b brew) getMissingPackages() ([]string, error) {
-	stdout, err := b.commander(brew_exe, "list")
+	stdout, err := b.commander(brewExe, "list")
 	if err != nil {
 		return nil, err
 	}
-	installed_bottles := strings.Split(string(stdout), "\n")
-	installed_map := map[string]bool{}
-	for _, p := range installed_bottles {
-		installed_map[p] = true
+	installedBottles := strings.Split(string(stdout), "\n")
+	installedMap := map[string]bool{}
+	for _, p := range installedBottles {
+		installedMap[p] = true
 	}
 
-	missing_bottles := []string{}
+	missingBottles := []string{}
 	for _, bottle := range b.packages {
-		if ok := installed_map[bottle]; !ok {
-			missing_bottles = append(missing_bottles, bottle)
+		if ok := installedMap[bottle]; !ok {
+			missingBottles = append(missingBottles, bottle)
 		}
 	}
 
-	return missing_bottles, nil
+	return missingBottles, nil
 }
 
 func (b brew) installPackages(packages []string) error {
 	logrus.Info("Installing brew packages:", packages)
-	brew_args := append([]string{"install"}, packages...)
-	_, err := b.commander(brew_exe, brew_args...)
+	brewArgs := append([]string{"install"}, packages...)
+	_, err := b.commander(brewExe, brewArgs...)
 	if err != nil {
 		logrus.Error("Failed installing brew packages:", err)
 		return err

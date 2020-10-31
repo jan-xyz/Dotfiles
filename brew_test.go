@@ -28,9 +28,9 @@ func TestGetMissingBrewPackage(t *testing.T) {
 		packages:  []string{"bar", "foo"},
 		commander: commander.Output,
 	}
-	missing_packages, err := b.getMissingPackages()
+	missingPackages, err := b.getMissingPackages()
 	assert.NoError(t, err)
-	assert.Equal(t, []string{"foo"}, missing_packages)
+	assert.Equal(t, []string{"foo"}, missingPackages)
 }
 
 func TestInstallingBrewPackage(t *testing.T) {
