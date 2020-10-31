@@ -1,0 +1,56 @@
+
+[homebrew]
+bottles = [
+  "awscli",
+  "ctags",
+  "cmake",
+  "colordiff",
+  "ddate",
+  "fzf",
+  "go",
+  "gradle",
+  "htop",
+  "openjdk@11",
+  "kubernetes-cli",
+  "kube-ps1",
+  "neovim",
+  "node",
+  "python3",
+  "pyenv",
+  "pyenv-virtualenv",
+  "r",
+  "ripgrep",
+  "shellcheck",
+  "watch",
+  "zsh",
+]
+casks = [
+  "spotify",
+  "telegram",
+  "github",
+  "iterm2",
+  "slack",
+  "visual-studio-code",
+  "postman",
+  "docker",
+  "scroll-reverser",
+  "aerial",
+  "brooklyn",
+  "font-fira-code",
+]
+
+[python]
+packages = [
+  "autopep8",
+  "pylint",
+  "flake8",
+  "rope",
+  "mccabe",
+  "pyflakes",
+  "jedi",
+  "pynvim",
+  "mypy",
+  "pyls-black",
+  "python-language-server",
+  "virtualenvwrapper",
+]

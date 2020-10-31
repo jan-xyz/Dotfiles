@@ -7,8 +7,6 @@ import (
 )
 
 var (
-	pips = []string{"autopep8", "pylint", "notInstalledPip"}
-
 	pythonExe  = "/usr/local/bin/python3"
 	pythonArgs = []string{"-m", "pip"}
 )
@@ -24,6 +22,7 @@ func (p python) getMissingPackages() ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
+	logrus.WithField("output", string(stdout)).Debug("python stdout")
 	installedPips := strings.Split(string(stdout), "\n")
 	installedMap := map[string]bool{}
 	for _, p := range installedPips {
@@ -42,6 +41,10 @@ func (p python) getMissingPackages() ([]string, error) {
 }
 
 func (p python) installPackages(packages []string) error {
+	if len(packages) == 0 {
+		logrus.Info("no Python packages to install")
+		return nil
+	}
 	logrus.Info("Installing Python packages:", packages)
 	args := append(pythonArgs, "install")
 	args = append(args, packages...)
