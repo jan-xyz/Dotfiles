@@ -12,6 +12,12 @@ BANNER='\033[32;5;7m'
 NOCOLOR='\033[0m'
 
 #==============
+# initialize submodules
+#==============
+echo -e "${YELLOW}Updating submodules${NOCOLOR}"
+git submodule update --init > /dev/null 2>&1
+
+#==============
 # install homebrew
 #==============
 echo -e "${YELLOW}Checking homebrew${NOCOLOR}"
@@ -21,6 +27,18 @@ then
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 else
     echo -e "${GREEN}Homebrew is installed.${NOCOLOR}"
+fi
+
+#==============
+# installing go
+#==============
+echo -e "${YELLOW}Checking Go${NOCOLOR}"
+if ! command -v go > /dev/null 2>&1
+then
+    echo -e "${RED}Go is not installed${NOCOLOR}"
+    brew install go
+else
+    echo -e "${GREEN}Go is installed.${NOCOLOR}"
 fi
 
 #==============
@@ -53,12 +71,6 @@ nvim \
   +PlugClean! \
   +qall \
   --headless > /dev/null 2>&1
-
-#==============
-# update all plugins
-#==============
-echo -e "${YELLOW}Updating submodules${NOCOLOR}"
-git submodule update --init --recursive > /dev/null 2>&1
 
 #==============
 # Remove old dot flies
