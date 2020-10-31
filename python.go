@@ -10,7 +10,7 @@ var (
 	pips = []string{"autopep8", "pylint", "notInstalledPip"}
 
 	python_exe  = "/usr/local/bin/python3"
-	python_args = []string{"-m", "pip", "freeze"}
+	python_args = []string{"-m", "pip"}
 )
 
 type python struct {
@@ -19,6 +19,7 @@ type python struct {
 }
 
 func (p python) getMissingPackages() ([]string, error) {
+	python_args := append(python_args, "freeze")
 	stdout, err := p.commander(python_exe, python_args...)
 	if err != nil {
 		return nil, err
@@ -41,6 +42,13 @@ func (p python) getMissingPackages() ([]string, error) {
 }
 
 func (b python) installPackages(packages []string) error {
-	logrus.Info(packages)
+	logrus.Info("Installing Python packages:", packages)
+	args := append(python_args, "install")
+	args = append(args, packages...)
+	_, err := b.commander(python_exe, args...)
+	if err != nil {
+		logrus.Error("Failed installing Python packages:", err)
+		return err
+	}
 	return nil
 }
