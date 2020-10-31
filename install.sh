@@ -23,6 +23,9 @@ else
     echo -e "${GREEN}Homebrew is installed.${NOCOLOR}"
 fi
 
+#==============
+# Install packages
+#==============
 go run .
 
 #==============
@@ -61,39 +64,14 @@ echo -e "${YELLOW}Installing Kotlin Language Server${NOCOLOR}"
 /bin/cp ./kotlin-language-server/server/build/install/server/lib/* /usr/local/lib/
 
 #==============
-# Install VS Code extensions
+# Install Neovim extensions
 #==============
 echo -e "${YELLOW}Installing neovim plugins${NOCOLOR}"
 nvim \
   +PlugInstall \
-  +PlugUpdate \
   +PlugClean! \
-  +'LspInstall metals' \
   +qall \
   --headless > /dev/null 2>&1
-
-#==============
-# Install VS Code extensions
-#==============
-echo -e "${YELLOW}Installing VS Code extensions${NOCOLOR}"
-for EXTENSION in \
-  ms-python.python \
-  vscodevim.vim \
-  golang.go \
-  arcticicestudio.nord-visual-studio-code \
-  ms-azuretools.vscode-docker \
-  ms-kubernetes-tools.vscode-kubernetes-tools \
-  fwcd.kotlin \
-
-do
-    if ! code --list-extensions | grep --ignore-case $EXTENSION > /dev/null 2>&1
-    then
-        echo -e "${RED}${EXTENSION} is not installed ${NOCOLOR}"
-        code --install-extension $EXTENSION
-    else
-        echo -e "${GREEN}$EXTENSION is already installed${NOCOLOR}"
-    fi
-done
 
 #==============
 # update all plugins
