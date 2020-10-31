@@ -3,7 +3,6 @@ package main
 import (
 	"os/exec"
 
-	"github.com/prometheus/common/log"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
@@ -36,7 +35,7 @@ func main() {
 	npmPackages := viper.GetStringSlice("npm.packages")
 	var gCfg []goModule
 	viper.UnmarshalKey("go.modules", &gCfg)
-	log.Info(gCfg)
+	logrus.Info(gCfg)
 
 	handlers := []packageHandler{
 		brewTaps{packages: taps, commander: execCommander},

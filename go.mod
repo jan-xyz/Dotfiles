@@ -8,5 +8,4 @@ require (
 	github.com/spf13/viper v1.7.1
 	github.com/stretchr/objx v0.3.0 // indirect
 	github.com/stretchr/testify v1.6.1
-	honnef.co/go/tools v0.0.1-2020.1.6 // indirect
 )
