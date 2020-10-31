@@ -55,3 +55,6 @@ func (p Python) InstallPackages(packages []string) error {
 	}
 	return nil
 }
+func (p Python) UpdatePackages() error {
+	return nil
+}

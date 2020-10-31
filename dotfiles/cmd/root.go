@@ -43,12 +43,21 @@ func init() {
 }
 
 func execCommander(command string, args ...string) ([]byte, error) {
-	return exec.Command(command, args...).Output()
+	cmd := exec.Command(command, args...)
+	cmd.Dir = "/"
+	cmd.Env = append(os.Environ(), "GO111MODULE=on")
+	b, err := cmd.CombinedOutput()
+	if err != nil {
+		logrus.Error(string(b))
+		return nil, err
+	}
+	return b, nil
 }
 
 type packageHandler interface {
 	GetMissingPackages() ([]string, error)
 	InstallPackages([]string) error
+	UpdatePackages() error
 }
 
 var handlers = []packageHandler{}

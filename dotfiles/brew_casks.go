@@ -47,3 +47,7 @@ func (b BrewCasks) InstallPackages(packages []string) error {
 	}
 	return nil
 }
+
+func (b BrewCasks) UpdatePackages() error {
+	return nil
+}
