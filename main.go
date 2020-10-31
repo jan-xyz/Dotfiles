@@ -32,6 +32,7 @@ func main() {
 	casks := viper.GetStringSlice("homebrew.casks")
 	taps := viper.GetStringSlice("homebrew.taps")
 	vscodeExt := viper.GetStringSlice("vscode.extensions")
+	npmPackages := viper.GetStringSlice("npm.packages")
 
 	handlers := []packageHandler{
 		brewTaps{packages: taps, commander: execCommander},
@@ -39,6 +40,7 @@ func main() {
 		brewCasks{packages: casks, commander: execCommander},
 		python{packages: pythonPackages, commander: execCommander},
 		vscode{packages: vscodeExt, commander: execCommander},
+		npm{packages: npmPackages, commander: execCommander},
 	}
 
 	for _, handler := range handlers {
