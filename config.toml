@@ -78,3 +78,9 @@ packages = [
   "bash-language-server",
   "vim-language-server",
 ]
+
+[go]
+modules = [
+  { exe = "gopls", path = "golang.org/x/tools/gopls"},
+  { exe = "staticcheck", path = "honnef.co/go/tools/cmd/staticcheck"},
+]

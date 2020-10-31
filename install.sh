@@ -47,14 +47,6 @@ fi
 go run .
 
 #==============
-# Install golang packages
-#==============
-echo -e "${YELLOW}Installing golang packages${NOCOLOR}"
-pushd ${HOME}
-  GO111MODULE=on go get golang.org/x/tools/gopls@latest > /dev/null 2>&1
-popd
-
-#==============
 # Kotlin language server
 #==============
 echo -e "${YELLOW}Installing Kotlin Language Server${NOCOLOR}"
