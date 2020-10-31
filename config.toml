@@ -38,6 +38,9 @@ casks = [
   "brooklyn",
   "font-fira-code",
 ]
+taps = [
+  "homebrew/cask-fonts",
+]
 
 [python]
 packages = [

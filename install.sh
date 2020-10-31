@@ -23,22 +23,6 @@ else
     echo -e "${GREEN}Homebrew is installed.${NOCOLOR}"
 fi
 
-
-#==============
-# add homebrew taps
-#==============
-echo -e "${YELLOW}Adding Homebrew Taps${NOCOLOR}"
-for TAP in homebrew/cask-fonts
-do
-    if ! brew tap | grep $TAP > /dev/null 2>&1
-    then
-        echo -e "${RED}${TAP} is not tapped${NOCOLOR}"
-        brew tap $TAP
-    else
-        echo -e "${GREEN}${TAP} is already tapped${NOCOLOR}"
-    fi
-done
-
 go run .
 
 #==============
