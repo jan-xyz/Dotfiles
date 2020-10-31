@@ -18,8 +18,18 @@ var (
 	python_args = []string{"-m", "pip", "freeze"}
 )
 
+type Commander interface {
+	Output(string, ...string) ([]byte, error)
+}
+
+type execCommander struct{}
+
+func (c execCommander) Output(command string, args ...string) ([]byte, error) {
+	return exec.Command(command, args...).Output()
+}
+
 type packageHandler interface {
-	getMissingPackages() ([]string, error)
+	getMissingPackages(Commander) ([]string, error)
 	installPackages([]string) error
 }
 
@@ -32,7 +42,7 @@ var (
 
 func main() {
 	for _, handler := range handlers {
-		if missing_packages, err := handler.getMissingPackages(); err != nil {
+		if missing_packages, err := handler.getMissingPackages(execCommander{}); err != nil {
 			logrus.WithError(err).Error("cannot get packages")
 		} else {
 			handler.installPackages(missing_packages)
@@ -44,9 +54,8 @@ type brew struct {
 	packages []string
 }
 
-func (b brew) getMissingPackages() ([]string, error) {
-	cmd := exec.Command(brew_exe, brew_args...)
-	stdout, err := cmd.Output()
+func (b brew) getMissingPackages(commander Commander) ([]string, error) {
+	stdout, err := commander.Output(brew_exe, brew_args...)
 	if err != nil {
 		return nil, err
 	}
@@ -75,9 +84,8 @@ type python struct {
 	packages []string
 }
 
-func (b python) getMissingPackages() ([]string, error) {
-	cmd := exec.Command(python_exe, python_args...)
-	stdout, err := cmd.Output()
+func (b python) getMissingPackages(commander Commander) ([]string, error) {
+	stdout, err := commander.Output(python_exe, python_args...)
 	if err != nil {
 		return nil, err
 	}
