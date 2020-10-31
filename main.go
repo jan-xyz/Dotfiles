@@ -33,9 +33,9 @@ func main() {
 	taps := viper.GetStringSlice("homebrew.taps")
 	vscodeExt := viper.GetStringSlice("vscode.extensions")
 	npmPackages := viper.GetStringSlice("npm.packages")
-	var gCfg []goModule
-	viper.UnmarshalKey("go.modules", &gCfg)
-	logrus.Info(gCfg)
+	var goModules []goModule
+	viper.UnmarshalKey("go.modules", &goModules)
+	logrus.Info(goModules)
 
 	handlers := []packageHandler{
 		brewTaps{packages: taps, commander: execCommander},
@@ -44,7 +44,7 @@ func main() {
 		python{packages: pythonPackages, commander: execCommander},
 		vscode{packages: vscodeExt, commander: execCommander},
 		npm{packages: npmPackages, commander: execCommander},
-		golang{packages: gCfg, commander: execCommander},
+		golang{packages: goModules, commander: execCommander},
 	}
 
 	for _, handler := range handlers {
