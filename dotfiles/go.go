@@ -1,4 +1,4 @@
-package main
+package dotfiles
 
 import (
 	"github.com/sirupsen/logrus"
@@ -6,20 +6,20 @@ import (
 
 var goExe = "go"
 
-type goModule struct {
+type GoModule struct {
 	Exe  string
 	Path string
 }
 
-type golang struct {
-	packages  []goModule
-	commander commander
+type Go struct {
+	Packages  []GoModule
+	Commander Commander
 }
 
-func (b golang) getMissingPackages() ([]string, error) {
+func (b Go) GetMissingPackages() ([]string, error) {
 	missing := []string{}
-	for _, p := range b.packages {
-		_, err := b.commander("command", "-v", p.Exe)
+	for _, p := range b.Packages {
+		_, err := b.Commander("command", "-v", p.Exe)
 		if err != nil {
 			logrus.WithField("module", p.Exe).Debug("Adding module to missing package")
 			missing = append(missing, p.Exe)
@@ -29,14 +29,14 @@ func (b golang) getMissingPackages() ([]string, error) {
 	return missing, nil
 }
 
-func (b golang) installPackages(packages []string) error {
+func (b Go) InstallPackages(packages []string) error {
 	if len(packages) == 0 {
 		logrus.Info("no go modules to install")
 		return nil
 	}
 	logrus.Info("Installing go modules:", packages)
 	goModulesMap := map[string]string{}
-	for _, p := range b.packages {
+	for _, p := range b.Packages {
 		goModulesMap[p.Exe] = p.Path
 	}
 
@@ -49,7 +49,7 @@ func (b golang) installPackages(packages []string) error {
 		}
 	}
 
-	_, err := b.commander(goExe, args...)
+	_, err := b.Commander(goExe, args...)
 	if err != nil {
 		logrus.Error("Failed installing go modules:", err)
 		return err

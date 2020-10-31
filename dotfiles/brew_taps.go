@@ -1,4 +1,4 @@
-package main
+package dotfiles
 
 import (
 	"strings"
@@ -6,17 +6,13 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-var (
-	brewExe = "brew"
-)
-
-type brewBottles struct {
-	packages  []string
-	commander commander
+type BrewTaps struct {
+	Packages  []string
+	Commander Commander
 }
 
-func (b brewBottles) getMissingPackages() ([]string, error) {
-	stdout, err := b.commander(brewExe, "list")
+func (b BrewTaps) GetMissingPackages() ([]string, error) {
+	stdout, err := b.Commander(brewExe, "tap")
 	if err != nil {
 		return nil, err
 	}
@@ -28,7 +24,7 @@ func (b brewBottles) getMissingPackages() ([]string, error) {
 	}
 
 	missingBottles := []string{}
-	for _, bottle := range b.packages {
+	for _, bottle := range b.Packages {
 		if ok := installedMap[bottle]; !ok {
 			missingBottles = append(missingBottles, bottle)
 		}
@@ -37,14 +33,14 @@ func (b brewBottles) getMissingPackages() ([]string, error) {
 	return missingBottles, nil
 }
 
-func (b brewBottles) installPackages(packages []string) error {
+func (b BrewTaps) InstallPackages(packages []string) error {
 	if len(packages) == 0 {
-		logrus.Info("no Hombrew bottles to install")
+		logrus.Info("no Hombrew taps to install")
 		return nil
 	}
 	logrus.Info("Installing brew packages:", packages)
-	brewArgs := append([]string{"install"}, packages...)
-	_, err := b.commander(brewExe, brewArgs...)
+	brewArgs := append([]string{"tap"}, packages...)
+	_, err := b.Commander(brewExe, brewArgs...)
 	if err != nil {
 		logrus.Error("Failed installing brew packages:", err)
 		return err

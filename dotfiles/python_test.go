@@ -1,4 +1,4 @@
-package main
+package dotfiles
 
 import (
 	"testing"
@@ -15,11 +15,11 @@ func TestGetMissingPythonPackage(t *testing.T) {
 		[]byte("bar==1.0.0"),
 		nil,
 	)
-	p := python{
-		packages:  []string{"bar", "foo"},
-		commander: commander.Output,
+	p := Python{
+		Packages:  []string{"bar", "foo"},
+		Commander: commander.Output,
 	}
-	missingPackages, err := p.getMissingPackages()
+	missingPackages, err := p.GetMissingPackages()
 	assert.NoError(t, err)
 	assert.Equal(t, []string{"foo"}, missingPackages)
 }
@@ -33,19 +33,19 @@ func TestInstallingPythonPackage(t *testing.T) {
 		nil,
 		nil,
 	)
-	b := python{
-		commander: commander.Output,
+	b := Python{
+		Commander: commander.Output,
 	}
-	err := b.installPackages([]string{"bar", "foo"})
+	err := b.InstallPackages([]string{"bar", "foo"})
 	assert.NoError(t, err)
 }
 
 func TestTryingToInstallPythonPackageWithEmptyListDoesNotCallBrew(t *testing.T) {
 	commander := mockCommander{}
 	defer commander.AssertExpectations(t)
-	p := python{
-		commander: commander.Output,
+	p := Python{
+		Commander: commander.Output,
 	}
-	err := p.installPackages([]string{})
+	err := p.InstallPackages([]string{})
 	assert.NoError(t, err)
 }

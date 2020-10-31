@@ -1,4 +1,4 @@
-package main
+package dotfiles
 
 import (
 	"testing"
@@ -24,11 +24,11 @@ func TestGetMissingBrewPackage(t *testing.T) {
 	commander := mockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("brew", []string{"list"}, []byte("bar"), nil)
-	b := brewBottles{
-		packages:  []string{"bar", "foo"},
-		commander: commander.Output,
+	b := BrewBottles{
+		Packages:  []string{"bar", "foo"},
+		Commander: commander.Output,
 	}
-	missingPackages, err := b.getMissingPackages()
+	missingPackages, err := b.GetMissingPackages()
 	assert.NoError(t, err)
 	assert.Equal(t, []string{"foo"}, missingPackages)
 }
@@ -37,19 +37,19 @@ func TestInstallingBrewPackage(t *testing.T) {
 	commander := mockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("brew", []string{"install", "bar", "foo"}, nil, nil)
-	b := brewBottles{
-		commander: commander.Output,
+	b := BrewBottles{
+		Commander: commander.Output,
 	}
-	err := b.installPackages([]string{"bar", "foo"})
+	err := b.InstallPackages([]string{"bar", "foo"})
 	assert.NoError(t, err)
 }
 
 func TestTryingToInstallBrewPackageWithEmptyListDoesNotCallBrew(t *testing.T) {
 	commander := mockCommander{}
 	defer commander.AssertExpectations(t)
-	b := brewBottles{
-		commander: commander.Output,
+	b := BrewBottles{
+		Commander: commander.Output,
 	}
-	err := b.installPackages([]string{})
+	err := b.InstallPackages([]string{})
 	assert.NoError(t, err)
 }

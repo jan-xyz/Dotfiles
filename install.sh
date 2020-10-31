@@ -44,7 +44,7 @@ fi
 #==============
 # Install packages
 #==============
-go run .
+go run . install
 
 #==============
 # Kotlin language server
