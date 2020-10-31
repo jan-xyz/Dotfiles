@@ -39,3 +39,13 @@ func TestInstallingPythonPackage(t *testing.T) {
 	err := b.installPackages([]string{"bar", "foo"})
 	assert.NoError(t, err)
 }
+
+func TestTryingToInstallPythonPackageWithEmptyListDoesNotCallBrew(t *testing.T) {
+	commander := mockCommander{}
+	defer commander.AssertExpectations(t)
+	p := python{
+		commander: commander.Output,
+	}
+	err := p.installPackages([]string{})
+	assert.NoError(t, err)
+}

@@ -7,8 +7,6 @@ import (
 )
 
 var (
-	bottles = []string{"awscli", "ctags", "notInstalledBottle"}
-
 	brewExe = "brew"
 )
 
@@ -22,6 +20,7 @@ func (b brew) getMissingPackages() ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
+	logrus.WithField("output", string(stdout)).Debug("homebrew stdout")
 	installedBottles := strings.Split(string(stdout), "\n")
 	installedMap := map[string]bool{}
 	for _, p := range installedBottles {
@@ -39,6 +38,10 @@ func (b brew) getMissingPackages() ([]string, error) {
 }
 
 func (b brew) installPackages(packages []string) error {
+	if len(packages) == 0 {
+		logrus.Info("no Hombrew bottles to install")
+		return nil
+	}
 	logrus.Info("Installing brew packages:", packages)
 	brewArgs := append([]string{"install"}, packages...)
 	_, err := b.commander(brewExe, brewArgs...)
