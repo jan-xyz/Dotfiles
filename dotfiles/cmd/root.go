@@ -51,7 +51,7 @@ type packageHandler interface {
 	InstallPackages([]string) error
 }
 
-var Handlers = []packageHandler{}
+var handlers = []packageHandler{}
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
@@ -75,7 +75,7 @@ func initConfig() {
 	var goModules []dotfiles.GoModule
 	viper.UnmarshalKey("go.modules", &goModules)
 
-	Handlers = []packageHandler{
+	handlers = []packageHandler{
 		dotfiles.BrewTaps{Packages: taps, Commander: execCommander},
 		dotfiles.BrewBottles{Packages: bottles, Commander: execCommander},
 		dotfiles.BrewCasks{Packages: casks, Commander: execCommander},
