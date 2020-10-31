@@ -6,13 +6,9 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type Commander interface {
-	Output(string, ...string) ([]byte, error)
-}
+type Commander func(string, ...string) ([]byte, error)
 
-type execCommander struct{}
-
-func (c execCommander) Output(command string, args ...string) ([]byte, error) {
+func execCommander(command string, args ...string) ([]byte, error) {
 	return exec.Command(command, args...).Output()
 }
 
@@ -23,8 +19,8 @@ type packageHandler interface {
 
 var (
 	handlers = []packageHandler{
-		brew{packages: bottles, commander: execCommander{}},
-		python{packages: pips, commander: execCommander{}},
+		brew{packages: bottles, commander: execCommander},
+		python{packages: pips, commander: execCommander},
 	}
 )
 

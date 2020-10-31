@@ -19,7 +19,7 @@ type brew struct {
 }
 
 func (b brew) getMissingPackages() ([]string, error) {
-	stdout, err := b.commander.Output(brew_exe, brew_args...)
+	stdout, err := b.commander(brew_exe, brew_args...)
 	if err != nil {
 		return nil, err
 	}
@@ -40,6 +40,6 @@ func (b brew) getMissingPackages() ([]string, error) {
 }
 
 func (b brew) installPackages(packages []string) error {
-	logrus.Info(packages)
+	logrus.Info(append([]string{"install"}, packages...))
 	return nil
 }

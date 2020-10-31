@@ -5,21 +5,21 @@ import (
 
 	"github.com/sirupsen/logrus"
 )
-var (
-	pips    = []string{"autopep8", "pylint", "notInstalledPip"}
 
+var (
+	pips = []string{"autopep8", "pylint", "notInstalledPip"}
 
 	python_exe  = "/usr/local/bin/python3"
 	python_args = []string{"-m", "pip", "freeze"}
 )
 
 type python struct {
-	packages []string
+	packages  []string
 	commander Commander
 }
 
 func (p python) getMissingPackages() ([]string, error) {
-	stdout, err := p.commander.Output(python_exe, python_args...)
+	stdout, err := p.commander(python_exe, python_args...)
 	if err != nil {
 		return nil, err
 	}
