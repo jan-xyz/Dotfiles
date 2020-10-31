@@ -14,7 +14,7 @@ var (
 
 type brew struct {
 	packages  []string
-	commander Commander
+	commander commander
 }
 
 func (b brew) getMissingPackages() ([]string, error) {

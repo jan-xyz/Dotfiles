@@ -15,7 +15,7 @@ var (
 
 type python struct {
 	packages  []string
-	commander Commander
+	commander commander
 }
 
 func (p python) getMissingPackages() ([]string, error) {
