@@ -13,3 +13,13 @@ nvim_lsp.vimls.setup{}
 nvim_lsp.metals.setup{}
 nvim_lsp.r_language_server.setup{}
 nvim_lsp.sumneko_lua.setup{}
+
+-- Treesitter:
+local tree_sitter = require'nvim-treesitter.configs'
+
+tree_sitter.setup {
+  ensure_installed = "maintained",
+  highlight = {
+    enable = true,
+  },
+}

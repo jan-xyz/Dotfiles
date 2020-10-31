@@ -6,7 +6,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type Commander func(string, ...string) ([]byte, error)
+type commander func(string, ...string) ([]byte, error)
 
 func execCommander(command string, args ...string) ([]byte, error) {
 	return exec.Command(command, args...).Output()
@@ -26,10 +26,10 @@ var (
 
 func main() {
 	for _, handler := range handlers {
-		if missing_packages, err := handler.getMissingPackages(); err != nil {
+		if missingPackages, err := handler.getMissingPackages(); err != nil {
 			logrus.WithError(err).Error("cannot get packages")
 		} else {
-			handler.installPackages(missing_packages)
+			handler.installPackages(missingPackages)
 		}
 	}
 }
