@@ -51,3 +51,13 @@ func (b BrewBottles) InstallPackages(packages []string) error {
 	}
 	return nil
 }
+
+func (b BrewBottles) UpdatePackages() error {
+	logrus.Info("Upgrading brew packages")
+	_, err := b.Commander(brewExe, "upgrade")
+	if err != nil {
+		logrus.Error("Failed update brew bottles:", err)
+		return err
+	}
+	return nil
+}

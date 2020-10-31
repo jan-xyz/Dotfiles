@@ -47,3 +47,8 @@ func (b BrewTaps) InstallPackages(packages []string) error {
 	}
 	return nil
 }
+
+func (b BrewTaps) UpdatePackages() error {
+	logrus.Debug("Brew tap upgrade called.")
+	return nil
+}

@@ -38,3 +38,7 @@ func (b NPM) InstallPackages(packages []string) error {
 	}
 	return nil
 }
+
+func (b NPM) UpdatePackages() error {
+	return nil
+}

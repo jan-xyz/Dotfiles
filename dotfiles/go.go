@@ -56,3 +56,19 @@ func (b Go) InstallPackages(packages []string) error {
 	}
 	return nil
 }
+
+func (b Go) UpdatePackages() error {
+	logrus.Info("Upgrading go modules:", b.Packages)
+
+	args := []string{"get", "-u"}
+	for _, p := range b.Packages {
+		args = append(args, p.Path)
+	}
+
+	_, err := b.Commander(goExe, args...)
+	if err != nil {
+		logrus.Error("Failed installing go modules:", err)
+		return err
+	}
+	return nil
+}

@@ -51,3 +51,7 @@ func (b VSCode) InstallPackages(packages []string) error {
 	}
 	return nil
 }
+
+func (b VSCode) UpdatePackages() error {
+	return nil
+}
