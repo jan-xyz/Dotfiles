@@ -31,12 +31,14 @@ func main() {
 	bottles := viper.GetStringSlice("homebrew.bottles")
 	casks := viper.GetStringSlice("homebrew.casks")
 	taps := viper.GetStringSlice("homebrew.taps")
+	vscodeExt := viper.GetStringSlice("vscode.extensions")
 
 	handlers := []packageHandler{
 		brewTaps{packages: taps, commander: execCommander},
 		brewBottles{packages: bottles, commander: execCommander},
 		brewCasks{packages: casks, commander: execCommander},
 		python{packages: pythonPackages, commander: execCommander},
+		vscode{packages: vscodeExt, commander: execCommander},
 	}
 
 	for _, handler := range handlers {
