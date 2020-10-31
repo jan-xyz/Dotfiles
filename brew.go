@@ -9,8 +9,7 @@ import (
 var (
 	bottles = []string{"awscli", "ctags", "notInstalledBottle"}
 
-	brew_exe  = "brew"
-	brew_args = []string{"list"}
+	brew_exe = "brew"
 )
 
 type brew struct {
@@ -19,7 +18,7 @@ type brew struct {
 }
 
 func (b brew) getMissingPackages() ([]string, error) {
-	stdout, err := b.commander(brew_exe, brew_args...)
+	stdout, err := b.commander(brew_exe, "list")
 	if err != nil {
 		return nil, err
 	}
@@ -40,6 +39,12 @@ func (b brew) getMissingPackages() ([]string, error) {
 }
 
 func (b brew) installPackages(packages []string) error {
-	logrus.Info(append([]string{"install"}, packages...))
+	logrus.Info("Installing brew packages:", packages)
+	brew_args := append([]string{"install"}, packages...)
+	_, err := b.commander(brew_exe, brew_args...)
+	if err != nil {
+		logrus.Error("Failed installing brew packages:", err)
+		return err
+	}
 	return nil
 }
