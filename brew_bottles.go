@@ -10,12 +10,12 @@ var (
 	brewExe = "brew"
 )
 
-type brew struct {
+type brewBottles struct {
 	packages  []string
 	commander commander
 }
 
-func (b brew) getMissingPackages() ([]string, error) {
+func (b brewBottles) getMissingPackages() ([]string, error) {
 	stdout, err := b.commander(brewExe, "list")
 	if err != nil {
 		return nil, err
@@ -37,7 +37,7 @@ func (b brew) getMissingPackages() ([]string, error) {
 	return missingBottles, nil
 }
 
-func (b brew) installPackages(packages []string) error {
+func (b brewBottles) installPackages(packages []string) error {
 	if len(packages) == 0 {
 		logrus.Info("no Hombrew bottles to install")
 		return nil

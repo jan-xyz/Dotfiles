@@ -28,10 +28,12 @@ func main() {
 		logrus.Fatalf("Fatal error config file: %s \n", err)
 	}
 	pythonPackages := viper.GetStringSlice("python.packages")
-	brewBottles := viper.GetStringSlice("homebrew.bottles")
+	bottles := viper.GetStringSlice("homebrew.bottles")
+	casks := viper.GetStringSlice("homebrew.casks")
 
 	handlers := []packageHandler{
-		brew{packages: brewBottles, commander: execCommander},
+		brewBottles{packages: bottles, commander: execCommander},
+		brewCasks{packages: casks, commander: execCommander},
 		python{packages: pythonPackages, commander: execCommander},
 	}
 
