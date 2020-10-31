@@ -1,4 +1,4 @@
-package main
+package dotfiles
 
 import (
 	"github.com/sirupsen/logrus"
@@ -8,15 +8,15 @@ var (
 	npmExe = "npm"
 )
 
-type npm struct {
-	packages  []string
-	commander commander
+type NPM struct {
+	Packages  []string
+	Commander Commander
 }
 
-func (b npm) getMissingPackages() ([]string, error) {
+func (b NPM) GetMissingPackages() ([]string, error) {
 	missingBottles := []string{}
-	for _, p := range b.packages {
-		_, err := b.commander(npmExe, "ls", "--global", p)
+	for _, p := range b.Packages {
+		_, err := b.Commander(npmExe, "ls", "--global", p)
 		if err != nil {
 			missingBottles = append(missingBottles, p)
 		}
@@ -25,14 +25,14 @@ func (b npm) getMissingPackages() ([]string, error) {
 	return missingBottles, nil
 }
 
-func (b npm) installPackages(packages []string) error {
+func (b NPM) InstallPackages(packages []string) error {
 	if len(packages) == 0 {
 		logrus.Info("no npm packages to install")
 		return nil
 	}
 	logrus.Info("Installing vscode extensions:", packages)
 	args := append([]string{"install", "--global"}, packages...)
-	_, err := b.commander(npmExe, args...)
+	_, err := b.Commander(npmExe, args...)
 	if err != nil {
 		logrus.Error("Failed installing npm packages:", err)
 	}

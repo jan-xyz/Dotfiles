@@ -1,4 +1,4 @@
-package main
+package dotfiles
 
 import (
 	"strings"
@@ -11,14 +11,14 @@ var (
 	pythonArgs = []string{"-m", "pip"}
 )
 
-type python struct {
-	packages  []string
-	commander commander
+type Python struct {
+	Packages  []string
+	Commander Commander
 }
 
-func (p python) getMissingPackages() ([]string, error) {
+func (p Python) GetMissingPackages() ([]string, error) {
 	args := append(pythonArgs, "freeze")
-	stdout, err := p.commander(pythonExe, args...)
+	stdout, err := p.Commander(pythonExe, args...)
 	if err != nil {
 		return nil, err
 	}
@@ -31,7 +31,7 @@ func (p python) getMissingPackages() ([]string, error) {
 	}
 
 	missingPips := []string{}
-	for _, bottle := range p.packages {
+	for _, bottle := range p.Packages {
 		if ok := installedMap[bottle]; !ok {
 			missingPips = append(missingPips, bottle)
 		}
@@ -40,7 +40,7 @@ func (p python) getMissingPackages() ([]string, error) {
 	return missingPips, nil
 }
 
-func (p python) installPackages(packages []string) error {
+func (p Python) InstallPackages(packages []string) error {
 	if len(packages) == 0 {
 		logrus.Info("no Python packages to install")
 		return nil
@@ -48,7 +48,7 @@ func (p python) installPackages(packages []string) error {
 	logrus.Info("Installing Python packages:", packages)
 	args := append(pythonArgs, "install")
 	args = append(args, packages...)
-	_, err := p.commander(pythonExe, args...)
+	_, err := p.Commander(pythonExe, args...)
 	if err != nil {
 		logrus.Error("Failed installing Python packages:", err)
 		return err

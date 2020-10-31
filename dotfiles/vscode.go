@@ -1,4 +1,4 @@
-package main
+package dotfiles
 
 import (
 	"strings"
@@ -10,13 +10,13 @@ var (
 	vscodeExe = "code"
 )
 
-type vscode struct {
-	packages  []string
-	commander commander
+type VSCode struct {
+	Packages  []string
+	Commander Commander
 }
 
-func (b vscode) getMissingPackages() ([]string, error) {
-	stdout, err := b.commander(vscodeExe, "--list-extensions")
+func (b VSCode) GetMissingPackages() ([]string, error) {
+	stdout, err := b.Commander(vscodeExe, "--list-extensions")
 	if err != nil {
 		return nil, err
 	}
@@ -28,7 +28,7 @@ func (b vscode) getMissingPackages() ([]string, error) {
 	}
 
 	missingBottles := []string{}
-	for _, bottle := range b.packages {
+	for _, bottle := range b.Packages {
 		if ok := installedMap[bottle]; !ok {
 			missingBottles = append(missingBottles, bottle)
 		}
@@ -37,14 +37,14 @@ func (b vscode) getMissingPackages() ([]string, error) {
 	return missingBottles, nil
 }
 
-func (b vscode) installPackages(packages []string) error {
+func (b VSCode) InstallPackages(packages []string) error {
 	if len(packages) == 0 {
 		logrus.Info("no vscode extensions to install")
 		return nil
 	}
 	logrus.Info("Installing vscode extensions:", packages)
 	for _, p := range packages {
-		_, err := b.commander(vscodeExe, "--install-extension", p)
+		_, err := b.Commander(vscodeExe, "--install-extension", p)
 		if err != nil {
 			logrus.Error("Failed installing vscode extension:", err)
 		}
