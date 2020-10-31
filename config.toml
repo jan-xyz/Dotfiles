@@ -21,6 +21,7 @@ bottles = [
   "r",
   "ripgrep",
   "shellcheck",
+  "subversion",
   "watch",
   "zsh",
 ]
@@ -37,6 +38,8 @@ casks = [
   "aerial",
   "brooklyn",
   "font-fira-code",
+  "font-meslo-for-powerline",
+  "font-source-code-pro-for-powerline",
 ]
 taps = [
   "homebrew/cask-fonts",
