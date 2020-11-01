@@ -1,10 +1,12 @@
 call plug#begin()
   " Window Add-Ons
   Plug 'vim-airline/vim-airline'
-  Plug 'arcticicestudio/nord-vim'
+  Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
   Plug 'majutsushi/tagbar'
+  Plug 'liuchengxu/vista.vim'
   Plug 'voldikss/vim-floaterm'
   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'nvim-treesitter/nvim-treesitter'
 
   " Misc
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -16,15 +18,23 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
 
   " autocompletion and linting
-  Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'uber/prototool', { 'rtp':'vim/prototool' }
-  Plug 'w0rp/ale'
+  Plug 'neovim/nvim-lsp'
+  Plug 'bufbuild/vim-buf'
+  Plug 'dense-analysis/ale'
+  Plug 'nvim-lua/completion-nvim'
+  Plug 'nvim-lua/diagnostic-nvim'
+
+  " Snippet support
+  Plug 'hrsh7th/vim-vsnip'
+  Plug 'hrsh7th/vim-vsnip-integ'
 
   " language specific support
   Plug 'udalov/kotlin-vim'
   Plug 'sebdah/vim-delve'
 call plug#end()
+lua << END
+  require('init')
+END
 
 set number         " Add line numbers
 set hidden         " Enable hidden buffers
@@ -51,41 +61,33 @@ let g:floaterm_keymap_toggle = '<Leader>t'
 let g:floaterm_position = 'center'
 
 " Autocomplete:
-let g:deoplete#enable_at_startup = 1
-set completeopt=menu,noinsert " select first item in list
+autocmd BufEnter * lua require'completion'.on_attach()
+set completeopt=menuone,noinsert,noselect
 
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
-  \   'proto': ['prototool-lint'],
+  \   'proto': ['buf-check-lint'],
   \ }
+
+" Tag: config
+let g:vista_default_executive = 'nvim_lsp'
+nnoremap <silent> <leader>c :Vista!!<CR>
 
 " Linting: config
-" Open/Close quickfix window on save
-autocmd BufWritePost * :cw
+autocmd BufEnter * lua require'diagnostic'.on_attach()
+let g:diagnostic_enable_virtual_text = 1
 
-let g:LanguageClient_windowLogMessageLevel="Error"
-let g:LanguageClient_serverCommands = {
-  \ 'go': ['gopls'],
-  \ 'python': ['pyls'],
-  \ 'sh': ['bash-language-server', 'start'],
-  \ 'dockerfile': ['docker-langserver', '--stdio'],
-  \ 'kotlin': ["kotlin-language-server"],
-  \ }
-let g:LanguageClient_rootMarkers = {
-      \ 'go': ['.git', 'go.mod'],
-      \ }
 " Go: Run gofmt and goimports on save
-autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+autocmd BufWritePre *.go :call v:lua.vim.lsp.buf.formatting()
+autocmd BufWritePre *.py :call v:lua.vim.lsp.buf.formatting()
 
 " General: keyboard mappings
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-nnoremap <silent> <F3> :call LanguageClient#textDocument_codeAction()<CR>
-nnoremap <silent> <F4> :call LanguageClient#textDocument_references()<CR>
-nnoremap <silent> <F5> :call LanguageClient_contextMenu()<CR>
-set completefunc=LanguageClient#complete
-set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <F2>  <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> <F3>  <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> <F4>  <cmd>lua vim.lsp.buf.references()<CR>
+set omnifunc=v:lua.vim.lsp.omnifunc
 
 " Airline: config
 let g:airline#extensions#tabline#enabled = 1

@@ -9,16 +9,23 @@
 fpath=(~/.zsh/custom_themes $fpath)
 autoload -U promptinit && promptinit
 
+setopt PROMPT_SUBST
+# Theme config
 BULLETTRAIN_PROMPT_ORDER=(
   time
   status
   dir
+  kctx
+  aws
   git
   go
   virtualenv
   cmd_exec_time
 )
 BULLETTRAIN_VIRTUALENV_FG=black
+BULLETTRAIN_DIR_BG=magenta
+BULLETTRAIN_AWS_BG=red
+BULLETTRAIN_KCTX_BG=blue
 
 # Source Prezto
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -61,19 +68,9 @@ autoload -Uz compinit && compinit -i
 source <(kubectl completion zsh)
 unsetopt correct
 
-# Kubernetes cluster and namespace in PS1
-source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
-PS1='$(kube_ps1)'$PS1
-
-# local configuration sourcing
-if [ -d ~/.config/zsh/ ]; then
-  # only load if there are any files
-  if test -n "$(find . -maxdepth 1 -name '~/.config/zsh/*.zsh(.)' -print -quit)"; then
-    for file in ~/.config/zsh/*.zsh(.); do
-      source $file;
-    done
-  fi
+# AWS
+if [ -f ~/.aws/config ]; then
+  export AWS_PROFILE=$(aws configure list-profiles 2>&1 | head -n 1)
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-ddate
