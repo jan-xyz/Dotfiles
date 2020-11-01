@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # README
 #
 # In order for this theme to render correctly, you will need a
@@ -12,6 +13,7 @@
 # CONFIGURATION
 # The default configuration, that can be overwrite in your .zshrc file
 # ------------------------------------------------------------------------------
+zstyle ':prezto:module:git:info:context:subcontext' format 'string'
 
 VIRTUAL_ENV_DISABLE_PROMPT=true
 
@@ -412,7 +414,7 @@ function git_prompt_status() {
     if [[ -z $status_constant ]]; then
       continue
     fi
-    
+
     (( statuses_seen[$status_constant]++ ))
   done
 
@@ -649,9 +651,9 @@ prompt_perl() {
 # Go
 prompt_go() {
   setopt extended_glob
-  if [[ (-f *.go(#qN) || -d Godeps || -f glide.yaml) ]]; then
+  if [[ (-f *.go(#qN) || -d Godeps || -f glide.yaml || -f go.mod) ]]; then
     if command -v go > /dev/null 2>&1; then
-      prompt_segment $BULLETTRAIN_GO_BG $BULLETTRAIN_GO_FG $BULLETTRAIN_GO_PREFIX" $(go version | grep --colour=never -oE '[[:digit:]].[[:digit:]]+')"
+      prompt_segment $BULLETTRAIN_GO_BG $BULLETTRAIN_GO_FG $BULLETTRAIN_GO_PREFIX" $(go version | awk '{print substr($3, 3)}')"
     fi
   fi
 }
@@ -684,7 +686,9 @@ prompt_virtualenv() {
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
     prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX" $(basename $virtualenv_path)"
   elif which pyenv &> /dev/null; then
-    prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX" $(pyenv version | sed -e 's/ (set.*$//' | tr '\n' ' ' | sed 's/.$//')"
+    if [[ "$(pyenv version | sed -e 's/ (set.*$//' | tr '\n' ' ' | sed 's/.$//')" != "system" ]]; then
+      prompt_segment $BULLETTRAIN_VIRTUALENV_BG $BULLETTRAIN_VIRTUALENV_FG $BULLETTRAIN_VIRTUALENV_PREFIX" $(pyenv version | sed -e 's/ (set.*$//' | tr '\n' ' ' | sed 's/.$//')"
+    fi
   fi
 }
 
@@ -693,7 +697,7 @@ prompt_nvm() {
   local nvm_prompt
   if type nvm >/dev/null 2>&1; then
     nvm_prompt=$(nvm current 2>/dev/null)
-    [[ "${nvm_prompt}x" == "x" ]] && return
+    [[ "${nvm_prompt}x" == "x" || "${nvm_prompt}" == "system" ]] && return
   elif type node >/dev/null 2>&1; then
     nvm_prompt="$(node --version)"
   else
@@ -798,3 +802,4 @@ PROMPT="$PROMPT"'%{%f%b%k%}$(build_prompt)'
 PROMPT="$PROMPT"'%{${fg_bold[default]}%}'
 [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false ]] && PROMPT="$PROMPT "
 PROMPT="$PROMPT"'$(prompt_chars)%{$reset_color%}'
+
