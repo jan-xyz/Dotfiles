@@ -6,6 +6,7 @@ call plug#begin()
   Plug 'liuchengxu/vista.vim'
   Plug 'voldikss/vim-floaterm'
   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'nvim-treesitter/nvim-treesitter'
 
   " Misc
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
