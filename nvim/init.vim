@@ -22,7 +22,6 @@ call plug#begin()
   Plug 'bufbuild/vim-buf'
   Plug 'dense-analysis/ale'
   Plug 'nvim-lua/completion-nvim'
-  Plug 'nvim-lua/diagnostic-nvim'
 
   " Snippet support
   Plug 'hrsh7th/vim-vsnip'
@@ -72,10 +71,6 @@ let g:ale_linters = {
 " Tag: config
 let g:vista_default_executive = 'nvim_lsp'
 nnoremap <silent> <leader>c :Vista!!<CR>
-
-" Linting: config
-autocmd BufEnter * lua require'diagnostic'.on_attach()
-let g:diagnostic_enable_virtual_text = 1
 
 " Go: Run gofmt and goimports on save
 autocmd BufWritePre *.go :call v:lua.vim.lsp.buf.formatting()
