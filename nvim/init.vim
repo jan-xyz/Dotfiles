@@ -18,7 +18,7 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
 
   " autocompletion and linting
-  Plug 'neovim/nvim-lsp'
+  Plug 'neovim/nvim-lspconfig'
   Plug 'bufbuild/vim-buf'
   Plug 'dense-analysis/ale'
   Plug 'nvim-lua/completion-nvim'
