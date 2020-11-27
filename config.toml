@@ -27,6 +27,7 @@ bottles = [
 ]
 casks = [
   "spotify",
+  "signal",
   "telegram",
   "github",
   "iterm2",
