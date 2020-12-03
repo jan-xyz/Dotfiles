@@ -8,6 +8,7 @@ bottles = [
   "ddate",
   "fzf",
   "go",
+  "gopls",
   "gradle",
   "htop",
   "openjdk@11",
