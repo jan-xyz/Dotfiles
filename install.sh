@@ -50,7 +50,7 @@ go run . install
 # Kotlin language server
 #==============
 echo -e "${YELLOW}Installing Kotlin Language Server${NOCOLOR}"
-./kotlin-language-server/gradlew -p "kotlin-language-server" :server:installDist > /dev/null 2>&1
+./kotlin-language-server/gradlew -p "kotlin-language-server" :server:installDist
 /bin/cp ./kotlin-language-server/server/build/install/server/bin/kotlin-language-server /usr/local/bin/
 /bin/cp ./kotlin-language-server/server/build/install/server/lib/* /usr/local/lib/
 
@@ -101,6 +101,9 @@ ln -sf ~/dotfiles/zprofile ~/.zprofile
 ln -sf ~/dotfiles/zsh ~/.zsh
 ln -sf ~/dotfiles/R/RProfile ~/.RProfile
 ln -sf ~/dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+
+# setup system Java wrappers to find this JDK
+sudo ln -sfn $(brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
 
 #==============
 # Install R packages
