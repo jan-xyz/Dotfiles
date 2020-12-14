@@ -72,6 +72,7 @@ rm -rf ~/.config/nvim 2>&1
 rm -rf ~/.zshrc > /dev/null 2>&1
 rm -rf ~/.gitconfig > /dev/null 2>&1
 rm -rf ~/.gitignore_global > /dev/null 2>&1
+rm -rf ~/.stCommitMsg > /dev/null 2>&1
 rm -rf ~/.iterm2 > /dev/null 2>&1
 rm -rf ~/.zprezto > /dev/null 2>&1
 rm -rf ~/.zpreztorc > /dev/null 2>&1
@@ -90,6 +91,7 @@ mkdir -p ~/.config/
 ln -sf ~/dotfiles/nvim ~/.config/nvim
 ln -sf ~/dotfiles/gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/gitignore_global ~/.gitignore_global
+ln -sf ~/dotfiles/stCommitMsg ~/.stCommitMsg
 ln -sf ~/dotfiles/iterm2 ~/.iterm2
 ln -sf ~/dotfiles/zshrc ~/.zshrc
 ln -sf ~/dotfiles/prezto ~/.zprezto
