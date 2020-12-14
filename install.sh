@@ -15,7 +15,7 @@ NOCOLOR='\033[0m'
 # initialize submodules
 #==============
 echo -e "${YELLOW}Updating submodules${NOCOLOR}"
-git submodule update --init > /dev/null 2>&1
+git submodule update --init --recursive> /dev/null 2>&1
 
 #==============
 # install homebrew
