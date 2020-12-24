@@ -17,20 +17,21 @@ func (c *mockCommander) Output(command string, arguments ...string) ([]byte, err
 }
 
 func (c *mockCommander) ExpectOutput(command string, arguments []string, mockReturn []byte, err error) {
-	c.On("Output", command, arguments).Return(mockReturn, err)
+	c.On("Output", command, arguments).Return(mockReturn, err).Once()
 }
 
 func TestGetMissingBrewPackage(t *testing.T) {
 	commander := mockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput("brew", []string{"list"}, []byte("bar"), nil)
+	commander.ExpectOutput("brew", []string{"list", "--formula"}, []byte("foo"), nil)
+	commander.ExpectOutput("brew", []string{"list", "--casks"}, []byte("bar"), nil)
 	b := BrewBottles{
-		Packages:  []string{"bar", "foo"},
+		Packages:  []string{"bar", "foo", "baz"},
 		Commander: commander.Output,
 	}
 	missingPackages, err := b.GetMissingPackages()
 	assert.NoError(t, err)
-	assert.Equal(t, []string{"foo"}, missingPackages)
+	assert.Equal(t, []string{"baz"}, missingPackages)
 }
 
 func TestInstallingBrewPackage(t *testing.T) {
