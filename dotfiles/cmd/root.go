@@ -77,7 +77,6 @@ func initConfig() {
 
 	pythonPackages := viper.GetStringSlice("python.packages")
 	bottles := viper.GetStringSlice("homebrew.bottles")
-	casks := viper.GetStringSlice("homebrew.casks")
 	taps := viper.GetStringSlice("homebrew.taps")
 	vscodeExt := viper.GetStringSlice("vscode.extensions")
 	npmPackages := viper.GetStringSlice("npm.packages")
@@ -87,7 +86,6 @@ func initConfig() {
 	handlers = []packageHandler{
 		dotfiles.BrewTaps{Packages: taps, Commander: execCommander},
 		dotfiles.BrewBottles{Packages: bottles, Commander: execCommander},
-		dotfiles.BrewCasks{Packages: casks, Commander: execCommander},
 		dotfiles.Python{Packages: pythonPackages, Commander: execCommander},
 		dotfiles.VSCode{Packages: vscodeExt, Commander: execCommander},
 		dotfiles.NPM{Packages: npmPackages, Commander: execCommander},

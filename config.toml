@@ -26,8 +26,6 @@ bottles = [
   "subversion",
   "watch",
   "zsh",
-]
-casks = [
   "spotify",
   "signal",
   "telegram",

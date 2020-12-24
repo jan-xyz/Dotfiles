@@ -16,14 +16,20 @@ type BrewBottles struct {
 }
 
 func (b BrewBottles) GetMissingPackages() ([]string, error) {
-	stdout, err := b.Commander(brewExe, "list")
+	stdout, err := b.Commander(brewExe, "list", "--formula")
 	if err != nil {
 		return nil, err
 	}
 	logrus.WithField("output", string(stdout)).Debug("homebrew stdout")
-	installedBottles := strings.Split(string(stdout), "\n")
+	installedFormulae := strings.Split(string(stdout), "\n")
+	stdout, err = b.Commander(brewExe, "list", "--casks")
+	if err != nil {
+		return nil, err
+	}
+	logrus.WithField("output", string(stdout)).Debug("homebrew stdout")
+	installedCasks := strings.Split(string(stdout), "\n")
 	installedMap := map[string]bool{}
-	for _, p := range installedBottles {
+	for _, p := range append(installedFormulae, installedCasks...) {
 		installedMap[p] = true
 	}
 
