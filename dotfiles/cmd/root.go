@@ -48,7 +48,7 @@ func execCommander(command string, args ...string) ([]byte, error) {
 	cmd.Env = append(os.Environ(), "GO111MODULE=on")
 	b, err := cmd.CombinedOutput()
 	if err != nil {
-		logrus.Error(string(b))
+		logrus.Error("output: ", string(b))
 		return nil, err
 	}
 	return b, nil
@@ -82,6 +82,8 @@ func initConfig() {
 	npmPackages := viper.GetStringSlice("npm.packages")
 	var goModules []dotfiles.GoModule
 	viper.UnmarshalKey("go.modules", &goModules)
+	var symlinks []dotfiles.Link
+	viper.UnmarshalKey("symlink.links", &symlinks)
 
 	handlers = []packageHandler{
 		dotfiles.BrewTaps{Packages: taps, Commander: execCommander},
@@ -90,6 +92,7 @@ func initConfig() {
 		dotfiles.VSCode{Packages: vscodeExt, Commander: execCommander},
 		dotfiles.NPM{Packages: npmPackages, Commander: execCommander},
 		dotfiles.Go{Packages: goModules, Commander: execCommander},
+		dotfiles.Symlink{Links: symlinks, Commander: execCommander},
 	}
 
 }
