@@ -64,44 +64,6 @@ nvim \
   +qall \
   --headless > /dev/null 2>&1
 
-#==============
-# Remove old dot flies
-#==============
-echo -e "${YELLOW}Removing old symlinks${NOCOLOR}"
-rm -rf ~/.config/nvim 2>&1
-rm -rf ~/.zshrc > /dev/null 2>&1
-rm -rf ~/.gitconfig > /dev/null 2>&1
-rm -rf ~/.gitignore_global > /dev/null 2>&1
-rm -rf ~/.stCommitMsg > /dev/null 2>&1
-rm -rf ~/.iterm2 > /dev/null 2>&1
-rm -rf ~/.zprezto > /dev/null 2>&1
-rm -rf ~/.zpreztorc > /dev/null 2>&1
-rm -rf ~/.zshenv > /dev/null 2>&1
-rm -rf ~/.zprofile > /dev/null 2>&1
-rm -rf ~/.zsh > /dev/null 2>&1
-rm -rf ~/.RProfile > /dev/null 2>&1
-rm -rf ~/Library/Application\ Support/Code/User/settings.json 2>&1
-
-#==============
-# Create symlinks in the home folder
-# Allow overriding with files of matching names in the custom-configs dir
-#==============
-echo -e "${YELLOW}Creating symlinks${NOCOLOR}"
-mkdir -p ~/.config/
-ln -sf ~/dotfiles/nvim ~/.config/nvim
-ln -sf ~/dotfiles/gitconfig ~/.gitconfig
-ln -sf ~/dotfiles/gitignore_global ~/.gitignore_global
-ln -sf ~/dotfiles/stCommitMsg ~/.stCommitMsg
-ln -sf ~/dotfiles/iterm2 ~/.iterm2
-ln -sf ~/dotfiles/zshrc ~/.zshrc
-ln -sf ~/dotfiles/prezto ~/.zprezto
-ln -sf ~/dotfiles/zpreztorc ~/.zpreztorc
-ln -sf ~/dotfiles/zshenv ~/.zshenv
-ln -sf ~/dotfiles/zprofile ~/.zprofile
-ln -sf ~/dotfiles/zsh ~/.zsh
-ln -sf ~/dotfiles/R/RProfile ~/.RProfile
-ln -sf ~/dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
-
 # setup system Java wrappers to find this JDK
 sudo ln -sfn $(brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
 
