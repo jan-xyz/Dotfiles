@@ -1,6 +1,7 @@
 package dotfiles
 
 import (
+	"errors"
 	"strings"
 
 	"github.com/sirupsen/logrus"
@@ -8,6 +9,8 @@ import (
 
 var (
 	masExe = "mas"
+
+	errNotSignedIntoAppStore = errors.New("please sign into app store")
 )
 
 type App struct {
@@ -17,10 +20,19 @@ type App struct {
 
 type AppStore struct {
 	Apps      []App
+	Profile   string
 	Commander Commander
 }
 
 func (a AppStore) GetMissingPackages() ([]string, error) {
+	profile, err := a.Commander("mas", "account")
+	if err != nil {
+		return nil, err
+	}
+	if a.Profile != string(profile) {
+		// TODO: login to app store [#4]
+		return nil, errNotSignedIntoAppStore
+	}
 	cmd := "mas list | awk '{print $1;}'"
 	stdout, err := a.Commander("bash", "-c", cmd)
 	if err != nil {
