@@ -29,7 +29,8 @@ func (a AppStore) GetMissingPackages() ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
-	if a.Profile != string(profile) {
+	if a.Profile != strings.TrimSpace(string(profile)) {
+		logrus.WithField("current_user", string(profile)).Error("wrong signin")
 		// TODO: login to app store [#4]
 		return nil, errNotSignedIntoAppStore
 	}
