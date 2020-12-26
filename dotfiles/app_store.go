@@ -13,17 +13,23 @@ var (
 	errNotSignedIntoAppStore = errors.New("please sign into app store")
 )
 
+// App holds the configuration of an application from the Mac App Store.
 type App struct {
 	Name string
-	Id   string
+	ID   string
 }
 
+// AppStore holds the configuration to automatically install a collection of
+// apps and the associated configration.
 type AppStore struct {
 	Apps      []App
 	Profile   string
 	Commander Commander
 }
 
+// GetMissingPackages returns a list of application IDs which are configured
+// but not yet installed on the system. It returns an error if the current
+// app store profile does not match the configured profile.
 func (a AppStore) GetMissingPackages() ([]string, error) {
 	profile, err := a.Commander("mas", "account")
 	if err != nil {
@@ -48,14 +54,15 @@ func (a AppStore) GetMissingPackages() ([]string, error) {
 
 	missingApps := []string{}
 	for _, app := range a.Apps {
-		if ok := installedMap[app.Id]; !ok {
-			missingApps = append(missingApps, app.Id)
+		if ok := installedMap[app.ID]; !ok {
+			missingApps = append(missingApps, app.ID)
 		}
 	}
 
 	return missingApps, nil
 }
 
+// InstallPackages takes a list of app IDs and tries to install these.
 func (a AppStore) InstallPackages(apps []string) error {
 	if len(apps) == 0 {
 		logrus.Info("no app to install")
@@ -63,7 +70,7 @@ func (a AppStore) InstallPackages(apps []string) error {
 	}
 	configuredApps := map[string]string{}
 	for _, p := range a.Apps {
-		configuredApps[p.Id] = p.Name
+		configuredApps[p.ID] = p.Name
 	}
 	appNames := []string{}
 	for _, app := range apps {
@@ -81,6 +88,7 @@ func (a AppStore) InstallPackages(apps []string) error {
 	return nil
 }
 
+// UpdatePackages upgrades all currently installed packages.
 func (a AppStore) UpdatePackages() error {
 	logrus.Info("Upgrading apps")
 	_, err := a.Commander(masExe, "upgrade")

@@ -16,15 +16,15 @@ func TestGetMissingApps(t *testing.T) {
 		Apps: []App{
 			{
 				Name: "foo",
-				Id:   "1482454543",
+				ID:   "1482454543",
 			},
 			{
 				Name: "bar",
-				Id:   "1463400445",
+				ID:   "1463400445",
 			},
 			{
 				Name: "baz",
-				Id:   "1460715987",
+				ID:   "1460715987",
 			},
 		},
 		Commander: commander.Output,
@@ -54,11 +54,11 @@ func TestInstallingApps(t *testing.T) {
 		Apps: []App{
 			{
 				Name: "foo",
-				Id:   "1482454543",
+				ID:   "1482454543",
 			},
 			{
 				Name: "bar",
-				Id:   "1463400445",
+				ID:   "1463400445",
 			},
 		},
 		Commander: commander.Output,
