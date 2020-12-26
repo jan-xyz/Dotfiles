@@ -46,6 +46,9 @@ fi
 #==============
 go run . install
 
+# setup system Java wrappers to find this JDK
+sudo ln -sfn $(brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
+
 #==============
 # Kotlin language server
 #==============
@@ -63,9 +66,6 @@ nvim \
   +PlugClean! \
   +qall \
   --headless > /dev/null 2>&1
-
-# setup system Java wrappers to find this JDK
-sudo ln -sfn $(brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
 
 #==============
 # Set zsh as the default shell
