@@ -7,17 +7,22 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+// Preference holds the information for a MacOS system preference.
 type Preference struct {
 	Name  string
 	Type  string
 	Value string
 }
 
+// SystemPreferences holds the information for automatically setting system
+// preferences.
 type SystemPreferences struct {
 	Preferences []Preference
 	Commander   Commander
 }
 
+// GetMissingPackages returns a list of system preferences which drifted from
+// the configuration.
 func (s SystemPreferences) GetMissingPackages() ([]string, error) {
 	drift := []string{}
 	for _, preference := range s.Preferences {
@@ -32,6 +37,7 @@ func (s SystemPreferences) GetMissingPackages() ([]string, error) {
 	return drift, nil
 }
 
+// InstallPackages takes a list of preferences for setting up.
 func (s SystemPreferences) InstallPackages(preferences []string) error {
 	if len(preferences) == 0 {
 		logrus.Info("no prefrences to set")
@@ -58,6 +64,7 @@ func (s SystemPreferences) InstallPackages(preferences []string) error {
 	return nil
 }
 
+// UpdatePackages is not implemented.
 func (s SystemPreferences) UpdatePackages() error {
 	return nil
 }

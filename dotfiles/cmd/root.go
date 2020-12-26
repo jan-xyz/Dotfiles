@@ -91,10 +91,10 @@ func initConfig() {
 	viper.UnmarshalKey("mac.preferences", &preferences)
 
 	handlers = []packageHandler{
-		dotfiles.BrewTaps{Packages: taps, Commander: execCommander},
+		dotfiles.BrewTaps{Taps: taps, Commander: execCommander},
 		dotfiles.BrewBottles{Packages: bottles, Commander: execCommander},
 		dotfiles.Python{Packages: pythonPackages, Commander: execCommander},
-		dotfiles.VSCode{Packages: vscodeExt, Commander: execCommander},
+		dotfiles.VSCode{Extensions: vscodeExt, Commander: execCommander},
 		dotfiles.NPM{Packages: npmPackages, Commander: execCommander},
 		dotfiles.Go{Packages: goModules, Commander: execCommander},
 		dotfiles.AppStore{Apps: apps, Profile: appStoreProfile, Commander: execCommander},
