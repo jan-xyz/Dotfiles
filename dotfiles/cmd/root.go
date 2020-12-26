@@ -87,6 +87,8 @@ func initConfig() {
 	var apps []dotfiles.App
 	viper.UnmarshalKey("mac.apps", &apps)
 	appStoreProfile := viper.GetString("mac.profile")
+	var preferences []dotfiles.Preference
+	viper.UnmarshalKey("mac.preferences", &preferences)
 
 	handlers = []packageHandler{
 		dotfiles.BrewTaps{Packages: taps, Commander: execCommander},
@@ -96,6 +98,7 @@ func initConfig() {
 		dotfiles.NPM{Packages: npmPackages, Commander: execCommander},
 		dotfiles.Go{Packages: goModules, Commander: execCommander},
 		dotfiles.AppStore{Apps: apps, Profile: appStoreProfile, Commander: execCommander},
+		dotfiles.SystemPreferences{Preferences: preferences, Commander: execCommander},
 		dotfiles.Symlink{Links: symlinks, Commander: execCommander},
 	}
 

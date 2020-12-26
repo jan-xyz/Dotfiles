@@ -97,19 +97,28 @@ apps = [
   { name="Twitter", id="1482454543" },
   { name="Wipr", id="1320666476" },
 ]
-settings = [
-  { namespace="NSGlobalDomain", name="KeyRepeat", type="int", value="1" },
-  { namespace="NSGlobalDomain", name="InitialKeyRepeat", type="int", value="10" },
+preferences = [
+  { name="NSGlobalDomain.KeyRepeat", type="int", value="1" },
+  { name="NSGlobalDomain.InitialKeyRepeat", type="int", value="10" },
 
-  { namespace="com.apple.dock", name="minimize-to-application", type="bool", value="true" },
-  { namespace="com.apple.dock", name="show-process-indicators", type="bool", value="true" },
-  { namespace="com.apple.dock", name="mru-spaces", type="bool", value="false" },
-  { namespace="com.apple.dock", name="show-recents", type="bool", value="false" },
-  { namespace="com.apple.dock", name="tilesize", type="int", value="36" },
+  { name="com.apple.dock.minimize-to-application", type="int", value="1" },
+  { name="com.apple.dock.show-process-indicators", type="int", value="1" },
+  { name="com.apple.dock.mru-spaces", type="int", value="0" },
+  { name="com.apple.dock.show-recents", type="int", value="0" },
+  { name="com.apple.dock.tilesize", type="int", value="36" },
 
-  { namespace="com.apple.Safari", name="IncludeDevelopMenu", type="bool", value="true" },
-  { namespace="com.apple.Safari", name="SendDoNotTrackHTTPHeader", type="bool", value="true" },
-  { namespace="com.apple.ActivityMonitor", name="IconType", type="int", value="5" },
+  { name="com.apple.AppleMultitouchTrackpad.TrackpadThreeFingerTapGesture", type="int", value="2"},
+  { name="com.apple.AppleMultitouchTrackpad.TrackpadThreeFingerHorizSwipeGesture", type="int", value="0"},
+  { name="com.apple.AppleMultitouchTrackpad.Clicking", type="int", value="1"},
+  { name="com.apple.AppleMultitouchTrackpad.TrackpadThreeFingerDrag", type="int", value="1"},
+
+  { name="com.apple.Safari.IncludeDevelopMenu", type="int", value="1" },
+  { name="com.apple.Safari.SendDoNotTrackHTTPHeader", type="int", value="1" },
+
+  { name="com.googlecode.iterm2.plist.PrefsCustomFolder", type="string", value="${HOME}/.iterm2" },
+  { name="com.googlecode.iterm2.plist.LoadPrefsFromCustomFolder", type="int", value="1" },
+
+  { name="com.apple.ActivityMonitor.IconType", type="int", value="5" },
 ]
 
 [symlink]

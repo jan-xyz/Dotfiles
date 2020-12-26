@@ -68,26 +68,6 @@ nvim \
 sudo ln -sfn $(brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
 
 #==============
-# Install R packages
-#==============
-echo -e "${YELLOW}Installing R packages${NOCOLOR}"
-for PACKAGE in \
-  devtools \
-  languageserver \
-
-do
-  if ! R -e "if (!require(\"$PACKAGE\")) {quit(1)}" > /dev/null 2>&1
-    then
-        echo -e "${RED}${PACKAGE} is not installed ${NOCOLOR}"
-        R -e "install.packages(\"$PACKAGE\")"
-
-    else
-        echo -e "${GREEN}${PACKAGE} is already installed${NOCOLOR}"
-    fi
-
-done
-
-#==============
 # Set zsh as the default shell
 #==============
 echo -e "${YELLOW}Setting shell${NOCOLOR}"
@@ -102,13 +82,6 @@ if [[ "${SHELL}" != "/usr/local/bin/zsh" ]] ; then
 else
     echo -e "${GREEN}shell is /usr/local/bin/zsh${NOCOLOR}"
 fi
-
-#==============
-# configure iTerm2
-#==============
-echo -e "${YELLOW}setting iTerm settings${NOCOLOR}"
-defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${HOME}/.iterm2"
-defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
 #==============
 # run post steps
