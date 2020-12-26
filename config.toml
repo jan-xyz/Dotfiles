@@ -21,6 +21,7 @@ bottles = [
   "gradle",
   "htop",
   "iterm2",
+  "mas",
   "openjdk@11",
   "postman",
   "kubernetes-cli",
