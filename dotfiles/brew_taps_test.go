@@ -11,7 +11,7 @@ func TestGetMissingTaps(t *testing.T) {
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("brew", []string{"tap"}, []byte("bar"), nil)
 	b := BrewTaps{
-		Packages:  []string{"bar", "foo"},
+		Taps:  []string{"bar", "foo"},
 		Commander: commander.Output,
 	}
 	missingPackages, err := b.GetMissingPackages()

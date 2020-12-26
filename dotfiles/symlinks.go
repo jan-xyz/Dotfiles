@@ -13,16 +13,21 @@ var (
 	errSymLinksFailed = errors.New("failed configuring symlink")
 )
 
+// Link holds the information for a single symbolic link
 type Link struct {
 	SourceFile string
 	LinkName   string
 }
 
+// Symlink holds the information to automatically create a list of symbolic
+// links.
 type Symlink struct {
 	Links     []Link
 	Commander Commander
 }
 
+// GetMissingPackages returns a list of sym links which are configured but not
+// created.
 func (s Symlink) GetMissingPackages() ([]string, error) {
 	missing := []string{}
 	for _, p := range s.Links {
@@ -34,6 +39,7 @@ func (s Symlink) GetMissingPackages() ([]string, error) {
 	return missing, nil
 }
 
+// InstallPackages takes a list of links for creation.
 func (s Symlink) InstallPackages(links []string) error {
 	if len(links) == 0 {
 		logrus.Info("no symlinks to configure")
@@ -68,6 +74,7 @@ func (s Symlink) InstallPackages(links []string) error {
 	return nil
 }
 
+// UpdatePackages is not implemented.
 func (s Symlink) UpdatePackages() error {
 	return nil
 }

@@ -11,11 +11,14 @@ var (
 	pythonArgs = []string{"-m", "pip"}
 )
 
+// Python holds the information to automatically install python packages
 type Python struct {
 	Packages  []string
 	Commander Commander
 }
 
+// GetMissingPackages returns a list of Python packages which are configured
+// but not installed.
 func (p Python) GetMissingPackages() ([]string, error) {
 	args := append(pythonArgs, "freeze")
 	stdout, err := p.Commander(pythonExe, args...)
@@ -40,6 +43,7 @@ func (p Python) GetMissingPackages() ([]string, error) {
 	return missingPips, nil
 }
 
+// InstallPackages takes a list of packages for installation.
 func (p Python) InstallPackages(packages []string) error {
 	if len(packages) == 0 {
 		logrus.Info("no Python packages to install")
@@ -55,6 +59,8 @@ func (p Python) InstallPackages(packages []string) error {
 	}
 	return nil
 }
+
+// UpdatePackages is currently not implemented.
 func (p Python) UpdatePackages() error {
 	return nil
 }
