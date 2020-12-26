@@ -8,11 +8,13 @@ var (
 	npmExe = "npm"
 )
 
+// NPM holds the information for all needed NPM packages.
 type NPM struct {
 	Packages  []string
 	Commander Commander
 }
 
+// GetMissingPackages returns a list of packages which are configured but not installed.
 func (b NPM) GetMissingPackages() ([]string, error) {
 	missingBottles := []string{}
 	for _, p := range b.Packages {
@@ -25,6 +27,7 @@ func (b NPM) GetMissingPackages() ([]string, error) {
 	return missingBottles, nil
 }
 
+// InstallPackages takes a list of packages for installation.
 func (b NPM) InstallPackages(packages []string) error {
 	if len(packages) == 0 {
 		logrus.Info("no npm packages to install")
@@ -39,6 +42,7 @@ func (b NPM) InstallPackages(packages []string) error {
 	return nil
 }
 
+// UpdatePackages is currently not implemented.
 func (b NPM) UpdatePackages() error {
 	return nil
 }

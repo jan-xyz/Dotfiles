@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: go
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -12,15 +12,31 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  go:
+  test:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-go@v2.1.3
-
       - name: test
-        run: go test ./dotfiles/...
-
+        run: make test
+  vet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2.1.3
       - name: vet
-        run: go vet ./dotfiles/...
+        run: make vet
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2.1.3
+      - name: lint
+        run: make lint
+  staticcecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2.1.3
+      - name: staticcheck
+        run: make staticcheck

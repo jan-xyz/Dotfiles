@@ -10,11 +10,14 @@ var (
 	brewExe = "brew"
 )
 
+// BrewBottles holds the configuration for all hombrew packages.
 type BrewBottles struct {
 	Packages  []string
 	Commander Commander
 }
 
+// GetMissingPackages returns a list of brew packages which are configured
+// but not currently installed.
 func (b BrewBottles) GetMissingPackages() ([]string, error) {
 	stdout, err := b.Commander(brewExe, "list", "--formula")
 	if err != nil {
@@ -43,6 +46,7 @@ func (b BrewBottles) GetMissingPackages() ([]string, error) {
 	return missingBottles, nil
 }
 
+// InstallPackages takes a list of brew package names for installation.
 func (b BrewBottles) InstallPackages(packages []string) error {
 	if len(packages) == 0 {
 		logrus.Info("no Hombrew bottles to install")
@@ -58,6 +62,7 @@ func (b BrewBottles) InstallPackages(packages []string) error {
 	return nil
 }
 
+// UpdatePackages updates all currently installed brew packages.
 func (b BrewBottles) UpdatePackages() error {
 	logrus.Info("Upgrading brew packages")
 	_, err := b.Commander(brewExe, "upgrade")

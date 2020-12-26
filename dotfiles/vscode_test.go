@@ -11,7 +11,7 @@ func TestGetMissingVSCodeExtension(t *testing.T) {
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("code", []string{"--list-extensions"}, []byte("bar"), nil)
 	b := VSCode{
-		Packages:  []string{"bar", "foo"},
+		Extensions:  []string{"bar", "foo"},
 		Commander: commander.Output,
 	}
 	missingPackages, err := b.GetMissingPackages()
