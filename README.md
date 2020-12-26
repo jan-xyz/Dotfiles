@@ -7,6 +7,8 @@ my Dotfiles
 * iterm2
 * vscode
 * homebrew
+* mac app store
+* system preferences
 
 
 ## install
