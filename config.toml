@@ -89,7 +89,7 @@ modules = [
 ]
 
 [mac]
-profile = "jan.steinke@gmail.com"
+profile = "jansteinke@icloud.com"
 apps = [
   { name="Ecosia", id="1463400445" },
   { name="Ghostery Lite", id="1436953057" },

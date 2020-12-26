@@ -9,8 +9,10 @@ import (
 func TestGetMissingApps(t *testing.T) {
 	commander := mockCommander{}
 	defer commander.AssertExpectations(t)
+	commander.ExpectOutput("mas", []string{"account"}, []byte("foo@example.com"), nil)
 	commander.ExpectOutput("bash", []string{"-c", "mas list | awk '{print $1;}'"}, []byte("1482454543\n1463400445"), nil)
 	b := AppStore{
+		Profile: "foo@example.com",
 		Apps: []App{
 			{
 				Name: "foo",
@@ -30,6 +32,18 @@ func TestGetMissingApps(t *testing.T) {
 	missingPackages, err := b.GetMissingPackages()
 	assert.NoError(t, err)
 	assert.Equal(t, []string{"1460715987"}, missingPackages)
+}
+
+func TestGetMissingAppsReturnsErrorWhenWrongSignIn(t *testing.T) {
+	commander := mockCommander{}
+	defer commander.AssertExpectations(t)
+	commander.ExpectOutput("mas", []string{"account"}, []byte("foo@example.com"), nil)
+	b := AppStore{
+		Profile:   "bar@example.com",
+		Commander: commander.Output,
+	}
+	_, err := b.GetMissingPackages()
+	assert.Error(t, err)
 }
 
 func TestInstallingApps(t *testing.T) {
