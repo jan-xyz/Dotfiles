@@ -84,6 +84,8 @@ func initConfig() {
 	viper.UnmarshalKey("go.modules", &goModules)
 	var symlinks []dotfiles.Link
 	viper.UnmarshalKey("symlink.links", &symlinks)
+	var apps []dotfiles.App
+	viper.UnmarshalKey("mac.apps", &apps)
 
 	handlers = []packageHandler{
 		dotfiles.BrewTaps{Packages: taps, Commander: execCommander},
@@ -92,6 +94,7 @@ func initConfig() {
 		dotfiles.VSCode{Packages: vscodeExt, Commander: execCommander},
 		dotfiles.NPM{Packages: npmPackages, Commander: execCommander},
 		dotfiles.Go{Packages: goModules, Commander: execCommander},
+		dotfiles.AppStore{Apps: apps, Commander: execCommander},
 		dotfiles.Symlink{Links: symlinks, Commander: execCommander},
 	}
 
