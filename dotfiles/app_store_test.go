@@ -9,7 +9,7 @@ import (
 func TestGetMissingApps(t *testing.T) {
 	commander := mockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput("mas", []string{"account"}, []byte("foo@example.com"), nil)
+	commander.ExpectOutput("mas", []string{"account"}, []byte("foo@example.com\n"), nil)
 	commander.ExpectOutput("bash", []string{"-c", "mas list | awk '{print $1;}'"}, []byte("1482454543\n1463400445"), nil)
 	b := AppStore{
 		Profile: "foo@example.com",
