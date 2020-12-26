@@ -88,6 +88,30 @@ modules = [
   { exe = "gorelease", path = "golang.org/x/exp/cmd/gorelease"},
 ]
 
+[mac]
+profile = "jan.steinke@gmail.com"
+apps = [
+  { name="Ecosia", id="1463400445" },
+  { name="Ghostery Lite", id="1436953057" },
+  { name="Pixelmator Pro", id="1289583905" },
+  { name="Twitter", id="1482454543" },
+  { name="Wipr", id="1320666476" },
+]
+settings = [
+  { namespace="NSGlobalDomain", name="KeyRepeat", type="int", value="1" },
+  { namespace="NSGlobalDomain", name="InitialKeyRepeat", type="int", value="10" },
+
+  { namespace="com.apple.dock", name="minimize-to-application", type="bool", value="true" },
+  { namespace="com.apple.dock", name="show-process-indicators", type="bool", value="true" },
+  { namespace="com.apple.dock", name="mru-spaces", type="bool", value="false" },
+  { namespace="com.apple.dock", name="show-recents", type="bool", value="false" },
+  { namespace="com.apple.dock", name="tilesize", type="int", value="36" },
+
+  { namespace="com.apple.Safari", name="IncludeDevelopMenu", type="bool", value="true" },
+  { namespace="com.apple.Safari", name="SendDoNotTrackHTTPHeader", type="bool", value="true" },
+  { namespace="com.apple.ActivityMonitor", name="IconType", type="int", value="5" },
+]
+
 [symlink]
 links = [
   { sourceFile ="${HOME}/dotfiles/nvim/", linkName="${HOME}/.config/nvim" },
