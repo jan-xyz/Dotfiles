@@ -53,9 +53,9 @@ sudo ln -sfn $(brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/J
 # Kotlin language server
 #==============
 echo -e "${YELLOW}Installing Kotlin Language Server${NOCOLOR}"
-./kotlin-language-server/gradlew -p "kotlin-language-server" :server:installDist
-/bin/cp ./kotlin-language-server/server/build/install/server/bin/kotlin-language-server /usr/local/bin/
-/bin/cp ./kotlin-language-server/server/build/install/server/lib/* /usr/local/lib/
+./submodules/kotlin-language-server/gradlew -p "submodules/kotlin-language-server" :server:installDist
+/bin/cp ./submodules/kotlin-language-server/server/build/install/server/bin/kotlin-language-server /usr/local/bin/
+/bin/cp ./submodules/kotlin-language-server/server/build/install/server/lib/* /usr/local/lib/
 
 #==============
 # Install Neovim extensions

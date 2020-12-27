@@ -1,10 +1,16 @@
 [submodule "prezto"]
-	path = prezto
+	path = submodules/prezto
 	url = https://github.com/sorin-ionescu/prezto.git
 	branch = master
 [submodule "vim-plug"]
-	path = vim-plug
+	path = submodules/vim-plug
 	url = git@github.com:junegunn/vim-plug.git
 [submodule "kotlin-language-server"]
-	path = kotlin-language-server
+	path = submodules/kotlin-language-server
 	url = https://github.com/fwcd/kotlin-language-server
+[submodule "submodules/docker-cli"]
+	path = submodules/docker-cli
+	url = git@github.com:docker/cli.git
+[submodule "submodules/docker-compose"]
+	path = submodules/docker-compose
+	url = git@github.com:docker/compose.git
