@@ -5,7 +5,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/jan-xyz/dotfiles/dotfiles"
+	"github.com/jan-xyz/dotfiles/internal"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 

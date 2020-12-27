@@ -15,8 +15,8 @@ jobs:
       - uses: actions/setup-go@v2.1.3
       - name: Build project
         run: |
-          go build -o dot .
-          zip --junk-paths dot-Darwin-x86_64 README.md dot
+          go build .
+          zip --junk-paths dotfiles-Darwin-x86_64 README.md dotfiles
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -34,6 +34,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dot-Darwin-x86_64.zip
-          asset_name: dot-Darwin-x86_64.zip
+          asset_path: ./dotfiles-Darwin-x86_64.zip
+          asset_name: dotfiles-Darwin-x86_64.zip
           asset_content_type: application/zip
