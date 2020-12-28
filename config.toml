@@ -126,7 +126,7 @@ preferences = [
 links = [
   { sourceFile ="${HOME}/dotfiles/nvim/", linkName="${HOME}/.config/nvim" },
   { sourceFile ="${HOME}/dotfiles/git/gitconfig", linkName="${HOME}/.gitconfig" },
-  { sourceFile ="${HOME}/dotfiles/git/gitignore_globa", linkName="${HOME}/.gitignore_global" },
+  { sourceFile ="${HOME}/dotfiles/git/gitignore_global", linkName="${HOME}/.gitignore_global" },
   { sourceFile ="${HOME}/dotfiles/git/stCommitMsg", linkName="${HOME}/.stCommitMsg" },
   { sourceFile ="${HOME}/dotfiles/iterm2", linkName="${HOME}/.iterm2" },
   { sourceFile ="${HOME}/dotfiles/zsh_config/zshrc", linkName="${HOME}/.zshrc" },
