@@ -66,6 +66,7 @@ packages = [
 [vscode]
 extensions = [
   "ms-python.python",
+  "ms-python.vscode-pylance",
   "vscodevim.vim",
   "golang.go",
   "arcticicestudio.nord-visual-studio-code",

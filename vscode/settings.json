@@ -44,5 +44,9 @@
     },
     "liveshare.audio.joinCallBehavior": "accept",
     "editor.suggestSelection": "first",
-    "kotlin.languageServer.path": "/usr/local/bin/kotlin-language-server"
+    "kotlin.languageServer.path": "/usr/local/bin/kotlin-language-server",
+    "python.languageServer": "Microsoft",
+    "editor.accessibilitySupport": "off",
+    "jupyter.askForKernelRestart": false,
+    "python.showStartPage": false
 }
