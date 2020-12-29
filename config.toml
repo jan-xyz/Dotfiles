@@ -34,7 +34,6 @@ bottles = [
   "pyenv-virtualenv",
   "r",
   "ripgrep",
-  "scroll-reverser",
   "shellcheck",
   "signal",
   "slack",
