@@ -1,5 +1,8 @@
 check: test vet lint staticcheck
 
+build:
+	go build .
+
 test:
 	go test ./internal/...
 
