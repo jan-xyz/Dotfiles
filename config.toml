@@ -99,7 +99,7 @@ apps = [
 ]
 preferences = [
   { name="NSGlobalDomain.KeyRepeat", type="int", value="1" },
-  { name="NSGlobalDomain.InitialKeyRepeat", type="int", value="10" },
+  { name="NSGlobalDomain.InitialKeyRepeat", type="int", value="20" },
 
   { name="com.apple.dock.minimize-to-application", type="int", value="1" },
   { name="com.apple.dock.show-process-indicators", type="int", value="1" },
