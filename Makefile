@@ -1,3 +1,7 @@
+version := 0.1.1
+
+# Go build tools
+
 check: test vet lint staticcheck
 
 build:
@@ -15,3 +19,14 @@ lint:
 staticcheck:
 	go run honnef.co/go/tools/cmd/staticcheck ./internal/...
 
+# Dotfiles usage
+
+download: dotfiles-$(version)
+
+dotfiles-$(version):
+	rm -f dotfiles-*
+	curl -L https://github.com/jan-xyz/Dotfiles/releases/download/v0.1.1/dotfiles-Darwin-x86_64.gz | gzip -N -d > dotfiles-$(version)
+	chmod +x ./dotfiles-$(version)
+
+run: download
+	./dotfiles-$(version) install
