@@ -30,21 +30,9 @@ else
 fi
 
 #==============
-# installing go
+# run go dotfiles tool
 #==============
-echo -e "${YELLOW}Checking Go${NOCOLOR}"
-if ! command -v go > /dev/null 2>&1
-then
-    echo -e "${RED}Go is not installed${NOCOLOR}"
-    brew install go
-else
-    echo -e "${GREEN}Go is installed.${NOCOLOR}"
-fi
-
-#==============
-# Install packages
-#==============
-go run . install
+make run
 
 # setup system Java wrappers to find this JDK
 sudo ln -sfn $(brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
