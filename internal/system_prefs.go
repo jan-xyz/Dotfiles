@@ -1,6 +1,7 @@
 package dotfiles
 
 import (
+	"os"
 	"path/filepath"
 	"strings"
 
@@ -22,14 +23,15 @@ type SystemPreferences struct {
 }
 
 // GetMissingPackages returns a list of system preferences which drifted from
-// the configuration.
+// the configuration. Environment variables get expanded before checking drift.
 func (s SystemPreferences) GetMissingPackages() ([]string, error) {
 	drift := []string{}
 	for _, preference := range s.Preferences {
 		pref := filepath.Ext(preference.Name)[1:]
 		ns := preference.Name[0 : len(preference.Name)-len(pref)-1]
-		if actual, err := s.Commander("defaults", "read", ns, pref); err != nil || strings.TrimSpace(string(actual)) != preference.Value {
-			logrus.WithField("want", preference.Value).WithField("got", string(actual)).Error(preference.Name)
+		expectedValue := os.ExpandEnv(preference.Value)
+		if actualValue, err := s.Commander("defaults", "read", ns, pref); err != nil || strings.TrimSpace(string(actualValue)) != expectedValue {
+			logrus.WithField("want", expectedValue).WithField("got", string(actualValue)).Error(preference.Name)
 			drift = append(drift, string(preference.Name))
 		}
 	}
@@ -37,7 +39,7 @@ func (s SystemPreferences) GetMissingPackages() ([]string, error) {
 	return drift, nil
 }
 
-// InstallPackages takes a list of preferences for setting up.
+// InstallPackages takes a list of preferences for setting up. Environemnt variables get expanded before setting value.
 func (s SystemPreferences) InstallPackages(preferences []string) error {
 	if len(preferences) == 0 {
 		logrus.Info("no prefrences to set")
@@ -51,7 +53,7 @@ func (s SystemPreferences) InstallPackages(preferences []string) error {
 	for _, preferenceName := range preferences {
 		pref := filepath.Ext(preferenceName)[1:]
 		ns := preferenceName[0 : len(preferenceName)-len(pref)-1]
-		value := configuredPrefs[preferenceName].Value
+		value := os.ExpandEnv(configuredPrefs[preferenceName].Value)
 		valueType := configuredPrefs[preferenceName].Type
 
 		_, err := s.Commander("defaults", "write", ns, pref, "-"+valueType, value)
