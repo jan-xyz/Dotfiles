@@ -1,6 +1,7 @@
 package dotfiles
 
 import (
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -31,6 +32,27 @@ func TestGetPreferenceDrift(t *testing.T) {
 	assert.Equal(t, []string{"foo.bar"}, missingPackages)
 }
 
+func TestGetPreferenceDriftExpandsEnvironmentVariables(t *testing.T) {
+	commander := mockCommander{}
+	defer commander.AssertExpectations(t)
+	os.Setenv("FOO", "FooBarBaz")
+	defer os.Unsetenv("FOO")
+	commander.ExpectOutput("defaults", []string{"read", "foo", "bar"}, []byte("FooBarBaz\n"), nil)
+	b := SystemPreferences{
+		Preferences: []Preference{
+			{
+				Name:  "foo.bar",
+				Type:  "int",
+				Value: "${FOO}",
+			},
+		},
+		Commander: commander.Output,
+	}
+	missingPackages, err := b.GetMissingPackages()
+	assert.NoError(t, err)
+	assert.Equal(t, []string{}, missingPackages)
+}
+
 func TestSettingPreferences(t *testing.T) {
 	commander := mockCommander{}
 	defer commander.AssertExpectations(t)
@@ -41,6 +63,26 @@ func TestSettingPreferences(t *testing.T) {
 				Name:  "foo.bar",
 				Type:  "int",
 				Value: "1",
+			},
+		},
+		Commander: commander.Output,
+	}
+	err := b.InstallPackages([]string{"foo.bar"})
+	assert.NoError(t, err)
+}
+
+func TestSettingPreferencesExpandsEnvironmentVariables(t *testing.T) {
+	commander := mockCommander{}
+	defer commander.AssertExpectations(t)
+	os.Setenv("FOO", "FooBarBaz")
+	defer os.Unsetenv("FOO")
+	commander.ExpectOutput("defaults", []string{"write", "foo", "bar", "-int", "FooBarBaz"}, nil, nil)
+	b := SystemPreferences{
+		Preferences: []Preference{
+			{
+				Name:  "foo.bar",
+				Type:  "int",
+				Value: "${FOO}",
 			},
 		},
 		Commander: commander.Output,
