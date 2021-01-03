@@ -6,7 +6,18 @@ nvim_lsp.dockerls.setup{}
 nvim_lsp.pyls.setup{
   cmd = {'/usr/local/bin/python3', '-m', 'pyls'};
 }
-nvim_lsp.gopls.setup{}
+nvim_lsp.gopls.setup{
+  settings = {
+    gopls = {
+      gofumpt = true,
+      analyses = {
+        shadow = true,
+        unusedparams = true,
+      },
+      staticcheck = true,
+    }
+  }
+}
 nvim_lsp.kotlin_language_server.setup{
   cmd = {'kotlin-language-server'};
 }
