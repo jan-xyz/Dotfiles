@@ -118,7 +118,7 @@ preferences = [
   { name="com.googlecode.iterm2.plist.PrefsCustomFolder", type="string", value="${HOME}/.iterm2" },
   { name="com.googlecode.iterm2.plist.LoadPrefsFromCustomFolder", type="int", value="1" },
 
-  { name="com.apple.ActivityMonitor.IconType", type="int", value="5" },
+  { name="com.apple.ActivityMonitor.IconType", type="int", value="6" },
 ]
 
 [symlink]
