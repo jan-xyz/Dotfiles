@@ -69,8 +69,8 @@ func (a AppStore) InstallPackages(apps []string) error {
 		return nil
 	}
 	configuredApps := map[string]string{}
-	for _, p := range a.Apps {
-		configuredApps[p.ID] = p.Name
+	for _, app := range a.Apps {
+		configuredApps[app.ID] = app.Name
 	}
 	appNames := []string{}
 	for _, app := range apps {
