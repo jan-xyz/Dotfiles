@@ -14,14 +14,14 @@ type GoModule struct {
 
 // Go holds the information to automatically install go modules.
 type Go struct {
-	Packages  []GoModule
+	Modules  []GoModule
 	Commander Commander
 }
 
 // GetMissingPackages returns a list of configured but not installed go modules.
 func (g Go) GetMissingPackages() ([]string, error) {
 	missing := []string{}
-	for _, p := range g.Packages {
+	for _, p := range g.Modules {
 		_, err := g.Commander("command", "-v", p.Exe)
 		if err != nil {
 			logrus.WithField("module", p.Exe).Debug("Adding module to missing package")
@@ -40,7 +40,7 @@ func (g Go) InstallPackages(modules []string) error {
 	}
 	logrus.Info("Installing go modules:", modules)
 	goModulesMap := map[string]string{}
-	for _, p := range g.Packages {
+	for _, p := range g.Modules {
 		goModulesMap[p.Exe] = p.Path
 	}
 
@@ -63,10 +63,10 @@ func (g Go) InstallPackages(modules []string) error {
 
 // UpdatePackages updates all currently configured go packages.
 func (g Go) UpdatePackages() error {
-	logrus.Info("Upgrading go modules:", g.Packages)
+	logrus.Info("Upgrading go modules:", g.Modules)
 
 	args := []string{"get", "-u"}
-	for _, p := range g.Packages {
+	for _, p := range g.Modules {
 		args = append(args, p.Path)
 	}
 

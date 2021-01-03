@@ -5,10 +5,9 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/jan-xyz/dotfiles/internal"
+	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-
 	"github.com/spf13/viper"
 )
 
@@ -92,14 +91,13 @@ func initConfig() {
 
 	handlers = []packageHandler{
 		dotfiles.BrewTaps{Taps: taps, Commander: execCommander},
-		dotfiles.BrewBottles{Packages: bottles, Commander: execCommander},
+		dotfiles.BrewBottles{Bottles: bottles, Commander: execCommander},
 		dotfiles.Python{Packages: pythonPackages, Commander: execCommander},
 		dotfiles.VSCode{Extensions: vscodeExt, Commander: execCommander},
 		dotfiles.NPM{Packages: npmPackages, Commander: execCommander},
-		dotfiles.Go{Packages: goModules, Commander: execCommander},
+		dotfiles.Go{Modules: goModules, Commander: execCommander},
 		dotfiles.AppStore{Apps: apps, Profile: appStoreProfile, Commander: execCommander},
 		dotfiles.SystemPreferences{Preferences: preferences, Commander: execCommander},
 		dotfiles.Symlink{Links: symlinks, Commander: execCommander},
 	}
-
 }

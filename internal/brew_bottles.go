@@ -12,7 +12,7 @@ var (
 
 // BrewBottles holds the configuration for all hombrew packages.
 type BrewBottles struct {
-	Packages  []string
+	Bottles  []string
 	Commander Commander
 }
 
@@ -37,7 +37,7 @@ func (b BrewBottles) GetMissingPackages() ([]string, error) {
 	}
 
 	missingBottles := []string{}
-	for _, bottle := range b.Packages {
+	for _, bottle := range b.Bottles {
 		if ok := installedMap[bottle]; !ok {
 			missingBottles = append(missingBottles, bottle)
 		}
