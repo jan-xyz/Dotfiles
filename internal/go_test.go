@@ -13,7 +13,7 @@ func TestGetMissingGoModules(t *testing.T) {
 	commander.ExpectOutput("command", []string{"-v", "bar"}, nil, nil)
 	commander.ExpectOutput("command", []string{"-v", "foo"}, nil, errors.New("some-error"))
 	b := Go{
-		Packages: []GoModule{
+		Modules: []GoModule{
 			{Exe: "bar"},
 			{Exe: "foo"},
 		},
@@ -29,7 +29,7 @@ func TestInstallingGoModules(t *testing.T) {
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("go", []string{"get", "github.com/bar", "github.com/foo"}, nil, nil)
 	b := Go{
-		Packages: []GoModule{
+		Modules: []GoModule{
 			{Exe: "bar", Path: "github.com/bar"},
 			{Exe: "foo", Path: "github.com/foo"},
 		},
