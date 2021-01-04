@@ -1,8 +1,22 @@
 -- languageClients:
 local nvim_lsp = require'lspconfig'
 
-nvim_lsp.bashls.setup{}
 nvim_lsp.dockerls.setup{}
+nvim_lsp.efm.setup{
+  init_options = {documentFormatting = true},
+    settings = {
+        rootMarkers = {".git/"},
+        languages = {
+            lua = {
+                {formatCommand = "lua-format -i", formatStdin = true}
+            },
+            sh = {
+              {formatCommand = "shfmt -ci -s -bn", formatStdin = true},
+              {lintCommand = 'shellcheck -f gcc -x', lintSource = 'shellcheck', lintFormats= {'%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'}}
+            }
+        }
+    }
+}
 nvim_lsp.pyls.setup{
   cmd = {'/usr/local/bin/python3', '-m', 'pyls'};
 }
