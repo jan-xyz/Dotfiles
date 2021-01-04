@@ -35,7 +35,7 @@ fi
 make run
 
 # setup system Java wrappers to find this JDK
-sudo ln -sfn $(brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
+sudo ln -sfn "$(brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-11.jdk"
 
 #==============
 # Kotlin language server
@@ -76,7 +76,7 @@ fi
 #==============
 echo -e "${YELLOW}run post steps${NOCOLOR}"
 echo -e "${GREEN} fzf ${NOCOLOR}"
-$(brew --prefix)/opt/fzf/install --all > /dev/null 2>&1
+"$(brew --prefix)/opt/fzf/install" --all > /dev/null 2>&1
 
 #==============
 # And we are done
