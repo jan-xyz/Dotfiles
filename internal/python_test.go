@@ -49,3 +49,20 @@ func TestTryingToInstallPythonPackageWithEmptyListDoesNotCallBrew(t *testing.T) 
 	err := p.InstallPackages([]string{})
 	assert.NoError(t, err)
 }
+
+func TestUpdatingPythonPackage(t *testing.T) {
+	commander := mockCommander{}
+	defer commander.AssertExpectations(t)
+	commander.ExpectOutput(
+		"/usr/local/bin/python3",
+		[]string{"-m", "pip", "install", "--upgrade", "bar", "foo"},
+		nil,
+		nil,
+	)
+	b := Python{
+		Packages:  []string{"bar", "foo"},
+		Commander: commander.Output,
+	}
+	err := b.UpdatePackages()
+	assert.NoError(t, err)
+}

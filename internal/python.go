@@ -62,5 +62,13 @@ func (p Python) InstallPackages(packages []string) error {
 
 // UpdatePackages is currently not implemented.
 func (p Python) UpdatePackages() error {
+	logrus.Info("Upgrading Python packages")
+	args := append(pythonArgs, "install", "--upgrade")
+	args = append(args, p.Packages...)
+	_, err := p.Commander(pythonExe, args...)
+	if err != nil {
+		logrus.Error("Failed installing Python packages:", err)
+		return err
+	}
 	return nil
 }
