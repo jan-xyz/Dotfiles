@@ -82,6 +82,7 @@ packages = [
   "dockerfile-language-server-nodejs",
   "bash-language-server",
   "vim-language-server",
+  "yaml-language-server",
 ]
 
 [go]
