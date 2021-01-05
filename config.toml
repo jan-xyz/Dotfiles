@@ -23,6 +23,7 @@ bottles = [
   "htop",
   "iterm2",
   "mas",
+  "ninja",
   "openjdk@11",
   "postman",
   "kubernetes-cli",
