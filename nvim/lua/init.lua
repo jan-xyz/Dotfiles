@@ -39,6 +39,17 @@ nvim_lsp.r_language_server.setup{}
 nvim_lsp.sumneko_lua.setup{
   cmd = {'/Users/jan/dotfiles/submodules/lua-language-server/bin/macOS/lua-language-server', '-E', '/Users/jan/dotfiles/submodules/lua-language-server/main.lua'},
 }
+nvim_lsp.yamlls.setup{
+  settings = {
+    yaml = {
+      schemas = {
+        ['http://json.schemastore.org/github-workflow'] = '.github/workflows/*.{yml,yaml}',
+        ['http://json.schemastore.org/github-action'] = '.github/**/action.{yml,yaml}',
+        ['http://json.schemastore.org/circleciconfig'] = '.circleci/**/*.{yml,yaml}'
+      }
+    }
+  }
+}
 
 -- Treesitter:
 local tree_sitter = require'nvim-treesitter.configs'
