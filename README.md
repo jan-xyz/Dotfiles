@@ -1,5 +1,6 @@
 # Dotfiles
 ![go](https://github.com/jan-xyz/Dotfiles/workflows/go/badge.svg)
+
 This repository currently holds two different things:
 1. the configuration of my personal dotfiles setup
 1. the source code for a general purpose dotfiles management tool written in Go.
