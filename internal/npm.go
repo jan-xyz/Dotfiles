@@ -4,9 +4,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-var (
-	npmExe = "npm"
-)
+var npmExe = "npm"
 
 // NPM holds the information for all needed NPM packages.
 type NPM struct {
@@ -44,5 +42,11 @@ func (b NPM) InstallPackages(packages []string) error {
 
 // UpdatePackages is currently not implemented.
 func (b NPM) UpdatePackages() error {
+	logrus.Info("Upgrading npm packages")
+	_, err := b.Commander(npmExe, "update", "--global")
+	if err != nil {
+		logrus.Error("Failed update npm packages:", err)
+		return err
+	}
 	return nil
 }
