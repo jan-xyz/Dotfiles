@@ -46,6 +46,18 @@ echo -e "${YELLOW}Installing Kotlin Language Server${NOCOLOR}"
 /bin/cp ./submodules/kotlin-language-server/server/build/install/server/lib/* /usr/local/lib/
 
 #==============
+# Lua language server
+#==============
+echo -e "${YELLOW}Installing Lua Language Server${NOCOLOR}"
+pushd ./submodules/lua-language-server || exit
+pushd ./3rd/luamake || exit
+ninja -f ninja/macos.ninja
+popd || exit
+./3rd/luamake/luamake rebuild
+/bin/cp ./bin/macOS/lua-language-server /usr/local/bin/
+popd || exit
+
+#==============
 # Install Neovim extensions
 #==============
 echo -e "${YELLOW}Installing neovim plugins${NOCOLOR}"

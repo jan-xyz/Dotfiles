@@ -7,9 +7,6 @@ nvim_lsp.efm.setup{
     settings = {
         rootMarkers = {".git/"},
         languages = {
-            lua = {
-                {formatCommand = "lua-format -i", formatStdin = true}
-            },
             sh = {
               {formatCommand = "shfmt -ci -s -bn", formatStdin = true},
               {lintCommand = 'shellcheck -f gcc -x', lintSource = 'shellcheck', lintFormats= {'%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'}}
@@ -38,7 +35,9 @@ nvim_lsp.kotlin_language_server.setup{
 nvim_lsp.vimls.setup{}
 nvim_lsp.metals.setup{}
 nvim_lsp.r_language_server.setup{}
-nvim_lsp.sumneko_lua.setup{}
+nvim_lsp.sumneko_lua.setup{
+  cmd = {'/Users/jan/dotfiles/submodules/lua-language-server/bin/macOS/lua-language-server', '-E', '/Users/jan/dotfiles/submodules/lua-language-server/main.lua'},
+}
 
 -- Treesitter:
 local tree_sitter = require'nvim-treesitter.configs'
