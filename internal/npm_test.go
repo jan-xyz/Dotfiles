@@ -41,3 +41,14 @@ func TestTryingToInstallNPMPackageWithEmptyListDoesNotCallCode(t *testing.T) {
 	err := b.InstallPackages([]string{})
 	assert.NoError(t, err)
 }
+
+func TestUpdatingNPMPackage(t *testing.T) {
+	commander := mockCommander{}
+	defer commander.AssertExpectations(t)
+	commander.ExpectOutput("npm", []string{"update", "--global"}, nil, nil)
+	b := NPM{
+		Commander: commander.Output,
+	}
+	err := b.UpdatePackages()
+	assert.NoError(t, err)
+}
