@@ -30,3 +30,5 @@
 	prune-local = "!f() { git branch -d $(git for-each-ref --format '%(upstream:track) %(refname:lstrip=2)' | perl -ane 'print$F[1].\" \"if(scalar@F==2.)'); }; f"
 	prune-local-with-force = "!f() { git branch -D $(git for-each-ref --format '%(upstream:track) %(refname:lstrip=2)' | perl -ane 'print$F[1].\" \"if(scalar@F==2.)'); }; f"
 
+[submodule]
+	recurse = true
