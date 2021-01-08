@@ -145,3 +145,10 @@ function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> *
         \ defx#do_action('toggle_select_all')
 endfunction
+
+" Spell: sync spell files
+for d in glob('~/.config/nvim/spell/*.add', 1, 1)
+    if filereadable(d) && (!filereadable(d . '.spl') || getftime(d) > getftime(d . '.spl'))
+        exec 'mkspell! ' . fnameescape(d)
+    endif
+endfor
