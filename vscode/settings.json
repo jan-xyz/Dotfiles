@@ -48,5 +48,6 @@
     "python.languageServer": "Microsoft",
     "editor.accessibilitySupport": "off",
     "jupyter.askForKernelRestart": false,
-    "python.showStartPage": false
+    "python.showStartPage": false,
+    "liveshare.authenticationProvider": "GitHub"
 }
