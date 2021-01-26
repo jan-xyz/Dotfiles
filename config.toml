@@ -25,6 +25,7 @@ bottles = [
   "mas",
   "ninja",
   "openjdk@11",
+  "openjdk@8",
   "postman",
   "kubernetes-cli",
   "kube-ps1",
