@@ -9,3 +9,4 @@ target
 .env
 *.retry
 .vscode/
+*.code-workspace
