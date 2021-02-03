@@ -121,7 +121,6 @@ preferences = [
   { name="com.apple.AppleMultitouchTrackpad.TrackpadThreeFingerDrag", type="int", value="1"},
 
   { name="com.apple.Safari.IncludeDevelopMenu", type="int", value="1" },
-  { name="com.apple.Safari.SendDoNotTrackHTTPHeader", type="int", value="1" },
 
   { name="com.googlecode.iterm2.plist.PrefsCustomFolder", type="string", value="${HOME}/.iterm2" },
   { name="com.googlecode.iterm2.plist.LoadPrefsFromCustomFolder", type="int", value="1" },
