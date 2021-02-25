@@ -6,9 +6,7 @@
     },
     "git.autofetch": true,
     "workbench.startupEditor": "newUntitledFile",
-    "team.showWelcomeMessage": false,
     "workbench.colorTheme": "Nord",
-    "python.jediEnabled": false,
     "python.formatting.provider": "autopep8",
     "go.useLanguageServer": true,
     "go.alternateTools": {
@@ -26,6 +24,12 @@
     },
     "[go]": {
         "editor.snippetSuggestions": "none",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "[rust]":{
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
             "source.organizeImports": true
