@@ -18,6 +18,7 @@ nvim_lsp.efm.setup{
 nvim_lsp.pyls.setup{
   cmd = {'/usr/local/bin/python3', '-m', 'pyls'};
 }
+nvim_lsp.rls.setup{}
 nvim_lsp.gopls.setup{
   settings = {
     gopls = {
