@@ -67,3 +67,22 @@ tree_sitter.setup {
     enable = true,
   },
 }
+
+local on_attach = function(client, bufnr)
+  -- Autoformat on save
+  if client.resolved_capabilities.document_formatting then
+      vim.api.nvim_exec([[
+      augroup Format
+        autocmd! * <buffer>
+        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()
+      augroup END
+      ]], false)
+  end
+end
+
+-- Use a loop to conveniently both setup defined servers 
+-- and map buffer local keybindings when the language server attaches
+local servers = { "gopls", "rls", "pyls" }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup { on_attach = on_attach }
+end
