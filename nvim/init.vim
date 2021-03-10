@@ -72,11 +72,6 @@ let g:ale_linters = {
 let g:vista_default_executive = 'nvim_lsp'
 nnoremap <silent> <leader>c :Vista!!<CR>
 
-" Go: Run gofmt and goimports on save
-autocmd BufWritePre *.go :call v:lua.vim.lsp.buf.formatting()
-autocmd BufWritePre *.rs :call v:lua.vim.lsp.buf.formatting()
-autocmd BufWritePre *.py :call v:lua.vim.lsp.buf.formatting()
-
 " General: keyboard mappings
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
