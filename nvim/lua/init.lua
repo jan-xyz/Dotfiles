@@ -5,6 +5,7 @@ nvim_lsp.bashls.setup{}
 nvim_lsp.dockerls.setup{}
 nvim_lsp.efm.setup{
   init_options = {documentFormatting = true},
+    filetypes = {"sh"},
     settings = {
         rootMarkers = {".git/"},
         languages = {
