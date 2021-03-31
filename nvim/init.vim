@@ -78,6 +78,7 @@ nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <F2>  <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <F3>  <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> <F4>  <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> <F5>  <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
 set omnifunc=v:lua.vim.lsp.omnifunc
 
 " Airline: config
