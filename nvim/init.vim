@@ -1,39 +1,4 @@
-call plug#begin()
-  " Window Add-Ons
-  Plug 'vim-airline/vim-airline'
-  Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
-  Plug 'majutsushi/tagbar'
-  Plug 'liuchengxu/vista.vim'
-  Plug 'voldikss/vim-floaterm'
-  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'nvim-treesitter/nvim-treesitter'
-
-  " Misc
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-
-  " Git support
-  Plug 'airblade/vim-gitgutter'
-  Plug 'kristijanhusak/defx-git'
-  Plug 'tpope/vim-fugitive'
-
-  " autocompletion and linting
-  Plug 'neovim/nvim-lspconfig'
-  Plug 'bufbuild/vim-buf'
-  Plug 'dense-analysis/ale'
-  Plug 'nvim-lua/completion-nvim'
-
-  " Snippet support
-  Plug 'hrsh7th/vim-vsnip'
-  Plug 'hrsh7th/vim-vsnip-integ'
-
-  " language specific support
-  Plug 'udalov/kotlin-vim'
-  Plug 'sebdah/vim-delve'
-call plug#end()
-lua << END
-  require('init')
-END
+lua require('init')
 
 set number         " Add line numbers
 set hidden         " Enable hidden buffers
@@ -88,60 +53,6 @@ let airline#extensions#tabline#middle_click_preserves_windows = 1
 
 " Gitgutter: Config
 let g:gitgutter_realtime = 1
-set updatetime=50
-
-" Defx:
-call defx#custom#option('_', {
-      \ 'columns': 'mark:indent:git:icon:filename:type',
-      \ 'split': 'floating',
-      \ 'show_ignored_files': 1,
-      \ 'toggle': 1,
-      \ })
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | Defx | endif
-nnoremap <silent> <leader>f :<C-u>Defx -search=`expand('%:p')` `getcwd()`<CR>
-nnoremap <silent> <leader>g :<C-u>Defx<CR>
-autocmd FileType defx call s:defx_my_settings()
-function! s:defx_my_settings() abort
-  " Define mappings
-  nnoremap <silent><buffer><expr> <2-LeftMouse>
-        \  defx#is_directory() ?
-        \ defx#do_action('open_or_close_tree') :
-        \ defx#do_action('multi', ['drop', 'quit'])
-  nnoremap <silent><buffer><expr> <CR>
-        \  defx#is_directory() ?
-        \ defx#do_action('open_or_close_tree') :
-        \ defx#do_action('multi', ['drop', 'quit'])
-  nnoremap <silent><buffer><expr> s
-        \ defx#do_action('multi', [['drop', 'vsplit'], 'quit'])
-  nnoremap <silent><buffer><expr> c
-        \ defx#do_action('copy')
-  nnoremap <silent><buffer><expr> m
-        \ defx#do_action('move')
-  nnoremap <silent><buffer><expr> p
-        \ defx#do_action('paste')
-  nnoremap <silent><buffer><expr> K
-        \ defx#do_action('new_directory')
-  nnoremap <silent><buffer><expr> N
-        \ defx#do_action('new_file')
-  nnoremap <silent><buffer><expr> d
-        \ defx#do_action('remove')
-  nnoremap <silent><buffer><expr> r
-        \ defx#do_action('rename')
-  nnoremap <silent><buffer><expr> yy
-        \ defx#do_action('yank_path')
-  nnoremap <silent><buffer><expr> .
-        \ defx#do_action('toggle_ignored_files')
-  nnoremap <silent><buffer><expr> ;
-        \ defx#do_action('repeat')
-  nnoremap <silent><buffer><expr> h
-        \ defx#do_action('cd', ['..'])
-  nnoremap <silent><buffer><expr> q
-        \ defx#do_action('quit')
-  nnoremap <silent><buffer><expr> <Space>
-        \ defx#do_action('toggle_select') . 'j'
-  nnoremap <silent><buffer><expr> *
-        \ defx#do_action('toggle_select_all')
-endfunction
 
 " Spell: sync spell files
 for d in glob('~/.config/nvim/spell/*.add', 1, 1)

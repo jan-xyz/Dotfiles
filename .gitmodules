@@ -17,3 +17,6 @@
 [submodule "submodules/lua-language-server"]
 	path = submodules/lua-language-server
 	url = git@github.com:sumneko/lua-language-server.git
+[submodule "submodules/packer"]
+	path = submodules/packer
+	url = git@github.com:wbthomason/packer.nvim.git
