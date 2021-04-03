@@ -7,10 +7,10 @@ return require('packer').startup(function(use)
   use 'voldikss/vim-floaterm'
   use 'kyazdani42/nvim-web-devicons'
   use 'kyazdani42/nvim-tree.lua'
-  use 'nvim-treesitter/nvim-treesitter'
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   -- Misc
-  use { 'junegunn/fzf', cmd='fzf#install()' }
+  use { 'junegunn/fzf', run = function() vim.fn['fzf#install()'](0) end }
   use 'junegunn/fzf.vim'
 
   -- Git support
