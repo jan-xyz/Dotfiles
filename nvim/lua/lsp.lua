@@ -7,7 +7,6 @@ local on_attach = function(client, bufnr)
     vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 100)]]
   end
   if client.resolved_capabilities.hover then
-    vim.cmd [[autocmd CursorHold <buffer> lua vim.lsp.buf.hover()]]
   end
 end
 
