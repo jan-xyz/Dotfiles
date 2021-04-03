@@ -23,3 +23,8 @@ vim.g.nvim_tree_bindings = {
   ["p"]              = tree_cb("paste"),
   ["h"]              = tree_cb("dir_up"),
 }
+
+vim.g.nvim_tree_auto_open = 1
+vim.g.nvim_tree_auto_close = 1
+vim.g.nvim_tree_quit_on_open = 1
+vim.g.nvim_tree_add_trailing = 1
