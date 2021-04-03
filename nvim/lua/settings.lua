@@ -7,6 +7,7 @@ o.hidden=true         -- Enable hidden buffers
 o.signcolumn='yes'    -- Show signs in number column (e.g. errors and warnings)
 o.list=true           -- Show tabs, spaces and line ends
 o.mouse='a'           -- Enable all mouse support
+o.termguicolors=true
 
 -- window options
 wo.number=true         -- Add line numbers
