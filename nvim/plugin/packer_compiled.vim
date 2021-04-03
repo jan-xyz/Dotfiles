@@ -45,10 +45,8 @@ _G.packer_plugins = {
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/defx-git"
   },
   fzf = {
-    commands = { "fzf#install()" },
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/jan/.local/share/nvim/site/pack/packer/opt/fzf"
+    loaded = true,
+    path = "/Users/jan/.local/share/nvim/site/pack/packer/start/fzf"
   },
   ["fzf.vim"] = {
     loaded = true,
@@ -119,10 +117,6 @@ _G.packer_plugins = {
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/vista.vim"
   }
 }
-
-
--- Command lazy-loads
-vim.cmd [[command! -nargs=* -range -bang -complete=file fzf#install() lua require("packer.load")({'fzf'}, { cmd = "fzf#install()", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 
 END
 
