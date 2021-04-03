@@ -1,12 +1,16 @@
 -- languageClients:
 local nvim_lsp = require'lspconfig'
 
+local map = vim.api.nvim_set_keymap
+OPTIONS = { noremap = true }
+
 local on_attach = function(client, bufnr)
   -- Autoformat on save
   if client.resolved_capabilities.document_formatting then
     vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 100)]]
   end
   if client.resolved_capabilities.hover then
+    map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', OPTIONS)
   end
 end
 
