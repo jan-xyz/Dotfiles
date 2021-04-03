@@ -46,6 +46,13 @@ nvim_lsp.metals.setup{}
 nvim_lsp.r_language_server.setup{}
 nvim_lsp.sumneko_lua.setup{
   cmd = {'/Users/jan/dotfiles/submodules/lua-language-server/bin/macOS/lua-language-server', '-E', '/Users/jan/dotfiles/submodules/lua-language-server/main.lua'},
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' }
+      }
+    }
+  }
 }
 nvim_lsp.yamlls.setup{
   settings = {
