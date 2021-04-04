@@ -1,23 +1,42 @@
 -- languageClients:
 local nvim_lsp = require'lspconfig'
 
-local map = vim.api.nvim_set_keymap
+local map = vim.api.nvim_buf_set_keymap
 OPTIONS = { noremap = true }
 
 local on_attach = function(client, bufnr)
-  -- Autoformat on save
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
   if client.resolved_capabilities.document_formatting then
     vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 100)]]
   end
+  if client.resolved_capabilities.goto_definition then
+    map(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', OPTIONS)
+  end
   if client.resolved_capabilities.hover then
-    map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', OPTIONS)
+    map(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', OPTIONS)
+  end
+  if client.resolved_capabilities.rename then
+    map(bufnr, 'n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<CR>', OPTIONS)
+  end
+  if client.resolved_capabilities.code_action then
+    map(bufnr, 'n', '<F3>', '<cmd>lua vim.lsp.buf.code_action()<CR>', OPTIONS)
+  end
+  if client.resolved_capabilities.find_references then
+    map(bufnr, 'n', '<F4>', '<cmd>lua vim.lsp.buf.references()<CR>', OPTIONS)
+  end
+  map(bufnr, 'n', '<F5>', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', OPTIONS)
+  if client.resolved_capabilities.document_symbol then
+    map(bufnr, 'n', '<F8>', ':Vista!!<CR>', OPTIONS)
   end
 end
 
 nvim_lsp.bashls.setup{
   on_attach = on_attach,
 }
-nvim_lsp.dockerls.setup{}
+nvim_lsp.dockerls.setup{
+  on_attach = on_attach,
+}
 nvim_lsp.efm.setup{
   init_options = {documentFormatting = true},
     filetypes = {"sh"},
@@ -60,9 +79,15 @@ nvim_lsp.kotlin_language_server.setup{
   on_attach = on_attach,
   cmd = {'kotlin-language-server'};
 }
-nvim_lsp.vimls.setup{}
-nvim_lsp.metals.setup{}
-nvim_lsp.r_language_server.setup{}
+nvim_lsp.vimls.setup{
+  on_attach = on_attach,
+}
+nvim_lsp.metals.setup{
+  on_attach = on_attach,
+}
+nvim_lsp.r_language_server.setup{
+  on_attach = on_attach,
+}
 nvim_lsp.sumneko_lua.setup{
   on_attach = on_attach,
   cmd = {'/Users/jan/dotfiles/submodules/lua-language-server/bin/macOS/lua-language-server', '-E', '/Users/jan/dotfiles/submodules/lua-language-server/main.lua'},
@@ -92,6 +117,7 @@ nvim_lsp.sumneko_lua.setup{
   }
 }
 nvim_lsp.yamlls.setup{
+  on_attach = on_attach,
   settings = {
     yaml = {
       schemas = {
