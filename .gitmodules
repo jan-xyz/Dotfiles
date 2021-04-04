@@ -2,9 +2,6 @@
 	path = submodules/prezto
 	url = https://github.com/sorin-ionescu/prezto.git
 	branch = master
-[submodule "vim-plug"]
-	path = submodules/vim-plug
-	url = git@github.com:junegunn/vim-plug.git
 [submodule "kotlin-language-server"]
 	path = submodules/kotlin-language-server
 	url = https://github.com/fwcd/kotlin-language-server
