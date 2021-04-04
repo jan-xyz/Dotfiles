@@ -12,7 +12,7 @@ bottles = [
   "colordiff",
   "ddate",
   "efm-langserver",
-  "font-fira-code",
+  "font-fira-code-nerd-font",
   "font-meslo-for-powerline",
   "font-source-code-pro-for-powerline",
   "fzf",
