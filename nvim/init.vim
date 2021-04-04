@@ -22,15 +22,6 @@ let g:ale_linters = {
 " Tag: config
 let g:vista_default_executive = 'nvim_lsp'
 
-" General: keyboard mappings
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <F2>  <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent> <F3>  <cmd>lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> <F4>  <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> <F5>  <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
-nnoremap <silent> <F8> :Vista!!<CR>
-set omnifunc=v:lua.vim.lsp.omnifunc
-
 " Airline: config
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
