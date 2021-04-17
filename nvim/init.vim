@@ -6,6 +6,10 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 nmap <C-n> :bn<CR>  " Next buffer in list
 nmap <C-p> :bp<CR>  " Previous buffer in list
 
+" Terminal:
+let g:floaterm_keymap_toggle = '<Leader>t'
+let g:floaterm_position = 'center'
+
 " Autocomplete:
 autocmd BufEnter * lua require'completion'.on_attach()
 set completeopt=menuone,noinsert,noselect

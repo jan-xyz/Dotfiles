@@ -4,10 +4,11 @@ return require('packer').startup(function(use)
   use { 'arcticicestudio/nord-vim', branch= 'develop' }
   use 'majutsushi/tagbar'
   use 'liuchengxu/vista.vim'
-  use {'kyazdani42/nvim-tree.lua', requires ='kyazdani42/nvim-web-devicons'}
+  use 'voldikss/vim-floaterm'
+  use 'kyazdani42/nvim-web-devicons'
+  use 'kyazdani42/nvim-tree.lua'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use {'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons'}
-  use {'akinsho/nvim-toggleterm.lua'}
 
   -- Misc
   use { 'junegunn/fzf', run = function() vim.fn['fzf#install()'](0) end }
