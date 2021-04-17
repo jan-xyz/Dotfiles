@@ -1,6 +1,5 @@
 return require('packer').startup(function(use)
   -- Window Add-Ons
-  use 'vim-airline/vim-airline'
   use { 'arcticicestudio/nord-vim', branch= 'develop' }
   use 'majutsushi/tagbar'
   use 'liuchengxu/vista.vim'
@@ -8,7 +7,8 @@ return require('packer').startup(function(use)
   use 'kyazdani42/nvim-web-devicons'
   use 'kyazdani42/nvim-tree.lua'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use {'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons'}
+  use { 'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons' }
+  use { 'hoob3rt/lualine.nvim', requires = 'kyazdani42/nvim-web-devicons' }
 
   -- Misc
   use { 'junegunn/fzf', run = function() vim.fn['fzf#install()'](0) end }

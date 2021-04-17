@@ -60,6 +60,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/nord-vim"
   },
+  ["nvim-bufferline.lua"] = {
+    loaded = true,
+    path = "/Users/jan/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
