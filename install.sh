@@ -63,8 +63,7 @@ popd || exit
 #==============
 echo -e "${YELLOW}Installing neovim plugins${NOCOLOR}"
 nvim \
-  +PlugInstall \
-  +PlugClean! \
+  +PackerSync \
   +qall \
   --headless > /dev/null 2>&1
 
