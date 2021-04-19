@@ -56,6 +56,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/kotlin-vim"
   },
+  ["lualine.nvim"] = {
+    loaded = true,
+    path = "/Users/jan/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+  },
   ["nord-vim"] = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/nord-vim"
@@ -83,10 +87,6 @@ _G.packer_plugins = {
   tagbar = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/tagbar"
-  },
-  ["vim-airline"] = {
-    loaded = true,
-    path = "/Users/jan/.local/share/nvim/site/pack/packer/start/vim-airline"
   },
   ["vim-buf"] = {
     loaded = true,
