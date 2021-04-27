@@ -11,7 +11,6 @@ return require('packer').startup(function(use)
   use { 'hoob3rt/lualine.nvim', requires = 'kyazdani42/nvim-web-devicons' }
 
   -- Misc
-  use { 'junegunn/fzf', run = function() vim.fn['fzf#install()'](0) end }
   use 'junegunn/fzf.vim'
 
   -- Git support
