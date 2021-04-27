@@ -10,3 +10,4 @@ target
 *.retry
 .vscode/
 *.code-workspace
+.DS_Store
