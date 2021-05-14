@@ -54,13 +54,8 @@ nvim_lsp.pyls.setup{
   on_attach = on_attach,
   cmd = {'/usr/local/bin/python3', '-m', 'pyls'};
 }
-nvim_lsp.rls.setup{
+nvim_lsp.rust_analyzer.setup{
   on_attach = on_attach,
-  settings = {
-    rust = {
-      clippy_preference = "on",
-    }
-  }
 }
 nvim_lsp.gopls.setup{
   on_attach = on_attach,
