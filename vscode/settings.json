@@ -51,7 +51,7 @@
     "liveshare.audio.joinCallBehavior": "accept",
     "editor.suggestSelection": "first",
     "kotlin.languageServer.path": "/usr/local/bin/kotlin-language-server",
-    "python.languageServer": "Microsoft",
+    "python.languageServer": "Pylance",
     "editor.accessibilitySupport": "off",
     "jupyter.askForKernelRestart": false,
     "python.showStartPage": false,
@@ -61,5 +61,6 @@
             "viewType": "jupyter.notebook.ipynb",
             "filenamePattern": "*.ipynb"
         }
-    ]
+    ],
+    "python.defaultInterpreterPath": "/usr/local/opt/python@3.9/bin/python3.9"
 }
