@@ -38,6 +38,7 @@ bottles = [
   "r",
   "ripgrep",
   "rustup-init",
+  "rust-analyzer",
   "shellcheck",
   "shfmt",
   "signal",
