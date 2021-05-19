@@ -52,7 +52,7 @@ echo -e "${YELLOW}Installing Kotlin Language Server${NOCOLOR}"
 echo -e "${YELLOW}Installing Lua Language Server${NOCOLOR}"
 pushd ./submodules/lua-language-server || exit
 pushd ./3rd/luamake || exit
-ninja -f ninja/macos.ninja
+./compile/install.sh
 popd || exit
 ./3rd/luamake/luamake rebuild
 /bin/cp ./bin/macOS/lua-language-server /usr/local/bin/
