@@ -4,6 +4,7 @@ local nvim_lsp = require'lspconfig'
 local map = vim.api.nvim_buf_set_keymap
 OPTIONS = { noremap = true }
 
+-- Global callback functions for LSP shortcuts
 local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -25,11 +26,21 @@ local on_attach = function(client, bufnr)
   if client.resolved_capabilities.find_references then
     map(bufnr, 'n', '<F4>', '<cmd>lua vim.lsp.buf.references()<CR>', OPTIONS)
   end
-  map(bufnr, 'n', '<F5>', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', OPTIONS)
+  map(bufnr, 'n', '<F5>', '<cmd>lua require(\'lsp_extensions.workspace.diagnostic\').set_qf_list()<CR>', OPTIONS)
   if client.resolved_capabilities.document_symbol then
     map(bufnr, 'n', '<F8>', ':Vista!!<CR>', OPTIONS)
   end
 end
+
+-- populate Workspace Diagnostics
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  require('lsp_extensions.workspace.diagnostic').handler, {
+    signs = {
+      severity_limit = "Error",
+    }
+  }
+)
+
 
 -- Docker
 nvim_lsp.dockerls.setup{
@@ -61,6 +72,7 @@ nvim_lsp.pyls.setup{
 }
 
 -- Rust
+autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints{}
 nvim_lsp.rust_analyzer.setup{
   on_attach = on_attach,
   settings = {
@@ -68,7 +80,7 @@ nvim_lsp.rust_analyzer.setup{
             assist = {
                 importGranularity = "item",
                 importPrefix = "by_self",
-		importEnforceGranularity = true,
+                importEnforceGranularity = true,
             },
         }
     }
