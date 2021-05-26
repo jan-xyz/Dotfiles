@@ -6,14 +6,12 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-var (
-	vscodeExe = "code"
-)
+var vscodeExe = "code"
 
 // VSCode holds the information to automatically install VSCode extensions.
 type VSCode struct {
-	Extensions  []string
-	Commander Commander
+	Extensions []string
+	Commander  Commander
 }
 
 // GetMissingPackages returns a list of VSCode extensions which are configured
@@ -24,7 +22,7 @@ func (v VSCode) GetMissingPackages() ([]string, error) {
 		return nil, err
 	}
 	logrus.WithField("output", string(stdout)).Debug("homebrew stdout")
-	installedBottles := strings.Split(string(stdout), "\n")
+	installedBottles := strings.Split(strings.ToLower(string(stdout)), "\n")
 	installedMap := map[string]bool{}
 	for _, p := range installedBottles {
 		installedMap[p] = true
@@ -32,7 +30,7 @@ func (v VSCode) GetMissingPackages() ([]string, error) {
 
 	missingBottles := []string{}
 	for _, bottle := range v.Extensions {
-		if ok := installedMap[bottle]; !ok {
+		if ok := installedMap[strings.ToLower(bottle)]; !ok {
 			missingBottles = append(missingBottles, bottle)
 		}
 	}
