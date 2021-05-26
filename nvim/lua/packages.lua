@@ -9,9 +9,7 @@ return require('packer').startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use { 'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons' }
   use { 'hoob3rt/lualine.nvim', requires = 'kyazdani42/nvim-web-devicons' }
-
-  -- Misc
-  use 'junegunn/fzf.vim'
+  use { 'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}}
 
   -- Git support
   use 'airblade/vim-gitgutter'
@@ -32,4 +30,5 @@ return require('packer').startup(function(use)
   use 'udalov/kotlin-vim'
   use 'sebdah/vim-delve'
   use 'folke/lua-dev.nvim'
+
 end)

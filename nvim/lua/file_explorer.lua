@@ -1,7 +1,5 @@
-local map = vim.api.nvim_set_keymap
 
-OPTIONS = { noremap = true }
-map('n', '<leader>f', ':NvimTreeToggle<CR>', OPTIONS)
+vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true })
 
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 vim.g.nvim_tree_bindings = {
