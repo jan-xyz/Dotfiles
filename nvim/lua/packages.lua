@@ -31,4 +31,5 @@ return require('packer').startup(function(use)
   -- language specific support
   use 'udalov/kotlin-vim'
   use 'sebdah/vim-delve'
+  use 'folke/lua-dev.nvim'
 end)
