@@ -2,6 +2,7 @@ return require('packer').startup(function(use)
   -- UX
   use { 'famiu/nvim-reload',  requires='nvim-lua/plenary.nvim' }
   use 'nvim-lua/lsp_extensions.nvim'
+  use 'folke/lsp-colors.nvim'
 
   -- Window Add-Ons
   use { 'arcticicestudio/nord-vim', branch= 'develop' }
