@@ -7,16 +7,51 @@ import (
 )
 
 func TestGetMissingVSCodeExtension(t *testing.T) {
-	commander := mockCommander{}
-	defer commander.AssertExpectations(t)
-	commander.ExpectOutput("code", []string{"--list-extensions"}, []byte("bar"), nil)
-	b := VSCode{
-		Extensions:  []string{"bar", "foo"},
-		Commander: commander.Output,
+	testCases := []struct {
+		name              string
+		input             []string
+		applicationOutput []byte
+		expected          []string
+	}{
+		{
+			name:              "normal case",
+			input:             []string{"bar", "foo"},
+			applicationOutput: []byte("bar"),
+			expected:          []string{"foo"},
+		},
+		{
+			name:              "multiple in output",
+			input:             []string{"bar", "foo"},
+			applicationOutput: []byte("bar\nbaz"),
+			expected:          []string{"foo"},
+		},
+		{
+			name:              "upper-case in input",
+			input:             []string{"Bar", "foo"},
+			applicationOutput: []byte("bar"),
+			expected:          []string{"foo"},
+		},
+		{
+			name:              "upper-case in output",
+			input:             []string{"bar", "foo"},
+			applicationOutput: []byte("Bar"),
+			expected:          []string{"foo"},
+		},
 	}
-	missingPackages, err := b.GetMissingPackages()
-	assert.NoError(t, err)
-	assert.Equal(t, []string{"foo"}, missingPackages)
+
+	for _, testCase := range testCases {
+
+		commander := mockCommander{}
+		defer commander.AssertExpectations(t)
+		commander.ExpectOutput("code", []string{"--list-extensions"}, testCase.applicationOutput, nil)
+		b := VSCode{
+			Extensions: testCase.input,
+			Commander:  commander.Output,
+		}
+		missingPackages, err := b.GetMissingPackages()
+		assert.NoError(t, err)
+		assert.Equal(t, testCase.expected, missingPackages, testCase.name)
+	}
 }
 
 func TestInstallingVSCodeExtension(t *testing.T) {
