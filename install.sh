@@ -35,6 +35,7 @@ fi
 make run
 
 # setup system Java wrappers to find this JDK
+echo -e "${YELLOW}Setting up Java wrappers for homebrew JDK${NOCOLOR}"
 sudo ln -sfn "$(brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-11.jdk"
 sudo ln -sfn "$(brew --prefix)/opt/openjdk@8/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-8.jdk"
 
