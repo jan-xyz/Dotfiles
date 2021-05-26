@@ -87,6 +87,14 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/kotlin-vim"
   },
+  ["lsp-colors.nvim"] = {
+    loaded = true,
+    path = "/Users/jan/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim"
+  },
+  ["lsp_extensions.nvim"] = {
+    loaded = true,
+    path = "/Users/jan/.local/share/nvim/site/pack/packer/start/lsp_extensions.nvim"
+  },
   ["lua-dev.nvim"] = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/lua-dev.nvim"
@@ -127,9 +135,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/plenary.nvim"
   },
+  ["popup.nvim"] = {
+    loaded = true,
+    path = "/Users/jan/.local/share/nvim/site/pack/packer/start/popup.nvim"
+  },
   tagbar = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/tagbar"
+  },
+  ["telescope.nvim"] = {
+    loaded = true,
+    path = "/Users/jan/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
   ["vim-buf"] = {
     loaded = true,
