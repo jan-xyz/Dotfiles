@@ -114,11 +114,7 @@ nvim_lsp.r_language_server.setup{
 local luadev = require("lua-dev").setup({
   lspconfig = {
     on_attach = on_attach,
-    cmd = {
-      '/Users/jan/dotfiles/submodules/lua-language-server/bin/macOS/lua-language-server',
-      '-E',
-      '/Users/jan/dotfiles/submodules/lua-language-server/main.lua',
-    },
+    cmd = {'lua-language-server'},
   },
 })
 local lspconfig = require('lspconfig')

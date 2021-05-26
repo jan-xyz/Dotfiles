@@ -39,18 +39,6 @@ sudo ln -sfn "$(brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk" "/Library/Jav
 sudo ln -sfn "$(brew --prefix)/opt/openjdk@8/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-8.jdk"
 
 #==============
-# Lua language server
-#==============
-echo -e "${YELLOW}Installing Lua Language Server${NOCOLOR}"
-pushd ./submodules/lua-language-server || exit
-pushd ./3rd/luamake || exit
-./compile/install.sh
-popd || exit
-./3rd/luamake/luamake rebuild
-/bin/cp ./bin/macOS/lua-language-server /usr/local/bin/
-popd || exit
-
-#==============
 # Install Neovim extensions
 #==============
 echo -e "${YELLOW}Installing neovim plugins${NOCOLOR}"
