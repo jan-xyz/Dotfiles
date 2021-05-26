@@ -21,7 +21,7 @@ func (v VSCode) GetMissingPackages() ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
-	logrus.WithField("output", string(stdout)).Debug("homebrew stdout")
+	logrus.WithField("output", string(stdout)).Debug("vscode stdout")
 	installedBottles := strings.Split(strings.ToLower(string(stdout)), "\n")
 	installedMap := map[string]bool{}
 	for _, p := range installedBottles {
