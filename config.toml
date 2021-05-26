@@ -2,6 +2,7 @@
 [homebrew]
 taps = [
   "homebrew/cask-fonts",
+  "saadparwaiz1/personal",
 ]
 bottles = [
   "aerial",
@@ -31,6 +32,7 @@ bottles = [
   "kubernetes-cli",
   "kube-ps1",
   "libgit2",
+  "lua-language-server",
   "neovim",
   "node",
   "python@3.9",
