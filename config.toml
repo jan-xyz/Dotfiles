@@ -138,7 +138,7 @@ preferences = [
 
 [symlink]
 links = [
-  { sourceFile ="${HOME}/dotfiles/nvim", linkName="${HOME}/.config" },
+  { sourceFile ="${HOME}/dotfiles/nvim", linkName="${HOME}/.config/nvim" },
   { sourceFile ="${HOME}/dotfiles/git/gitconfig", linkName="${HOME}/.gitconfig" },
   { sourceFile ="${HOME}/dotfiles/git/gitignore_global", linkName="${HOME}/.gitignore_global" },
   { sourceFile ="${HOME}/dotfiles/git/stCommitMsg", linkName="${HOME}/.stCommitMsg" },
