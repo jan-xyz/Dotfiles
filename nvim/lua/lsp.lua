@@ -72,7 +72,7 @@ nvim_lsp.pyls.setup{
 }
 
 -- Rust
-autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints{}
+vim.cmd [[autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints{}]]
 nvim_lsp.rust_analyzer.setup{
   on_attach = on_attach,
   settings = {
