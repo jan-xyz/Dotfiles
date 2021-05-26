@@ -39,14 +39,6 @@ sudo ln -sfn "$(brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk" "/Library/Jav
 sudo ln -sfn "$(brew --prefix)/opt/openjdk@8/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-8.jdk"
 
 #==============
-# Kotlin language server
-#==============
-echo -e "${YELLOW}Installing Kotlin Language Server${NOCOLOR}"
-./submodules/kotlin-language-server/gradlew -p "submodules/kotlin-language-server" :server:installDist
-/bin/cp ./submodules/kotlin-language-server/server/build/install/server/bin/kotlin-language-server /usr/local/bin/
-/bin/cp ./submodules/kotlin-language-server/server/build/install/server/lib/* /usr/local/lib/
-
-#==============
 # Lua language server
 #==============
 echo -e "${YELLOW}Installing Lua Language Server${NOCOLOR}"

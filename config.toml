@@ -27,6 +27,7 @@ bottles = [
   "openjdk@11",
   "openjdk@8",
   "postman",
+  "kotlin-language-server",
   "kubernetes-cli",
   "kube-ps1",
   "libgit2",

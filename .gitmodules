@@ -2,9 +2,6 @@
 	path = submodules/prezto
 	url = https://github.com/sorin-ionescu/prezto.git
 	branch = master
-[submodule "kotlin-language-server"]
-	path = submodules/kotlin-language-server
-	url = https://github.com/fwcd/kotlin-language-server
 [submodule "submodules/docker-cli"]
 	path = submodules/docker-cli
 	url = git@github.com:docker/cli.git
