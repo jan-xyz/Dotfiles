@@ -1,4 +1,4 @@
-return require('packer').startup(function(use)
+return require('packer').startup({function(use)
   -- UX
   use { 'famiu/nvim-reload',  requires='nvim-lua/plenary.nvim' }
   use 'nvim-lua/lsp_extensions.nvim'
@@ -36,4 +36,9 @@ return require('packer').startup(function(use)
   use 'sebdah/vim-delve'
   use 'folke/lua-dev.nvim'
 
-end)
+end,
+config = {
+  display = {
+    open_fn = require('packer.util').float,
+  }
+}})
