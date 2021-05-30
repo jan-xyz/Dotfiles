@@ -3,11 +3,13 @@
 taps = [
   "homebrew/cask-fonts",
   "saadparwaiz1/personal",
+  "bufbuild/buf",
 ]
 bottles = [
   "aerial",
   "awscli",
   "brooklyn",
+  "buf",
   "ctags",
   "cmake",
   "colordiff",
@@ -24,7 +26,6 @@ bottles = [
   "htop",
   "iterm2",
   "mas",
-  "ninja",
   "openjdk@11",
   "openjdk@8",
   "postman",
@@ -51,6 +52,7 @@ bottles = [
   "telegram",
   "visual-studio-code",
   "watch",
+  "wget",
   "zsh",
   "docker",
 ]
