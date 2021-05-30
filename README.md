@@ -15,7 +15,7 @@ go run github.com/jan-xyz/dotfiles install
 
 or by downloading the pre-compiled binary
 ```sh
-export version=0.2.0
+export version=0.2.2
 curl -L https://github.com/jan-xyz/Dotfiles/releases/download/v${version}/dotfiles-Darwin-x86_64.gz | gzip -N -d > dotfiles-${version}
 chmod +x ./dotfiles-${version}
 ./dotfiles-${version} install
