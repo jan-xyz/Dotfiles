@@ -23,6 +23,7 @@ bottles = [
   "go",
   "gopls",
   "gradle",
+  "gradle-completion",
   "htop",
   "iterm2",
   "mas",
