@@ -30,6 +30,7 @@ bottles = [
   "openjdk@11",
   "openjdk@8",
   "postman",
+  "kitty",
   "kotlin-language-server",
   "kubernetes-cli",
   "kube-ps1",
@@ -142,6 +143,7 @@ preferences = [
 [symlink]
 links = [
   { sourceFile ="${HOME}/dotfiles/nvim", linkName="${HOME}/.config/nvim" },
+  { sourceFile ="${HOME}/dotfiles/kitty", linkName="${HOME}/.config/kitty" },
   { sourceFile ="${HOME}/dotfiles/git/gitconfig", linkName="${HOME}/.gitconfig" },
   { sourceFile ="${HOME}/dotfiles/git/gitignore_global", linkName="${HOME}/.gitignore_global" },
   { sourceFile ="${HOME}/dotfiles/git/stCommitMsg", linkName="${HOME}/.stCommitMsg" },
