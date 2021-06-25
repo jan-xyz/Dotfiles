@@ -107,6 +107,11 @@ nvim_lsp.kotlin_language_server.setup{
   cmd = {'kotlin-language-server'};
 }
 
+-- LLVM (C/C++)
+require'lspconfig'.clangd.setup{
+  cmd = { "/usr/local//Cellar/llvm/12.0.0_1/bin/clangd", "--background-index" }
+}
+
 -- VIM
 nvim_lsp.vimls.setup{
   on_attach = on_attach,

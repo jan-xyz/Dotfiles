@@ -35,6 +35,7 @@ bottles = [
   "kubernetes-cli",
   "kube-ps1",
   "libgit2",
+  "llvm",
   "lua-language-server",
   "neovim",
   "node",
