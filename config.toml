@@ -27,6 +27,7 @@ bottles = [
   "htop",
   "iterm2",
   "mas",
+  "openjdk@16",
   "openjdk@11",
   "openjdk@8",
   "postman",
