@@ -42,6 +42,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 )
 
 
+--  C/C++
+nvim_lsp.ccls.setup{}
+
 -- Docker
 nvim_lsp.dockerls.setup{
   on_attach = on_attach,
@@ -105,11 +108,6 @@ nvim_lsp.gopls.setup{
 nvim_lsp.kotlin_language_server.setup{
   on_attach = on_attach,
   cmd = {'kotlin-language-server'};
-}
-
--- LLVM (C/C++)
-require'lspconfig'.clangd.setup{
-  cmd = { "/usr/local//Cellar/llvm/12.0.0_1/bin/clangd", "--background-index" }
 }
 
 -- VIM
