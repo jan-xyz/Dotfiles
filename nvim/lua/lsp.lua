@@ -9,7 +9,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   if client.resolved_capabilities.document_formatting then
-    vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 100)]]
+    vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 500)]]
   end
   if client.resolved_capabilities.goto_definition then
     map(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', OPTIONS)
