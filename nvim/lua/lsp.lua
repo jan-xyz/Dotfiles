@@ -26,21 +26,11 @@ local on_attach = function(client, bufnr)
   if client.resolved_capabilities.find_references then
     map(bufnr, 'n', '<F4>', '<cmd>lua vim.lsp.buf.references()<CR>', OPTIONS)
   end
-  map(bufnr, 'n', '<F5>', '<cmd>lua require(\'lsp_extensions.workspace.diagnostic\').set_qf_list()<CR>', OPTIONS)
+  map(bufnr, 'n', '<F5>', '<cmd>lua vim.lsp.diagnostic.set_loclist({open_loclist = true, workspace = true})<CR>', OPTIONS)
   if client.resolved_capabilities.document_symbol then
     map(bufnr, 'n', '<F8>', ':Vista!!<CR>', OPTIONS)
   end
 end
-
--- populate Workspace Diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  require('lsp_extensions.workspace.diagnostic').handler, {
-    signs = {
-      severity_limit = "Error",
-    }
-  }
-)
-
 
 --  C/C++
 nvim_lsp.ccls.setup{}
