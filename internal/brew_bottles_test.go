@@ -26,7 +26,7 @@ func TestGetMissingBrewPackage(t *testing.T) {
 	commander.ExpectOutput("brew", []string{"list", "--formula"}, []byte("foo"), nil)
 	commander.ExpectOutput("brew", []string{"list", "--casks"}, []byte("bar"), nil)
 	b := BrewBottles{
-		Bottles:  []string{"bar", "foo", "baz"},
+		Bottles:   []string{"bar", "foo", "baz"},
 		Commander: commander.Output,
 	}
 	missingPackages, err := b.GetMissingPackages()
