@@ -8,6 +8,13 @@ OPTIONS = { noremap = true }
 local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
+  print(vim.inspect(client.resolved_capabilities))
+
+  if client.resolved_capabilities.code_lens then
+    vim.cmd [[autocmd CursorHold,CursorHoldI,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
+    map(bufnr, "n", "<F6>", "<Cmd>lua vim.lsp.codelens.run()<CR>", {silent = true;})
+  end
+
   if client.resolved_capabilities.document_formatting then
     vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 500)]]
   end
