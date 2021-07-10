@@ -15,12 +15,9 @@
     "gopls": {
         "staticcheck": true
     },
-    "go.languageServerExperimentalFeatures": {
-            "diagnostics": true, // for build and vet errors as you type
-    },
     "[python]": {
         "editor.formatOnSave": true,
-        "editor.rulers": [ 80 ],
+        "editor.rulers": [ 80 ]
     },
     "[go]": {
         "editor.snippetSuggestions": "none",
