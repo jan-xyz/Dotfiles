@@ -2,6 +2,7 @@
 vim.o.hidden=true         -- Enable hidden buffers
 vim.o.signcolumn='yes'    -- Show signs in number column (e.g. errors and warnings)
 vim.o.list=true           -- Show tabs, spaces and line ends
+vim.o.listchars="tab:⟶ "  -- Set list characters
 vim.o.mouse='a'           -- Enable all mouse support
 vim.o.termguicolors=true  -- enable 24-bit colors
 
