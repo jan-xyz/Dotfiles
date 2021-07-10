@@ -148,10 +148,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/vim-buf"
   },
-  ["vim-delve"] = {
-    loaded = true,
-    path = "/Users/jan/.local/share/nvim/site/pack/packer/start/vim-delve"
-  },
   ["vim-floaterm"] = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/vim-floaterm"
