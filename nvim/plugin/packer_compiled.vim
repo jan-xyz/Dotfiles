@@ -108,6 +108,14 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
   },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/Users/jan/.local/share/nvim/site/pack/packer/start/nvim-dap"
+  },
+  ["nvim-dap-virtual-text"] = {
+    loaded = true,
+    path = "/Users/jan/.local/share/nvim/site/pack/packer/start/nvim-dap-virtual-text"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
@@ -132,13 +140,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/plenary.nvim"
   },
-  ["popup.nvim"] = {
-    loaded = true,
-    path = "/Users/jan/.local/share/nvim/site/pack/packer/start/popup.nvim"
-  },
   tagbar = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/tagbar"
+  },
+  ["telescope-dap.nvim"] = {
+    loaded = true,
+    path = "/Users/jan/.local/share/nvim/site/pack/packer/start/telescope-dap.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,

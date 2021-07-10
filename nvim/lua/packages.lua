@@ -2,6 +2,12 @@ return require('packer').startup({function(use)
   -- UX
   use { 'famiu/nvim-reload',  requires='nvim-lua/plenary.nvim' }
   use 'nvim-lua/lsp_extensions.nvim'
+  use 'neovim/nvim-lspconfig'
+
+  -- Debugger
+  use 'mfussenegger/nvim-dap'
+  use {'theHamsta/nvim-dap-virtual-text', requires = {'mfussenegger/nvim-dap'}}
+  use {'nvim-telescope/telescope-dap.nvim', requires = {{'mfussenegger/nvim-dap'}, {'nvim-telescope/telescope.nvim'}}}
 
   -- Window Add-Ons
   use { 'arcticicestudio/nord-vim', branch= 'develop' }
@@ -20,7 +26,6 @@ return require('packer').startup({function(use)
   use 'tpope/vim-fugitive'
 
   -- autocompletion and linting
-  use 'neovim/nvim-lspconfig'
   use 'bufbuild/vim-buf'
   use 'dense-analysis/ale'
   use 'nvim-lua/completion-nvim'
