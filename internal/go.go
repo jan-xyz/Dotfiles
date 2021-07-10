@@ -1,8 +1,6 @@
 package dotfiles
 
-import (
-	"github.com/sirupsen/logrus"
-)
+import "github.com/sirupsen/logrus"
 
 var goExe = "go"
 
@@ -14,7 +12,7 @@ type GoModule struct {
 
 // Go holds the information to automatically install go modules.
 type Go struct {
-	Modules  []GoModule
+	Modules   []GoModule
 	Commander Commander
 }
 

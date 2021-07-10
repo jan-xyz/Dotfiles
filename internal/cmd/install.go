@@ -9,7 +9,7 @@ import (
 var installCmd = &cobra.Command{
 	Use:   "install",
 	Short: "Install dotfiles packages",
-	Run: func(cmd *cobra.Command, args []string) {
+	Run: func(_ *cobra.Command, _ []string) {
 		for _, handler := range handlers {
 			if missingPackages, err := handler.GetMissingPackages(); err != nil {
 				logrus.WithError(err).Error("cannot get packages")
