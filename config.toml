@@ -15,6 +15,7 @@ bottles = [
   "cmake",
   "colordiff",
   "ddate",
+  "delve",
   "efm-langserver",
   "font-fira-code-nerd-font",
   "font-meslo-for-powerline",
