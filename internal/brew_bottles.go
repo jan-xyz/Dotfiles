@@ -6,13 +6,11 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-var (
-	brewExe = "brew"
-)
+var brewExe = "brew"
 
 // BrewBottles holds the configuration for all hombrew packages.
 type BrewBottles struct {
-	Bottles  []string
+	Bottles   []string
 	Commander Commander
 }
 
