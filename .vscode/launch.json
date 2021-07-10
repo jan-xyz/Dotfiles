@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "go",
+      "request": "launch",
+      "name": "dotfiles install",
+      "program": "./main.go",
+      "args": ["install"]
+    }
+  ]
+}

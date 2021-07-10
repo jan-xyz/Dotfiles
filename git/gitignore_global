@@ -8,6 +8,5 @@ target
 .venv
 .env
 *.retry
-.vscode/
 *.code-workspace
 .DS_Store

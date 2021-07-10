@@ -45,26 +45,24 @@ dap.adapters.go = function(callback, config)
 
 
     --callback({type = "server", host = "127.0.0.1", port = port})
-  end
-  -- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
-  dap.configurations.go = {
-    {
-      type = "go",
-      name = "Debug main.go",
-      request = "launch",
-      program = "${workspaceFolder}/main.go"
-    },
-    {
-      type = "go",
-      name = "Debug current file",
-      request = "launch",
-      program = "${file}"
-    },
-    {
-      type = "go",
-      name = "Debug tests in current dir", -- configuration for debugging test files
-      request = "launch",
-      mode = "test",
-      program = "${fileDirname}"
-    },
+end
+-- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
+dap.configurations.go = {
+   {
+     type = "go",
+     name = "Debug current file",
+     request = "launch",
+     program = "${file}"
+   },
+   {
+     type = "go",
+     name = "Debug tests in current dir", -- configuration for debugging test files
+     request = "launch",
+     mode = "test",
+     program = "${fileDirname}"
+   },
 }
+
+-- Support launch.json (Do after setting the default values)
+require('dap.ext.vscode').load_launchjs()
+
