@@ -9,7 +9,7 @@ import (
 var updateCmd = &cobra.Command{
 	Use:   "update",
 	Short: "update dotfiles packages",
-	Run: func(cmd *cobra.Command, args []string) {
+	Run: func(_ *cobra.Command, _ []string) {
 		for _, handler := range handlers {
 			if err := handler.UpdatePackages(); err != nil {
 				logrus.WithError(err).Error("cannot update packages")
