@@ -87,6 +87,7 @@ extensions = [
   # tools
   "ms-azuretools.vscode-docker",
   "ms-kubernetes-tools.vscode-kubernetes-tools",
+  "ms-vscode-remote.remote-containers",
   # languages
   "ms-python.python",
   "ms-python.vscode-pylance",
