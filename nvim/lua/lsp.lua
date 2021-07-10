@@ -19,7 +19,7 @@ local on_attach = function(client, bufnr)
     vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 500)]]
   end
   if client.resolved_capabilities.goto_definition then
-    map(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', OPTIONS)
+    map(bufnr, 'n', 'gd', ':Telescope lsp_definitions<CR>', OPTIONS)
   end
   if client.resolved_capabilities.hover then
     map(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', OPTIONS)
@@ -28,12 +28,13 @@ local on_attach = function(client, bufnr)
     map(bufnr, 'n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<CR>', OPTIONS)
   end
   if client.resolved_capabilities.code_action then
-    map(bufnr, 'n', '<F3>', '<cmd>lua vim.lsp.buf.code_action()<CR>', OPTIONS)
+    map(bufnr, 'n', '<F3>', ':Telescope lsp_code_actions<CR>', OPTIONS)
+    map(bufnr, 'v', '<F3>', ':Telescope lsp_range_code_actions<CR>', OPTIONS)
   end
   if client.resolved_capabilities.find_references then
-    map(bufnr, 'n', '<F4>', '<cmd>lua vim.lsp.buf.references()<CR>', OPTIONS)
+    map(bufnr, 'n', '<F4>', ':Telescope lsp_references<CR>', OPTIONS)
   end
-  map(bufnr, 'n', '<F5>', '<cmd>lua vim.lsp.diagnostic.set_loclist({open_loclist = true, workspace = true})<CR>', OPTIONS)
+  map(bufnr, 'n', '<F5>', ':Telescope lsp_workspace_diagnostics<CR>', OPTIONS)
   if client.resolved_capabilities.document_symbol then
     map(bufnr, 'n', '<F8>', ':Vista!!<CR>', OPTIONS)
   end
