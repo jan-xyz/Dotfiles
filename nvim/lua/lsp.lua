@@ -127,11 +127,10 @@ nvim_lsp.r_language_server.setup{
 local luadev = require("lua-dev").setup({
   lspconfig = {
     on_attach = on_attach,
-    cmd = {'lua-language-server'},
+    cmd = {'lua-langserver'},
   },
 })
-local lspconfig = require('lspconfig')
-lspconfig.sumneko_lua.setup(luadev)
+nvim_lsp.sumneko_lua.setup(luadev)
 
 -- YAML
 nvim_lsp.yamlls.setup{
