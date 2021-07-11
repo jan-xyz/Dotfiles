@@ -1,3 +1,5 @@
+-- TODO: migrate all keymaps to which-key
+-- TODO: add language specific folders and split it into individual files (incl. debugger config?)
 -- languageClients:
 local nvim_lsp = require'lspconfig'
 
@@ -11,7 +13,7 @@ local on_attach = function(client, bufnr)
 
   if client.resolved_capabilities.code_lens then
     vim.cmd [[autocmd CursorHold,CursorHoldI,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
-    map(bufnr, "n", "<F6>", "<Cmd>lua vim.lsp.codelens.run()<CR>", {silent = true;})
+    map(bufnr, "n", "lc", "<Cmd>lua vim.lsp.codelens.run()<CR>", {silent = true;})
   end
 
   if client.resolved_capabilities.document_formatting then
@@ -24,18 +26,18 @@ local on_attach = function(client, bufnr)
     map(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', OPTIONS)
   end
   if client.resolved_capabilities.rename then
-    map(bufnr, 'n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<CR>', OPTIONS)
+    map(bufnr, 'n', 'lr', '<cmd>lua vim.lsp.buf.rename()<CR>', OPTIONS)
   end
   if client.resolved_capabilities.code_action then
-    map(bufnr, 'n', '<F3>', ':Telescope lsp_code_actions<CR>', OPTIONS)
-    map(bufnr, 'v', '<F3>', ':Telescope lsp_range_code_actions<CR>', OPTIONS)
+    map(bufnr, 'n', 'la', ':Telescope lsp_code_actions<CR>', OPTIONS)
+    map(bufnr, 'v', 'la', ':Telescope lsp_range_code_actions<CR>', OPTIONS)
   end
   if client.resolved_capabilities.find_references then
-    map(bufnr, 'n', '<F4>', ':Telescope lsp_references<CR>', OPTIONS)
+    map(bufnr, 'n', 'gr', ':Telescope lsp_references<CR>', OPTIONS)
   end
-  map(bufnr, 'n', '<F5>', ':Telescope lsp_workspace_diagnostics<CR>', OPTIONS)
+  map(bufnr, 'n', 'ld', ':Telescope lsp_workspace_diagnostics<CR>', OPTIONS)
   if client.resolved_capabilities.document_symbol then
-    map(bufnr, 'n', '<F8>', ':Vista!!<CR>', OPTIONS)
+    map(bufnr, 'n', 'ls', ':Vista!!<CR>', OPTIONS)
   end
 end
 
