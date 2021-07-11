@@ -9,8 +9,6 @@ local on_attach = function(client, bufnr)
   require'completion'.on_attach()
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  print(vim.inspect(client.resolved_capabilities))
-
   if client.resolved_capabilities.code_lens then
     vim.cmd [[autocmd CursorHold,CursorHoldI,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
     map(bufnr, "n", "<F6>", "<Cmd>lua vim.lsp.codelens.run()<CR>", {silent = true;})
