@@ -6,6 +6,7 @@ OPTIONS = { noremap = true }
 
 -- Global callback functions for LSP shortcuts
 local on_attach = function(client, bufnr)
+  require'completion'.on_attach()
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   print(vim.inspect(client.resolved_capabilities))
