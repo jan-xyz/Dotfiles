@@ -20,10 +20,10 @@ return require('packer').startup({function(use)
   use {'nvim-telescope/telescope-dap.nvim', requires = 'mfussenegger/nvim-dap'}
 
   -- Window Add-Ons
-  use 'arcticicestudio/nord-vim'
+  use {'arcticicestudio/nord-vim', branch='master'}
   use 'majutsushi/tagbar'
   use 'liuchengxu/vista.vim'
-  use 'voldikss/vim-floaterm'
+  use {'akinsho/nvim-toggleterm.lua'}
   use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons' }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use { 'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons' }
