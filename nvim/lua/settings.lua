@@ -16,4 +16,11 @@ vim.bo.shiftwidth=2   -- Set default auto-indent width
 vim.bo.softtabstop=2  -- Set default virtual tabstop width
 vim.bo.tabstop=2      -- Set default tabstop width
 
+-- colorscheme
 vim.cmd 'colorscheme nord'  -- Set color scheme
+
+-- set Python env
+vim.g.python_host_prog = '/usr/local/bin/python3'
+vim.g.python3_host_prog = '/usr/local/bin/python3'
+
+vim.opt.completeopt = "menuone,noinsert,noselect"
