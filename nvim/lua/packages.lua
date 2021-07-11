@@ -3,6 +3,16 @@ return require('packer').startup({function(use)
   use { 'famiu/nvim-reload',  requires='nvim-lua/plenary.nvim' }
   use 'nvim-lua/lsp_extensions.nvim'
   use 'neovim/nvim-lspconfig'
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
 
   -- Debugger
   use 'mfussenegger/nvim-dap'
@@ -10,7 +20,7 @@ return require('packer').startup({function(use)
   use {'nvim-telescope/telescope-dap.nvim', requires = {{'mfussenegger/nvim-dap'}, {'nvim-telescope/telescope.nvim'}}}
 
   -- Window Add-Ons
-  use { 'arcticicestudio/nord-vim', branch= 'develop' }
+  use 'arcticicestudio/nord-vim'
   use 'majutsushi/tagbar'
   use 'liuchengxu/vista.vim'
   use 'voldikss/vim-floaterm'
