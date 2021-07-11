@@ -46,7 +46,6 @@ return require('packer').startup({function(use)
 
   -- autocompletion and linting
   use 'bufbuild/vim-buf'
-  use 'dense-analysis/ale'
   use 'nvim-lua/completion-nvim'
 
   -- Snippet support
