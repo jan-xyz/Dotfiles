@@ -129,6 +129,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/nvim-reload"
   },
+  ["nvim-toggleterm.lua"] = {
+    loaded = true,
+    path = "/Users/jan/.local/share/nvim/site/pack/packer/start/nvim-toggleterm.lua"
+  },
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
@@ -165,10 +169,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/vim-buf"
   },
-  ["vim-floaterm"] = {
-    loaded = true,
-    path = "/Users/jan/.local/share/nvim/site/pack/packer/start/vim-floaterm"
-  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/vim-fugitive"
@@ -193,14 +193,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: which-key.nvim
-time([[Config for which-key.nvim]], true)
-try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\0", "config", "which-key.nvim")
-time([[Config for which-key.nvim]], false)
 -- Config for: gitsigns.nvim
 time([[Config for gitsigns.nvim]], true)
 try_loadstring("\27LJ\2\nD\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\nnumhl\2\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
 time([[Config for gitsigns.nvim]], false)
+-- Config for: which-key.nvim
+time([[Config for which-key.nvim]], true)
+try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\0", "config", "which-key.nvim")
+time([[Config for which-key.nvim]], false)
 if should_profile then save_profiles() end
 
 END
