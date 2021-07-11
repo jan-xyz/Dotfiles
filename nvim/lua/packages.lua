@@ -17,7 +17,7 @@ return require('packer').startup({function(use)
   -- Debugger
   use 'mfussenegger/nvim-dap'
   use {'theHamsta/nvim-dap-virtual-text', requires = {'mfussenegger/nvim-dap'}}
-  use {'nvim-telescope/telescope-dap.nvim', requires = {{'mfussenegger/nvim-dap'}, {'nvim-telescope/telescope.nvim'}}}
+  use {'nvim-telescope/telescope-dap.nvim', requires = 'mfussenegger/nvim-dap'}
 
   -- Window Add-Ons
   use 'arcticicestudio/nord-vim'
@@ -31,9 +31,18 @@ return require('packer').startup({function(use)
   use { 'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}}
 
   -- Git support
-  use 'airblade/vim-gitgutter'
   use 'kristijanhusak/defx-git'
   use 'tpope/vim-fugitive'
+  use {'lewis6991/gitsigns.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    },
+    config = function()
+      require('gitsigns').setup{
+        numhl = true,
+      }
+    end
+  }
 
   -- autocompletion and linting
   use 'bufbuild/vim-buf'
