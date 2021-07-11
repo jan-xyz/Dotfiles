@@ -1,5 +1,7 @@
-
-vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true })
+local wk = require("which-key")
+wk.register({
+  e = { "<cmd>NvimTreeToggle<CR>", "toggle file explorer", noremap=true },
+}, { prefix = "<leader>" })
 
 
 vim.g.nvim_tree_auto_open = 1

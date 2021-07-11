@@ -1,3 +1,9 @@
-
-vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>lua require(\'telescope.builtin\').find_files()<cr>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>lua require(\'telescope.builtin\').live_grep()<cr>', { noremap = true })
+local wk = require("which-key")
+wk.register({
+  f = {
+    name = "file", -- optional group name
+    f = { "<cmd>Telescope find_files<cr>", "Find File", noremap=true },
+    g = { "<cmd>Telescope live_grep<cr>", "Find in File", noremap=true },
+    r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File", noremap=true,},
+  },
+}, { prefix = "<leader>" })

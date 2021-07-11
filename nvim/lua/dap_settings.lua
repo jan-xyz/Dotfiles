@@ -1,13 +1,21 @@
 local dap = require('dap')
 
 -- keymap
-local map = vim.api.nvim_set_keymap
-OPTIONS = { noremap = true, silent = true }
-map("n", "<leader>b", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", {silent = true;})
-map("n", "<leader>c", "<cmd>lua require'dap'.continue()<CR>", {silent = true;})
-map("n", "<leader>i", "<cmd>lua require'dap'.step_into()<CR>", {silent = true;})
-map("n", "<leader>u", "<cmd>lua require'dap'.step_out()<CR>", {silent = true;})
-map("n", "<leader>o", "<cmd>lua require'dap'.step_over()<CR>", {silent = true;})
+local wk = require("which-key")
+wk.register({
+  d = {
+    name = "debugger", -- optional group name
+    b = { "<cmd>lua require'dap'.toggle_breakpoint()<CR>", "toggle breakpoint", noremap=true },
+    c = { "<cmd>lua require'dap'.continue()<CR>", "start/continue", noremap=true },
+    i = { "<cmd>lua require'dap'.step_into()<CR>", "step into", noremap=true,},
+    u = { "<cmd>lua require'dap'.step_out()<CR>", "step out", noremap=true,},
+    o = { "<cmd>lua require'dap'.step_over()<CR>", "step over", noremap=true,},
+    r = { "<cmd>lua require'dap'.repl.open()<CR>", "REPL", noremap=true,},
+    p = { "<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", "set log point", noremap=true,},
+    e = { "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", "set conditional break point", noremap=true,},
+    l = { "<cmd>lua require'dap'.list_breakpoints()<CR>", "list breakpoints", noremap=true,},
+  },
+}, { prefix = "<leader>" })
 
 -- add autocompletion to DAP repl
 vim.cmd [[autocmd FileType dap-repl lua require('dap.ext.autocompl').attach()]]
