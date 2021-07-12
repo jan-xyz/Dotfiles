@@ -1,4 +1,3 @@
--- TODO: migrate all keymaps to which-key
 -- TODO: add language specific folders and split it into individual files (incl. debugger config?)
 -- languageClients:
 local nvim_lsp = require'lspconfig'
