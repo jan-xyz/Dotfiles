@@ -2,43 +2,46 @@
 -- TODO: add language specific folders and split it into individual files (incl. debugger config?)
 -- languageClients:
 local nvim_lsp = require'lspconfig'
-
-local map = vim.api.nvim_buf_set_keymap
-OPTIONS = { noremap = true }
+local wk = require("which-key")
 
 -- Global callback functions for LSP shortcuts
 local on_attach = function(client, bufnr)
   require'completion'.on_attach()
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
+  local normal_mode_keymap = {
+    d = {"<cmd>Telescope lsp_workspace_diagnostics<CR>", "diagnostics", noremap=true }
+  }
+  local visual_mode_keymap = {}
   if client.resolved_capabilities.code_lens then
     vim.cmd [[autocmd CursorHold,CursorHoldI,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
-    map(bufnr, "n", "lc", "<Cmd>lua vim.lsp.codelens.run()<CR>", {silent = true;})
+    normal_mode_keymap["c"] = {"<Cmd>lua vim.lsp.codelens.run()<CR>", "codelens", noremap=true }
   end
 
   if client.resolved_capabilities.document_formatting then
     vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 500)]]
   end
   if client.resolved_capabilities.goto_definition then
-    map(bufnr, 'n', 'gd', ':Telescope lsp_definitions<CR>', OPTIONS)
+    wk.register({d={"<cmd>Telescope lsp_definitions<CR>", "Definition", noremap=true }}, { prefix = "g" })
   end
   if client.resolved_capabilities.hover then
-    map(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', OPTIONS)
+    wk.register({K={"<cmd>lua vim.lsp.buf.hover()<CR>", "Definition", noremap=true }}, {})
   end
   if client.resolved_capabilities.rename then
-    map(bufnr, 'n', 'lr', '<cmd>lua vim.lsp.buf.rename()<CR>', OPTIONS)
+    normal_mode_keymap["r"] = {"<Cmd>lua vim.lsp.buf.rename()<CR>", "rename", noremap=true }
   end
   if client.resolved_capabilities.code_action then
-    map(bufnr, 'n', 'la', ':Telescope lsp_code_actions<CR>', OPTIONS)
-    map(bufnr, 'v', 'la', ':Telescope lsp_range_code_actions<CR>', OPTIONS)
+    visual_mode_keymap["a"] = {":Telescope lsp_range_code_actions<CR>", "range code actions", noremap=true }
+    normal_mode_keymap["a"] = {":Telescope lsp_code_actions<CR>", "code actions", noremap=true }
   end
   if client.resolved_capabilities.find_references then
-    map(bufnr, 'n', 'gr', ':Telescope lsp_references<CR>', OPTIONS)
+    wk.register({r={"<cmd>Telescope lsp_references<CR>", "References", noremap=true }}, { prefix = "g" })
   end
-  map(bufnr, 'n', 'ld', ':Telescope lsp_workspace_diagnostics<CR>', OPTIONS)
   if client.resolved_capabilities.document_symbol then
-    map(bufnr, 'n', 'ls', ':Vista!!<CR>', OPTIONS)
+    normal_mode_keymap["s"] = {"<cmd>Vista!!<CR>", "symbols", noremap=true }
   end
+  wk.register(normal_mode_keymap, { prefix = "l" })
+  wk.register(visual_mode_keymap, { mode="v", prefix = "l" })
 end
 
 --  C/C++
