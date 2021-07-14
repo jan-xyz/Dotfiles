@@ -1,9 +1,11 @@
 local wk = require("which-key")
 wk.register({
-  f = {
-    name = "file", -- optional group name
-    f = { "<cmd>Telescope find_files<cr>", "Find File", noremap=true },
-    g = { "<cmd>Telescope live_grep<cr>", "Find in File", noremap=true },
-    r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File", noremap=true,},
-  },
-}, { prefix = "<leader>" })
+	f = {
+		name = "file", -- optional group name
+		f = { "<cmd>Telescope find_files<cr>", "Find File", noremap = true },
+		g = { "<cmd>Telescope live_grep<cr>", "Find in File", noremap = true },
+		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File", noremap = true },
+	},
+}, {
+	prefix = "<leader>",
+})
