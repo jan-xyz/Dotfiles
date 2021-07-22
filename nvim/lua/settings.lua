@@ -24,3 +24,7 @@ vim.g.python_host_prog = "/usr/local/bin/python3"
 vim.g.python3_host_prog = "/usr/local/bin/python3"
 
 vim.opt.completeopt = "menuone,noinsert,noselect"
+
+-- Key maps
+local wk = require("which-key")
+wk.register({ g = { "<cmd>Neogit<CR>", "Git", noremap = true } }, { prefix = "g" })
