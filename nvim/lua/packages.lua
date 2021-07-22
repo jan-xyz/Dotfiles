@@ -32,13 +32,10 @@ return require("packer").startup({
 		use({ "nvim-telescope/telescope.nvim", requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } } })
 
 		-- Git support
-		use("kristijanhusak/defx-git")
-		use("tpope/vim-fugitive")
+		use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
 		use({
 			"lewis6991/gitsigns.nvim",
-			requires = {
-				"nvim-lua/plenary.nvim",
-			},
+			requires = { "nvim-lua/plenary.nvim" },
 			config = function()
 				require("gitsigns").setup({
 					numhl = true,
