@@ -1,17 +1,14 @@
-" Automatically generated packer.nvim plugin loader code
+-- Automatically generated packer.nvim plugin loader code
 
-if !has('nvim-0.5')
-  echohl WarningMsg
-  echom "Invalid Neovim version for packer.nvim!"
-  echohl None
-  finish
-endif
+if vim.api.nvim_call_function('has', {'nvim-0.5'}) ~= 1 then
+  vim.api.nvim_command('echohl WarningMsg | echom "Invalid Neovim version for packer.nvim! | echohl None"')
+  return
+end
 
-packadd packer.nvim
+vim.api.nvim_command('packadd packer.nvim')
 
-try
+local no_errors, error_msg = pcall(function()
 
-lua << END
   local time
   local profile_info
   local should_profile = false
@@ -76,10 +73,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/completion-nvim"
   },
-  ["defx-git"] = {
-    loaded = true,
-    path = "/Users/jan/.local/share/nvim/site/pack/packer/start/defx-git"
-  },
   ["gitsigns.nvim"] = {
     config = { "\27LJ\2\nD\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\nnumhl\2\nsetup\rgitsigns\frequire\0" },
     loaded = true,
@@ -100,6 +93,10 @@ _G.packer_plugins = {
   ["lualine.nvim"] = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+  },
+  neogit = {
+    loaded = true,
+    path = "/Users/jan/.local/share/nvim/site/pack/packer/start/neogit"
   },
   ["nord-vim"] = {
     loaded = true,
@@ -165,10 +162,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/vim-buf"
   },
-  ["vim-fugitive"] = {
-    loaded = true,
-    path = "/Users/jan/.local/share/nvim/site/pack/packer/start/vim-fugitive"
-  },
   ["vim-vsnip"] = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/vim-vsnip"
@@ -199,11 +192,8 @@ try_loadstring("\27LJ\2\nD\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B
 time([[Config for gitsigns.nvim]], false)
 if should_profile then save_profiles() end
 
-END
+end)
 
-catch
-  echohl ErrorMsg
-  echom "Error in packer_compiled: " .. v:exception
-  echom "Please check your config for correctness"
-  echohl None
-endtry
+if not no_errors then
+  vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: '..error_msg..'" | echom "Please check your config for correctness" | echohl None')
+end
