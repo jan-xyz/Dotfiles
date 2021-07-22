@@ -86,9 +86,8 @@ nvim_lsp.efm.setup({
 })
 
 -- Python
-nvim_lsp.pyls.setup({
+nvim_lsp.pylsp.setup({
 	on_attach = on_attach,
-	cmd = { "/usr/local/bin/python3", "-m", "pyls" },
 })
 
 -- Rust

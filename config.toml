@@ -75,7 +75,8 @@ packages = [
   "pynvim",
   "mypy",
   "pyls-black",
-  "python-language-server",
+  "yapf",
+  "python-lsp-server",
   "virtualenvwrapper",
 ]
 
