@@ -56,6 +56,5 @@
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter.notebook.ipynb"
     },
-    "python.defaultInterpreterPath": "/usr/local/opt/python@3.9/bin/python3.9",
     "rust-client.engine": "rust-analyzer"
 }
