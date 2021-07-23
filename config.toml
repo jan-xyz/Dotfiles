@@ -103,8 +103,8 @@ extensions = [
 
 [npm]
 packages = [
-  "dockerfile-language-server-nodejs",
   "bash-language-server",
+  "dockerfile-language-server-nodejs",
   "vim-language-server",
   "yaml-language-server",
 ]
