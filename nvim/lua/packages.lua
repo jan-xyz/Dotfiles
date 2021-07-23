@@ -32,7 +32,6 @@ return require("packer").startup({
 		use({ "nvim-telescope/telescope.nvim", requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } } })
 
 		-- Git support
-		use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
 		use({
 			"lewis6991/gitsigns.nvim",
 			requires = { "nvim-lua/plenary.nvim" },

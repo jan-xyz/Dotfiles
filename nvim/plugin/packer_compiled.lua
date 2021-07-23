@@ -94,10 +94,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/lualine.nvim"
   },
-  neogit = {
-    loaded = true,
-    path = "/Users/jan/.local/share/nvim/site/pack/packer/start/neogit"
-  },
   ["nord-vim"] = {
     loaded = true,
     path = "/Users/jan/.local/share/nvim/site/pack/packer/start/nord-vim"
