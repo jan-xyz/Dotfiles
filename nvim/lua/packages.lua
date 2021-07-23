@@ -24,7 +24,7 @@ return require("packer").startup({
 		use({ "arcticicestudio/nord-vim", branch = "master" })
 		use("majutsushi/tagbar")
 		use("liuchengxu/vista.vim")
-		use({ "akinsho/nvim-toggleterm.lua" })
+		use({ "voldikss/vim-floaterm" })
 		use({ "kyazdani42/nvim-tree.lua", requires = "kyazdani42/nvim-web-devicons" })
 		use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 		use({ "akinsho/nvim-bufferline.lua", requires = "kyazdani42/nvim-web-devicons" })
