@@ -24,3 +24,8 @@ vim.g.python_host_prog = "/usr/local/bin/python3"
 vim.g.python3_host_prog = "/usr/local/bin/python3"
 
 vim.opt.completeopt = "menuone,noinsert,noselect"
+
+-- Ale /Buf
+vim.g.ale_linters = { proto = { "buf-lint" } }
+vim.g.ale_lint_on_text_changed = "never"
+vim.g.ale_linters_explicit = 1
