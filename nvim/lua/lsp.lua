@@ -29,7 +29,7 @@ local on_attach = function(client, bufnr)
 		wk.register({ d = { "<cmd>Telescope lsp_definitions<CR>", "Definition", noremap = true } }, { prefix = "g" })
 	end
 	if client.resolved_capabilities.hover then
-		wk.register({ K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Definition", noremap = true } }, {})
+		wk.register({ K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover", noremap = true } }, {})
 	end
 	if client.resolved_capabilities.rename then
 		normal_mode_keymap["r"] = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "rename", noremap = true }
