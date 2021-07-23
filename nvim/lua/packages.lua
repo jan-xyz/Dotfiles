@@ -4,6 +4,7 @@ return require("packer").startup({
 		use({ "famiu/nvim-reload", requires = "nvim-lua/plenary.nvim" })
 		use("nvim-lua/lsp_extensions.nvim")
 		use("neovim/nvim-lspconfig")
+		use("folke/lua-dev.nvim")
 		use({
 			"folke/which-key.nvim",
 			config = function()
@@ -43,16 +44,9 @@ return require("packer").startup({
 		})
 
 		-- autocompletion and linting
+		use("dense-analysis/ale")
 		use("bufbuild/vim-buf")
 		use("nvim-lua/completion-nvim")
-
-		-- Snippet support
-		use("hrsh7th/vim-vsnip")
-		use("hrsh7th/vim-vsnip-integ")
-
-		-- language specific support
-		use("udalov/kotlin-vim")
-		use("folke/lua-dev.nvim")
 	end,
 	config = {
 		display = {
