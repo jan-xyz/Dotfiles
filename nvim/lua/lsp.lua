@@ -1,4 +1,5 @@
 -- TODO: add language specific folders and split it into individual files (incl. debugger config?)
+-- https://github.com/neovim/nvim-lspconfig
 -- languageClients:
 local nvim_lsp = require("lspconfig")
 local wk = require("which-key")
