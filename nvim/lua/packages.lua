@@ -15,6 +15,7 @@ return require("packer").startup({
 				})
 			end,
 		})
+		use("felipec/vim-sanegx")
 
 		-- Debugger
 		use("mfussenegger/nvim-dap")
