@@ -2,8 +2,6 @@ return require("packer").startup({
 	function(use)
 		-- UX
 		use({ "famiu/nvim-reload", requires = "nvim-lua/plenary.nvim" })
-		use("nvim-lua/lsp_extensions.nvim")
-		use("neovim/nvim-lspconfig")
 		use("folke/lua-dev.nvim")
 		use({
 			"folke/which-key.nvim",
@@ -16,6 +14,11 @@ return require("packer").startup({
 			end,
 		})
 		use("felipec/vim-sanegx")
+
+		-- LSP
+		use("neovim/nvim-lspconfig")
+		use("nvim-lua/lsp_extensions.nvim")
+		use("nvim-lua/completion-nvim")
 
 		-- Debugger
 		use("mfussenegger/nvim-dap")
@@ -48,7 +51,6 @@ return require("packer").startup({
 		-- autocompletion and linting
 		use("dense-analysis/ale")
 		use("bufbuild/vim-buf")
-		use("nvim-lua/completion-nvim")
 	end,
 	config = {
 		display = {
