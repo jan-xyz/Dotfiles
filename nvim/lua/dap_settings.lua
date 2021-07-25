@@ -24,6 +24,14 @@ wk.register({
 		l = { "<cmd>lua require'dap'.list_breakpoints()<CR>", "list breakpoints", noremap = true },
 	},
 }, {
+	mode = "n",
+	prefix = "<leader>",
+})
+
+wk.register({
+	c = { "<cmd>lua require'dap'.continue()<CR>", "start/continue", noremap = true },
+}, {
+	mode = "v",
 	prefix = "<leader>",
 })
 
@@ -74,14 +82,14 @@ dap.configurations.go = {
 }
 
 -- Rust support
-dap.adapters.lldb({
+dap.adapters.lldb = {
 	type = "executable",
 	command = "/usr/local/Cellar/llvm/12.0.1/bin/lldb-vscode",
 	name = "lldb",
-})
+}
 dap.configurations.rust = {
 	{
-		name = "Launch",
+		name = "Debug binary",
 		type = "lldb",
 		request = "launch",
 		program = function()
@@ -102,6 +110,23 @@ dap.configurations.rust = {
 		-- But you should be aware of the implications:
 		-- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
 		runInTerminal = false,
+	},
+	{
+		type = "lldb",
+		request = "launch",
+		name = "Debug selected unit test",
+		cargo = {
+			args = {
+				"test",
+				"--no-run",
+			},
+			filter = {
+				name = "libthat",
+				kind = "lib",
+			},
+		},
+		args = { "${selectedText}" },
+		cwd = "${workspaceFolder}",
 	},
 }
 
