@@ -43,7 +43,7 @@ dap.configurations.go = {
 		type = "go",
 		name = "Debug current file",
 		request = "launch",
-		program = "${file}",
+		program = "${fileDirname}",
 	},
 	{
 		type = "go",
