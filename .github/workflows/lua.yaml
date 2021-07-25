@@ -1,0 +1,19 @@
+name: lua
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/install@v0.1
+        with:
+          crate: stylua
+          version: latest
+      - name: lint
+        run: stylua --check nvim/init.lua nvim/lua/**/*.lua
