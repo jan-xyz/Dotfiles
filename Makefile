@@ -19,6 +19,9 @@ lint:
 staticcheck:
 	go run honnef.co/go/tools/cmd/staticcheck ./internal/...
 
+stylua:
+	stylua --check -- $$(find . -not -path "./submodules/*" -not -path "./nvim/plugin/*" -type f -name *.lua)
+
 # Dotfiles usage
 
 download: dotfiles-$(version)
