@@ -8,4 +8,7 @@ wk.register({
 -- keymaps in terminal mode
 wk.register({
 	t = { "<cmd>FloatermToggle<CR>", "toggle terminal", noremap = true },
-}, { mode = "t", prefix = "<leader>" })
+}, {
+	mode = "t",
+	prefix = "<leader>",
+})
