@@ -32,7 +32,7 @@ dap.configurations.rust = {
 		type = "lldb",
 		request = "launch",
 		program = function()
-			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
 		end,
 		cwd = "${workspaceFolder}",
 		stopOnEntry = false,
@@ -53,7 +53,7 @@ dap.configurations.rust = {
 	{
 		type = "lldb",
 		request = "launch",
-		name = "Debug selected unit test",
+		name = "Debug unit test",
 		cargo = {
 			args = {
 				"test",
@@ -64,7 +64,7 @@ dap.configurations.rust = {
 				kind = "lib",
 			},
 		},
-		args = { "${selectedText}" },
+		args = {},
 		cwd = "${workspaceFolder}",
 	},
 }
