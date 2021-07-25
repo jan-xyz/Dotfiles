@@ -16,4 +16,4 @@ jobs:
           crate: stylua
           version: latest
       - name: lint
-        run: stylua --check nvim/init.lua nvim/lua/**/*.lua
+        run: make stylua
