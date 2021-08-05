@@ -54,6 +54,7 @@ bottles = [
   "signal",
   "slack",
   "spotify",
+  "stylua",
   "subversion",
   "telegram",
   "visual-studio-code",
