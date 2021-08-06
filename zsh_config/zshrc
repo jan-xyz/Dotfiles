@@ -4,12 +4,18 @@
 # Authors:
 #   Jan Steinke <jan.steinke@gmail.com>
 #
+# Load Antigen configurations
+source /usr/local/share/antigen/antigen.zsh
+antigen init ~/.antigenrc
 
-# custom themes
-fpath=(~/.zsh/custom_themes $fpath)
-autoload -U promptinit && promptinit
+alias vim=nvim
+alias diff=colordiff
 
-setopt PROMPT_SUBST
+# Environment Vars
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export PATH=/usr/local/bin:$PATH
+
 # Theme config
 BULLETTRAIN_PROMPT_ORDER=(
   time
@@ -27,47 +33,6 @@ BULLETTRAIN_DIR_BG=magenta
 BULLETTRAIN_AWS_BG=red
 BULLETTRAIN_KCTX_BG=blue
 
-# Source Prezto
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
-
-# vim config
-bindkey -v
-bindkey '^r' history-incremental-search-backward
-bindkey '^w' backward-kill-word
-
-alias vim=nvim
-alias diff=colordiff
-
-# Environment Vars
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-export KEYTIMEOUT=1 # lag between switching vi modes
-export PATH=/usr/local/bin:$PATH
-
-# python configuration
-if command -v pyenv > /dev/null 2>&1
-then
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-fi
-export WORKON_HOME=~/Envs
-
-# Go configuration (installed with brew)
-export GOPATH=$HOME/Go
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
-
-# Rust configuration
-export CARGO_NET_GIT_FETCH_WITH_CLI=true
-
-# completion
-fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
-source <(kubectl completion zsh)
-unsetopt correct
 
 # AWS
 if [ -f ~/.aws/config ]; then

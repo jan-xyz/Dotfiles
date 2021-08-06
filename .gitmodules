@@ -1,13 +1,3 @@
-[submodule "prezto"]
-	path = submodules/prezto
-	url = https://github.com/sorin-ionescu/prezto.git
-	branch = master
-[submodule "submodules/docker-cli"]
-	path = submodules/docker-cli
-	url = git@github.com:docker/cli.git
-[submodule "submodules/docker-compose"]
-	path = submodules/docker-compose
-	url = git@github.com:docker/compose.git
 [submodule "submodules/packer"]
 	path = submodules/packer
 	url = git@github.com:wbthomason/packer.nvim.git
