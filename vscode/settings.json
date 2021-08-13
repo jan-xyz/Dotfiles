@@ -32,6 +32,7 @@
             "source.organizeImports": true
         }
     },
+    "jupyter.maxOutputSize": 1200,
     "files.eol": "\n",
     "editor.fontFamily": "\"Fira Code\", Menlo, \"DejaVu Sans Mono\", Consolas, \"Lucida Console\", monospace",
     "editor.fontLigatures": true,
