@@ -57,5 +57,6 @@
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter.notebook.ipynb"
     },
-    "rust-client.engine": "rust-analyzer"
+    "rust-client.engine": "rust-analyzer",
+    "redhat.telemetry.enabled": false
 }
