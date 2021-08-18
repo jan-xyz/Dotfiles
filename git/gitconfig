@@ -32,3 +32,5 @@
 
 [submodule]
 	recurse = true
+[init]
+	defaultBranch = main
