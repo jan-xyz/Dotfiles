@@ -9,7 +9,12 @@ use({
 -- keymaps
 local wk = require("which-key")
 wk.register({
-	g = { "<cmd>Neogit<CR>", "Neogit", noremap = true },
+	g = {
+		name = "git",
+		n = { "<cmd>Neogit<CR>", "Neogit", noremap = true },
+		b = { "<cmd>Gitsign blame_line<CR>", "blame", noremap = true },
+		d = { "<cmd>Gitsign diffthis<CR>", "blame", noremap = true },
+	},
 }, {
 	mode = "n",
 	prefix = "<leader>",
