@@ -35,11 +35,7 @@ function M.on_attach(client, bufnr)
 		normal_mode_keymap["r"] = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "rename", noremap = true }
 	end
 	if client.resolved_capabilities.code_action then
-		visual_mode_keymap["a"] = {
-			":'<,'>lua vim.lsp.buf.range_code_action()<CR>",
-			"range code actions",
-			noremap = true,
-		}
+		visual_mode_keymap["a"] = { ":'<,'>Telescope lsp_range_code_actions<CR>", "range code actions", noremap = true }
 		normal_mode_keymap["a"] = { ":Telescope lsp_code_actions<CR>", "code actions", noremap = true }
 	end
 	if client.resolved_capabilities.find_references then
