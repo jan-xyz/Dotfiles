@@ -43,7 +43,16 @@ use({ "voldikss/vim-floaterm" })
 use({ "kyazdani42/nvim-tree.lua", requires = "kyazdani42/nvim-web-devicons" })
 use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 use({ "akinsho/nvim-bufferline.lua", requires = "kyazdani42/nvim-web-devicons" })
-use({ "hoob3rt/lualine.nvim", requires = "kyazdani42/nvim-web-devicons" })
+use({
+	"glepnir/galaxyline.nvim",
+	branch = "main",
+	-- your statusline
+	config = function()
+		require("statusline_config")
+	end,
+	-- some optional icons
+	requires = { "kyazdani42/nvim-web-devicons", opt = true },
+})
 use({ "nvim-telescope/telescope.nvim", requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } } })
 
 -- Git support
