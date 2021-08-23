@@ -18,7 +18,7 @@ nvim_lsp.sumneko_lua.setup(luadev)
 nvim_lsp.efm.setup({
 	on_attach = lsp.on_attach,
 	init_options = { documentFormatting = true },
-	filetypes = { "sh", "lua" },
+	filetypes = { "sh", "lua", "markdown" },
 	settings = {
 		rootMarkers = { ".git/" },
 		languages = {
@@ -35,6 +35,17 @@ nvim_lsp.efm.setup({
 			},
 			lua = {
 				{ formatCommand = "stylua -", formatStdin = true },
+			},
+			markdown = {
+				{
+					lintCommand = "markdownlint --stdin",
+					lintStdin = true,
+					lintFormats = {
+						"%f:%l:%c %m",
+						"%f:%l %m",
+						"%f: %l: %m",
+					},
+				},
 			},
 		},
 	},

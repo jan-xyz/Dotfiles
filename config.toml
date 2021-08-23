@@ -41,6 +41,7 @@ bottles = [
   "libgit2",
   "llvm",
   "lua-language-server",
+  "markdownlint-cli",
   "neovim",
   "node",
   "python@3.9",
