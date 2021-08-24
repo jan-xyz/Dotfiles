@@ -29,3 +29,15 @@ vim.opt.completeopt = "menuone,noinsert,noselect"
 vim.g.ale_linters = { proto = { "buf-lint" } }
 vim.g.ale_lint_on_text_changed = "never"
 vim.g.ale_linters_explicit = 1
+
+-- keymaps
+local wk = require("which-key")
+wk.register({
+	b = {
+		name = "buffer",
+		d = { "<cmd>bd<CR>", "delete", noremap = true },
+	},
+}, {
+	mode = "n",
+	prefix = "<leader>",
+})
