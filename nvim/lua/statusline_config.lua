@@ -12,6 +12,12 @@ local colors = {
 	blue = "#5E81AC",
 	cyan = "#88C0D0",
 	magenta = "#8FBCBB",
+
+	-- TODO:
+	black = "#4C566A",
+	bq_statusline = "#4C566A",
+	white = "#ECEFF4",
+	bg = "#ECEFF4",
 }
 local condition = require("galaxyline.condition")
 local fileinfo = require("galaxyline.provider_fileinfo")
