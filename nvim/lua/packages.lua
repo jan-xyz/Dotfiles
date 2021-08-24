@@ -31,7 +31,7 @@ use({
 use("neovim/nvim-lspconfig")
 use("nvim-lua/lsp_extensions.nvim")
 use("nvim-lua/completion-nvim")
-use({ ft = { "rust" }, "simrat39/rust-tools.nvim" }) -- LSP server extensions for Rust
+use("simrat39/rust-tools.nvim") -- LSP server extensions for Rust
 
 -- Debugger
 use("mfussenegger/nvim-dap")
