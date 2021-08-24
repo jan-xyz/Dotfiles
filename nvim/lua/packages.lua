@@ -22,7 +22,6 @@ use({
 	end,
 })
 use("felipec/vim-sanegx")
-use("rmagatti/auto-session")
 use({
 	"norcalli/nvim-colorizer.lua",
 })
