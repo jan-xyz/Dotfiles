@@ -23,12 +23,15 @@ use({
 })
 use("felipec/vim-sanegx")
 use("rmagatti/auto-session")
+use({
+	"norcalli/nvim-colorizer.lua",
+})
 
 -- LSP
 use("neovim/nvim-lspconfig")
 use("nvim-lua/lsp_extensions.nvim")
 use("nvim-lua/completion-nvim")
-use("simrat39/rust-tools.nvim") -- LSP server extensions for Rust
+use({ ft = { "rust" }, "simrat39/rust-tools.nvim" }) -- LSP server extensions for Rust
 
 -- Debugger
 use("mfussenegger/nvim-dap")
@@ -50,7 +53,6 @@ use({
 	config = function()
 		require("statusline_config")
 	end,
-	-- some optional icons
 	requires = { "kyazdani42/nvim-web-devicons", opt = true },
 })
 use({ "nvim-telescope/telescope.nvim", requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } } })

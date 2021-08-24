@@ -22,3 +22,5 @@ require("languages.rust")
 require("languages.scala")
 require("languages.vim")
 require("languages.yaml")
+
+require("colorizer").setup()
