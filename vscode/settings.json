@@ -55,7 +55,7 @@
     "python.showStartPage": false,
     "liveshare.authenticationProvider": "GitHub",
     "workbench.editorAssociations": {
-        "*.ipynb": "jupyter.notebook.ipynb"
+        "*.ipynb": "jupyter-notebook"
     },
     "rust-client.engine": "rust-analyzer",
     "redhat.telemetry.enabled": false
