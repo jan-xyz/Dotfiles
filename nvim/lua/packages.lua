@@ -66,7 +66,3 @@ use({
 		})
 	end,
 })
-
--- autocompletion and linting
-use("dense-analysis/ale")
-use("bufbuild/vim-buf")
