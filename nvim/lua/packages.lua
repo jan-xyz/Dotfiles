@@ -10,7 +10,6 @@ packer.init({
 
 -- UX
 use({ "famiu/nvim-reload", requires = "nvim-lua/plenary.nvim" })
-use("folke/lua-dev.nvim")
 use({
 	"folke/which-key.nvim",
 	config = function()
@@ -26,18 +25,7 @@ use({
 	"norcalli/nvim-colorizer.lua",
 })
 
--- LSP
-use("neovim/nvim-lspconfig")
-use("nvim-lua/lsp_extensions.nvim")
-use("nvim-lua/completion-nvim")
-use("simrat39/rust-tools.nvim") -- LSP server extensions for Rust
-
--- Debugger
-use("mfussenegger/nvim-dap")
-use({ "theHamsta/nvim-dap-virtual-text", requires = { "mfussenegger/nvim-dap" } })
-use({ "nvim-telescope/telescope-dap.nvim", requires = "mfussenegger/nvim-dap" })
-
--- Window Add-Ons
+-- UI
 use({ "arcticicestudio/nord-vim", branch = "master" })
 use("majutsushi/tagbar")
 use("liuchengxu/vista.vim")
@@ -55,6 +43,19 @@ use({
 	requires = { "kyazdani42/nvim-web-devicons", opt = true },
 })
 use({ "nvim-telescope/telescope.nvim", requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } } })
+use("rinx/nvim-minimap")
+
+-- LSP
+use("neovim/nvim-lspconfig")
+use("nvim-lua/lsp_extensions.nvim")
+use("nvim-lua/completion-nvim")
+use("simrat39/rust-tools.nvim") -- LSP server extensions for Rust
+use("folke/lua-dev.nvim")
+
+-- Debugger
+use("mfussenegger/nvim-dap")
+use({ "theHamsta/nvim-dap-virtual-text", requires = { "mfussenegger/nvim-dap" } })
+use({ "nvim-telescope/telescope-dap.nvim", requires = "mfussenegger/nvim-dap" })
 
 -- Git support
 use({
