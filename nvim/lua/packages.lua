@@ -43,7 +43,6 @@ use({
 	requires = { "kyazdani42/nvim-web-devicons", opt = true },
 })
 use({ "nvim-telescope/telescope.nvim", requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } } })
-use("rinx/nvim-minimap")
 
 -- LSP
 use("neovim/nvim-lspconfig")
