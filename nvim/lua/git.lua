@@ -10,10 +10,10 @@ use({
 local wk = require("which-key")
 wk.register({
 	g = {
-		name = "git",
+		name = "Git",
 		n = { "<cmd>Neogit<CR>", "Neogit", noremap = true },
-		b = { "<cmd>Gitsign blame_line<CR>", "blame", noremap = true },
-		d = { "<cmd>Gitsign diffthis<CR>", "blame", noremap = true },
+		b = { "<cmd>Gitsign blame_line<CR>", "Blame", noremap = true },
+		d = { "<cmd>Gitsign diffthis<CR>", "Diff", noremap = true },
 	},
 }, {
 	mode = "n",
