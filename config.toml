@@ -29,6 +29,7 @@ bottles = [
   "gradle-completion",
   "htop",
   "iterm2",
+  "julia",
   "mas",
   "openjdk",
   "openjdk@11",
