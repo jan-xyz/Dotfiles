@@ -2,16 +2,16 @@
 local wk = require("which-key")
 wk.register({
 	d = {
-		name = "debugger", -- optional group name
-		b = { "<cmd>lua require'dap'.toggle_breakpoint()<CR>", "toggle breakpoint", noremap = true },
-		c = { "<cmd>lua require'dap'.continue()<CR>", "start/continue", noremap = true },
-		i = { "<cmd>lua require'dap'.step_into()<CR>", "step into", noremap = true },
-		u = { "<cmd>lua require'dap'.step_out()<CR>", "step out", noremap = true },
-		o = { "<cmd>lua require'dap'.step_over()<CR>", "step over", noremap = true },
+		name = "Debugger", -- optional group name
+		b = { "<cmd>lua require'dap'.toggle_breakpoint()<CR>", "Toggle breakpoint", noremap = true },
+		c = { "<cmd>lua require'dap'.continue()<CR>", "Start/continue", noremap = true },
+		i = { "<cmd>lua require'dap'.step_into()<CR>", "Step into", noremap = true },
+		u = { "<cmd>lua require'dap'.step_out()<CR>", "Step out", noremap = true },
+		o = { "<cmd>lua require'dap'.step_over()<CR>", "Step over", noremap = true },
 		r = { "<cmd>lua require'dap'.repl.open()<CR>", "REPL", noremap = true },
 		p = {
 			"<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
-			"set log point",
+			"Set log point",
 			noremap = true,
 		},
 		e = {
@@ -19,7 +19,7 @@ wk.register({
 			"set conditional break point",
 			noremap = true,
 		},
-		l = { "<cmd>lua require'dap'.list_breakpoints()<CR>", "list breakpoints", noremap = true },
+		l = { "<cmd>lua require'dap'.list_breakpoints()<CR>", "List breakpoints", noremap = true },
 	},
 }, {
 	mode = "n",
@@ -27,7 +27,7 @@ wk.register({
 })
 
 wk.register({
-	c = { "<cmd>lua require'dap'.continue()<CR>", "start/continue", noremap = true },
+	c = { "<cmd>lua require'dap'.continue()<CR>", "Start/continue", noremap = true },
 }, {
 	mode = "v",
 	prefix = "<leader>",
