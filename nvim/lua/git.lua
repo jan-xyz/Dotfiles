@@ -1,8 +1,18 @@
-local use = require("packer").use
-use({
+local packer = require("packer")
+packer.use({
 	"TimUntersberger/neogit",
 	config = function()
 		require("neogit").setup({ disable_commit_confirmation = true })
+	end,
+})
+
+packer.use({
+	"lewis6991/gitsigns.nvim",
+	requires = { "nvim-lua/plenary.nvim" },
+	config = function()
+		require("gitsigns").setup({
+			numhl = true,
+		})
 	end,
 })
 

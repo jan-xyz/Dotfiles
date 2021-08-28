@@ -1,3 +1,6 @@
+local packer = require("packer")
+packer.use({ "kyazdani42/nvim-tree.lua", requires = "kyazdani42/nvim-web-devicons" })
+
 local wk = require("which-key")
 wk.register({
 	e = { "<cmd>NvimTreeToggle<CR>", "Toggle file explorer", noremap = true },

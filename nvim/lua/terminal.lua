@@ -1,3 +1,6 @@
+local packer = require("packer")
+packer.use({ "voldikss/vim-floaterm" })
+
 local wk = require("which-key")
 
 -- keymaps in normal mode

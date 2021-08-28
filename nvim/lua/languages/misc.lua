@@ -1,5 +1,5 @@
 local nvim_lsp = require("lspconfig")
-local lsp = require("lsp")
+local lsp = require("lsp.config")
 
 -- EFM (general purpose language server)
 nvim_lsp.efm.setup({

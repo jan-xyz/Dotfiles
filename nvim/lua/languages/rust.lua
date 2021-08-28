@@ -1,4 +1,4 @@
-local lsp = require("lsp")
+local lsp = require("lsp.config")
 local dap = require("dap")
 
 -- LSP config

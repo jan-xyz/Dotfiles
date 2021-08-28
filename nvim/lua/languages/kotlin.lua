@@ -1,5 +1,5 @@
 local nvim_lsp = require("lspconfig")
-local lsp = require("lsp")
+local lsp = require("lsp.config")
 
 -- Kotlin
 nvim_lsp.kotlin_language_server.setup({
