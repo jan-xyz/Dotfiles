@@ -6,5 +6,10 @@ packer.use({
 	end,
 })
 
-packer.use({ "arcticicestudio/nord-vim", branch = "master" })
-vim.cmd("colorscheme nord") -- Set color scheme
+packer.use({
+	"arcticicestudio/nord-vim",
+	branch = "master",
+	config = function()
+		vim.cmd("colorscheme nord")
+	end,
+})
