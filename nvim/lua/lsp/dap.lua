@@ -3,6 +3,7 @@ local packer = require("packer")
 -- Debugger
 packer.use({
 	"mfussenegger/nvim-dap",
+	requires = { "folke/which-key.nvim" },
 	config = function()
 		-- keymap
 		local wk = require("which-key")
