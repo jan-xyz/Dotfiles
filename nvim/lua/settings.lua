@@ -21,15 +21,3 @@ vim.g.python_host_prog = "/usr/local/bin/python3"
 vim.g.python3_host_prog = "/usr/local/bin/python3"
 
 vim.opt.completeopt = "menuone,noinsert,noselect"
-
--- keymaps
-local wk = require("which-key")
-wk.register({
-	b = {
-		name = "buffer",
-		d = { "<cmd>bd<CR>", "delete", noremap = true },
-	},
-}, {
-	mode = "n",
-	prefix = "<leader>",
-})

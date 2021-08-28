@@ -11,10 +11,18 @@ packer.init({
 packer.use({
 	"folke/which-key.nvim",
 	config = function()
-		require("which-key").setup({
-			-- your configuration comes here
-			-- or leave it empty to packer.use the default settings
-			-- refer to the configuration section below
+		local wk = require("which-key")
+		wk.setup()
+
+		-- global keymaps
+		wk.register({
+			b = {
+				name = "buffer",
+				d = { "<cmd>bd<CR>", "delete", noremap = true },
+			},
+		}, {
+			mode = "n",
+			prefix = "<leader>",
 		})
 	end,
 })

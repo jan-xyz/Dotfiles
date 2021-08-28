@@ -1,12 +1,16 @@
 local packer = require("packer")
-packer.use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+packer.use({
+	"nvim-treesitter/nvim-treesitter",
+	run = ":TSUpdate",
+	config = function()
+		-- Treesitter:
+		local tree_sitter = require("nvim-treesitter.configs")
 
--- Treesitter:
-local tree_sitter = require("nvim-treesitter.configs")
-
-tree_sitter.setup({
-	ensure_installed = "maintained",
-	highlight = {
-		enable = true,
-	},
+		tree_sitter.setup({
+			ensure_installed = "maintained",
+			highlight = {
+				enable = true,
+			},
+		})
+	end,
 })

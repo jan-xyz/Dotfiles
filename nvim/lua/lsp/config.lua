@@ -1,11 +1,11 @@
 -- https://github.com/neovim/nvim-lspconfig
-local wk = require("which-key")
 
 local M = {}
 
 -- Global callback functions for LSP shortcuts
 function M.on_attach(client, bufnr)
 	require("completion").on_attach()
+	local wk = require("which-key")
 
 	--Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
