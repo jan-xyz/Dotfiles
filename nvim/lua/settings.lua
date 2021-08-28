@@ -1,5 +1,5 @@
 -- global options
-vim.o.hidden = true -- Enable hidden buffers
+vim.o.hidden = true -- allow hidden buffers
 vim.o.signcolumn = "yes" -- Show signs in number column (e.g. errors and warnings)
 vim.o.list = true -- Show tabs, spaces and line ends
 vim.o.listchars = "tab:⟶ " -- Set list characters
@@ -16,19 +16,11 @@ vim.bo.shiftwidth = 2 -- Set default auto-indent width
 vim.bo.softtabstop = 2 -- Set default virtual tabstop width
 vim.bo.tabstop = 2 -- Set default tabstop width
 
--- colorscheme
-vim.cmd("colorscheme nord") -- Set color scheme
-
 -- set Python env
 vim.g.python_host_prog = "/usr/local/bin/python3"
 vim.g.python3_host_prog = "/usr/local/bin/python3"
 
 vim.opt.completeopt = "menuone,noinsert,noselect"
-
--- Ale /Buf
-vim.g.ale_linters = { proto = { "buf-lint" } }
-vim.g.ale_lint_on_text_changed = "never"
-vim.g.ale_linters_explicit = 1
 
 -- keymaps
 local wk = require("which-key")

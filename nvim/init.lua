@@ -1,22 +1,23 @@
 require("packages")
-require("treesitter")
-require("file_explorer")
 require("settings")
-require("bufferline_config")
-require("telescope_config")
-require("terminal")
-require("vista")
-require("git")
 
 -- UI
-require("ui.vista-config")
+require("ui.buffer_line")
+require("ui.file_explorer")
+require("ui.git")
+require("ui.status_line")
+require("ui.syntax")
+require("ui.telescope")
+require("ui.terminal")
+require("ui.theme")
 
 -- LSP
+require("lsp.config")
 require("lsp.packages")
 
 -- DAP
 require("dap.packages")
-require("dap.settings")
+require("dap.config")
 
 -- Language configs
 require("languages.cpp")
