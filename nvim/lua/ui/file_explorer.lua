@@ -4,7 +4,7 @@ packer.use({
 	requires = { "kyazdani42/nvim-web-devicons", { "folke/which-key.nvim" } },
 	config = function()
 		vim.g.nvim_tree_auto_open = 1
-		vim.g.nvim_tree_auto_close = 1
+		vim.g.nvim_tree_auto_close = 0
 		vim.g.nvim_tree_quit_on_open = 0
 		vim.g.nvim_tree_add_trailing = 1
 		vim.g.nvim_tree_lsp_diagnostics = 1
