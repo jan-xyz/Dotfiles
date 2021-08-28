@@ -1,12 +1,5 @@
 -- https://github.com/neovim/nvim-lspconfig
 local wk = require("which-key")
-local packer = require("packer")
-
--- Symbols config
-packer.use("liuchengxu/vista.vim")
-vim.g.vista_default_executive = "nvim_lsp"
-
--- config object
 
 local M = {}
 

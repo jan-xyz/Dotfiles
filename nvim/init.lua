@@ -13,11 +13,8 @@ require("ui.theme")
 
 -- LSP
 require("lsp.config")
+require("lsp.dap")
 require("lsp.packages")
-
--- DAP
-require("dap.packages")
-require("dap.config")
 
 -- Language configs
 require("languages.cpp")
