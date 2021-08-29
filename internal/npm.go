@@ -31,7 +31,7 @@ func (b NPM) InstallPackages(packages []string) error {
 		logrus.Info("no npm packages to install")
 		return nil
 	}
-	logrus.Info("Installing vscode extensions:", packages)
+	logrus.Info("Installing npm packages:", packages)
 	args := append([]string{"install", "--global"}, packages...)
 	_, err := b.Commander(npmExe, args...)
 	if err != nil {
