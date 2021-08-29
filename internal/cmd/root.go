@@ -79,6 +79,7 @@ func initConfig() {
 	taps := viper.GetStringSlice("homebrew.taps")
 	vscodeExt := viper.GetStringSlice("vscode.extensions")
 	npmPackages := viper.GetStringSlice("npm.packages")
+	juliaModules := viper.GetStringSlice("julia.modules")
 	var goModules []dotfiles.GoModule
 	viper.UnmarshalKey("go.modules", &goModules)
 	var symlinks []dotfiles.Link
@@ -99,5 +100,6 @@ func initConfig() {
 		dotfiles.AppStore{Apps: apps, Profile: appStoreProfile, Commander: execCommander},
 		dotfiles.SystemPreferences{Preferences: preferences, Commander: execCommander},
 		dotfiles.Symlink{Links: symlinks, Commander: execCommander},
+		dotfiles.Julia{Modules: juliaModules, Commander: execCommander},
 	}
 }
