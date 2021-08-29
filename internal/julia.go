@@ -9,13 +9,13 @@ import (
 
 var juliaExe = "julia"
 
-// NPM holds the information for all needed NPM packages.
+// Julia holds the information for all needed Julia modules.
 type Julia struct {
 	Modules   []string
 	Commander Commander
 }
 
-// GetMissingPackages returns a list of packages which are configured but not installed.
+// GetMissingPackages returns a list of modules which are configured but not installed.
 func (b Julia) GetMissingPackages() ([]string, error) {
 	missingBottles := []string{}
 	stdout, err := b.Commander(juliaExe, "-e", "import Pkg;Pkg.status()")
@@ -41,7 +41,7 @@ func (b Julia) GetMissingPackages() ([]string, error) {
 	return missingBottles, nil
 }
 
-// InstallPackages takes a list of packages for installation.
+// InstallPackages takes a list of modules for installation.
 func (b Julia) InstallPackages(packages []string) error {
 	if len(packages) == 0 {
 		logrus.Info("no julia modules to install")
@@ -58,7 +58,7 @@ func (b Julia) InstallPackages(packages []string) error {
 	return nil
 }
 
-// UpdatePackages is currently not implemented.
+// UpdatePackages updates all installed Julia modules.
 func (b Julia) UpdatePackages() error {
 	logrus.Info("Upgrading julia modules")
 	_, err := b.Commander(juliaExe, "-e", "import Pkg;Pkg.update()")
