@@ -67,6 +67,12 @@ bottles = [
   "docker",
 ]
 
+[julia]
+modules =[
+  "LanguageServer",
+  "Pluto"
+]
+
 [python]
 packages = [
   "autopep8",
