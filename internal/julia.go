@@ -24,10 +24,10 @@ func (b Julia) GetMissingPackages() ([]string, error) {
 	}
 	logrus.WithField("output", string(stdout)).Debug("julia stdout")
 	installedFormulae := strings.Split(strings.Trim(string(stdout), "\n"), "\n")[1:]
-	logrus.WithField("output", installedFormulae).Debug("julia installed formulae")
+	logrus.WithField("output", installedFormulae).Debug("julia installed modules")
 	installedMap := map[string]bool{}
 	for _, p := range installedFormulae {
-		logrus.WithField("output", p).Error("julia installed formulae")
+		logrus.WithField("output", p).Debug("processing julia installed module")
 		words := strings.Fields(p)
 		installedMap[words[1]] = true
 	}
