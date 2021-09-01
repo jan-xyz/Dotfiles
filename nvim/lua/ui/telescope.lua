@@ -7,9 +7,11 @@ packer.use({
 		wk.register({
 			f = {
 				name = "File", -- optional group name
-				f = { "<cmd>Telescope find_files<cr>", "Find File", noremap = true },
-				g = { "<cmd>Telescope live_grep<cr>", "Find in File", noremap = true },
-				r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File", noremap = true },
+				f = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "Find File", noremap = true },
+				g = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", "Find in File", noremap = true },
+				o = { "<cmd>lua require('telescope.builtin').oldfiles()<cr>", "Open Recent File", noremap = true },
+				r = { "<cmd>lua require('telescope.builtin').resume()<cr>", "Resume last picker", noremap = true },
+				p = { "<cmd>lua require('telescope.builtin').pickers()<cr>", "List all pickers", noremap = true },
 			},
 		}, {
 			prefix = "<leader>",
