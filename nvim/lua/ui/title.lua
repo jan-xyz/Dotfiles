@@ -2,7 +2,7 @@ local function title_string()
 	if vim.fn.getcwd() == vim.env.HOME then
 		return "~ (nvim)"
 	else
-		return vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. " (nvim)"
+		return vim.fn.fnamemodify(vim.fn.getcwd(), ":tail") .. " (nvim)"
 	end
 end
 
