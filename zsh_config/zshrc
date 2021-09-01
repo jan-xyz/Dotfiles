@@ -44,7 +44,13 @@ fi
 # Set the title bar in the shell
 DISABLE_AUTO_TITLE="true"
 function set_terminal_title() {
-	print -Pn "\e]2;$(basename $PWD) (zsh)\a"
+	if [[ $PWD == $HOME ]]
+	then
+		print -Pn "\e]2;~ (zsh)\a"
+	else
+		print -Pn "\e]2;$(basename $PWD) (zsh)\a"
+	fi
+
 }
 add-zsh-hook precmd set_terminal_title
 set_terminal_title

@@ -10,6 +10,7 @@ require("ui.syntax")
 require("ui.telescope")
 require("ui.terminal")
 require("ui.theme")
+require("ui.title")
 
 -- LSP
 require("lsp.config")
