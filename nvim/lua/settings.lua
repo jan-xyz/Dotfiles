@@ -5,6 +5,9 @@ vim.o.list = true -- Show tabs, spaces and line ends
 vim.o.listchars = "tab:⟶ " -- Set list characters
 vim.o.mouse = "a" -- Enable all mouse support
 vim.o.termguicolors = true -- enable 24-bit colors
+vim.o.title = true -- activate title string
+vim.o.titlestring = "nvim %{fnamemodify(getcwd(), ':t')}" -- titlestring template expected: "nvim my-directory"
+vim.o.titlelen = 10 -- titlestring length
 
 -- window options
 vim.wo.number = true -- Add line numbers
