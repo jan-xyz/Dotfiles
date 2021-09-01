@@ -40,3 +40,11 @@ if [ -f ~/.aws/config ]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Set the title bar in the shell
+DISABLE_AUTO_TITLE="true"
+function set_terminal_title() {
+	print -Pn "\e]2;$(basename $PWD) (zsh)\a"
+}
+add-zsh-hook precmd set_terminal_title
+set_terminal_title
