@@ -10,7 +10,8 @@
     "python.formatting.provider": "autopep8",
     "go.useLanguageServer": true,
     "go.alternateTools": {
-        "go-langserver": "gopls"
+        "gopls": "/usr/local/bin/gopls",
+        "dlv": "/usr/local/bin/dlv"
     },
     "gopls": {
         "staticcheck": true
