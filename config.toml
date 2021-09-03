@@ -22,6 +22,8 @@ bottles = [
   "font-meslo-for-powerline",
   "font-source-code-pro-for-powerline",
   "fzf",
+  "git",
+  "git-lfs",
   "github",
   "go",
   "gopls",
