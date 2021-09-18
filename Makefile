@@ -8,7 +8,7 @@ build:
 	go build .
 
 test:
-	go test ./internal/...
+	go test ./internal/... -race -coverprofile=coverage.txt -covermode=atomic
 
 vet:
 	go vet ./internal/...
