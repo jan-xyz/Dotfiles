@@ -3,7 +3,7 @@
 [![go](https://github.com/jan-xyz/Dotfiles/actions/workflows/go.yaml/badge.svg)](https://github.com/jan-xyz/Dotfiles/actions/workflows/go.yaml)
 [![lua](https://github.com/jan-xyz/Dotfiles/actions/workflows/lua.yaml/badge.svg)](https://github.com/jan-xyz/Dotfiles/actions/workflows/lua.yaml)
 [![release](https://github.com/jan-xyz/Dotfiles/actions/workflows/release.yaml/badge.svg)](https://github.com/jan-xyz/Dotfiles/actions/workflows/release.yaml)
-[![codecov](https://codecov.io/gh/jan-xyz/Dotfiles/branch/master/graph/badge.svg?token=06WzNl7Ymy)](https://codecov.io/gh/jan-xyz/Dotfiles)
+[![codecov](https://codecov.io/gh/jan-xyz/Dotfiles/branch/main/graph/badge.svg?token=06WzNl7Ymy)](https://codecov.io/gh/jan-xyz/Dotfiles)
 
 This repository currently holds two different things:
 
