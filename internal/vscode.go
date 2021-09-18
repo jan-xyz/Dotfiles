@@ -38,8 +38,8 @@ func (v VSCode) GetMissingPackages() ([]string, error) {
 	return missingBottles, nil
 }
 
-// InstallPackages takes a list of extensions for installation.
-func (v VSCode) InstallPackages(extensions []string) error {
+// Add takes a list of extensions for installation.
+func (v VSCode) Add(extensions []string) error {
 	if len(extensions) == 0 {
 		logrus.Info("no vscode extensions to install")
 		return nil
@@ -54,7 +54,7 @@ func (v VSCode) InstallPackages(extensions []string) error {
 	return nil
 }
 
-// UpdatePackages is not implemented.
-func (v VSCode) UpdatePackages() error {
+// Update is not implemented.
+func (v VSCode) Update() error {
 	return nil
 }

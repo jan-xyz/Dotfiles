@@ -55,8 +55,8 @@ func execCommander(command string, args ...string) ([]byte, error) {
 
 type packageHandler interface {
 	GetMissingPackages() ([]string, error)
-	InstallPackages([]string) error
-	UpdatePackages() error
+	Add([]string) error
+	Update() error
 }
 
 var handlers = []packageHandler{}

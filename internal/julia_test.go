@@ -36,7 +36,7 @@ func TestInstallingJuliaModules(t *testing.T) {
 	b := Julia{
 		Commander: commander.Output,
 	}
-	err := b.InstallPackages([]string{"bar", "foo"})
+	err := b.Add([]string{"bar", "foo"})
 	assert.NoError(t, err)
 }
 
@@ -46,7 +46,7 @@ func TestTryingToInstallJuliaModulesWithEmptyListDoesNotCallCode(t *testing.T) {
 	b := Julia{
 		Commander: commander.Output,
 	}
-	err := b.InstallPackages([]string{})
+	err := b.Add([]string{})
 	assert.NoError(t, err)
 }
 
@@ -57,6 +57,6 @@ func TestUpdatingJulaModules(t *testing.T) {
 	b := Julia{
 		Commander: commander.Output,
 	}
-	err := b.UpdatePackages()
+	err := b.Update()
 	assert.NoError(t, err)
 }

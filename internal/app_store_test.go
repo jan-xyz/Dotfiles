@@ -63,7 +63,7 @@ func TestInstallingApps(t *testing.T) {
 		},
 		Commander: commander.Output,
 	}
-	err := b.InstallPackages([]string{"1482454543", "1463400445"})
+	err := b.Add([]string{"1482454543", "1463400445"})
 	assert.NoError(t, err)
 }
 
@@ -73,6 +73,6 @@ func TestTryingToInstallAppWithEmptyListDoesNotCallMas(t *testing.T) {
 	b := AppStore{
 		Commander: commander.Output,
 	}
-	err := b.InstallPackages([]string{})
+	err := b.Add([]string{})
 	assert.NoError(t, err)
 }

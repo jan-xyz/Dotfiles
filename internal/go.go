@@ -30,8 +30,8 @@ func (g Go) GetMissingPackages() ([]string, error) {
 	return missing, nil
 }
 
-// InstallPackages takes a list of go modules for installation.
-func (g Go) InstallPackages(modules []string) error {
+// Add takes a list of go modules for installation.
+func (g Go) Add(modules []string) error {
 	if len(modules) == 0 {
 		logrus.Info("no go modules to install")
 		return nil
@@ -59,8 +59,8 @@ func (g Go) InstallPackages(modules []string) error {
 	return nil
 }
 
-// UpdatePackages updates all currently configured go packages.
-func (g Go) UpdatePackages() error {
+// Update updates all currently configured go packages.
+func (g Go) Update() error {
 	logrus.Info("Upgrading go modules:", g.Modules)
 
 	args := []string{"get", "-u"}

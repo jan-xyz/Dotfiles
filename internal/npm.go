@@ -25,8 +25,8 @@ func (b NPM) GetMissingPackages() ([]string, error) {
 	return missingBottles, nil
 }
 
-// InstallPackages takes a list of packages for installation.
-func (b NPM) InstallPackages(packages []string) error {
+// Add takes a list of packages for installation.
+func (b NPM) Add(packages []string) error {
 	if len(packages) == 0 {
 		logrus.Info("no npm packages to install")
 		return nil
@@ -40,8 +40,8 @@ func (b NPM) InstallPackages(packages []string) error {
 	return nil
 }
 
-// UpdatePackages is currently not implemented.
-func (b NPM) UpdatePackages() error {
+// Update is currently not implemented.
+func (b NPM) Update() error {
 	logrus.Info("Upgrading npm packages")
 	_, err := b.Commander(npmExe, "update", "--global")
 	if err != nil {

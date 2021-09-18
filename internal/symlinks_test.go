@@ -56,7 +56,7 @@ func TestInstallingSymlinks(t *testing.T) {
 		},
 		Commander: commander.Output,
 	}
-	err := b.InstallPackages([]string{"barLinkName"})
+	err := b.Add([]string{"barLinkName"})
 	assert.NoError(t, err)
 }
 
@@ -73,12 +73,12 @@ func TestInstallingSymlinksExpandsEnvironmentVariables(t *testing.T) {
 		},
 		Commander: commander.Output,
 	}
-	err := b.InstallPackages([]string{"${FOO}"})
+	err := b.Add([]string{"${FOO}"})
 	assert.NoError(t, err)
 }
 
 func TestTryingToLinkSymlinksWithEmptyListDoesNotCallLink(t *testing.T) {
 	b := Symlink{}
-	err := b.InstallPackages([]string{})
+	err := b.Add([]string{})
 	assert.NoError(t, err)
 }

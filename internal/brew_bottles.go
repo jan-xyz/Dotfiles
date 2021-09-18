@@ -44,8 +44,8 @@ func (b BrewBottles) GetMissingPackages() ([]string, error) {
 	return missingBottles, nil
 }
 
-// InstallPackages takes a list of brew package names for installation.
-func (b BrewBottles) InstallPackages(packages []string) error {
+// Add takes a list of brew package names for installation.
+func (b BrewBottles) Add(packages []string) error {
 	if len(packages) == 0 {
 		logrus.Info("no Hombrew bottles to install")
 		return nil
@@ -60,8 +60,8 @@ func (b BrewBottles) InstallPackages(packages []string) error {
 	return nil
 }
 
-// UpdatePackages updates all currently installed brew packages.
-func (b BrewBottles) UpdatePackages() error {
+// Update updates all currently installed brew packages.
+func (b BrewBottles) Update() error {
 	logrus.Info("Upgrading brew packages")
 	_, err := b.Commander(brewExe, "upgrade")
 	if err != nil {
