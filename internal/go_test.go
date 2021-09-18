@@ -35,12 +35,12 @@ func TestInstallingGoModules(t *testing.T) {
 		},
 		Commander: commander.Output,
 	}
-	err := b.InstallPackages([]string{"bar", "foo"})
+	err := b.Add([]string{"bar", "foo"})
 	assert.NoError(t, err)
 }
 
 func TestTryingToInstallGoModulesWithEmptyListDoesNotCallBrew(t *testing.T) {
 	b := Go{}
-	err := b.InstallPackages([]string{})
+	err := b.Add([]string{})
 	assert.NoError(t, err)
 }

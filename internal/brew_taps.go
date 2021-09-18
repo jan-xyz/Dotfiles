@@ -36,8 +36,8 @@ func (b BrewTaps) GetMissingPackages() ([]string, error) {
 	return missingTaps, nil
 }
 
-// InstallPackages takes a list of taps to tap these.
-func (b BrewTaps) InstallPackages(taps []string) error {
+// Add takes a list of taps to tap these.
+func (b BrewTaps) Add(taps []string) error {
 	if len(taps) == 0 {
 		logrus.Info("no Hombrew taps to install")
 		return nil
@@ -52,7 +52,7 @@ func (b BrewTaps) InstallPackages(taps []string) error {
 	return nil
 }
 
-// UpdatePackages for Homebrew taps is currently not implemented.
-func (b BrewTaps) UpdatePackages() error {
+// Update for Homebrew taps is currently not implemented.
+func (b BrewTaps) Update() error {
 	return nil
 }

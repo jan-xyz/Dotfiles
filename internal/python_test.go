@@ -36,7 +36,7 @@ func TestInstallingPythonPackage(t *testing.T) {
 	b := Python{
 		Commander: commander.Output,
 	}
-	err := b.InstallPackages([]string{"bar", "foo"})
+	err := b.Add([]string{"bar", "foo"})
 	assert.NoError(t, err)
 }
 
@@ -46,7 +46,7 @@ func TestTryingToInstallPythonPackageWithEmptyListDoesNotCallBrew(t *testing.T) 
 	p := Python{
 		Commander: commander.Output,
 	}
-	err := p.InstallPackages([]string{})
+	err := p.Add([]string{})
 	assert.NoError(t, err)
 }
 
@@ -63,6 +63,6 @@ func TestUpdatingPythonPackage(t *testing.T) {
 		Packages:  []string{"bar", "foo"},
 		Commander: commander.Output,
 	}
-	err := b.UpdatePackages()
+	err := b.Update()
 	assert.NoError(t, err)
 }

@@ -9,9 +9,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-var (
-	errSymLinksFailed = errors.New("failed configuring symlink")
-)
+var errSymLinksFailed = errors.New("failed configuring symlink")
 
 // Link holds the information for a single symbolic link
 type Link struct {
@@ -39,8 +37,8 @@ func (s Symlink) GetMissingPackages() ([]string, error) {
 	return missing, nil
 }
 
-// InstallPackages takes a list of links for creation.
-func (s Symlink) InstallPackages(links []string) error {
+// Add takes a list of links for creation.
+func (s Symlink) Add(links []string) error {
 	if len(links) == 0 {
 		logrus.Info("no symlinks to configure")
 		return nil
@@ -74,7 +72,7 @@ func (s Symlink) InstallPackages(links []string) error {
 	return nil
 }
 
-// UpdatePackages is not implemented.
-func (s Symlink) UpdatePackages() error {
+// Update is not implemented.
+func (s Symlink) Update() error {
 	return nil
 }

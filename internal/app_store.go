@@ -62,8 +62,8 @@ func (a AppStore) GetMissingPackages() ([]string, error) {
 	return missingApps, nil
 }
 
-// InstallPackages takes a list of app IDs and tries to install these.
-func (a AppStore) InstallPackages(apps []string) error {
+// Add takes a list of app IDs and tries to install these.
+func (a AppStore) Add(apps []string) error {
 	if len(apps) == 0 {
 		logrus.Info("no app to install")
 		return nil
@@ -88,8 +88,8 @@ func (a AppStore) InstallPackages(apps []string) error {
 	return nil
 }
 
-// UpdatePackages upgrades all currently installed packages.
-func (a AppStore) UpdatePackages() error {
+// Update upgrades all currently installed packages.
+func (a AppStore) Update() error {
 	logrus.Info("Upgrading apps")
 	_, err := a.Commander(masExe, "upgrade")
 	if err != nil {

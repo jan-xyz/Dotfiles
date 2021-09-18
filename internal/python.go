@@ -43,8 +43,8 @@ func (p Python) GetMissingPackages() ([]string, error) {
 	return missingPips, nil
 }
 
-// InstallPackages takes a list of packages for installation.
-func (p Python) InstallPackages(packages []string) error {
+// Add takes a list of packages for installation.
+func (p Python) Add(packages []string) error {
 	if len(packages) == 0 {
 		logrus.Info("no Python packages to install")
 		return nil
@@ -60,8 +60,8 @@ func (p Python) InstallPackages(packages []string) error {
 	return nil
 }
 
-// UpdatePackages is currently not implemented.
-func (p Python) UpdatePackages() error {
+// Update is currently not implemented.
+func (p Python) Update() error {
 	logrus.Info("Upgrading Python packages")
 	args := append(pythonArgs, "install", "--upgrade")
 	args = append(args, p.Packages...)

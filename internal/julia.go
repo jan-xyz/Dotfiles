@@ -41,8 +41,8 @@ func (b Julia) GetMissingPackages() ([]string, error) {
 	return missingBottles, nil
 }
 
-// InstallPackages takes a list of modules for installation.
-func (b Julia) InstallPackages(packages []string) error {
+// Add takes a list of modules for installation.
+func (b Julia) Add(packages []string) error {
 	if len(packages) == 0 {
 		logrus.Info("no julia modules to install")
 		return nil
@@ -58,8 +58,8 @@ func (b Julia) InstallPackages(packages []string) error {
 	return nil
 }
 
-// UpdatePackages updates all installed Julia modules.
-func (b Julia) UpdatePackages() error {
+// Update updates all installed Julia modules.
+func (b Julia) Update() error {
 	logrus.Info("Upgrading julia modules")
 	_, err := b.Commander(juliaExe, "-e", "import Pkg;Pkg.update()")
 	if err != nil {

@@ -41,7 +41,7 @@ func TestInstallingBrewPackage(t *testing.T) {
 	b := BrewBottles{
 		Commander: commander.Output,
 	}
-	err := b.InstallPackages([]string{"bar", "foo"})
+	err := b.Add([]string{"bar", "foo"})
 	assert.NoError(t, err)
 }
 
@@ -51,6 +51,6 @@ func TestTryingToInstallBrewPackageWithEmptyListDoesNotCallBrew(t *testing.T) {
 	b := BrewBottles{
 		Commander: commander.Output,
 	}
-	err := b.InstallPackages([]string{})
+	err := b.Add([]string{})
 	assert.NoError(t, err)
 }

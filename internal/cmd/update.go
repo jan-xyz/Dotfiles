@@ -11,7 +11,7 @@ var updateCmd = &cobra.Command{
 	Short: "update dotfiles packages",
 	Run: func(_ *cobra.Command, _ []string) {
 		for _, handler := range handlers {
-			if err := handler.UpdatePackages(); err != nil {
+			if err := handler.Update(); err != nil {
 				logrus.WithError(err).Error("cannot update packages")
 			}
 		}

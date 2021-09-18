@@ -26,7 +26,7 @@ func TestInstallingTaps(t *testing.T) {
 	b := BrewTaps{
 		Commander: commander.Output,
 	}
-	err := b.InstallPackages([]string{"bar", "foo"})
+	err := b.Add([]string{"bar", "foo"})
 	assert.NoError(t, err)
 }
 
@@ -36,6 +36,6 @@ func TestTryingToInstallTapsWithEmptyListDoesNotCallBrew(t *testing.T) {
 	b := BrewTaps{
 		Commander: commander.Output,
 	}
-	err := b.InstallPackages([]string{})
+	err := b.Add([]string{})
 	assert.NoError(t, err)
 }

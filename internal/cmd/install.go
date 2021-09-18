@@ -14,7 +14,7 @@ var installCmd = &cobra.Command{
 			if missingPackages, err := handler.GetMissingPackages(); err != nil {
 				logrus.WithError(err).Error("cannot get packages")
 			} else {
-				handler.InstallPackages(missingPackages)
+				handler.Add(missingPackages)
 			}
 		}
 	},

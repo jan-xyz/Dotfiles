@@ -67,7 +67,7 @@ func TestSettingPreferences(t *testing.T) {
 		},
 		Commander: commander.Output,
 	}
-	err := b.InstallPackages([]string{"foo.bar"})
+	err := b.Add([]string{"foo.bar"})
 	assert.NoError(t, err)
 }
 
@@ -87,7 +87,7 @@ func TestSettingPreferencesExpandsEnvironmentVariables(t *testing.T) {
 		},
 		Commander: commander.Output,
 	}
-	err := b.InstallPackages([]string{"foo.bar"})
+	err := b.Add([]string{"foo.bar"})
 	assert.NoError(t, err)
 }
 
@@ -97,6 +97,6 @@ func TestTryingToSetPreferencesWithEmptyListDoesNotCallDefaults(t *testing.T) {
 	b := SystemPreferences{
 		Commander: commander.Output,
 	}
-	err := b.InstallPackages([]string{})
+	err := b.Add([]string{})
 	assert.NoError(t, err)
 }
