@@ -20,7 +20,7 @@ staticcheck:
 	go run honnef.co/go/tools/cmd/staticcheck@latest ./internal/...
 
 stylua:
-	stylua --check -- $$(find . -not -path "./submodules/*" -not -path "./nvim/plugin/*" -type f -name *.lua)
+	stylua --check .
 
 # Dotfiles usage
 
