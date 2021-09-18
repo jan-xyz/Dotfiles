@@ -1,6 +1,8 @@
 # Dotfiles
 
-![go](https://github.com/jan-xyz/Dotfiles/workflows/go/badge.svg)
+[![go](https://github.com/jan-xyz/Dotfiles/actions/workflows/go.yaml/badge.svg)](https://github.com/jan-xyz/Dotfiles/actions/workflows/go.yaml)
+[![lua](https://github.com/jan-xyz/Dotfiles/actions/workflows/lua.yaml/badge.svg)](https://github.com/jan-xyz/Dotfiles/actions/workflows/lua.yaml)
+[![release](https://github.com/jan-xyz/Dotfiles/actions/workflows/release.yaml/badge.svg)](https://github.com/jan-xyz/Dotfiles/actions/workflows/release.yaml)
 
 This repository currently holds two different things:
 
