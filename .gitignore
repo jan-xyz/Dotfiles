@@ -2,3 +2,4 @@ nvim/plugged/
 nvim/.netrwhist
 dotfiles*
 *.add.spl
+coverage.txt
