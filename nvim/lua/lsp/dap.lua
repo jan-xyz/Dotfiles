@@ -2,9 +2,11 @@ local packer = require("packer")
 
 -- Debugger
 packer.use({
-	"mfussenegger/nvim-dap",
-	requires = { "folke/which-key.nvim" },
+	"rcarriga/nvim-dap-ui",
+	requires = { "mfussenegger/nvim-dap", "folke/which-key.nvim" },
 	config = function()
+		-- setup
+		require("dapui").setup()
 		-- keymap
 		local wk = require("which-key")
 		wk.register({
@@ -16,6 +18,7 @@ packer.use({
 				u = { "<cmd>lua require'dap'.step_out()<CR>", "Step out", noremap = true },
 				o = { "<cmd>lua require'dap'.step_over()<CR>", "Step over", noremap = true },
 				r = { "<cmd>lua require'dap'.repl.open()<CR>", "REPL", noremap = true },
+				t = { "<cmd>lua require'dapui'.toggle()<CR>", "Toggle UI", noremap = true },
 				p = {
 					"<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
 					"Set log point",
