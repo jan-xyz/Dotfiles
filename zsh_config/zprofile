@@ -17,15 +17,16 @@ eval "$(pyenv init --path)"
 #
 # Go
 #
-export GOPATH=$HOME/Go
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
+export GOPATH="$HOME/Go"
+export GOROOT="/usr/local/opt/go/libexec"
+export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$GOROOT/bin"
 
 #
 # Rust
 #
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
+export PATH="$PATH:/usr/local/opt/llvm/bin/"
 
 #
 # Browser
