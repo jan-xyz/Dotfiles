@@ -21,7 +21,7 @@ require("rust-tools").setup({
 -- DAP config
 dap.adapters.lldb = {
 	type = "executable",
-	command = "/usr/local/Cellar/llvm/12.0.1/bin/lldb-vscode",
+	command = "/usr/local/opt/llvm/bin/lldb-vscode",
 	name = "lldb",
 }
 dap.configurations.rust = {
