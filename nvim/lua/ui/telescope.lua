@@ -12,6 +12,7 @@ packer.use({
 				o = { "<cmd>lua require('telescope.builtin').oldfiles()<cr>", "Open Recent File", noremap = true },
 				r = { "<cmd>lua require('telescope.builtin').resume()<cr>", "Resume last picker", noremap = true },
 				p = { "<cmd>lua require('telescope.builtin').pickers()<cr>", "List all pickers", noremap = true },
+				b = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "List open buffers", noremap = true },
 			},
 		}, {
 			prefix = "<leader>",
