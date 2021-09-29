@@ -1,7 +1,7 @@
 local packer = require("packer")
 packer.use({
 	"kyazdani42/nvim-tree.lua",
-	requires = { "kyazdani42/nvim-web-devicons", { "folke/which-key.nvim" } },
+	requires = { "kyazdani42/nvim-web-devicons", "folke/which-key.nvim" },
 	config = function()
 		require("nvim-tree").setup({
 			auto_open = 1,
