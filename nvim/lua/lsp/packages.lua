@@ -31,12 +31,12 @@ packer.use({
 })
 packer.use("nvim-lua/lsp_extensions.nvim")
 
--- TODO: switch back to `lua-nvim/completion-nvim once that repo is fixed
+-- TODO: switch back to `lua-nvim/completion-nvim` (nvim 0.5.1 incompatible) once that repo is fixed
 packer.use({
 	"rafaelsq/completion-nvim",
 	branch = "changeHandlerSignature",
 })
 packer.use("simrat39/rust-tools.nvim") -- LSP server extensions for Rust
 packer.use("folke/lua-dev.nvim") -- LSP server extensions for Lua
--- TODO: switch back to `glepnir/lspsaga.nvim once that repo is fixed
+-- TODO: switch back to `glepnir/lspsaga.nvim` (nvim 0.5.1 incompatible) once that repo is fixed
 packer.use("tami5/lspsaga.nvim")
