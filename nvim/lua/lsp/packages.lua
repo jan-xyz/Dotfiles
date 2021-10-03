@@ -25,6 +25,7 @@ packer.use({
 		require("languages.r")
 		require("languages.rust")
 		require("languages.scala")
+		require("languages.swift")
 		require("languages.vim")
 		require("languages.yaml")
 	end,
