@@ -26,14 +26,26 @@ packer.use({
 			keymaps = {},
 		})
 		local wk = require("which-key")
+		-- normal mode
 		wk.register({
 			g = {
 				name = "Git",
 				b = { "<cmd>Gitsign blame_line<CR>", "Blame", noremap = true },
-				d = { "<cmd>Gitsign diffthis<CR>", "Diff", noremap = true },
+				d = { "<cmd>Gitsign preview_hunk<CR>", "Diff", noremap = true },
+				r = { "<cmd>Gitsign reset_hunk<CR>", "Reset Hunk", noremap = true },
 			},
 		}, {
 			mode = "n",
+			prefix = "<leader>",
+		})
+		-- visual mode
+		wk.register({
+			g = {
+				name = "Git",
+				r = { "<cmd>'<,'>Gitsign reset_hunk<CR>", "Reset Hunk", noremap = true },
+			},
+		}, {
+			mode = "v",
 			prefix = "<leader>",
 		})
 	end,
