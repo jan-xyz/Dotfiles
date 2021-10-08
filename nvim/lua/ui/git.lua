@@ -22,6 +22,8 @@ packer.use({
 	config = function()
 		require("gitsigns").setup({
 			numhl = true,
+			word_diff = true,
+			keymaps = {},
 		})
 		local wk = require("which-key")
 		wk.register({
