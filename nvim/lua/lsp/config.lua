@@ -88,7 +88,7 @@ function M.on_attach(client, bufnr)
 			noremap = true,
 		}
 	end
-	wk.register(normal_mode_keymap, { prefix = "l" })
+	wk.register(normal_mode_keymap, { prefix = "<leader>" })
 	wk.register(visual_mode_keymap, { mode = "v", prefix = "l" })
 end
 
