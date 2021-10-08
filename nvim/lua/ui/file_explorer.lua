@@ -4,14 +4,15 @@ packer.use({
 	requires = { "kyazdani42/nvim-web-devicons", "folke/which-key.nvim" },
 	config = function()
 		require("nvim-tree").setup({
-			auto_open = 1,
-			auto_close = 0,
-			quit_on_open = 0,
-			add_trailing = 1,
-			lsp_diagnostics = 1,
-
-			disable_netrw = 0,
-			hijack_netrw = 0,
+			open_on_setup = true,
+			auto_close = false,
+			quit_on_open = false,
+			lsp_diagnostics = true,
+			hijack_cursor = true,
+			view = {
+				side = "left",
+				auto_resize = true,
+			},
 		})
 
 		local wk = require("which-key")
