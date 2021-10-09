@@ -15,9 +15,14 @@ function M.on_attach(client, bufnr)
 
 	-- Workspace diagnostics
 	local normal_mode_keymap = {
-		d = {
+		w = {
 			"<cmd>lua require'telescope.builtin'.lsp_workspace_diagnostics(require('telescope.themes').get_ivy({}))<cr>",
-			"Diagnostics",
+			"Workspace Diagnostics",
+			noremap = true,
+		},
+		l = {
+			"<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<cr>",
+			"Line Diagnostics",
 			noremap = true,
 		},
 	}
