@@ -21,3 +21,14 @@ vim.g.python_host_prog = "/usr/local/bin/python3"
 vim.g.python3_host_prog = "/usr/local/bin/python3"
 
 vim.opt.completeopt = "menuone,noinsert,noselect"
+
+-- move with j and k wrapped lines
+vim.api.nvim_set_keymap("n", "j", "gj", { noremap = true })
+vim.api.nvim_set_keymap("n", "<down>", "gj", { noremap = true })
+vim.api.nvim_set_keymap("n", "k", "gk", { noremap = true })
+vim.api.nvim_set_keymap("n", "<up>", "gk", { noremap = true })
+
+vim.api.nvim_set_keymap("v", "j", "gj", { noremap = true })
+vim.api.nvim_set_keymap("v", "<down>", "gj", { noremap = true })
+vim.api.nvim_set_keymap("v", "k", "gk", { noremap = true })
+vim.api.nvim_set_keymap("v", "<up>", "gk", { noremap = true })
