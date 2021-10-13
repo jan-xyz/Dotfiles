@@ -7,7 +7,9 @@ packer.use({
 			open_on_setup = true,
 			auto_close = false,
 			quit_on_open = false,
-			lsp_diagnostics = true,
+			diagnostics = {
+				enable = true,
+			},
 			hijack_cursor = true,
 			view = {
 				side = "left",
