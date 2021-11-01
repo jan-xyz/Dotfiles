@@ -53,7 +53,10 @@ packer.use({
 	"theHamsta/nvim-dap-virtual-text",
 	requires = { "mfussenegger/nvim-dap" },
 	config = function()
-		require("nvim-dap-virtual-text").setup({})
+		require("nvim-dap-virtual-text").setup({
+			virt_text_win_col = 90,
+			highlight_changed_variables = true,
+		})
 	end,
 })
 packer.use({
