@@ -22,6 +22,9 @@ vim.g.python3_host_prog = "/usr/local/bin/python3"
 
 vim.opt.completeopt = "menuone,noinsert,noselect"
 
+-- highlight on yank
+vim.cmd([[au TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=150, on_visual=true}]])
+
 -- move with j and k wrapped lines
 vim.api.nvim_set_keymap("n", "j", "gj", { noremap = true })
 vim.api.nvim_set_keymap("n", "<down>", "gj", { noremap = true })
