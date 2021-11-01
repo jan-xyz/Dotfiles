@@ -53,8 +53,7 @@ packer.use({
 	"theHamsta/nvim-dap-virtual-text",
 	requires = { "mfussenegger/nvim-dap" },
 	config = function()
-		-- inline DAP informatino during debugging
-		vim.g.dap_virtual_text = true
+		require("nvim-dap-virtual-text").setup({})
 	end,
 })
 packer.use({
