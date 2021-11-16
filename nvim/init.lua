@@ -13,6 +13,5 @@ require("ui.theme")
 require("ui.title")
 
 -- LSP
-require("lsp.config")
 require("lsp.dap")
 require("lsp.packages")
