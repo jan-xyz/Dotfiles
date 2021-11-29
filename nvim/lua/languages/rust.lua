@@ -9,10 +9,13 @@ require("rust-tools").setup({
 	server = {
 		on_attach = lsp.on_attach,
 		settings = {
-			assist = {
-				importGranularity = "item",
-				importPrefix = "by_self",
-				importEnforceGranularity = true,
+			["rust-analyzer"] = {
+				cargo = { "core", "derivative" },
+				assist = {
+					importGranularity = "item",
+					importPrefix = "self",
+					importEnforceGranularity = true,
+				},
 			},
 		},
 	},
