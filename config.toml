@@ -48,6 +48,7 @@ bottles = [
   "neovim",
   "node",
   "python@3.9",
+  "python",
   "pyenv",
   "pyenv-virtualenv",
   "r",
