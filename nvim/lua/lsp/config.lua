@@ -4,7 +4,9 @@ local M = {}
 
 -- Global callback functions for LSP shortcuts
 function M.on_attach(client, bufnr)
-	require("completion").on_attach()
+	if client.resolved_capabilities.completion then
+		require("completion").on_attach()
+	end
 	local wk = require("which-key")
 
 	--Enable completion triggered by <c-x><c-o>
