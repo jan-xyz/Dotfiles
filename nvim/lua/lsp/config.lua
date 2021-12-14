@@ -4,16 +4,17 @@ local M = {}
 
 -- Global callback functions for LSP shortcuts
 function M.on_attach(client, bufnr)
-	if client.resolved_capabilities.completion then
-		require("completion").on_attach()
-	end
-	local wk = require("which-key")
-
-	--Enable completion triggered by <c-x><c-o>
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
 	print("client:" .. client.name .. "; bufnr:" .. bufnr)
 	-- print(vim.inspect(client.resolved_capabilities))
+
+	-- Completion
+	if client.resolved_capabilities.completion then
+		require("completion").on_attach()
+
+		--Enable completion triggered by <c-x><c-o>
+		vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+	end
+	local wk = require("which-key")
 
 	-- Workspace diagnostics
 	local normal_mode_keymap = {
