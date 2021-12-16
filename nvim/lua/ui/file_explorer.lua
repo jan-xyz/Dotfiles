@@ -10,6 +10,7 @@ packer.use({
 			diagnostics = {
 				enable = true,
 			},
+			git = { ignore = false },
 			hijack_cursor = true,
 			view = {
 				side = "left",
