@@ -19,7 +19,7 @@ function M.on_attach(client, bufnr)
 	-- Workspace diagnostics
 	local normal_mode_keymap = {
 		w = {
-			"<cmd>lua require'telescope.builtin'.lsp_workspace_diagnostics(require('telescope.themes').get_ivy({}))<cr>",
+			"<cmd>lua require'telescope.builtin'.diagnostics(require('telescope.themes').get_ivy({}))<cr>",
 			"Workspace Diagnostics",
 			noremap = true,
 		},
