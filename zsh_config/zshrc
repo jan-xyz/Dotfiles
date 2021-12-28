@@ -45,7 +45,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# zsh-vi-mode compatibility for custom key-bindings
+function zvm_after_init() {
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+}
 
 # Set the title bar in the shell
 DISABLE_AUTO_TITLE="true"
