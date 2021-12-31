@@ -135,7 +135,9 @@ packer.use({
 			FileName = { -- {{{2
 				condition = condition.buffer_not_empty,
 				highlight = { colors.white, colors.bg_statusline, "bold" },
-				provider = "FileName",
+				provider = function()
+					return vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.")
+				end,
 			},
 		}
 		-- }}}2
@@ -390,7 +392,9 @@ packer.use({
 		gls.short_line_left[4] = {
 			FileName = { -- {{{2
 				highlight = { colors.white, colors.bg, "bold" },
-				provider = "FileName",
+				provider = function()
+					return vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.")
+				end,
 			},
 		}
 		-- }}}2
