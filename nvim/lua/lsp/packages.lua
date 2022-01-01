@@ -39,6 +39,7 @@ packer.use({
 	branch = "changeHandlerSignature",
 })
 packer.use("simrat39/rust-tools.nvim") -- LSP server extensions for Rust
+packer.use("crispgm/nvim-go")
 packer.use("folke/lua-dev.nvim") -- LSP server extensions for Lua
 -- TODO: switch back to `glepnir/lspsaga.nvim` (nvim 0.5.1 incompatible) once that repo is fixed
 packer.use("tami5/lspsaga.nvim")
