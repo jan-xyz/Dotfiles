@@ -1,6 +1,5 @@
 antigen use oh-my-zsh
 
-antigen bundle cargo
 antigen bundle docker
 antigen bundle docker-compose
 antigen bundle git
@@ -12,7 +11,6 @@ antigen bundle kubectx
 antigen bundle pyenv
 antigen bundle ripgrep
 antigen bundle rust
-antigen bundle rustup
 antigen bundle zsh-interactive-cd
 
 antigen bundle zsh-users/zsh-autosuggestions
