@@ -83,6 +83,7 @@ packages = [
   "flake8",
   "rope",
   "mccabe",
+  "neovim-remote",
   "pyflakes",
   "jedi",
   "pynvim",
