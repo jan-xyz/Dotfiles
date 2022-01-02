@@ -1,7 +1,7 @@
 local packer = require("packer")
 
 packer.use({
-	"glepnir/galaxyline.nvim",
+	"NTBBloodbath/galaxyline.nvim",
 	branch = "main",
 	-- your statusline
 	requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -9,7 +9,7 @@ packer.use({
 		local gl = require("galaxyline")
 		local gls = gl.section
 
-		local buffer = require("galaxyline.provider_buffer")
+		local buffer = require("galaxyline.providers.buffer")
 		local colors = {
 			gray = "#4b5263",
 			red = "#BF616A",
@@ -28,9 +28,9 @@ packer.use({
 			bg = "#4C566A",
 		}
 		local condition = require("galaxyline.condition")
-		local fileinfo = require("galaxyline.provider_fileinfo")
-		local lsp = require("galaxyline.provider_lsp")
-		local vcs = require("galaxyline.provider_vcs")
+		local fileinfo = require("galaxyline.providers.fileinfo")
+		local lsp = require("galaxyline.providers.lsp")
+		local vcs = require("galaxyline.providers.vcs")
 
 		gl.short_line_list = { "NvimTree", "help", "tagbar" }
 
@@ -238,7 +238,7 @@ packer.use({
 
 				provider = function()
 					local icon = " "
-					local count = vim.lsp.diagnostic.get_count(0, "Error")
+					local count = #vim.diagnostic.get(0, { severity = vim.diagnostic.ERROR })
 
 					if count == 0 then
 						return
@@ -256,7 +256,7 @@ packer.use({
 
 				provider = function()
 					local icon = " "
-					local count = vim.lsp.diagnostic.get_count(0, "Warning")
+					local count = #vim.diagnostic.get(0, { severity = vim.diagnostic.WARN })
 
 					if count == 0 then
 						return
@@ -274,7 +274,7 @@ packer.use({
 
 				provider = function()
 					local icon = " "
-					local count = vim.lsp.diagnostic.get_count(0, "Hint")
+					local count = #vim.diagnostic.get(0, { severity = vim.diagnostic.HINT })
 
 					if count == 0 then
 						return
@@ -292,7 +292,7 @@ packer.use({
 
 				provider = function()
 					local icon = " "
-					local count = vim.lsp.diagnostic.get_count(0, "Information")
+					local count = #vim.diagnostic.get(0, { severity = vim.diagnostic.INFO })
 
 					if count == 0 then
 						return
