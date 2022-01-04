@@ -28,24 +28,6 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export PATH=/usr/local/bin:$PATH
 
-# Theme config
-BULLETTRAIN_PROMPT_ORDER=(
-  time
-  status
-  dir
-  kctx
-  aws
-  git
-  go
-  virtualenv
-  cmd_exec_time
-)
-BULLETTRAIN_VIRTUALENV_FG=black
-BULLETTRAIN_DIR_BG=magenta
-BULLETTRAIN_AWS_BG=red
-BULLETTRAIN_KCTX_BG=blue
-
-
 # AWS
 if [ -f ~/.aws/config ]; then
 	export AWS_PROFILE=$(aws configure list-profiles 2>&1 | head -n 1)
