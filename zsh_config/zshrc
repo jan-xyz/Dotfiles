@@ -8,13 +8,7 @@ fi
 # remove / from wordchars to allow splitting on slash and backwards kill ^W to stop on /
 WORDCHARS=${WORDCHARS/\/}
 
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Jan Steinke <jan.steinke@gmail.com>
-#
-# Load Antigen configurations
+# Load Package Manager configurations
 export ZPLUG_HOME=$(brew --prefix)/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
