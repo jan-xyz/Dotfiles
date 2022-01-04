@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# remove / from wordchars to allow splitting on slash and backwards kill ^W to stop on /
+WORDCHARS=${WORDCHARS/\/}
+
 #
 # Executes commands at the start of an interactive session.
 #
