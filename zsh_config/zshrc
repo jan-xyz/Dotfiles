@@ -2,7 +2,7 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 #
@@ -45,7 +45,7 @@ BULLETTRAIN_KCTX_BG=blue
 
 # AWS
 if [ -f ~/.aws/config ]; then
-  export AWS_PROFILE=$(aws configure list-profiles 2>&1 | head -n 1)
+	export AWS_PROFILE=$(aws configure list-profiles 2>&1 | head -n 1)
 fi
 
 # NVM
@@ -56,7 +56,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # zsh-vi-mode compatibility for custom key-bindings
 function zvm_after_init() {
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+	[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 }
 
 # Set the title bar in the shell
