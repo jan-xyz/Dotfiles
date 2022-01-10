@@ -2,8 +2,6 @@ local nvim_lsp = require("lspconfig")
 local lsp = require("lsp.config")
 local dap = require("dap")
 
-require("go").setup({})
-
 -- LSP config
 nvim_lsp.gopls.setup({
 	on_attach = lsp.on_attach,
