@@ -7,7 +7,6 @@ taps = [
 ]
 bottles = [
   "aerial",
-  "antigen",
   "awscli",
   "brooklyn",
   "buf",
@@ -17,6 +16,7 @@ bottles = [
   "colordiff",
   "ddate",
   "delve",
+  "docker",
   "efm-langserver",
   "font-fira-code-nerd-font",
   "font-meslo-for-powerline",
@@ -60,14 +60,15 @@ bottles = [
   "signal",
   "slack",
   "spotify",
+  "stern",
   "stylua",
   "subversion",
   "telegram",
   "visual-studio-code",
   "watch",
   "wget",
+  "zplug",
   "zsh",
-  "docker",
 ]
 
 [julia]
@@ -83,6 +84,7 @@ packages = [
   "flake8",
   "rope",
   "mccabe",
+  "neovim-remote",
   "pyflakes",
   "jedi",
   "pynvim",
@@ -172,7 +174,8 @@ links = [
   { sourceFile ="${HOME}/dotfiles/zsh_config/zshrc", linkName="${HOME}/.zshrc" },
   { sourceFile ="${HOME}/dotfiles/zsh_config/zshenv", linkName="${HOME}/.zshenv" },
   { sourceFile ="${HOME}/dotfiles/zsh_config/zprofile", linkName="${HOME}/.zprofile" },
-  { sourceFile ="${HOME}/dotfiles/zsh_config/antigenrc", linkName="${HOME}/.antigenrc" },
+  { sourceFile ="${HOME}/dotfiles/zsh_config/zplugins", linkName="${HOME}/.zplugins" },
+  { sourceFile ="${HOME}/dotfiles/zsh_config/p10k.zsh", linkName="${HOME}/.p10k.zsh" },
   { sourceFile ="${HOME}/dotfiles/zsh", linkName="${HOME}/.zsh" },
   { sourceFile ="${HOME}/dotfiles/R/RProfile", linkName="${HOME}/.RProfile" },
   { sourceFile ="${HOME}/dotfiles/vscode/settings.json", linkName="${HOME}/Library/Application Support/Code/User/settings.json" },

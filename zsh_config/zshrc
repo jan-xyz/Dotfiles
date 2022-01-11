@@ -1,12 +1,18 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Jan Steinke <jan.steinke@gmail.com>
-#
-# Load Antigen configurations
-source /usr/local/share/antigen/antigen.zsh
-antigen init ~/.antigenrc
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# remove / from wordchars to allow splitting on slash and backwards kill ^W to stop on /
+WORDCHARS=${WORDCHARS/\/}
+
+# Load Package Manager configurations
+export ZPLUG_HOME=$(brew --prefix)/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
+source ~/.zplugins
 
 alias vim=nvim
 alias diff=colordiff
@@ -16,27 +22,9 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export PATH=/usr/local/bin:$PATH
 
-# Theme config
-BULLETTRAIN_PROMPT_ORDER=(
-  time
-  status
-  dir
-  kctx
-  aws
-  git
-  go
-  virtualenv
-  cmd_exec_time
-)
-BULLETTRAIN_VIRTUALENV_FG=black
-BULLETTRAIN_DIR_BG=magenta
-BULLETTRAIN_AWS_BG=red
-BULLETTRAIN_KCTX_BG=blue
-
-
 # AWS
 if [ -f ~/.aws/config ]; then
-  export AWS_PROFILE=$(aws configure list-profiles 2>&1 | head -n 1)
+	export AWS_PROFILE=$(aws configure list-profiles 2>&1 | head -n 1)
 fi
 
 # NVM
@@ -47,7 +35,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # zsh-vi-mode compatibility for custom key-bindings
 function zvm_after_init() {
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+	[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 }
 
 # Set the title bar in the shell
@@ -63,3 +51,6 @@ function set_terminal_title() {
 }
 add-zsh-hook precmd set_terminal_title
 set_terminal_title
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
