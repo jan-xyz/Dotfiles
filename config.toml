@@ -60,6 +60,7 @@ bottles = [
   "signal",
   "slack",
   "spotify",
+  "stern",
   "stylua",
   "subversion",
   "telegram",
