@@ -1,24 +1,33 @@
-local lsp = require("lsp.config")
+local packer = require("packer")
 local dap = require("dap")
 
 -- LSP config
 vim.cmd(
 	[[autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'lsp_extensions'.inlay_hints{ prefix = ' » ', highlight = "NonText", enabled = {"ChainingHint"} }]]
 )
-require("rust-tools").setup({
-	server = {
-		on_attach = lsp.on_attach,
-		settings = {
-			["rust-analyzer"] = {
-				cargo = { "core", "derivative" },
-				assist = {
-					importGranularity = "item",
-					importPrefix = "self",
-					importEnforceGranularity = true,
+packer.use({
+	"simrat39/rust-tools.nvim",
+	config = function()
+		local rt = require("rust-tools")
+		local lsp = require("lsp.config")
+		rt.setup({
+			tools = {
+				server = {
+					on_attach = lsp.on_attach,
+					settings = {
+						["rust-analyzer"] = {
+							cargo = { "core", "derivative" },
+							assist = {
+								importGranularity = "item",
+								importPrefix = "self",
+								importEnforceGranularity = true,
+							},
+						},
+					},
 				},
 			},
-		},
-	},
+		})
+	end,
 })
 
 -- DAP config

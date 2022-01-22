@@ -2,7 +2,6 @@
 [homebrew]
 taps = [
   "homebrew/cask-fonts",
-  "saadparwaiz1/personal",
   "bufbuild/buf",
 ]
 bottles = [

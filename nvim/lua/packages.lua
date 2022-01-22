@@ -7,33 +7,4 @@ packer.init({
 	},
 })
 
--- UX
-packer.use({
-	"folke/which-key.nvim",
-	config = function()
-		local wk = require("which-key")
-		wk.setup()
-
-		-- global keymaps
-		wk.register({
-			b = {
-				name = "buffer",
-				d = { "<cmd>bd<CR>", "delete", noremap = true },
-			},
-		}, {
-			mode = "n",
-			prefix = "<leader>",
-		})
-	end,
-})
 packer.use("felipec/vim-sanegx")
-
--- Markdown Preview
-
-packer.use({
-	"iamcco/markdown-preview.nvim",
-	run = function()
-		vim.fn["mkdp#util#install"]()
-	end,
-	ft = { "markdown" },
-})

@@ -7,13 +7,6 @@ function M.on_attach(client, bufnr)
 	print("client:" .. client.name .. "; bufnr:" .. bufnr)
 	-- print(vim.inspect(client.resolved_capabilities))
 
-	-- Completion
-	if client.resolved_capabilities.completion then
-		require("completion").on_attach()
-
-		--Enable completion triggered by <c-x><c-o>
-		vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-	end
 	local wk = require("which-key")
 
 	-- Workspace diagnostics

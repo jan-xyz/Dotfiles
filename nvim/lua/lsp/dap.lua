@@ -3,7 +3,10 @@ local packer = require("packer")
 -- Debugger
 packer.use({
 	"rcarriga/nvim-dap-ui",
-	requires = { "mfussenegger/nvim-dap", "folke/which-key.nvim" },
+	requires = {
+		"mfussenegger/nvim-dap",
+		"folke/which-key.nvim",
+	},
 	config = function()
 		-- setup
 		require("dapui").setup()

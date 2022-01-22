@@ -1,8 +1,10 @@
 local nvim_lsp = require("lspconfig")
 local lsp = require("lsp.config")
+local completion = require("ui.completion")
 
 -- EFM (general purpose language server)
 nvim_lsp.efm.setup({
+	capabilities = completion.capabilities,
 	on_attach = lsp.on_attach,
 	init_options = { documentFormatting = true },
 	filetypes = { "sh", "lua", "markdown", "proto" },

@@ -3,9 +3,13 @@ require("settings")
 
 -- UI
 require("ui.buffer_line")
+require("ui.completion")
 require("ui.file_explorer")
 require("ui.git")
+require("ui.keymapprev")
+require("ui.markdownprev")
 require("ui.status_line")
+require("ui.symbols")
 require("ui.syntax")
 require("ui.telescope")
 require("ui.terminal")
