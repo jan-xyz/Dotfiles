@@ -82,6 +82,13 @@ function M.on_attach(client, bufnr)
 		}
 	end
 	-- Symbols
+	if client.resolved_capabilities.workspace_symbol then
+		normal_mode_keymap["#"] = {
+			"<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>",
+			"Seach workspace symbols",
+			noremap = true,
+		}
+	end
 	if client.resolved_capabilities.document_symbol then
 		normal_mode_keymap["s"] = {
 			"<cmd>Vista!!<CR>",
