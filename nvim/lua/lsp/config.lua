@@ -44,7 +44,7 @@ function M.on_attach(client, bufnr)
 	if client.resolved_capabilities.find_references then
 		wk.register({
 			r = {
-				"<cmd>lua require'telescope.builtin'.lsp_references(require('telescope.themes').get_ivy({}))<cr>",
+				"<cmd>lua require('telescope.builtin').lsp_references(require('telescope.themes').get_ivy({}))<cr>",
 				"References",
 				noremap = true,
 			},
@@ -71,7 +71,7 @@ function M.on_attach(client, bufnr)
 	-- Code Action
 	if client.resolved_capabilities.code_action then
 		visual_mode_keymap["a"] = {
-			":'<,'>lua require'telescope.builtin'.lsp_range_code_actions(require('telescope.themes').get_cursor({}))<CR>",
+			":'<,'>Telescope lsp_range_code_actions<CR>",
 			"range code actions",
 			noremap = true,
 		}
@@ -90,7 +90,7 @@ function M.on_attach(client, bufnr)
 		}
 	end
 	wk.register(normal_mode_keymap, { prefix = "<leader>" })
-	wk.register(visual_mode_keymap, { mode = "v", prefix = "l" })
+	wk.register(visual_mode_keymap, { mode = "v", prefix = "<leader>" })
 end
 
 return M
