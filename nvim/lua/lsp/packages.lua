@@ -24,6 +24,3 @@ packer.use({
 	end,
 })
 packer.use("nvim-lua/lsp_extensions.nvim")
-
--- TODO: switch back to `glepnir/lspsaga.nvim` (nvim 0.5.1 incompatible) once that repo is fixed
-packer.use("tami5/lspsaga.nvim")

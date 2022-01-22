@@ -17,7 +17,7 @@ function M.on_attach(client, bufnr)
 			noremap = true,
 		},
 		l = {
-			"<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<cr>",
+			"<cmd>lua vim.diagnostic.show_line_diagnostics()<cr>",
 			"Line Diagnostics",
 			noremap = true,
 		},
@@ -55,7 +55,7 @@ function M.on_attach(client, bufnr)
 	-- Hover
 	if client.resolved_capabilities.hover then
 		normal_mode_keymap["h"] = {
-			"<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>",
+			"<cmd>lua vim.lsp.buf.hover()<CR>",
 			"Hover",
 			noremap = true,
 		}
@@ -63,7 +63,7 @@ function M.on_attach(client, bufnr)
 	-- Rename
 	if client.resolved_capabilities.rename then
 		normal_mode_keymap["r"] = {
-			"<cmd>lua require('lspsaga.rename').rename()<CR>",
+			"<cmd>lua vim.lsp.buf.rename()<CR>",
 			"Rename",
 			noremap = true,
 		}
@@ -71,13 +71,13 @@ function M.on_attach(client, bufnr)
 	-- Code Action
 	if client.resolved_capabilities.code_action then
 		visual_mode_keymap["a"] = {
-			":'<,'>lua require('lspsaga.codeaction').range_code_action()<CR>",
+			":'<,'>lua require'telescope.builtin'.lsp_range_code_actions(require('telescope.themes').get_cursor({}))<CR>",
 			"range code actions",
 			noremap = true,
 		}
 		normal_mode_keymap["a"] = {
-			"<cmd>lua require('lspsaga.codeaction').code_action()<CR>",
-			"Code actions",
+			"<cmd>lua require('telescope.builtin').lsp_code_actions(require('telescope.themes').get_cursor({}))<CR>",
+			"code actions",
 			noremap = true,
 		}
 	end
