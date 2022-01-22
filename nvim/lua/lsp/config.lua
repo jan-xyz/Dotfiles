@@ -17,7 +17,7 @@ function M.on_attach(client, bufnr)
 			noremap = true,
 		},
 		l = {
-			"<cmd>lua vim.diagnostic.show_line_diagnostics()<cr>",
+			"<cmd>lua vim.diagnostic.open_float()<cr>",
 			"Line Diagnostics",
 			noremap = true,
 		},
