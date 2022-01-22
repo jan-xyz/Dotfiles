@@ -10,18 +10,21 @@ packer.use({
 	config = function()
 		local rt = require("rust-tools")
 		local lsp = require("lsp.config")
+		local completion = require("ui.completion")
 		rt.setup({
-			tools = {
-				server = {
-					on_attach = lsp.on_attach,
-					settings = {
-						["rust-analyzer"] = {
-							cargo = { "core", "derivative" },
-							assist = {
-								importGranularity = "item",
-								importPrefix = "self",
-								importEnforceGranularity = true,
-							},
+			server = {
+				capabilities = completion.capabilities,
+				on_attach = lsp.on_attach,
+				settings = {
+					["rust-analyzer"] = {
+						cargo = {
+							unsetTest = { "core", "derivative" },
+						},
+						assist = {
+							importGranularity = "item",
+							importPrefix = "by_self",
+							importEnforceGranularity = true,
+							allowMergingIntoGlobImports = false,
 						},
 					},
 				},
