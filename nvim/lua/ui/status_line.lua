@@ -1,8 +1,7 @@
 local packer = require("packer")
 
 packer.use({
-	"jan-xyz/nvim-hardline",
-	branch = "patch-1",
+	"ojroques/nvim-hardline",
 	config = function()
 		require("hardline").setup({
 			theme = "nord",
