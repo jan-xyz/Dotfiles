@@ -9,6 +9,7 @@ nvim_lsp.gopls.setup({
 	on_attach = lsp.on_attach,
 	settings = {
 		gopls = {
+			usePlaceholders = true,
 			gofumpt = true,
 			analyses = {
 				shadow = true,
