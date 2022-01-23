@@ -16,6 +16,7 @@ packer.use({
 				capabilities = completion.capabilities,
 				on_attach = lsp.on_attach,
 				settings = {
+					["rust-analyzer.assist.importEnforceGranularity"] = true,
 					["rust-analyzer"] = {
 						cargo = {
 							unsetTest = { "core", "derivative" },
