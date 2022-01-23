@@ -1,5 +1,7 @@
 {
-    "editor.rulers": [80],
+    "editor.rulers": [
+        80
+    ],
     "files.associations": {
         "*.dk": "dockerfile",
         "*.mk": "makefile"
@@ -18,7 +20,9 @@
     },
     "[python]": {
         "editor.formatOnSave": true,
-        "editor.rulers": [ 80 ]
+        "editor.rulers": [
+            80
+        ]
     },
     "[go]": {
         "editor.snippetSuggestions": "none",
@@ -27,37 +31,32 @@
             "source.organizeImports": true
         }
     },
-    "[rust]":{
+    "[rust]": {
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
             "source.organizeImports": true
         }
     },
-    "jupyter.maxOutputSize": 1200,
     "files.eol": "\n",
     "editor.fontFamily": "\"Fira Code\", Menlo, \"DejaVu Sans Mono\", Consolas, \"Lucida Console\", monospace",
     "editor.fontLigatures": true,
     "editor.renderWhitespace": "boundary",
     "editor.minimap.enabled": false,
     "window.zoomLevel": 0,
-    "vs-kubernetes": {
-        "vs-kubernetes.helm-path": "/Users/jan/.vs-kubernetes/tools/helm/darwin-amd64/helm",
-        "vs-kubernetes.draft-path": "/Users/jan/.vs-kubernetes/tools/draft/darwin-amd64/draft",
-        "vs-kubernetes.minikube-path": "/Users/jan/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
-        "vs-kubernetes.minikube-path.mac": "/Users/jan/.vs-kubernetes/tools/minikube/darwin-amd64/minikube",
-        "vscode-kubernetes.minikube-path.mac": "/Users/jan/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
-    },
-    "liveshare.audio.joinCallBehavior": "accept",
     "editor.suggestSelection": "first",
     "kotlin.languageServer.path": "/usr/local/bin/kotlin-language-server",
     "python.languageServer": "Pylance",
     "editor.accessibilitySupport": "off",
     "jupyter.askForKernelRestart": false,
-    "python.showStartPage": false,
-    "liveshare.authenticationProvider": "GitHub",
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
     },
-    "rust-client.engine": "rust-analyzer",
-    "redhat.telemetry.enabled": false
+    "redhat.telemetry.enabled": false,
+    "rust-analyzer.assist.importGranularity": "item",
+    "rust-analyzer.assist.importEnforceGranularity": true,
+    "rust-analyzer.assist.importPrefix": "crate",
+    "rust-analyzer.cargo.unsetTest": [
+        "core",
+        "derivative"
+    ]
 }

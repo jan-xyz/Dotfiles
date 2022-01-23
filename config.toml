@@ -111,7 +111,7 @@ extensions = [
   "golang.go",
   "ethan-reesor.vscode-go-test-adapter",
   "fwcd.kotlin",
-  "rust-lang.rust",
+  "matklad.rust-analyzer",
   "swellaby.vscode-rust-test-adapter",
 ]
 
