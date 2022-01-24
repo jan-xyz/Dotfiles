@@ -5,6 +5,8 @@ vim.o.list = true -- Show tabs, spaces and line ends
 vim.o.listchars = "tab:⟶ " -- Set list characters
 vim.o.mouse = "a" -- Enable all mouse support
 vim.o.termguicolors = true -- enable 24-bit colors
+vim.o.splitbelow = true -- new window below on horizontal split
+vim.o.splitright = true -- new window to the right on vertical split
 
 -- window options
 vim.wo.number = true -- Add line numbers
