@@ -40,6 +40,13 @@ function M.on_attach(client, bufnr)
 	if client.resolved_capabilities.goto_definition then
 		wk.register({ d = { "<cmd>Telescope lsp_definitions<CR>", "Definition", noremap = true } }, { prefix = "g" })
 	end
+	-- Goto Implementations
+	if client.resolved_capabilities.implementation then
+		wk.register(
+			{ i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementation", noremap = true } },
+			{ prefix = "g" }
+		)
+	end
 	-- Find References
 	if client.resolved_capabilities.find_references then
 		wk.register({
