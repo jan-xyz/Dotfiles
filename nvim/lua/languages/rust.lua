@@ -1,37 +1,29 @@
-local packer = require("packer")
+local nvim_lsp = require("lspconfig")
+local lsp = require("lsp.config")
 local dap = require("dap")
+local completion = require("ui.completion")
 
 -- LSP config
 vim.cmd(
-	[[autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'lsp_extensions'.inlay_hints{ prefix = ' » ', highlight = "NonText", enabled = {"ChainingHint"} }]]
+	[[autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'lsp_extensions'.inlay_hints{ prefix = ' » ', highlight = "Comment", enabled = {"ChainingHint"} }]]
 )
-packer.use({
-	"simrat39/rust-tools.nvim",
-	config = function()
-		local rt = require("rust-tools")
-		local lsp = require("lsp.config")
-		local completion = require("ui.completion")
-		rt.setup({
-			server = {
-				capabilities = completion.capabilities,
-				on_attach = lsp.on_attach,
-				settings = {
-					["rust-analyzer.assist.importEnforceGranularity"] = true,
-					["rust-analyzer"] = {
-						cargo = {
-							unsetTest = { "core", "derivative" },
-						},
-						assist = {
-							importGranularity = "item",
-							importPrefix = "by_self",
-							importEnforceGranularity = true,
-							allowMergingIntoGlobImports = false,
-						},
-					},
-				},
+nvim_lsp.rust_analyzer.setup({
+	capabilities = completion.capabilities,
+	on_attach = lsp.on_attach,
+	settings = {
+		["rust-analyzer.assist.importEnforceGranularity"] = true,
+		["rust-analyzer"] = {
+			cargo = {
+				unsetTest = { "core", "derivative" },
 			},
-		})
-	end,
+			assist = {
+				importGranularity = "item",
+				importPrefix = "by_self",
+				importEnforceGranularity = true,
+				allowMergingIntoGlobImports = false,
+			},
+		},
+	},
 })
 
 -- DAP config
