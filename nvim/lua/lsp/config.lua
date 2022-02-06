@@ -5,7 +5,7 @@ local M = {}
 -- Global callback functions for LSP shortcuts
 function M.on_attach(client, bufnr)
 	print("client:" .. client.name .. "; bufnr:" .. bufnr)
-	-- print(vim.inspect(client.resolved_capabilities))
+	--print(vim.inspect(client.resolved_capabilities))
 
 	local wk = require("which-key")
 	local telescope_builtin = require("telescope.builtin")
@@ -80,19 +80,12 @@ function M.on_attach(client, bufnr)
 	-- Code Action
 	if client.resolved_capabilities.code_action then
 		visual_mode_keymap["a"] = {
-			function()
-				telescope_builtin.lsp_range_code_actions({
-					start_line = vim.fn.line("."),
-					end_line = vim.fn.line("v"),
-				})
-			end,
+			vim.lsp.buf.range_code_action,
 			"range code actions",
 			noremap = true,
 		}
 		normal_mode_keymap["a"] = {
-			function()
-				telescope_builtin.lsp_code_actions(require("telescope.themes").get_cursor({}))
-			end,
+			vim.lsp.code_action,
 			"code actions",
 			noremap = true,
 		}
