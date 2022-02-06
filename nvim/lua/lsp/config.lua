@@ -8,16 +8,19 @@ function M.on_attach(client, bufnr)
 	-- print(vim.inspect(client.resolved_capabilities))
 
 	local wk = require("which-key")
+	local telescope_builtin = require("telescope.builtin")
 
 	-- Workspace diagnostics
 	local normal_mode_keymap = {
 		w = {
-			"<cmd>lua require'telescope.builtin'.diagnostics(require('telescope.themes').get_ivy({}))<cr>",
+			function()
+				telescope_builtin.diagnostics(require("telescope.themes").get_ivy({}))
+			end,
 			"Workspace Diagnostics",
 			noremap = true,
 		},
 		l = {
-			"<cmd>lua vim.diagnostic.open_float()<cr>",
+			vim.diagnostic.open_float,
 			"Line Diagnostics",
 			noremap = true,
 		},
@@ -27,7 +30,7 @@ function M.on_attach(client, bufnr)
 	if client.resolved_capabilities.code_lens then
 		vim.cmd([[autocmd CursorHold,CursorHoldI,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]])
 		normal_mode_keymap["c"] = {
-			"<Cmd>lua vim.lsp.codelens.run()<CR>",
+			vim.lsp.codelens.run,
 			"Codelens",
 			noremap = true,
 		}
@@ -38,20 +41,19 @@ function M.on_attach(client, bufnr)
 	end
 	-- Goto Defintion
 	if client.resolved_capabilities.goto_definition then
-		wk.register({ d = { "<cmd>Telescope lsp_definitions<CR>", "Definition", noremap = true } }, { prefix = "g" })
+		wk.register({ d = { telescope_builtin.lsp_definitions, "Definition", noremap = true } }, { prefix = "g" })
 	end
 	-- Goto Implementations
 	if client.resolved_capabilities.implementation then
-		wk.register(
-			{ i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementation", noremap = true } },
-			{ prefix = "g" }
-		)
+		wk.register({ i = { vim.lsp.buf.implementation, "Implementation", noremap = true } }, { prefix = "g" })
 	end
 	-- Find References
 	if client.resolved_capabilities.find_references then
 		wk.register({
 			r = {
-				"<cmd>lua require('telescope.builtin').lsp_references(require('telescope.themes').get_ivy({}))<cr>",
+				function()
+					telescope_builtin.lsp_references(require("telescope.themes").get_ivy({}))
+				end,
 				"References",
 				noremap = true,
 			},
@@ -62,7 +64,7 @@ function M.on_attach(client, bufnr)
 	-- Hover
 	if client.resolved_capabilities.hover then
 		normal_mode_keymap["h"] = {
-			"<cmd>lua vim.lsp.buf.hover()<CR>",
+			vim.lsp.buf.hover,
 			"Hover",
 			noremap = true,
 		}
@@ -70,7 +72,7 @@ function M.on_attach(client, bufnr)
 	-- Rename
 	if client.resolved_capabilities.rename then
 		normal_mode_keymap["r"] = {
-			"<cmd>lua vim.lsp.buf.rename()<CR>",
+			vim.lsp.buf.rename,
 			"Rename",
 			noremap = true,
 		}
@@ -78,12 +80,16 @@ function M.on_attach(client, bufnr)
 	-- Code Action
 	if client.resolved_capabilities.code_action then
 		visual_mode_keymap["a"] = {
-			":'<,'>Telescope lsp_range_code_actions<CR>",
+			function()
+				telescope_builtin.lsp_range_code_actions({ start_line = vim.fn.line("."), end_line = vim.fn.line("v") })
+			end,
 			"range code actions",
 			noremap = true,
 		}
 		normal_mode_keymap["a"] = {
-			"<cmd>lua require('telescope.builtin').lsp_code_actions(require('telescope.themes').get_cursor({}))<CR>",
+			function()
+				telescope_builtin.lsp_code_actions(require("telescope.themes").get_cursor({}))
+			end,
 			"code actions",
 			noremap = true,
 		}
@@ -91,7 +97,7 @@ function M.on_attach(client, bufnr)
 	-- Symbols
 	if client.resolved_capabilities.workspace_symbol then
 		normal_mode_keymap["#"] = {
-			"<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>",
+			telescope_builtin.lsp_dynamic_workspace_symbols,
 			"Seach workspace symbols",
 			noremap = true,
 		}

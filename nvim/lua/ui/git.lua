@@ -4,12 +4,25 @@ packer.use({
 	config = function()
 		require("neogit").setup({ disable_commit_confirmation = true })
 		local wk = require("which-key")
+		local neogit = require("neogit")
 		wk.register({
 			g = {
 				name = "Git",
-				n = { "<cmd>lua require('neogit').open()<CR>", "Neogit", noremap = true },
-				c = { "<cmd>lua require('neogit').open({'commit'})<CR>", "Commit", noremap = true },
-				p = { "<cmd>lua require('neogit').open({'push'})<CR>", "Push", noremap = true },
+				n = { neogit.open, "Neogit", noremap = true },
+				c = {
+					function()
+						neogit.open({ "commit" })
+					end,
+					"Commit",
+					noremap = true,
+				},
+				p = {
+					function()
+						neogit.open({ "push" })
+					end,
+					"Push",
+					noremap = true,
+				},
 			},
 		}, {
 			mode = "n",
@@ -28,14 +41,15 @@ packer.use({
 			keymaps = {},
 		})
 		local wk = require("which-key")
+		local gitsigns = require("gitsigns")
 		-- normal mode
 		wk.register({
 			g = {
 				name = "Git",
-				b = { "<cmd>lua require('gitsigns').blame_line()<CR>", "Blame", noremap = true },
-				d = { "<cmd>lua require('gitsigns').preview_hunk()<CR>", "Diff", noremap = true },
-				r = { "<cmd>lua require('gitsigns').reset_hunk()<CR>", "Reset Hunk", noremap = true },
-				s = { "<cmd>lua require('gitsigns').stage_hunk()<CR>", "Stage Hunk", noremap = true },
+				b = { gitsigns.blame_line, "Blame", noremap = true },
+				d = { gitsigns.preview_hunk, "Diff", noremap = true },
+				r = { gitsigns.reset_hunk, "Reset Hunk", noremap = true },
+				s = { gitsigns.stage_hunk, "Stage Hunk", noremap = true },
 			},
 		}, {
 			mode = "n",
@@ -46,12 +60,16 @@ packer.use({
 			g = {
 				name = "Git",
 				r = {
-					"<cmd>lua require('gitsigns').reset_hunk({vim.fn.line('.'), vim.fn.line('v')})<CR>",
+					function()
+						gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+					end,
 					"Reset Hunk",
 					noremap = true,
 				},
 				s = {
-					"<cmd>lua require('gitsigns').stage_hunk({vim.fn.line('.'), vim.fn.line('v')})<CR>",
+					function()
+						gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+					end,
 					"Stage Hunk",
 					noremap = true,
 				},

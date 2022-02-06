@@ -12,27 +12,33 @@ packer.use({
 		require("dapui").setup()
 		-- keymap
 		local wk = require("which-key")
+		local dap = require("dap")
+		local dapui = require("dapui")
 		wk.register({
 			d = {
 				name = "Debugger", -- optional group name
-				b = { "<cmd>lua require'dap'.toggle_breakpoint()<CR>", "Toggle breakpoint", noremap = true },
-				c = { "<cmd>lua require'dap'.continue()<CR>", "Start/continue", noremap = true },
-				i = { "<cmd>lua require'dap'.step_into()<CR>", "Step into", noremap = true },
-				u = { "<cmd>lua require'dap'.step_out()<CR>", "Step out", noremap = true },
-				o = { "<cmd>lua require'dap'.step_over()<CR>", "Step over", noremap = true },
-				r = { "<cmd>lua require'dap'.repl.open()<CR>", "REPL", noremap = true },
-				t = { "<cmd>lua require'dapui'.toggle()<CR>", "Toggle UI", noremap = true },
+				b = { dap.toggle_breakpoint, "Toggle breakpoint", noremap = true },
+				c = { dap.continue, "Start/continue", noremap = true },
+				i = { dap.step_into, "Step into", noremap = true },
+				u = { dap.step_out, "Step out", noremap = true },
+				o = { dap.step_over, "Step over", noremap = true },
+				r = { dap.repl.open, "REPL", noremap = true },
+				t = { dapui.toggle, "Toggle UI", noremap = true },
 				p = {
-					"<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
+					function()
+						dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+					end,
 					"Set log point",
 					noremap = true,
 				},
 				e = {
-					"<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+					function()
+						dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+					end,
 					"set conditional break point",
 					noremap = true,
 				},
-				l = { "<cmd>lua require'dap'.list_breakpoints()<CR>", "List breakpoints", noremap = true },
+				l = { dap.list_breakpoints, "List breakpoints", noremap = true },
 			},
 		}, {
 			mode = "n",
@@ -40,7 +46,7 @@ packer.use({
 		})
 
 		wk.register({
-			c = { "<cmd>lua require'dap'.continue()<CR>", "Start/continue", noremap = true },
+			c = { dap.continue, "Start/continue", noremap = true },
 		}, {
 			mode = "v",
 			prefix = "<leader>",

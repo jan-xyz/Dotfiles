@@ -26,19 +26,22 @@ packer.use({
 			},
 		})
 		local wk = require("which-key")
+		local telescope_builtin = require("telescope.builtin")
 		wk.register({
 			f = {
 				name = "File", -- optional group name
 				f = {
-					"<cmd>lua require('telescope.builtin').find_files({hidden=true})<cr>",
+					function()
+						telescope_builtin.find_files({ hidden = true })
+					end,
 					"Find File",
 					noremap = true,
 				},
-				g = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", "Find in File", noremap = true },
-				o = { "<cmd>lua require('telescope.builtin').oldfiles()<cr>", "Open Recent File", noremap = true },
-				r = { "<cmd>lua require('telescope.builtin').resume()<cr>", "Resume last picker", noremap = true },
-				p = { "<cmd>lua require('telescope.builtin').pickers()<cr>", "List all pickers", noremap = true },
-				b = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "List open buffers", noremap = true },
+				g = { telescope_builtin.live_grep, "Find in File", noremap = true },
+				o = { telescope_builtin.oldfiles, "Open Recent File", noremap = true },
+				r = { telescope_builtin.resume, "Resume last picker", noremap = true },
+				p = { telescope_builtin.pickers, "List all pickers", noremap = true },
+				b = { telescope_builtin.buffers, "List open buffers", noremap = true },
 			},
 		}, {
 			prefix = "<leader>",
