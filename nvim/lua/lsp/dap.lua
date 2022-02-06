@@ -45,13 +45,6 @@ packer.use({
 			prefix = "<leader>",
 		})
 
-		wk.register({
-			c = { dap.continue, "Start/continue", noremap = true },
-		}, {
-			mode = "v",
-			prefix = "<leader>",
-		})
-
 		-- add autocompletion to DAP repl
 		vim.cmd([[autocmd FileType dap-repl lua require('dap.ext.autocompl').attach()]])
 		-- Support launch.json (Do after setting the default values)
