@@ -81,7 +81,10 @@ function M.on_attach(client, bufnr)
 	if client.resolved_capabilities.code_action then
 		visual_mode_keymap["a"] = {
 			function()
-				telescope_builtin.lsp_range_code_actions({ start_line = vim.fn.line("."), end_line = vim.fn.line("v") })
+				telescope_builtin.lsp_range_code_actions({
+					start_line = vim.fn.line("."),
+					end_line = vim.fn.line("v"),
+				})
 			end,
 			"range code actions",
 			noremap = true,
