@@ -50,6 +50,7 @@ packer.use({
 				d = { gitsigns.preview_hunk, "Diff", noremap = true },
 				r = { gitsigns.reset_hunk, "Reset Hunk", noremap = true },
 				s = { gitsigns.stage_hunk, "Stage Hunk", noremap = true },
+				u = { gitsigns.undo_stage_hunk, "Undo Stage Hunk", noremap = true },
 			},
 		}, {
 			mode = "n",
