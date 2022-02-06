@@ -7,7 +7,9 @@ packer.use({
 		wk.register({
 			g = {
 				name = "Git",
-				n = { "<cmd>Neogit<CR>", "Neogit", noremap = true },
+				n = { "<cmd>lua require('neogit').open()<CR>", "Neogit", noremap = true },
+				c = { "<cmd>lua require('neogit').open({'commit'})<CR>", "Commit", noremap = true },
+				p = { "<cmd>lua require('neogit').open({'push'})<CR>", "Push", noremap = true },
 			},
 		}, {
 			mode = "n",
