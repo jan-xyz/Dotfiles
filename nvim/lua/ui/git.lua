@@ -30,9 +30,10 @@ packer.use({
 		wk.register({
 			g = {
 				name = "Git",
-				b = { "<cmd>Gitsign blame_line<CR>", "Blame", noremap = true },
-				d = { "<cmd>Gitsign preview_hunk<CR>", "Diff", noremap = true },
-				r = { "<cmd>Gitsign reset_hunk<CR>", "Reset Hunk", noremap = true },
+				b = { "<cmd>lua require('gitsigns').blame_line()<CR>", "Blame", noremap = true },
+				d = { "<cmd>lua require('gitsigns').preview_hunk()<CR>", "Diff", noremap = true },
+				r = { "<cmd>lua require('gitsigns').reset_hunk()<CR>", "Reset Hunk under cursor", noremap = true },
+				s = { "<cmd>lua require('gitsigns').stage_hunk()<CR>", "Stage Hunk under cursor", noremap = true },
 			},
 		}, {
 			mode = "n",
@@ -42,7 +43,16 @@ packer.use({
 		wk.register({
 			g = {
 				name = "Git",
-				r = { "<cmd>'<,'>Gitsign reset_hunk<CR>", "Reset Hunk", noremap = true },
+				r = {
+					"<cmd>lua require('gitsigns').reset_hunk({vim.fn.line('.'), vim.fn.line('v')})<CR>",
+					"Reset Hunk in range",
+					noremap = true,
+				},
+				s = {
+					"<cmd>lua require('gitsigns').stage_hunk({vim.fn.line('.'), vim.fn.line('v')})<CR>",
+					"Stage Hunk in range",
+					noremap = true,
+				},
 			},
 		}, {
 			mode = "v",
