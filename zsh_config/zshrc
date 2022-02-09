@@ -39,6 +39,14 @@ function zvm_after_init() {
 	[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 }
 
+# history config
+setopt hist_ignore_all_dups          # Prevent history from recording duplicated entries
+setopt inc_append_history            # Write to the history file immediately, not when the shell exits.
+setopt share_history                 # Share history between all sessions.
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000000
+SAVEHIST=10000000
+
 # Set the title bar in the shell
 DISABLE_AUTO_TITLE="true"
 function set_terminal_title() {
