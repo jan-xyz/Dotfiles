@@ -34,7 +34,7 @@ fi
 make run
 
 #==============
-# setup system Java wrappers to find this JDK
+# setup system Java wrappers to find homebrew JDKs
 #==============
 echo -e "${YELLOW}Setting up Java wrappers for homebrew JDK${NOCOLOR}"
 sudo ln -sfn "$(brew --prefix)/opt/openjdk@17/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-17.jdk"
