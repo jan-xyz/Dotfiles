@@ -17,6 +17,7 @@ bottles = [
   "ddate",
   "delve",
   "efm-langserver",
+  "firefox",
   "font-fira-code-nerd-font",
   "font-meslo-for-powerline",
   "font-source-code-pro-for-powerline",
