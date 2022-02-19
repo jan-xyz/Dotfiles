@@ -85,7 +85,7 @@ function M.on_attach(client, bufnr)
 			noremap = true,
 		}
 		normal_mode_keymap["a"] = {
-			vim.lsp.code_action,
+			vim.lsp.buf.code_action,
 			"code actions",
 			noremap = true,
 		}
