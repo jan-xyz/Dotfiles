@@ -1,35 +1,4 @@
 local packer = require("packer")
-packer.use({
-	"TimUntersberger/neogit",
-	config = function()
-		require("neogit").setup({ disable_commit_confirmation = true })
-		local wk = require("which-key")
-		local neogit = require("neogit")
-		wk.register({
-			g = {
-				name = "Git",
-				n = { neogit.open, "Neogit", noremap = true },
-				c = {
-					function()
-						neogit.open({ "commit" })
-					end,
-					"Commit",
-					noremap = true,
-				},
-				p = {
-					function()
-						neogit.open({ "push" })
-					end,
-					"Push",
-					noremap = true,
-				},
-			},
-		}, {
-			mode = "n",
-			prefix = "<leader>",
-		})
-	end,
-})
 
 packer.use({
 	"lewis6991/gitsigns.nvim",
