@@ -13,3 +13,8 @@ packer.use({
 		vim.cmd("colorscheme nord")
 	end,
 })
+
+packer.use({
+	"catppuccin/nvim",
+	as = "catppuccin",
+})
