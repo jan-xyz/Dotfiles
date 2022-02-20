@@ -35,10 +35,12 @@ packer.use({
 							matcher = function(buf)
 								return buf.filename == "go.mod"
 									or buf.filename == "go.sum"
-									or buf.filename == "Cargo.toml"
 									or buf.filename == "requirements.txt"
-									or buf.filename == "Pyproject.toml"
-									or buf.filename == "config.toml"
+									or buf.extension == "toml"
+									or buf.extension == "yaml"
+									or buf.extension == "yml"
+									or buf.extension == "json"
+									or buf.extension == "conf"
 							end,
 						},
 						{
