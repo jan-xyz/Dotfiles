@@ -50,8 +50,7 @@ packer.use({
 						},
 						{
 							name = "Source",
-							matcher = function(buf)
-								print(vim.inspect(buf))
+							matcher = function(_)
 								return true
 							end,
 						},
