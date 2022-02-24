@@ -18,7 +18,7 @@ packer.use({
 							name = "Git",
 							auto_close = true,
 							matcher = function(buf)
-								return buf.path:find("/.git/") or buf.filename:find(".git")
+								return buf.path:find("/.git/") or buf.path:find("/.github/") or buf.filename:find("git")
 							end,
 						},
 						{
