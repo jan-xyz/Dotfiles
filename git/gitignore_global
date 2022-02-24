@@ -10,3 +10,7 @@ target
 *.retry
 *.code-workspace
 .DS_Store
+.vscode
+.metals
+metals.sbt
+.bloop

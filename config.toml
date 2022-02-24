@@ -114,6 +114,7 @@ extensions = [
   "fwcd.kotlin",
   "matklad.rust-analyzer",
   "swellaby.vscode-rust-test-adapter",
+  "scalameta.metals",
 ]
 
 [npm]

@@ -58,5 +58,11 @@
     "rust-analyzer.cargo.unsetTest": [
         "core",
         "derivative"
-    ]
+    ],
+    "files.autoSave": "afterDelay",
+    "files.watcherExclude": {
+        "**/.bloop": true,
+        "**/.metals": true,
+        "**/.ammonite": true
+    }
 }
