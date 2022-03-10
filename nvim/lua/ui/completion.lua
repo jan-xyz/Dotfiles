@@ -13,6 +13,7 @@ packer.use({
 		"hrsh7th/vim-vsnip",
 	},
 	config = function()
+		-- helpers for jumping between snippet fields
 		-- based on nvim-cmp wiki
 		local has_words_before = function()
 			local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -38,8 +39,10 @@ packer.use({
 				{ name = "buffer" },
 			}),
 			mapping = {
+				-- confirm selection
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 
+				-- jump between snippet fields
 				-- based on nvim-cmp wiki
 				["<Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
