@@ -4,8 +4,8 @@ local M = {}
 
 -- Global callback functions for LSP shortcuts
 function M.on_attach(client, bufnr)
-	print("client:" .. client.name .. "; bufnr:" .. bufnr)
-	--print(vim.inspect(client.resolved_capabilities))
+	vim.notify("connecting '" .. client.name .. "' to buffer " .. bufnr, vim.log.levels.INFO)
+	-- vim.notify(vim.inspect(client.resolved_capabilities), vim.log.levels.DEBUG)
 
 	local wk = require("which-key")
 	local telescope_builtin = require("telescope.builtin")
