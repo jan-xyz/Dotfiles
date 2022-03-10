@@ -26,7 +26,7 @@ packer.use({
 							icon = "",
 							auto_close = true,
 							matcher = function(buf)
-								return buf.extension == "md"
+								return buf.extension == "md" or buf.extension == "norg"
 							end,
 						},
 						{

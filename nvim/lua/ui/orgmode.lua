@@ -2,6 +2,7 @@ local packer = require("packer")
 
 packer.use({
 	"nvim-neorg/neorg",
+	requires = { "nvim-lua/plenary.nvim", "folke/zen-mode.nvim" },
 	config = function()
 		require("neorg").setup({
 			load = {
@@ -12,9 +13,12 @@ packer.use({
 					},
 				},
 				["core.norg.concealer"] = {}, -- icon support
-				["core.presenter"] = {}, -- presentation mode
+				["core.presenter"] = {
+					config = {
+						zen_mode = "zen-mode",
+					},
+				}, -- presentation mode
 			},
 		})
 	end,
-	requires = "nvim-lua/plenary.nvim",
 })
