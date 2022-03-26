@@ -38,7 +38,6 @@ make run
 #==============
 echo -e "${YELLOW}Setting up Java wrappers for homebrew JDK${NOCOLOR}"
 sudo ln -sfn "$(brew --prefix)/opt/openjdk@17/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-17.jdk"
-sudo ln -sfn "$(brew --prefix)/opt/openjdk@16/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-16.jdk"
 sudo ln -sfn "$(brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-11.jdk"
 sudo ln -sfn "$(brew --prefix)/opt/openjdk@8/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-8.jdk"
 
