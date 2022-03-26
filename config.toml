@@ -16,7 +16,6 @@ bottles = [
   "colordiff",
   "ddate",
   "delve",
-  "efm-langserver",
   "firefox",
   "font-fira-code-nerd-font",
   "font-meslo-for-powerline",

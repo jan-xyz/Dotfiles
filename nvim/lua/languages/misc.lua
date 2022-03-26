@@ -1,54 +1,29 @@
-local nvim_lsp = require("lspconfig")
-local lsp = require("lsp.config")
-local completion = require("ui.completion")
+local packer = require("packer")
 
--- EFM (general purpose language server)
-nvim_lsp.efm.setup({
-	capabilities = completion.capabilities,
-	on_attach = lsp.on_attach,
-	init_options = { documentFormatting = true },
-	filetypes = { "sh", "lua", "markdown", "proto" },
-	settings = {
-		rootMarkers = { ".git/" },
-		languages = {
-			sh = {
-				{
-					formatCommand = "shfmt -ci -s -bn",
-					formatStdin = true,
-				},
-				{
-					lintCommand = "shellcheck -f gcc -x",
-					lintSource = "shellcheck",
-					lintFormats = {
-						"%f:%l:%c: %trror: %m",
-						"%f:%l:%c: %tarning: %m",
-						"%f:%l:%c: %tote: %m",
-					},
-				},
+packer.use({
+	"jose-elias-alvarez/null-ls.nvim",
+	config = function()
+		local lsp = require("lsp.config")
+		require("null-ls").setup({
+			on_attach = lsp.on_attach,
+			sources = {
+				-- Coda Actions
+				require("null-ls").builtins.code_actions.shellcheck,
+
+				-- Diagnostics
+				require("null-ls").builtins.diagnostics.buf,
+				require("null-ls").builtins.diagnostics.markdownlint,
+				require("null-ls").builtins.diagnostics.shellcheck,
+				-- Formatting
+				require("null-ls").builtins.formatting.stylua,
+				require("null-ls").builtins.formatting.shfmt,
+				-- TODO: currently broken and undoes changes on safe
+				-- require("null-ls").builtins.formatting.buf,
+				require("null-ls").builtins.formatting.markdownlint,
+
+				-- Completions
+				require("null-ls").builtins.completion.spell,
 			},
-			lua = {
-				{ formatCommand = "stylua -", formatStdin = true },
-			},
-			markdown = {
-				{
-					lintCommand = "markdownlint --stdin",
-					lintStdin = true,
-					lintFormats = {
-						"%f:%l:%c %m",
-						"%f:%l %m",
-						"%f: %l: %m",
-					},
-				},
-			},
-			proto = {
-				{
-					lintCommand = "buf lint --path ${INPUT}",
-					lintStdin = true,
-					lintFormats = {
-						"%f:%l:%c:%m",
-					},
-				},
-			},
-		},
-	},
+		})
+	end,
 })
