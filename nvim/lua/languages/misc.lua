@@ -18,7 +18,7 @@ packer.use({
 				require("null-ls").builtins.formatting.stylua,
 				require("null-ls").builtins.formatting.shfmt,
 				-- TODO: currently broken and undoes changes on safe
-				-- require("null-ls").builtins.formatting.buf,
+				require("null-ls").builtins.formatting.buf,
 				require("null-ls").builtins.formatting.markdownlint,
 
 				-- Completions
