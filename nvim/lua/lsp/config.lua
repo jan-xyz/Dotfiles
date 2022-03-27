@@ -37,12 +37,7 @@ function M.on_attach(client, bufnr)
 	end
 	-- Format document
 	if client.resolved_capabilities.document_formatting then
-		-- TODO: this is a workaround for formatting buffers which are only written
-		if client.name == "null-ls" then
-			vim.cmd([[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting_sync(nil, 500)]])
-		else
-			vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 500)]])
-		end
+		vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 500)]])
 	end
 	-- Goto Defintion
 	if client.resolved_capabilities.goto_definition then
