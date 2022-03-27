@@ -4,11 +4,9 @@ packer.use({
 	requires = { "kyazdani42/nvim-web-devicons", "folke/which-key.nvim" },
 	config = function()
 		require("nvim-tree").setup({
-			open_on_setup = false,
-			auto_close = false,
-			quit_on_open = false,
 			diagnostics = {
 				enable = true,
+				show_on_dirs = true,
 			},
 			git = { ignore = false },
 			hijack_cursor = true,
