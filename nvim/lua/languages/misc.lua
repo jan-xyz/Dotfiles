@@ -16,7 +16,8 @@ packer.use({
 				require("null-ls").builtins.diagnostics.shellcheck,
 				-- Formatting
 				require("null-ls").builtins.formatting.shfmt,
-				-- TODO: still doesn't properly work
+				-- TODO: doesn't work with format on safe because it works on the
+				--       file on disc and overwrites changes on safe.
 				--require("null-ls").builtins.formatting.buf,
 				require("null-ls").builtins.formatting.markdownlint,
 			},
