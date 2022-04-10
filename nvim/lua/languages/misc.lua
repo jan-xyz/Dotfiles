@@ -15,7 +15,7 @@ packer.use({
 				require("null-ls").builtins.diagnostics.markdownlint,
 				require("null-ls").builtins.diagnostics.shellcheck,
 				-- Formatting
-				require("null-ls").builtins.formatting.stylua,
+				-- require("null-ls").builtins.formatting.stylua,
 				require("null-ls").builtins.formatting.shfmt,
 				-- TODO: still doesn't properly work
 				--require("null-ls").builtins.formatting.buf,
