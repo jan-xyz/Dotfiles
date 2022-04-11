@@ -2,6 +2,8 @@ local packer = require("packer")
 
 local M = {}
 
+packer.use("github/copilot.vim")
+
 packer.use({
 	"hrsh7th/nvim-cmp",
 	requires = {
