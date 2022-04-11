@@ -16,7 +16,6 @@ packer.use({
 					items = {
 						{
 							name = "Git",
-							auto_close = true,
 							matcher = function(buf)
 								return buf.path:find("/.git/") or buf.path:find("/.github/") or buf.filename:find("git")
 							end,
@@ -24,14 +23,12 @@ packer.use({
 						{
 							name = "Docs",
 							icon = "",
-							auto_close = true,
 							matcher = function(buf)
 								return buf.extension == "md" or buf.extension == "norg"
 							end,
 						},
 						{
 							name = "Config",
-							auto_close = true,
 							matcher = function(buf)
 								return buf.filename == "go.mod"
 									or buf.filename == "go.sum"
