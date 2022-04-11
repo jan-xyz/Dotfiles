@@ -1,3 +1,7 @@
+# Environment Vars
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -17,11 +21,6 @@ source ~/.zplugins
 alias vim=nvim
 alias diff=colordiff
 alias docker=podman
-
-# Environment Vars
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-export PATH=/usr/local/bin:$PATH
 
 # AWS
 if [ -f ~/.aws/config ]; then
