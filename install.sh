@@ -23,7 +23,7 @@ git submodule update --init --recursive >/dev/null 2>&1
 echo -e "${YELLOW}Checking homebrew${NOCOLOR}"
 if ! command -v brew >/dev/null 2>&1; then
 	echo -e "${RED}Homebrew is not installed${NOCOLOR}"
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
 	echo -e "${GREEN}Homebrew is installed.${NOCOLOR}"
 fi
@@ -53,16 +53,17 @@ nvim \
 #==============
 # Set zsh as the default shell
 #==============
+shell_path=$(brew --prefix)/bin/zsh
 echo -e "${YELLOW}Setting shell${NOCOLOR}"
-if [[ ${SHELL} != "/usr/local/bin/zsh" ]]; then
-	if ! grep /usr/local/bin/zsh /etc/shells >/dev/null 2>&1; then
-		echo -e "${RED}Appending /usr/local/bin/zsh to /etc/shells${NOCOLOR}"
-		echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells
+if [[ ${SHELL} != "${shell_path}" ]]; then
+	if ! grep "${shell_path}" /etc/shells >/dev/null 2>&1; then
+		echo -e "${RED}Appending ${shell_path} to /etc/shells${NOCOLOR}"
+		echo "${shell_path}" | sudo tee -a /etc/shells
 	fi
-	echo -e "${RED}you're shell is not /usr/local/bin/zsh and I'm attempting to change that!${NOCOLOR}"
-	chsh -s /usr/local/bin/zsh
+	echo -e "${RED}you're shell is not ${shell_path} and I'm attempting to change that!${NOCOLOR}"
+	chsh -s "${shell_path}"
 else
-	echo -e "${GREEN}shell is /usr/local/bin/zsh${NOCOLOR}"
+	echo -e "${GREEN}shell is ${shell_path}${NOCOLOR}"
 fi
 
 #==============
