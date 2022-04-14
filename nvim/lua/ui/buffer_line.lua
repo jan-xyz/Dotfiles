@@ -1,6 +1,6 @@
 local packer = require("packer")
 packer.use({
-	"akinsho/nvim-bufferline.lua",
+	"akinsho/bufferline.nvim",
 	requires = { "kyazdani42/nvim-web-devicons", "moll/vim-bbye" },
 	config = function()
 		require("bufferline").setup({
