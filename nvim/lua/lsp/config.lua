@@ -28,7 +28,7 @@ function M.on_attach(client, bufnr)
 	local visual_mode_keymap = {}
 	-- Code Lens
 	if client.resolved_capabilities.code_lens then
-		vim.cmd([[autocmd CursorHold,CursorHoldI,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]])
+		vim.api.nvim_create_autocmd("CursorHold,CursorHoldI,InsertLeave", { callback = vim.lsp.codelens.refresh, buffer = 0 })
 		normal_mode_keymap["c"] = {
 			vim.lsp.codelens.run,
 			"Codelens",
@@ -37,7 +37,7 @@ function M.on_attach(client, bufnr)
 	end
 	-- Format document
 	if client.resolved_capabilities.document_formatting then
-		vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 500)]])
+		vim.api.nvim_create_autocmd("BufWritePre", { callback = function() vim.lsp.buf.formatting_sync(nil, 500) end, buffer = 0 })
 	end
 	-- Goto Defintion
 	if client.resolved_capabilities.goto_definition then
