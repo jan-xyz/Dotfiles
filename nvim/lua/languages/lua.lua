@@ -25,13 +25,17 @@ packer.use({
 				},
 			},
 		}
-		opts = vim.tbl_deep_extend("force", require("lua-dev").setup({
-			lspconfig = {
-				capabilities = completion.capabilities,
-				on_attach = lsp.on_attach,
-				cmd = { "lua-language-server" },
-			},
-		}), opts)
+		opts = vim.tbl_deep_extend(
+			"force",
+			require("lua-dev").setup({
+				lspconfig = {
+					capabilities = completion.capabilities,
+					on_attach = lsp.on_attach,
+					cmd = { "lua-language-server" },
+				},
+			}),
+			opts
+		)
 		nvim_lsp.sumneko_lua.setup(opts)
 	end,
 }) -- LSP server extensions for Lua

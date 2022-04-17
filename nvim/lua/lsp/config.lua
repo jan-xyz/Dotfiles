@@ -44,7 +44,7 @@ function M.on_attach(client, bufnr)
 			callback = function()
 				vim.lsp.buf.formatting_sync(nil, 500)
 			end,
-			buffer = 0
+			buffer = 0,
 		})
 	end
 	-- Goto Defintion
