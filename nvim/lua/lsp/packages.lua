@@ -23,4 +23,3 @@ packer.use({
 		require("languages.yaml")
 	end,
 })
-packer.use("nvim-lua/lsp_extensions.nvim")

@@ -6,7 +6,7 @@ packer.use({
 	config = function()
 		require("gitsigns").setup({
 			numhl = true,
-			word_diff = true,
+			word_diff = false,
 			keymaps = {},
 		})
 		local wk = require("which-key")

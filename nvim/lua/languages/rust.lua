@@ -4,12 +4,6 @@ local dap = require("dap")
 local completion = require("ui.completion")
 
 -- LSP config
-vim.api.nvim_create_autocmd("InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost", {
-	pattern = "*.rs",
-	callback = function()
-		require("lsp_extensions").inlay_hints({ prefix = " » ", highlight = "Comment", enabled = { "ChainingHint" } })
-	end,
-})
 nvim_lsp.rust_analyzer.setup({
 	capabilities = completion.capabilities,
 	on_attach = lsp.on_attach,
