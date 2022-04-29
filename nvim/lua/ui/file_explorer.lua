@@ -12,7 +12,6 @@ packer.use({
 			hijack_cursor = true,
 			view = {
 				side = "left",
-				auto_resize = true,
 			},
 		})
 
