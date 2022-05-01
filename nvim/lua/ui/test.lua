@@ -14,8 +14,8 @@ packer.use({
 			prefix = "t",
 		})
 
-		local tt = require "toggleterm"
-		local ttt = require "toggleterm.terminal"
+		local tt = require("toggleterm")
+		local ttt = require("toggleterm.terminal")
 
 		vim.g["test#custom_strategies"] = {
 			tterm = function(cmd)
