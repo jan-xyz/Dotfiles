@@ -20,7 +20,7 @@ packer.use({
 			e = { "<cmd>NvimTreeToggle<CR>", "Toggle file explorer", noremap = true },
 			f = { "<cmd>NvimTreeFindFile<CR>", "Find file in file explorer", noremap = true },
 		}, {
-			prefix = "t",
+			prefix = "f",
 		})
 	end,
 })

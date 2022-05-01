@@ -16,6 +16,7 @@ require("ui.symbols")
 require("ui.syntax")
 require("ui.telescope")
 require("ui.terminal")
+require("ui.test")
 require("ui.theme")
 require("ui.title")
 
