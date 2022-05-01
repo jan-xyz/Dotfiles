@@ -6,7 +6,7 @@ packer.use({
 	config = function()
 		local lsp_status = require("lsp-status")
 		lsp_status.config({
-			diagnostics = false
+			diagnostics = false,
 		})
 
 		require("hardline").setup({
