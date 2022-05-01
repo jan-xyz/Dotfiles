@@ -4,7 +4,6 @@ packer.use({
 	"ojroques/nvim-hardline",
 	requires = { "nvim-lua/lsp-status.nvim" },
 	config = function()
-		local lsp_status = require("lsp-status")
 
 		require("hardline").setup({
 			theme = "nord",
@@ -14,7 +13,6 @@ packer.use({
 				{ class = "med", item = require("hardline.parts.filename").get_item },
 				"%<",
 				{ class = "med", item = "%=" },
-				{ class = "high", item = lsp_status.status_progress },
 				{ class = "low", item = require("hardline.parts.wordcount").get_item, hide = 100 },
 				{ class = "error", item = require("hardline.parts.lsp").get_error },
 				{ class = "warning", item = require("hardline.parts.lsp").get_warning },
