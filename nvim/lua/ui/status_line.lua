@@ -4,7 +4,6 @@ packer.use({
 	"ojroques/nvim-hardline",
 	requires = { "nvim-lua/lsp-status.nvim" },
 	config = function()
-
 		require("hardline").setup({
 			theme = "nord",
 			sections = {
