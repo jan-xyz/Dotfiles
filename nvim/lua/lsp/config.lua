@@ -10,6 +10,11 @@ function M.on_attach(client, bufnr)
 	local wk = require("which-key")
 	local telescope_builtin = require("telescope.builtin")
 
+	-- attach lsp-status client
+	local lsp_status = require("lsp-status")
+	lsp_status.register_progress()
+	lsp_status.on_attach(client)
+
 	-- Workspace diagnostics
 	local normal_mode_keymap = {
 		w = {
