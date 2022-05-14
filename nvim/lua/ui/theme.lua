@@ -8,7 +8,6 @@ packer.use({
 
 packer.use({
 	"arcticicestudio/nord-vim",
-	branch = "develop",
 	config = function()
 		vim.cmd("colorscheme nord")
 	end,
