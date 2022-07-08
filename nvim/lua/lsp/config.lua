@@ -53,11 +53,14 @@ function M.on_attach(client, bufnr)
 	end
 	-- Goto Implementations
 	if client.resolved_capabilities.implementation then
-		wk.register({ i = { telescope_builtin.lsp_implementations, "Implementation", noremap = true } }, { prefix = "g" })
+		wk.register(
+			{ i = { telescope_builtin.lsp_implementations, "Implementation", noremap = true } },
+			{ prefix = "g" }
+		)
 	end
 	-- Find References
 	if client.resolved_capabilities.find_references then
-		wk.register({ r = { telescope_builtin.lsp_references, "References", noremap = true, }, }, { prefix = "g", })
+		wk.register({ r = { telescope_builtin.lsp_references, "References", noremap = true } }, { prefix = "g" })
 	end
 	-- Hover
 	if client.resolved_capabilities.hover then
