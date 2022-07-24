@@ -52,6 +52,7 @@ packer.use({
 
 		-- LSP load progress
 		-- https://github.com/mitinarseny/dotfiles/blob/4c78f07c0d046d491d086651aea6cf65ea9e6a1a/.config/nvim/after/plugin/lsp.lua#L185-L233
+		-- https://github.com/mitinarseny/dotfiles/blob/4c78f07c0d046d491d086651aea6cf65ea9e6a1a/.config/nvim/lua/spinner.lua
 		local client_notifs = {}
 		local spinner_frames = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" } -- spinners
 
