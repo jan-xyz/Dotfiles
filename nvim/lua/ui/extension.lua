@@ -51,7 +51,7 @@ packer.use({
 		vim.notify = require("notify")
 
 		-- LSP load progress
-		-- https://github.com/mitinarseny/dotfiles/blob/abe1062ea2a4e75c7fb826dc79f2bf0ef61650eb/.config/nvim/lua/spinner.lua
+		-- https://github.com/mitinarseny/dotfiles/blob/4c78f07c0d046d491d086651aea6cf65ea9e6a1a/.config/nvim/after/plugin/lsp.lua#L185-L233
 		local client_notifs = {}
 		local spinner_frames = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" } -- spinners
 
