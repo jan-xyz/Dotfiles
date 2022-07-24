@@ -3,6 +3,46 @@ local packer = require("packer")
 -- rename and other input boxes
 packer.use({ "stevearc/dressing.nvim" })
 
+-- setup (un-)commenting lines and selection
+packer.use({
+	"b3nj5m1n/kommentary",
+	config = function()
+		require("kommentary.config").configure_language("default", {
+			prefer_single_line_comments = true,
+		})
+	end,
+})
+
+-- setup surround text objects
+packer.use({
+	"kylechui/nvim-surround",
+	config = function()
+		require("nvim-surround").setup({
+			-- Configuration here, or leave empty to use defaults
+		})
+	end,
+})
+
+-- setup register management
+packer.use({
+	"AckslD/nvim-neoclip.lua",
+	requires = { "nvim-telescope/telescope.nvim", "folke/which-key.nvim" },
+	config = function()
+		require("neoclip").setup()
+		-- keymap
+		local wk = require("which-key")
+		wk.register({
+			p = {
+				name = "registers", -- optional group name
+				p = { require("telescope").extensions.neoclip.default, "pick register", noremap = true },
+			},
+		}, {
+			mode = "n",
+			prefix = "<leader>",
+		})
+	end,
+})
+
 -- changing the default notification boxes
 packer.use({
 	"rcarriga/nvim-notify",
@@ -11,6 +51,7 @@ packer.use({
 		vim.notify = require("notify")
 
 		-- LSP load progress
+		-- https://github.com/mitinarseny/dotfiles/blob/abe1062ea2a4e75c7fb826dc79f2bf0ef61650eb/.config/nvim/lua/spinner.lua
 		local client_notifs = {}
 		local spinner_frames = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" } -- spinners
 
@@ -66,7 +107,7 @@ packer.use({
 						else -- for existing messages just update the existing notification
 							notify_opts = { replace = notif_data.notification }
 						end
-						notif_data.notification = vim.notify( -- notify with percentage and message
+						notif_data.notification = vim.notify(-- notify with percentage and message
 							(progress.percentage and progress.percentage .. "%\t" or "") .. (progress.message or ""),
 							"info",
 							notify_opts

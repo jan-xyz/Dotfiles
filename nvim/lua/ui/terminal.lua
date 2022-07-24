@@ -2,6 +2,7 @@ local packer = require("packer")
 packer.use({
 	"akinsho/toggleterm.nvim",
 	branch = "main",
+	requires = { "folke/which-key.nvim" },
 	config = function()
 		-- configure neovim nesting with neovim-remote
 		vim.env.GIT_EDITOR = "nvr -cc split --remote-wait"
