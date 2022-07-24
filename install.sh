@@ -47,6 +47,7 @@ sudo ln -sfn "$(brew --prefix)/opt/openjdk@8/libexec/openjdk.jdk" "/Library/Java
 echo -e "${YELLOW}Installing neovim plugins${NOCOLOR}"
 nvim \
 	+PackerInstall \
+	+PackerCompile \
 	+qall \
 	--headless >/dev/null 2>&1
 
