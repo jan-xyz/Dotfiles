@@ -42,7 +42,7 @@ function M.on_attach(client, bufnr)
 	if client.resolved_capabilities.document_formatting then
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			callback = function()
-				vim.lsp.buf.formatting_sync(nil, 500)
+				vim.lsp.buf.formatting_sync({}, 500)
 			end,
 			buffer = 0,
 		})
@@ -101,7 +101,7 @@ function M.on_attach(client, bufnr)
 	end
 	if client.resolved_capabilities.document_symbol then
 		normal_mode_keymap["s"] = {
-			"<cmd>Vista!!<CR>",
+			telescope_builtin.lsp_document_symbols,
 			"Symbols",
 			noremap = true,
 		}
