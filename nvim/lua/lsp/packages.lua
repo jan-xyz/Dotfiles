@@ -4,6 +4,7 @@ local packer = require("packer")
 
 packer.use({
 	"neovim/nvim-lspconfig",
+	requires = { "nvim-telescope/telescope.nvim", "folke/which-key.nvim" },
 	config = function()
 		-- Language configs
 		require("languages.cpp")
