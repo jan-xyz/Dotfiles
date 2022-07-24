@@ -43,6 +43,17 @@ packer.use({
 	end,
 })
 
+-- setup session management
+packer.use {
+	"rmagatti/auto-session",
+	config = function()
+		require("auto-session").setup {
+			log_level = "error",
+			auto_session_suppress_dirs = { "~/" }
+		}
+	end
+}
+
 -- changing the default notification boxes
 packer.use({
 	"rcarriga/nvim-notify",

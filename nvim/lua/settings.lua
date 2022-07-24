@@ -11,6 +11,7 @@ vim.opt.completeopt = "menuone,noinsert,noselect" -- set the completion methods
 vim.opt.foldmethod = "expr" -- set on what to fold
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- set the function used for folding
 vim.opt.foldenable = false -- do not fold on buffer opening
+vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal" -- setting session options
 
 -- window options
 vim.wo.number = true -- Add line numbers
