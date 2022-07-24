@@ -1,10 +1,10 @@
 local packer = require("packer")
 
-packer.use {
+packer.use({
 	"nvim-lualine/lualine.nvim",
 	requires = { "kyazdani42/nvim-web-devicons", "arkav/lualine-lsp-progress" },
 	config = function()
-		require("lualine").setup {
+		require("lualine").setup({
 			options = {
 				globalstatus = true,
 			},
@@ -14,9 +14,9 @@ packer.use {
 				lualine_c = {},
 				lualine_x = { "lsp_progress" },
 				lualine_y = { "diagnostics" },
-				lualine_z = { "filetype" }
+				lualine_z = { "filetype" },
 			},
-			extensions = { "toggleterm", "nvim-tree", "aerial" }
-		}
-	end
-}
+			extensions = { "toggleterm", "nvim-tree", "aerial" },
+		})
+	end,
+})
