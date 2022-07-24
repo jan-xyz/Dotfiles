@@ -107,7 +107,7 @@ packer.use({
 						else -- for existing messages just update the existing notification
 							notify_opts = { replace = notif_data.notification }
 						end
-						notif_data.notification = vim.notify(-- notify with percentage and message
+						notif_data.notification = vim.notify( -- notify with percentage and message
 							(progress.percentage and progress.percentage .. "%\t" or "") .. (progress.message or ""),
 							"info",
 							notify_opts
