@@ -31,15 +31,15 @@ packer.use({
 							name = "Config",
 							matcher = function(buf)
 								return buf.filename == "go.mod"
-										or buf.filename == "go.sum"
-										or buf.filename == "requirements.txt"
-										or buf.filename == "Makefile"
-										-- file extensions
-										or buf.extension == "toml"
-										or buf.extension == "yaml"
-										or buf.extension == "yml"
-										or buf.extension == "json"
-										or buf.extension == "conf"
+									or buf.filename == "go.sum"
+									or buf.filename == "requirements.txt"
+									or buf.filename == "Makefile"
+									-- file extensions
+									or buf.extension == "toml"
+									or buf.extension == "yaml"
+									or buf.extension == "yml"
+									or buf.extension == "json"
+									or buf.extension == "conf"
 							end,
 						},
 						{
