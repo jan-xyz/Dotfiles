@@ -1,12 +1,16 @@
 -- global options
-vim.o.hidden = true -- allow hidden buffers
-vim.o.signcolumn = "yes" -- Show signs in number column (e.g. errors and warnings)
-vim.o.list = true -- Show tabs, spaces and line ends
-vim.o.listchars = "tab:⟶ " -- Set list characters
-vim.o.mouse = "a" -- Enable all mouse support
-vim.o.termguicolors = true -- enable 24-bit colors
-vim.o.splitbelow = true -- new window below on horizontal split
-vim.o.splitright = true -- new window to the right on vertical split
+vim.opt.hidden = true -- allow hidden buffers
+vim.opt.signcolumn = "yes" -- Show signs in number column (e.g. errors and warnings)
+vim.opt.list = true -- Show tabs, spaces and line ends
+vim.opt.listchars = "tab:⟶ " -- Set list characters
+vim.opt.mouse = "a" -- Enable all mouse support
+vim.opt.termguicolors = true -- enable 24-bit colors
+vim.opt.splitbelow = true -- new window below on horizontal split
+vim.opt.splitright = true -- new window to the right on vertical split
+vim.opt.completeopt = "menuone,noinsert,noselect" -- set the completion methods
+vim.opt.foldmethod = "expr" -- set on what to fold
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- set the function used for folding
+vim.opt.foldenable = false -- do not fold on buffer opening
 
 -- window options
 vim.wo.number = true -- Add line numbers
@@ -21,8 +25,6 @@ vim.bo.tabstop = 2 -- Set default tabstop width
 -- set Python env
 vim.g.python_host_prog = "/usr/local/bin/python3"
 vim.g.python3_host_prog = "/usr/local/bin/python3"
-
-vim.opt.completeopt = "menuone,noinsert,noselect"
 
 -- highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
