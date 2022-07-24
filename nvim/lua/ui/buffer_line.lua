@@ -6,7 +6,7 @@ packer.use({
 		require("bufferline").setup({
 			options = {
 				diagnostics = "nvim_lsp",
-				offsets = { { filetype = "NvimTree", text = "File Explorer", text_align = "left" } },
+				offsets = { { filetype = "neo-tree", text = "File Explorer", text_align = "left" } },
 				close_command = "Bdelete! %d", -- comes from moll/vim-bbye
 				right_mouse_command = "", -- comes from moll/vim-bbye
 				groups = {
@@ -31,15 +31,15 @@ packer.use({
 							name = "Config",
 							matcher = function(buf)
 								return buf.filename == "go.mod"
-									or buf.filename == "go.sum"
-									or buf.filename == "requirements.txt"
-									or buf.filename == "Makefile"
-									-- file extensions
-									or buf.extension == "toml"
-									or buf.extension == "yaml"
-									or buf.extension == "yml"
-									or buf.extension == "json"
-									or buf.extension == "conf"
+										or buf.filename == "go.sum"
+										or buf.filename == "requirements.txt"
+										or buf.filename == "Makefile"
+										-- file extensions
+										or buf.extension == "toml"
+										or buf.extension == "yaml"
+										or buf.extension == "yml"
+										or buf.extension == "json"
+										or buf.extension == "conf"
 							end,
 						},
 						{

@@ -16,7 +16,7 @@ packer.use({
 				lualine_y = { "diagnostics" },
 				lualine_z = { "filetype" },
 			},
-			extensions = { "toggleterm", "nvim-tree", "aerial" },
+			extensions = { "toggleterm", "neo-tree" },
 		})
 	end,
 })
