@@ -18,6 +18,7 @@ require("ui.terminal")
 require("ui.test")
 require("ui.theme")
 require("ui.title")
+require("ui.treesitter_context")
 
 -- LSP
 require("lsp.dap")
