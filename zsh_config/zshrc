@@ -24,7 +24,7 @@ alias docker=podman
 
 # common ls aliases
 alias ls='ls --color=auto'
-alias ll='ls -alF'
+alias ll='ls -alhF'
 
 # AWS
 if [ -f ~/.aws/config ]; then
