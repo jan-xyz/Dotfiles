@@ -17,6 +17,7 @@ bottles = [
   "coursier",
   "ddate",
   "delve",
+  "dozer",
   "firefox",
   "font-fira-code-nerd-font",
   "font-meslo-for-powerline",
