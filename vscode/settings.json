@@ -52,9 +52,6 @@
         "*.ipynb": "jupyter-notebook"
     },
     "redhat.telemetry.enabled": false,
-    "rust-analyzer.assist.importGranularity": "item",
-    "rust-analyzer.assist.importEnforceGranularity": true,
-    "rust-analyzer.assist.importPrefix": "crate",
     "rust-analyzer.cargo.unsetTest": [
         "core",
         "derivative"
@@ -64,5 +61,8 @@
         "**/.bloop": true,
         "**/.metals": true,
         "**/.ammonite": true
-    }
+    },
+    "rust-analyzer.imports.granularity.enforce": true,
+    "rust-analyzer.imports.granularity.group": "item",
+    "rust-analyzer.imports.prefix": "crate"
 }
