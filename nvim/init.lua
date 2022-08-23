@@ -4,6 +4,7 @@ require("settings")
 -- UI
 require("ui.buffer_line")
 require("ui.completion")
+require("ui.diagnostics")
 require("ui.extension")
 require("ui.file_explorer")
 require("ui.git")
