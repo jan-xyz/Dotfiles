@@ -86,8 +86,9 @@ func initConfig() {
 	viper.UnmarshalKey("mac.preferences", &preferences)
 
 	plugins = []packagePlugin{
-		brewbottles.Plugin{Bottles: bottles, Commander: execCommander},
+		// run brew first. The others rely on it
 		brewtaps.Plugin{Taps: taps, Commander: execCommander},
+		brewbottles.Plugin{Bottles: bottles, Commander: execCommander},
 		appstore.Plugin{Apps: apps, Profile: appStoreProfile, Commander: execCommander},
 		python.Python{Packages: pythonPackages, Commander: execCommander},
 		vscode.Plugin{Extensions: vscodeExt, Commander: execCommander},
