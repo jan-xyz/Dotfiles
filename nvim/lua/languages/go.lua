@@ -43,7 +43,7 @@ nvim_lsp.gopls.setup({
 				constantValues = true,
 				functionTypeParameters = true,
 				parameterNames = true,
-				rangeVariableTypes = true
+				rangeVariableTypes = true,
 			},
 		},
 	},
