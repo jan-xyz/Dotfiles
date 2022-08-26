@@ -20,8 +20,6 @@ import (
 	"github.com/spf13/viper"
 )
 
-var cfgFile string
-
 // Execute the dotfile application
 func Execute() {
 	cobra.OnInitialize(initConfig)
@@ -62,7 +60,6 @@ var plugins = []packagePlugin{}
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
 	// Use config file from the flag.
-	viper.SetConfigFile(cfgFile)
 	viper.SetConfigName("config")
 	viper.SetConfigType("toml")
 
@@ -89,9 +86,9 @@ func initConfig() {
 	viper.UnmarshalKey("mac.preferences", &preferences)
 
 	plugins = []packagePlugin{
-		appstore.Plugin{Apps: apps, Profile: appStoreProfile, Commander: execCommander},
 		brewbottles.Plugin{Bottles: bottles, Commander: execCommander},
 		brewtaps.Plugin{Taps: taps, Commander: execCommander},
+		appstore.Plugin{Apps: apps, Profile: appStoreProfile, Commander: execCommander},
 		python.Python{Packages: pythonPackages, Commander: execCommander},
 		vscode.Plugin{Extensions: vscodeExt, Commander: execCommander},
 		npm.Plugin{Packages: npmPackages, Commander: execCommander},
