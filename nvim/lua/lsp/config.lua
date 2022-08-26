@@ -7,6 +7,8 @@ function M.on_attach(client, bufnr)
 	vim.notify("connecting '" .. client.name .. "' to buffer " .. bufnr, vim.log.levels.DEBUG)
 	-- vim.notify(vim.inspect(client.resolved_capabilities), vim.log.levels.DEBUG)
 
+	require("lsp-inlayhints").on_attach(bufnr, client)
+
 	local wk = require("which-key")
 	local telescope_builtin = require("telescope.builtin")
 
@@ -42,7 +44,7 @@ function M.on_attach(client, bufnr)
 	if client.resolved_capabilities.document_formatting then
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			callback = function()
-				vim.lsp.buf.formatting_sync(nil, 500)
+				vim.lsp.buf.formatting_sync({}, 500)
 			end,
 			buffer = 0,
 		})
@@ -53,21 +55,14 @@ function M.on_attach(client, bufnr)
 	end
 	-- Goto Implementations
 	if client.resolved_capabilities.implementation then
-		wk.register({ i = { vim.lsp.buf.implementation, "Implementation", noremap = true } }, { prefix = "g" })
+		wk.register(
+			{ i = { telescope_builtin.lsp_implementations, "Implementation", noremap = true } },
+			{ prefix = "g" }
+		)
 	end
 	-- Find References
 	if client.resolved_capabilities.find_references then
-		wk.register({
-			r = {
-				function()
-					telescope_builtin.lsp_references(require("telescope.themes").get_ivy({}))
-				end,
-				"References",
-				noremap = true,
-			},
-		}, {
-			prefix = "g",
-		})
+		wk.register({ r = { telescope_builtin.lsp_references, "References", noremap = true } }, { prefix = "g" })
 	end
 	-- Hover
 	if client.resolved_capabilities.hover then
@@ -108,7 +103,7 @@ function M.on_attach(client, bufnr)
 	end
 	if client.resolved_capabilities.document_symbol then
 		normal_mode_keymap["s"] = {
-			"<cmd>Vista!!<CR>",
+			telescope_builtin.lsp_document_symbols,
 			"Symbols",
 			noremap = true,
 		}

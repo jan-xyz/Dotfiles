@@ -1,25 +1,22 @@
 local packer = require("packer")
 
 packer.use({
-	"ojroques/nvim-hardline",
-	requires = { "nvim-lua/lsp-status.nvim" },
+	"nvim-lualine/lualine.nvim",
+	requires = { "kyazdani42/nvim-web-devicons", "arkav/lualine-lsp-progress" },
 	config = function()
-		require("hardline").setup({
-			theme = "nord",
-			sections = {
-				{ class = "mode", item = require("hardline.parts.mode").get_item },
-				{ class = "high", item = require("hardline.parts.git").get_item, hide = 100 },
-				{ class = "med", item = require("hardline.parts.filename").get_item },
-				"%<",
-				{ class = "med", item = "%=" },
-				{ class = "low", item = require("hardline.parts.wordcount").get_item, hide = 100 },
-				{ class = "error", item = require("hardline.parts.lsp").get_error },
-				{ class = "warning", item = require("hardline.parts.lsp").get_warning },
-				{ class = "warning", item = require("hardline.parts.whitespace").get_item },
-				{ class = "high", item = require("hardline.parts.filetype").get_item, hide = 80 },
-				{ class = "high", item = require("hardline.parts.lsp").get_lsp_clients, hide = 80 },
-				{ class = "mode", item = require("hardline.parts.line").get_item },
+		require("lualine").setup({
+			options = {
+				globalstatus = true,
 			},
+			sections = {
+				lualine_a = { "mode" },
+				lualine_b = { { "filename", path = 1 } },
+				lualine_c = {},
+				lualine_x = { "lsp_progress" },
+				lualine_y = { "diagnostics" },
+				lualine_z = { "filetype" },
+			},
+			extensions = { "toggleterm", "neo-tree" },
 		})
 	end,
 })

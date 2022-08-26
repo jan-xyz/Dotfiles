@@ -6,7 +6,7 @@ packer.use({
 		require("bufferline").setup({
 			options = {
 				diagnostics = "nvim_lsp",
-				offsets = { { filetype = "NvimTree", text = "File Explorer", text_align = "left" } },
+				offsets = { { filetype = "neo-tree", text = "File Explorer", text_align = "left" } },
 				close_command = "Bdelete! %d", -- comes from moll/vim-bbye
 				right_mouse_command = "", -- comes from moll/vim-bbye
 				groups = {

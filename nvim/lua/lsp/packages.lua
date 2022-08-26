@@ -4,7 +4,13 @@ local packer = require("packer")
 
 packer.use({
 	"neovim/nvim-lspconfig",
+	requires = {
+		"nvim-telescope/telescope.nvim",
+		"folke/which-key.nvim",
+		"lvimuser/lsp-inlayhints.nvim",
+	},
 	config = function()
+		require("lsp-inlayhints").setup()
 		-- Language configs
 		require("languages.cpp")
 		require("languages.docker")

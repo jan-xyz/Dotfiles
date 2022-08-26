@@ -27,6 +27,11 @@ export CARGO_NET_GIT_FETCH_WITH_CLI=true
 export PATH="$PATH:/usr/local/opt/llvm/bin/"
 
 #
+# Scala
+#
+export PATH="$PATH:/Users/jan.steinke/Library/Application Support/Coursier/bin"
+
+#
 # Browser
 #
 

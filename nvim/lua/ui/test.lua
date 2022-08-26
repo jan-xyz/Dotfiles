@@ -1,34 +1,72 @@
 local packer = require("packer")
 
 packer.use({
-	"vim-test/vim-test",
+	"nvim-neotest/neotest",
+	requires = {
+		"nvim-lua/plenary.nvim",
+		"nvim-treesitter/nvim-treesitter",
+		"antoinemadec/FixCursorHold.nvim",
+		"nvim-neotest/neotest-go",
+		"nvim-neotest/neotest-plenary",
+		"rouge8/neotest-rust",
+	},
 	config = function()
 		local wk = require("which-key")
+		local nt = require("neotest")
+
+		nt.setup({
+			adapters = {
+				require("neotest-go"),
+				require("neotest-rust"),
+				require("neotest-plenary"),
+			},
+		})
+
 		wk.register({
 			name = "Run Tests",
-			n = { "<cmd>TestNearest<CR>", "Nearest", noremap = true },
-			f = { "<cmd>TestFile<CR>", "All in file", noremap = true },
-			s = { "<cmd>TestSuite<CR>", "Full suite", noremap = true },
-			l = { "<cmd>TestLast<CR>", "Last", noremap = true },
+			n = {
+				nt.run.run,
+				"Nearest",
+				noremap = true,
+			},
+			l = {
+				nt.run.run_last,
+				"Last",
+				noremap = true,
+			},
+			a = {
+				function()
+					nt.run.run(vim.fn.getcwd())
+				end,
+				"All",
+				noremap = true,
+			},
+			o = {
+				nt.output.open,
+				"Show output",
+				noremap = true,
+			},
+			f = {
+				function()
+					nt.run.run(vim.fn.expand("%"))
+				end,
+				"All in file",
+				noremap = true,
+			},
+			d = {
+				function()
+					nt.run.run({ strategy = "dap" })
+				end,
+				"Debug test",
+				noremap = true,
+			},
+			s = {
+				nt.summary.toggle,
+				"Test summary",
+				noremap = true,
+			},
 		}, {
 			prefix = "t",
 		})
-
-		local tt = require("toggleterm")
-		local ttt = require("toggleterm.terminal")
-
-		vim.g["test#custom_strategies"] = {
-			tterm = function(cmd)
-				tt.exec(cmd)
-			end,
-
-			tterm_close = function(cmd)
-				local term_id = 0
-				tt.exec(cmd, term_id)
-				ttt.get_or_create_term(term_id):close()
-			end,
-		}
-
-		vim.g["test#strategy"] = "tterm"
 	end,
 })

@@ -8,15 +8,16 @@ nvim_lsp.rust_analyzer.setup({
 	capabilities = completion.capabilities,
 	on_attach = lsp.on_attach,
 	settings = {
-		["rust-analyzer.assist.importEnforceGranularity"] = true,
 		["rust-analyzer"] = {
 			cargo = {
 				unsetTest = { "core", "derivative" },
 			},
-			assist = {
-				importGranularity = "item",
-				importPrefix = "by_self",
-				importEnforceGranularity = true,
+			imports = {
+				prefix = "crate",
+				granularity = {
+					enforce = true,
+					group = "item"
+				},
 				allowMergingIntoGlobImports = false,
 			},
 		},
