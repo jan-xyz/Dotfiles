@@ -1,22 +1,24 @@
-package dotfiles
+// Package julia allows adding custom julia packages.
+package julia
 
 import (
 	"fmt"
 	"strings"
 
+	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/sirupsen/logrus"
 )
 
 var juliaExe = "julia"
 
-// Julia holds the information for all needed Julia modules.
-type Julia struct {
+// Plugin holds the information for all needed Plugin modules.
+type Plugin struct {
 	Modules   []string
-	Commander Commander
+	Commander dotfiles.Commander
 }
 
 // GetMissingPackages returns a list of modules which are configured but not installed.
-func (b Julia) GetMissingPackages() ([]string, error) {
+func (b Plugin) GetMissingPackages() ([]string, error) {
 	missingBottles := []string{}
 	stdout, err := b.Commander(juliaExe, "-e", "import Pkg;Pkg.status()")
 	if err != nil {
@@ -42,7 +44,7 @@ func (b Julia) GetMissingPackages() ([]string, error) {
 }
 
 // Add takes a list of modules for installation.
-func (b Julia) Add(packages []string) error {
+func (b Plugin) Add(packages []string) error {
 	if len(packages) == 0 {
 		logrus.Info("no julia modules to install")
 		return nil
@@ -59,7 +61,7 @@ func (b Julia) Add(packages []string) error {
 }
 
 // Update updates all installed Julia modules.
-func (b Julia) Update() error {
+func (b Plugin) Update() error {
 	logrus.Info("Upgrading julia modules")
 	_, err := b.Commander(juliaExe, "-e", "import Pkg;Pkg.update()")
 	if err != nil {

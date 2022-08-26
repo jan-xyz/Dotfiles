@@ -1,22 +1,24 @@
-package dotfiles
+// Package brewbottles is the plugin to interface with brew to install bottles and casks
+package brewbottles
 
 import (
 	"strings"
 
+	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/sirupsen/logrus"
 )
 
 var brewExe = "brew"
 
-// BrewBottles holds the configuration for all hombrew packages.
-type BrewBottles struct {
+// Plugin holds the configuration for all hombrew packages.
+type Plugin struct {
 	Bottles   []string
-	Commander Commander
+	Commander dotfiles.Commander
 }
 
 // GetMissingPackages returns a list of brew packages which are configured
 // but not currently installed.
-func (b BrewBottles) GetMissingPackages() ([]string, error) {
+func (b Plugin) GetMissingPackages() ([]string, error) {
 	stdout, err := b.Commander(brewExe, "list", "--formula")
 	if err != nil {
 		return nil, err
@@ -45,7 +47,7 @@ func (b BrewBottles) GetMissingPackages() ([]string, error) {
 }
 
 // Add takes a list of brew package names for installation.
-func (b BrewBottles) Add(packages []string) error {
+func (b Plugin) Add(packages []string) error {
 	if len(packages) == 0 {
 		logrus.Info("no Hombrew bottles to install")
 		return nil
@@ -61,7 +63,7 @@ func (b BrewBottles) Add(packages []string) error {
 }
 
 // Update updates all currently installed brew packages.
-func (b BrewBottles) Update() error {
+func (b Plugin) Update() error {
 	logrus.Info("Upgrading brew packages")
 	_, err := b.Commander(brewExe, "upgrade")
 	if err != nil {

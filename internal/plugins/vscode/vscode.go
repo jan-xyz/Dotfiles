@@ -1,22 +1,24 @@
-package dotfiles
+// Package vscode allows managing vscode extensions
+package vscode
 
 import (
 	"strings"
 
+	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/sirupsen/logrus"
 )
 
 var vscodeExe = "code"
 
-// VSCode holds the information to automatically install VSCode extensions.
-type VSCode struct {
+// Plugin holds the information to automatically install Plugin extensions.
+type Plugin struct {
 	Extensions []string
-	Commander  Commander
+	Commander  dotfiles.Commander
 }
 
 // GetMissingPackages returns a list of VSCode extensions which are configured
 // but not installed.
-func (v VSCode) GetMissingPackages() ([]string, error) {
+func (v Plugin) GetMissingPackages() ([]string, error) {
 	stdout, err := v.Commander(vscodeExe, "--list-extensions")
 	if err != nil {
 		return nil, err
@@ -39,7 +41,7 @@ func (v VSCode) GetMissingPackages() ([]string, error) {
 }
 
 // Add takes a list of extensions for installation.
-func (v VSCode) Add(extensions []string) error {
+func (v Plugin) Add(extensions []string) error {
 	if len(extensions) == 0 {
 		logrus.Info("no vscode extensions to install")
 		return nil
@@ -55,6 +57,6 @@ func (v VSCode) Add(extensions []string) error {
 }
 
 // Update is not implemented.
-func (v VSCode) Update() error {
+func (v Plugin) Update() error {
 	return nil
 }

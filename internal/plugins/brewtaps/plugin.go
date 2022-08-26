@@ -1,20 +1,24 @@
-package dotfiles
+// Package brewtaps is the plugin to interface with brew to add custom taps.
+package brewtaps
 
 import (
 	"strings"
 
+	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/sirupsen/logrus"
 )
 
-// BrewTaps holds the configuration for homebrew taps.
-type BrewTaps struct {
+var brewExe = "brew"
+
+// Plugin holds the configuration for homebrew taps.
+type Plugin struct {
 	Taps      []string
-	Commander Commander
+	Commander dotfiles.Commander
 }
 
 // GetMissingPackages returns a list of homebrew taps which are configured
 // but not currently tapped.
-func (b BrewTaps) GetMissingPackages() ([]string, error) {
+func (b Plugin) GetMissingPackages() ([]string, error) {
 	stdout, err := b.Commander(brewExe, "tap")
 	if err != nil {
 		return nil, err
@@ -37,7 +41,7 @@ func (b BrewTaps) GetMissingPackages() ([]string, error) {
 }
 
 // Add takes a list of taps to tap these.
-func (b BrewTaps) Add(taps []string) error {
+func (b Plugin) Add(taps []string) error {
 	if len(taps) == 0 {
 		logrus.Info("no Hombrew taps to install")
 		return nil
@@ -53,6 +57,6 @@ func (b BrewTaps) Add(taps []string) error {
 }
 
 // Update for Homebrew taps is currently not implemented.
-func (b BrewTaps) Update() error {
+func (b Plugin) Update() error {
 	return nil
 }

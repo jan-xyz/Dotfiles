@@ -1,13 +1,14 @@
-package dotfiles
+package python
 
 import (
 	"testing"
 
+	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestGetMissingPythonPackage(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput(
 		"/usr/local/bin/python3",
@@ -25,7 +26,7 @@ func TestGetMissingPythonPackage(t *testing.T) {
 }
 
 func TestInstallingPythonPackage(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput(
 		"/usr/local/bin/python3",
@@ -41,7 +42,7 @@ func TestInstallingPythonPackage(t *testing.T) {
 }
 
 func TestTryingToInstallPythonPackageWithEmptyListDoesNotCallBrew(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	p := Python{
 		Commander: commander.Output,
@@ -51,7 +52,7 @@ func TestTryingToInstallPythonPackageWithEmptyListDoesNotCallBrew(t *testing.T) 
 }
 
 func TestUpdatingPythonPackage(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput(
 		"/usr/local/bin/python3",

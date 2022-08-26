@@ -5,7 +5,16 @@ import (
 	"os"
 	"os/exec"
 
-	dotfiles "github.com/jan-xyz/dotfiles/internal"
+	"github.com/jan-xyz/dotfiles/internal/plugins/appstore"
+	"github.com/jan-xyz/dotfiles/internal/plugins/brewbottles"
+	"github.com/jan-xyz/dotfiles/internal/plugins/brewtaps"
+	"github.com/jan-xyz/dotfiles/internal/plugins/golang"
+	"github.com/jan-xyz/dotfiles/internal/plugins/julia"
+	"github.com/jan-xyz/dotfiles/internal/plugins/npm"
+	"github.com/jan-xyz/dotfiles/internal/plugins/python"
+	"github.com/jan-xyz/dotfiles/internal/plugins/symlinks"
+	"github.com/jan-xyz/dotfiles/internal/plugins/systemprefs"
+	"github.com/jan-xyz/dotfiles/internal/plugins/vscode"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -42,13 +51,13 @@ func execCommander(command string, args ...string) ([]byte, error) {
 	return b, nil
 }
 
-type packageHandler interface {
+type packagePlugin interface {
 	GetMissingPackages() ([]string, error)
 	Add([]string) error
 	Update() error
 }
 
-var handlers = []packageHandler{}
+var plugins = []packagePlugin{}
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
@@ -69,26 +78,26 @@ func initConfig() {
 	vscodeExt := viper.GetStringSlice("vscode.extensions")
 	npmPackages := viper.GetStringSlice("npm.packages")
 	juliaModules := viper.GetStringSlice("julia.modules")
-	var goModules []dotfiles.GoModule
+	var goModules []golang.GoModule
 	viper.UnmarshalKey("go.modules", &goModules)
-	var symlinks []dotfiles.Link
-	viper.UnmarshalKey("symlink.links", &symlinks)
-	var apps []dotfiles.App
+	var links []symlinks.Link
+	viper.UnmarshalKey("symlink.links", &links)
+	var apps []appstore.App
 	viper.UnmarshalKey("mac.apps", &apps)
 	appStoreProfile := viper.GetString("mac.profile")
-	var preferences []dotfiles.Preference
+	var preferences []systemprefs.Preference
 	viper.UnmarshalKey("mac.preferences", &preferences)
 
-	handlers = []packageHandler{
-		dotfiles.BrewTaps{Taps: taps, Commander: execCommander},
-		dotfiles.BrewBottles{Bottles: bottles, Commander: execCommander},
-		dotfiles.Python{Packages: pythonPackages, Commander: execCommander},
-		dotfiles.VSCode{Extensions: vscodeExt, Commander: execCommander},
-		dotfiles.NPM{Packages: npmPackages, Commander: execCommander},
-		dotfiles.Go{Modules: goModules, Commander: execCommander},
-		dotfiles.AppStore{Apps: apps, Profile: appStoreProfile, Commander: execCommander},
-		dotfiles.SystemPreferences{Preferences: preferences, Commander: execCommander},
-		dotfiles.Symlink{Links: symlinks, Commander: execCommander},
-		dotfiles.Julia{Modules: juliaModules, Commander: execCommander},
+	plugins = []packagePlugin{
+		appstore.Plugin{Apps: apps, Profile: appStoreProfile, Commander: execCommander},
+		brewbottles.Plugin{Bottles: bottles, Commander: execCommander},
+		brewtaps.Plugin{Taps: taps, Commander: execCommander},
+		python.Python{Packages: pythonPackages, Commander: execCommander},
+		vscode.Plugin{Extensions: vscodeExt, Commander: execCommander},
+		npm.Plugin{Packages: npmPackages, Commander: execCommander},
+		golang.Plugin{Modules: goModules, Commander: execCommander},
+		systemprefs.Plugin{Preferences: preferences, Commander: execCommander},
+		symlinks.Plugin{Links: links, Commander: execCommander},
+		julia.Plugin{Modules: juliaModules, Commander: execCommander},
 	}
 }

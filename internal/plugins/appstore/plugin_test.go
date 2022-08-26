@@ -1,17 +1,18 @@
-package dotfiles
+package appstore
 
 import (
 	"testing"
 
+	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestGetMissingApps(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("mas", []string{"account"}, []byte("foo@example.com\n"), nil)
 	commander.ExpectOutput("bash", []string{"-c", "mas list | awk '{print $1;}'"}, []byte("1482454543\n1463400445"), nil)
-	b := AppStore{
+	b := Plugin{
 		Profile: "foo@example.com",
 		Apps: []App{
 			{
@@ -35,10 +36,10 @@ func TestGetMissingApps(t *testing.T) {
 }
 
 func TestGetMissingAppsReturnsErrorWhenWrongSignIn(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("mas", []string{"account"}, []byte("foo@example.com"), nil)
-	b := AppStore{
+	b := Plugin{
 		Profile:   "bar@example.com",
 		Commander: commander.Output,
 	}
@@ -47,10 +48,10 @@ func TestGetMissingAppsReturnsErrorWhenWrongSignIn(t *testing.T) {
 }
 
 func TestInstallingApps(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("mas", []string{"install", "1482454543", "1463400445"}, nil, nil)
-	b := AppStore{
+	b := Plugin{
 		Apps: []App{
 			{
 				Name: "foo",
@@ -68,9 +69,9 @@ func TestInstallingApps(t *testing.T) {
 }
 
 func TestTryingToInstallAppWithEmptyListDoesNotCallMas(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	b := AppStore{
+	b := Plugin{
 		Commander: commander.Output,
 	}
 	err := b.Add([]string{})

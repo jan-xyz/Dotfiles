@@ -1,9 +1,11 @@
-package dotfiles
+// Package appstore is the plugin to interface with the apple appstore and install applications on it.
+package appstore
 
 import (
 	"errors"
 	"strings"
 
+	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/sirupsen/logrus"
 )
 
@@ -19,18 +21,18 @@ type App struct {
 	ID   string
 }
 
-// AppStore holds the configuration to automatically install a collection of
+// Plugin holds the configuration to automatically install a collection of
 // apps and the associated configration.
-type AppStore struct {
+type Plugin struct {
 	Apps      []App
 	Profile   string
-	Commander Commander
+	Commander dotfiles.Commander
 }
 
 // GetMissingPackages returns a list of application IDs which are configured
 // but not yet installed on the system. It returns an error if the current
 // app store profile does not match the configured profile.
-func (a AppStore) GetMissingPackages() ([]string, error) {
+func (a Plugin) GetMissingPackages() ([]string, error) {
 	profile, err := a.Commander("mas", "account")
 	if err != nil {
 		return nil, err
@@ -63,7 +65,7 @@ func (a AppStore) GetMissingPackages() ([]string, error) {
 }
 
 // Add takes a list of app IDs and tries to install these.
-func (a AppStore) Add(apps []string) error {
+func (a Plugin) Add(apps []string) error {
 	if len(apps) == 0 {
 		logrus.Info("no app to install")
 		return nil
@@ -89,7 +91,7 @@ func (a AppStore) Add(apps []string) error {
 }
 
 // Update upgrades all currently installed packages.
-func (a AppStore) Update() error {
+func (a Plugin) Update() error {
 	logrus.Info("Upgrading apps")
 	_, err := a.Commander(masExe, "upgrade")
 	if err != nil {

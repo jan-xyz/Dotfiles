@@ -1,10 +1,12 @@
-package dotfiles
+// Package systemprefs allows managing system preferences
+package systemprefs
 
 import (
 	"os"
 	"path/filepath"
 	"strings"
 
+	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/sirupsen/logrus"
 )
 
@@ -15,16 +17,16 @@ type Preference struct {
 	Value string
 }
 
-// SystemPreferences holds the information for automatically setting system
+// Plugin holds the information for automatically setting system
 // preferences.
-type SystemPreferences struct {
+type Plugin struct {
 	Preferences []Preference
-	Commander   Commander
+	Commander   dotfiles.Commander
 }
 
 // GetMissingPackages returns a list of system preferences which drifted from
 // the configuration. Environment variables get expanded before checking drift.
-func (s SystemPreferences) GetMissingPackages() ([]string, error) {
+func (s Plugin) GetMissingPackages() ([]string, error) {
 	drift := []string{}
 	for _, preference := range s.Preferences {
 		pref := filepath.Ext(preference.Name)[1:]
@@ -40,7 +42,7 @@ func (s SystemPreferences) GetMissingPackages() ([]string, error) {
 }
 
 // Add takes a list of preferences for setting up. Environemnt variables get expanded before setting value.
-func (s SystemPreferences) Add(preferences []string) error {
+func (s Plugin) Add(preferences []string) error {
 	if len(preferences) == 0 {
 		logrus.Info("no prefrences to set")
 		return nil
@@ -67,6 +69,6 @@ func (s SystemPreferences) Add(preferences []string) error {
 }
 
 // Update is not implemented.
-func (s SystemPreferences) Update() error {
+func (s Plugin) Update() error {
 	return nil
 }

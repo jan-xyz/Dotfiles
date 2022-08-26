@@ -1,8 +1,10 @@
-package dotfiles
+// Package python to install python packages globally
+package python
 
 import (
 	"strings"
 
+	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/sirupsen/logrus"
 )
 
@@ -14,7 +16,7 @@ var (
 // Python holds the information to automatically install python packages
 type Python struct {
 	Packages  []string
-	Commander Commander
+	Commander dotfiles.Commander
 }
 
 // GetMissingPackages returns a list of Python packages which are configured

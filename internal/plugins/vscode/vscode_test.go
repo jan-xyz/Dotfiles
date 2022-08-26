@@ -1,8 +1,9 @@
-package dotfiles
+package vscode
 
 import (
 	"testing"
 
+	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -41,10 +42,10 @@ func TestGetMissingVSCodeExtension(t *testing.T) {
 
 	for _, testCase := range testCases {
 
-		commander := mockCommander{}
+		commander := dotfiles.MockCommander{}
 		defer commander.AssertExpectations(t)
 		commander.ExpectOutput("code", []string{"--list-extensions"}, testCase.applicationOutput, nil)
-		b := VSCode{
+		b := Plugin{
 			Extensions: testCase.input,
 			Commander:  commander.Output,
 		}
@@ -55,11 +56,11 @@ func TestGetMissingVSCodeExtension(t *testing.T) {
 }
 
 func TestInstallingVSCodeExtension(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("code", []string{"--install-extension", "bar"}, nil, nil)
 	commander.ExpectOutput("code", []string{"--install-extension", "foo"}, nil, nil)
-	b := VSCode{
+	b := Plugin{
 		Commander: commander.Output,
 	}
 	err := b.Add([]string{"bar", "foo"})
@@ -67,9 +68,9 @@ func TestInstallingVSCodeExtension(t *testing.T) {
 }
 
 func TestTryingToInstallVSCodeExtensionWithEmptyListDoesNotCallCode(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	b := VSCode{
+	b := Plugin{
 		Commander: commander.Output,
 	}
 	err := b.Add([]string{})

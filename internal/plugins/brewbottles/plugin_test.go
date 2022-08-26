@@ -1,31 +1,18 @@
-package dotfiles
+package brewbottles
 
 import (
 	"testing"
 
+	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/mock"
 )
 
-type mockCommander struct {
-	mock.Mock
-}
-
-func (c *mockCommander) Output(command string, arguments ...string) ([]byte, error) {
-	args := c.Called(command, arguments)
-	return args[0].([]byte), args.Error(1)
-}
-
-func (c *mockCommander) ExpectOutput(command string, arguments []string, mockReturn []byte, err error) {
-	c.On("Output", command, arguments).Return(mockReturn, err).Once()
-}
-
 func TestGetMissingBrewPackage(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("brew", []string{"list", "--formula"}, []byte("foo"), nil)
 	commander.ExpectOutput("brew", []string{"list", "--casks"}, []byte("bar"), nil)
-	b := BrewBottles{
+	b := Plugin{
 		Bottles:   []string{"bar", "foo", "baz"},
 		Commander: commander.Output,
 	}
@@ -35,10 +22,10 @@ func TestGetMissingBrewPackage(t *testing.T) {
 }
 
 func TestInstallingBrewPackage(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("brew", []string{"install", "bar", "foo"}, nil, nil)
-	b := BrewBottles{
+	b := Plugin{
 		Commander: commander.Output,
 	}
 	err := b.Add([]string{"bar", "foo"})
@@ -46,9 +33,9 @@ func TestInstallingBrewPackage(t *testing.T) {
 }
 
 func TestTryingToInstallBrewPackageWithEmptyListDoesNotCallBrew(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	b := BrewBottles{
+	b := Plugin{
 		Commander: commander.Output,
 	}
 	err := b.Add([]string{})

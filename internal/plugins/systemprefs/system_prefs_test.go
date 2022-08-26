@@ -1,18 +1,19 @@
-package dotfiles
+package systemprefs
 
 import (
 	"os"
 	"testing"
 
+	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestGetPreferenceDrift(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("defaults", []string{"read", "foo", "bar"}, []byte("0\n"), nil)
 	commander.ExpectOutput("defaults", []string{"read", "baz", "fuu"}, []byte("1\n"), nil)
-	b := SystemPreferences{
+	b := Plugin{
 		Preferences: []Preference{
 			{
 				Name:  "foo.bar",
@@ -33,12 +34,12 @@ func TestGetPreferenceDrift(t *testing.T) {
 }
 
 func TestGetPreferenceDriftExpandsEnvironmentVariables(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	os.Setenv("FOO", "FooBarBaz")
 	defer os.Unsetenv("FOO")
 	commander.ExpectOutput("defaults", []string{"read", "foo", "bar"}, []byte("FooBarBaz\n"), nil)
-	b := SystemPreferences{
+	b := Plugin{
 		Preferences: []Preference{
 			{
 				Name:  "foo.bar",
@@ -54,10 +55,10 @@ func TestGetPreferenceDriftExpandsEnvironmentVariables(t *testing.T) {
 }
 
 func TestSettingPreferences(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("defaults", []string{"write", "foo", "bar", "-int", "1"}, nil, nil)
-	b := SystemPreferences{
+	b := Plugin{
 		Preferences: []Preference{
 			{
 				Name:  "foo.bar",
@@ -72,12 +73,12 @@ func TestSettingPreferences(t *testing.T) {
 }
 
 func TestSettingPreferencesExpandsEnvironmentVariables(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	os.Setenv("FOO", "FooBarBaz")
 	defer os.Unsetenv("FOO")
 	commander.ExpectOutput("defaults", []string{"write", "foo", "bar", "-int", "FooBarBaz"}, nil, nil)
-	b := SystemPreferences{
+	b := Plugin{
 		Preferences: []Preference{
 			{
 				Name:  "foo.bar",
@@ -92,9 +93,9 @@ func TestSettingPreferencesExpandsEnvironmentVariables(t *testing.T) {
 }
 
 func TestTryingToSetPreferencesWithEmptyListDoesNotCallDefaults(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	b := SystemPreferences{
+	b := Plugin{
 		Commander: commander.Output,
 	}
 	err := b.Add([]string{})

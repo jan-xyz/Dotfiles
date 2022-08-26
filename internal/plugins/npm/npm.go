@@ -1,19 +1,21 @@
-package dotfiles
+// Package npm to install npm packages globally
+package npm
 
 import (
+	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/sirupsen/logrus"
 )
 
 var npmExe = "npm"
 
-// NPM holds the information for all needed NPM packages.
-type NPM struct {
+// Plugin holds the information for all needed Plugin packages.
+type Plugin struct {
 	Packages  []string
-	Commander Commander
+	Commander dotfiles.Commander
 }
 
 // GetMissingPackages returns a list of packages which are configured but not installed.
-func (b NPM) GetMissingPackages() ([]string, error) {
+func (b Plugin) GetMissingPackages() ([]string, error) {
 	missingBottles := []string{}
 	for _, p := range b.Packages {
 		_, err := b.Commander(npmExe, "ls", "--global", p)
@@ -26,7 +28,7 @@ func (b NPM) GetMissingPackages() ([]string, error) {
 }
 
 // Add takes a list of packages for installation.
-func (b NPM) Add(packages []string) error {
+func (b Plugin) Add(packages []string) error {
 	if len(packages) == 0 {
 		logrus.Info("no npm packages to install")
 		return nil
@@ -41,7 +43,7 @@ func (b NPM) Add(packages []string) error {
 }
 
 // Update is currently not implemented.
-func (b NPM) Update() error {
+func (b Plugin) Update() error {
 	logrus.Info("Upgrading npm packages")
 	_, err := b.Commander(npmExe, "update", "--global")
 	if err != nil {

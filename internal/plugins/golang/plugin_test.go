@@ -1,18 +1,19 @@
-package dotfiles
+package golang
 
 import (
 	"errors"
 	"testing"
 
+	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestGetMissingGoModules(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("command", []string{"-v", "bar"}, nil, nil)
 	commander.ExpectOutput("command", []string{"-v", "foo"}, nil, errors.New("some-error"))
-	b := Go{
+	b := Plugin{
 		Modules: []GoModule{
 			{Exe: "bar"},
 			{Exe: "foo"},
@@ -25,10 +26,10 @@ func TestGetMissingGoModules(t *testing.T) {
 }
 
 func TestInstallingGoModules(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("go", []string{"get", "github.com/bar", "github.com/foo"}, nil, nil)
-	b := Go{
+	b := Plugin{
 		Modules: []GoModule{
 			{Exe: "bar", Path: "github.com/bar"},
 			{Exe: "foo", Path: "github.com/foo"},
@@ -40,7 +41,7 @@ func TestInstallingGoModules(t *testing.T) {
 }
 
 func TestTryingToInstallGoModulesWithEmptyListDoesNotCallBrew(t *testing.T) {
-	b := Go{}
+	b := Plugin{}
 	err := b.Add([]string{})
 	assert.NoError(t, err)
 }

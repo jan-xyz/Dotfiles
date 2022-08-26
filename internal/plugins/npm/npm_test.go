@@ -1,18 +1,19 @@
-package dotfiles
+package npm
 
 import (
 	"errors"
 	"testing"
 
+	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestGetMissingNPMPackage(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("npm", []string{"ls", "--global", "bar"}, nil, nil)
 	commander.ExpectOutput("npm", []string{"ls", "--global", "foo"}, nil, errors.New("some error"))
-	b := NPM{
+	b := Plugin{
 		Packages:  []string{"bar", "foo"},
 		Commander: commander.Output,
 	}
@@ -22,10 +23,10 @@ func TestGetMissingNPMPackage(t *testing.T) {
 }
 
 func TestInstallingNPMPackage(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("npm", []string{"install", "--global", "bar", "foo"}, nil, nil)
-	b := NPM{
+	b := Plugin{
 		Commander: commander.Output,
 	}
 	err := b.Add([]string{"bar", "foo"})
@@ -33,9 +34,9 @@ func TestInstallingNPMPackage(t *testing.T) {
 }
 
 func TestTryingToInstallNPMPackageWithEmptyListDoesNotCallCode(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	b := NPM{
+	b := Plugin{
 		Commander: commander.Output,
 	}
 	err := b.Add([]string{})
@@ -43,10 +44,10 @@ func TestTryingToInstallNPMPackageWithEmptyListDoesNotCallCode(t *testing.T) {
 }
 
 func TestUpdatingNPMPackage(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("npm", []string{"update", "--global"}, nil, nil)
-	b := NPM{
+	b := Plugin{
 		Commander: commander.Output,
 	}
 	err := b.Update()

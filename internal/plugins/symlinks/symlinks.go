@@ -1,4 +1,5 @@
-package dotfiles
+// Package symlinks allows managing symlinks.
+package symlinks
 
 import (
 	"errors"
@@ -6,6 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/sirupsen/logrus"
 )
 
@@ -17,16 +19,16 @@ type Link struct {
 	LinkName   string
 }
 
-// Symlink holds the information to automatically create a list of symbolic
+// Plugin holds the information to automatically create a list of symbolic
 // links.
-type Symlink struct {
+type Plugin struct {
 	Links     []Link
-	Commander Commander
+	Commander dotfiles.Commander
 }
 
 // GetMissingPackages returns a list of sym links which are configured but not
 // created.
-func (s Symlink) GetMissingPackages() ([]string, error) {
+func (s Plugin) GetMissingPackages() ([]string, error) {
 	missing := []string{}
 	for _, p := range s.Links {
 		sourceFile, err := s.Commander("readlink", os.ExpandEnv(p.LinkName))
@@ -38,7 +40,7 @@ func (s Symlink) GetMissingPackages() ([]string, error) {
 }
 
 // Add takes a list of links for creation.
-func (s Symlink) Add(links []string) error {
+func (s Plugin) Add(links []string) error {
 	if len(links) == 0 {
 		logrus.Info("no symlinks to configure")
 		return nil
@@ -73,6 +75,6 @@ func (s Symlink) Add(links []string) error {
 }
 
 // Update is not implemented.
-func (s Symlink) Update() error {
+func (s Plugin) Update() error {
 	return nil
 }

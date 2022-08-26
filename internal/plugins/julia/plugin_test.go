@@ -1,13 +1,14 @@
-package dotfiles
+package julia
 
 import (
 	"testing"
 
+	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestGetMissingJuliaModules(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput(
 		"julia",
@@ -15,7 +16,7 @@ func TestGetMissingJuliaModules(t *testing.T) {
 		[]byte("Status `~/.julia/environments/v1.6/Project.toml`\n [2b0e0bc5] bar v4.1.0\n [c3e4b0f8] Pluto v0.15.1Pkg\n"),
 		nil,
 	)
-	b := Julia{
+	b := Plugin{
 		Modules:   []string{"bar", "foo"},
 		Commander: commander.Output,
 	}
@@ -25,7 +26,7 @@ func TestGetMissingJuliaModules(t *testing.T) {
 }
 
 func TestInstallingJuliaModules(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput(
 		"julia",
@@ -33,7 +34,7 @@ func TestInstallingJuliaModules(t *testing.T) {
 		nil,
 		nil,
 	)
-	b := Julia{
+	b := Plugin{
 		Commander: commander.Output,
 	}
 	err := b.Add([]string{"bar", "foo"})
@@ -41,9 +42,9 @@ func TestInstallingJuliaModules(t *testing.T) {
 }
 
 func TestTryingToInstallJuliaModulesWithEmptyListDoesNotCallCode(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	b := Julia{
+	b := Plugin{
 		Commander: commander.Output,
 	}
 	err := b.Add([]string{})
@@ -51,10 +52,10 @@ func TestTryingToInstallJuliaModulesWithEmptyListDoesNotCallCode(t *testing.T) {
 }
 
 func TestUpdatingJulaModules(t *testing.T) {
-	commander := mockCommander{}
+	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput("julia", []string{"-e", "import Pkg;Pkg.update()"}, nil, nil)
-	b := Julia{
+	b := Plugin{
 		Commander: commander.Output,
 	}
 	err := b.Update()
