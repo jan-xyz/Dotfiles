@@ -31,14 +31,15 @@ to quickly create a Cobra application.`,
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
+	cobra.OnInitialize(initConfig)
+
+	rootCmd.AddCommand(updateCmd)
+	rootCmd.AddCommand(installCmd)
+
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-}
-
-func init() {
-	cobra.OnInitialize(initConfig)
 }
 
 func execCommander(command string, args ...string) ([]byte, error) {
