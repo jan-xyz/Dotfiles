@@ -16,7 +16,7 @@ nvim_lsp.rust_analyzer.setup({
 				prefix = "crate",
 				granularity = {
 					enforce = true,
-					group = "item"
+					group = "item",
 				},
 				allowMergingIntoGlobImports = false,
 			},
