@@ -7,6 +7,7 @@ packer.use({
 		"nvim-treesitter/nvim-treesitter",
 		"antoinemadec/FixCursorHold.nvim",
 		"nvim-neotest/neotest-go",
+		"nvim-neotest/neotest-plenary",
 		"rouge8/neotest-rust",
 	},
 	config = function()
@@ -17,6 +18,7 @@ packer.use({
 			adapters = {
 				require("neotest-go"),
 				require("neotest-rust"),
+				require("neotest-plenary"),
 			},
 		})
 
@@ -37,6 +39,11 @@ packer.use({
 					nt.run.run(vim.fn.getcwd())
 				end,
 				"All",
+				noremap = true,
+			},
+			o = {
+				nt.output.open,
+				"Show output",
 				noremap = true,
 			},
 			f = {
