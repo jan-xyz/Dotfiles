@@ -2,6 +2,8 @@
 package golang
 
 import (
+	"fmt"
+
 	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/sirupsen/logrus"
 )
@@ -46,20 +48,18 @@ func (g Plugin) Add(modules []string) error {
 		goModulesMap[p.Exe] = p.Path
 	}
 
-	args := []string{"get"}
 	for _, p := range modules {
 		if path, ok := goModulesMap[p]; !ok {
 			logrus.Error("trying to install go Module which is not configured")
 		} else {
-			args = append(args, path)
+			_, err := g.Commander(goExe, "install", fmt.Sprintf("%s@latest", path))
+			if err != nil {
+				logrus.Error("Failed installing go modules:", err)
+				return err
+			}
 		}
 	}
 
-	_, err := g.Commander(goExe, args...)
-	if err != nil {
-		logrus.Error("Failed installing go modules:", err)
-		return err
-	}
 	return nil
 }
 
@@ -67,15 +67,12 @@ func (g Plugin) Add(modules []string) error {
 func (g Plugin) Update() error {
 	logrus.Info("Upgrading go modules:", g.Modules)
 
-	args := []string{"get", "-u"}
 	for _, p := range g.Modules {
-		args = append(args, p.Path)
-	}
-
-	_, err := g.Commander(goExe, args...)
-	if err != nil {
-		logrus.Error("Failed installing go modules:", err)
-		return err
+		_, err := g.Commander(goExe, "install", fmt.Sprintf("%s@latest", p.Path))
+		if err != nil {
+			logrus.Error("Failed installing go modules:", err)
+			return err
+		}
 	}
 	return nil
 }
