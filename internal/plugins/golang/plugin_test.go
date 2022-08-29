@@ -28,7 +28,8 @@ func TestGetMissingGoModules(t *testing.T) {
 func TestInstallingGoModules(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput("go", []string{"get", "github.com/bar", "github.com/foo"}, nil, nil)
+	commander.ExpectOutput("go", []string{"install", "github.com/bar@latest"}, nil, nil)
+	commander.ExpectOutput("go", []string{"install", "github.com/foo@latest"}, nil, nil)
 	b := Plugin{
 		Modules: []GoModule{
 			{Exe: "bar", Path: "github.com/bar"},
@@ -43,5 +44,21 @@ func TestInstallingGoModules(t *testing.T) {
 func TestTryingToInstallGoModulesWithEmptyListDoesNotCallBrew(t *testing.T) {
 	b := Plugin{}
 	err := b.Add([]string{})
+	assert.NoError(t, err)
+}
+
+func TestUpdatingGoModules(t *testing.T) {
+	commander := dotfiles.MockCommander{}
+	defer commander.AssertExpectations(t)
+	commander.ExpectOutput("go", []string{"install", "github.com/bar@latest"}, nil, nil)
+	commander.ExpectOutput("go", []string{"install", "github.com/foo@latest"}, nil, nil)
+	b := Plugin{
+		Modules: []GoModule{
+			{Exe: "bar", Path: "github.com/bar"},
+			{Exe: "foo", Path: "github.com/foo"},
+		},
+		Commander: commander.Output,
+	}
+	err := b.Update()
 	assert.NoError(t, err)
 }
