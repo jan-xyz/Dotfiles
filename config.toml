@@ -32,6 +32,7 @@ bottles = [
   "gradle-completion",
   "htop",
   "iterm2",
+  "jq",
   "julia",
   "kitty",
   "kotlin-language-server",
