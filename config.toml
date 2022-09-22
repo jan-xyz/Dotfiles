@@ -47,7 +47,6 @@ bottles = [
   "node",
   "openjdk",
   "openjdk@11",
-  "openjdk@8",
   "postman",
   "podman",
   "python",
@@ -113,7 +112,7 @@ extensions = [
   "golang.go",
   "ethan-reesor.vscode-go-test-adapter",
   "fwcd.kotlin",
-  "matklad.rust-analyzer",
+  "rust-lang.rust-analyzer",
   "swellaby.vscode-rust-test-adapter",
   "scalameta.metals",
 ]
