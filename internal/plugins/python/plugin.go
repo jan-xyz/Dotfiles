@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	pythonExe  = "/usr/local/bin/python3"
+	pythonExe  = "/opt/homebrew/bin/python3"
 	pythonArgs = []string{"-m", "pip"}
 )
 

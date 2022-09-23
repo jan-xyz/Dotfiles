@@ -11,7 +11,7 @@ func TestGetMissingPythonPackage(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput(
-		"/usr/local/bin/python3",
+		"/opt/homebrew/bin/python3",
 		[]string{"-m", "pip", "freeze"},
 		[]byte("bar==1.0.0"),
 		nil,
@@ -29,7 +29,7 @@ func TestInstallingPythonPackage(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput(
-		"/usr/local/bin/python3",
+		"/opt/homebrew/bin/python3",
 		[]string{"-m", "pip", "install", "bar", "foo"},
 		nil,
 		nil,
@@ -55,7 +55,7 @@ func TestUpdatingPythonPackage(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
 	commander.ExpectOutput(
-		"/usr/local/bin/python3",
+		"/opt/homebrew/bin/python3",
 		[]string{"-m", "pip", "install", "--upgrade", "bar", "foo"},
 		nil,
 		nil,

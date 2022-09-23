@@ -24,8 +24,7 @@ vim.bo.softtabstop = 2 -- Set default virtual tabstop width
 vim.bo.tabstop = 2 -- Set default tabstop width
 
 -- set Python env
-vim.g.python_host_prog = "/usr/local/bin/python3"
-vim.g.python3_host_prog = "/usr/local/bin/python3"
+vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
 
 -- highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
