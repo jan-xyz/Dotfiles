@@ -43,8 +43,8 @@ fi
 # Editors
 #
 
-export EDITOR='/usr/local/bin/nvim'
-export VISUAL='/usr/local/bin/nvim'
+export EDITOR='/opt/homebrew/bin/nvim'
+export VISUAL='/opt/homebrew/bin/nvim'
 export PAGER='less'
 
 #

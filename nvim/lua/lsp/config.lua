@@ -7,7 +7,7 @@ function M.on_attach(client, bufnr)
 	vim.notify("connecting '" .. client.name .. "' to buffer " .. bufnr, vim.log.levels.DEBUG)
 	-- vim.notify(vim.inspect(client.resolved_capabilities), vim.log.levels.DEBUG)
 
-	require("lsp-inlayhints").on_attach(bufnr, client)
+	require("lsp-inlayhints").on_attach(client, bufnr, false)
 
 	local wk = require("which-key")
 	local telescope_builtin = require("telescope.builtin")
