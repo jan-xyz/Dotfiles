@@ -14,19 +14,14 @@ build:
 
 .PHONY: test
 test:
-	go test ./internal/... -race -coverprofile=coverage.txt -covermode=atomic
-
-.PHONY: vet
-vet:
-	go vet ./internal/...
+	go test ./... -race -coverprofile=coverage.txt -covermode=atomic
 
 .PHONY: lint
 lint:
-	go run github.com/mgechev/revive@latest ./internal/...
-
-.PHONY: staticcheck
-staticcheck:
-	go run honnef.co/go/tools/cmd/staticcheck@latest ./internal/...
+	go vet ./...
+	go run honnef.co/go/tools/cmd/staticcheck@latest ./...
+	go run github.com/mgechev/revive@latest ./...
+	go run golang.org/x/vuln/cmd/govulncheck@latest ./...
 
 .PHONY: stylua
 stylua:
