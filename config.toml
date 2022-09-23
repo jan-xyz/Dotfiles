@@ -13,6 +13,7 @@ bottles = [
   "ccls",
   "ctags",
   "cmake",
+  "coconutbattery",
   "colordiff",
   "coursier",
   "ddate",
