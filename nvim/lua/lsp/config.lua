@@ -3,9 +3,11 @@
 local M = {}
 
 -- Global callback functions for LSP shortcuts
+-- @param client
+-- @param bufnr number
 function M.on_attach(client, bufnr)
 	vim.notify("connecting '" .. client.name .. "' to buffer " .. bufnr, vim.log.levels.DEBUG)
-	-- vim.notify(vim.inspect(client.resolved_capabilities), vim.log.levels.DEBUG)
+	--vim.notify(vim.inspect(client.server_capabilities), vim.log.levels.DEBUG)
 
 	require("lsp-inlayhints").on_attach(client, bufnr, false)
 
@@ -29,7 +31,7 @@ function M.on_attach(client, bufnr)
 	}
 	local visual_mode_keymap = {}
 	-- Code Lens
-	if client.resolved_capabilities.code_lens then
+	if client.server_capabilities.codeLensProvider then
 		vim.api.nvim_create_autocmd(
 			"CursorHold,CursorHoldI,InsertLeave",
 			{ callback = vim.lsp.codelens.refresh, buffer = 0 }
@@ -41,7 +43,7 @@ function M.on_attach(client, bufnr)
 		}
 	end
 	-- Format document
-	if client.resolved_capabilities.document_formatting then
+	if client.server_capabilities.documentFormattingProvider then
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			callback = function()
 				vim.lsp.buf.formatting_sync({}, 500)
@@ -50,22 +52,20 @@ function M.on_attach(client, bufnr)
 		})
 	end
 	-- Goto Defintion
-	if client.resolved_capabilities.goto_definition then
+	if client.server_capabilities.definitionProvider then
 		wk.register({ d = { telescope_builtin.lsp_definitions, "Definition", noremap = true } }, { prefix = "g" })
 	end
 	-- Goto Implementations
-	if client.resolved_capabilities.implementation then
-		wk.register(
-			{ i = { telescope_builtin.lsp_implementations, "Implementation", noremap = true } },
-			{ prefix = "g" }
+	if client.server_capabilities.implementationProvider then
+		wk.register({ i = { telescope_builtin.lsp_implementations, "Implementation", noremap = true } }, { prefix = "g" }
 		)
 	end
 	-- Find References
-	if client.resolved_capabilities.find_references then
+	if client.server_capabilities.referencesProvider then
 		wk.register({ r = { telescope_builtin.lsp_references, "References", noremap = true } }, { prefix = "g" })
 	end
 	-- Hover
-	if client.resolved_capabilities.hover then
+	if client.server_capabilities.hoverProvider then
 		normal_mode_keymap["h"] = {
 			vim.lsp.buf.hover,
 			"Hover",
@@ -73,7 +73,7 @@ function M.on_attach(client, bufnr)
 		}
 	end
 	-- Rename
-	if client.resolved_capabilities.rename then
+	if client.server_capabilities.renameProvider then
 		normal_mode_keymap["r"] = {
 			vim.lsp.buf.rename,
 			"Rename",
@@ -81,10 +81,10 @@ function M.on_attach(client, bufnr)
 		}
 	end
 	-- Code Action
-	if client.resolved_capabilities.code_action then
+	if client.server_capabilities.codeActionProvider then
 		visual_mode_keymap["a"] = {
-			vim.lsp.buf.range_code_action,
-			"range code actions",
+			vim.lsp.buf.code_action,
+			"code actions",
 			noremap = true,
 		}
 		normal_mode_keymap["a"] = {
@@ -94,14 +94,14 @@ function M.on_attach(client, bufnr)
 		}
 	end
 	-- Symbols
-	if client.resolved_capabilities.workspace_symbol then
+	if client.server_capabilities.workspaceSymbolProvider then
 		normal_mode_keymap["#"] = {
 			telescope_builtin.lsp_dynamic_workspace_symbols,
 			"Seach workspace symbols",
 			noremap = true,
 		}
 	end
-	if client.resolved_capabilities.document_symbol then
+	if client.server_capabilities.documentSymbolProvider then
 		normal_mode_keymap["s"] = {
 			telescope_builtin.lsp_document_symbols,
 			"Symbols",
