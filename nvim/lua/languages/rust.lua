@@ -27,7 +27,7 @@ nvim_lsp.rust_analyzer.setup({
 -- DAP config
 dap.adapters.lldb = {
 	type = "executable",
-	command = "/usr/local/opt/llvm/bin/lldb-vscode",
+	command = "/opt/homebrew/opt/llvm/bin/lldb-vscode",
 	name = "lldb",
 }
 dap.configurations.rust = {
