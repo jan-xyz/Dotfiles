@@ -42,8 +42,6 @@ packer.use({
 			prefix = "<leader>",
 		})
 
-		-- add autocompletion to DAP repl
-		vim.cmd([[autocmd FileType dap-repl lua require('dap.ext.autocompl').attach()]])
 		-- Support launch.json (Do after setting the default values)
 		require("dap.ext.vscode").load_launchjs()
 	end,
