@@ -45,17 +45,12 @@ packer.use({
 packer.use({
 	"rmagatti/auto-session",
 	config = function()
-		local neo_tree = require("neo-tree.sources.manager")
 		require("auto-session").setup({
 			log_level = "error",
 			auto_session_suppress_dirs = { "~/" },
 			auto_session_use_git_branch = true,
-			bypass_session_save_file_types = {
-				"neo-tree",
-			},
-			pre_save_cmds = {
-				neo_tree.close_all,
-			},
+			bypass_session_save_file_types = {},
+			pre_save_cmds = {},
 		})
 	end,
 })
