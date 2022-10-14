@@ -59,8 +59,10 @@ packer.use({
 packer.use({
 	"rcarriga/nvim-notify",
 	config = function()
-		require("notify").setup({
+		local notify = require("notify")
+		notify.setup({
 			level = "info",
 		})
+		vim.notify = notify
 	end,
 })
