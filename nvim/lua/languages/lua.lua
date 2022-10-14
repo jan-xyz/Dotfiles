@@ -1,12 +1,19 @@
 local packer = require("packer")
 
 packer.use({
-	"folke/lua-dev.nvim",
+	"folke/neodev.nvim",
 	config = function()
 		local nvim_lsp = require("lspconfig")
 		local lsp = require("lsp.config")
 		local completion = require("ui.completion")
-		local opts = {
+
+		-- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+		require("neodev").setup({})
+
+		nvim_lsp.sumneko_lua.setup({
+			cmd = { "lua-language-server" },
+			capabilities = completion.capabilities,
+			on_attach = lsp.on_attach,
 			settings = {
 				Lua = {
 					diagnostics = {
@@ -32,18 +39,6 @@ packer.use({
 					},
 				},
 			},
-		}
-		opts = vim.tbl_deep_extend(
-			"force",
-			require("lua-dev").setup({
-				lspconfig = {
-					capabilities = completion.capabilities,
-					on_attach = lsp.on_attach,
-					cmd = { "lua-language-server" },
-				},
-			}),
-			opts
-		)
-		nvim_lsp.sumneko_lua.setup(opts)
+		})
 	end,
 }) -- LSP server extensions for Lua
