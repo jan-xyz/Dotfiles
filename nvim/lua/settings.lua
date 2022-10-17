@@ -10,7 +10,9 @@ vim.opt.splitright = true -- new window to the right on vertical split
 vim.opt.completeopt = "menuone,noinsert,noselect" -- set the completion methods
 vim.opt.foldmethod = "expr" -- set on what to fold
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- set the function used for folding
-vim.opt.foldenable = false -- do not fold on buffer opening
+vim.opt.foldenable = true -- set wether folding is enabled on buffer opening
+vim.opt.foldlevelstart = 99 -- set the initial fold level of a new buffer (0=all,99=none)
+vim.opt.foldcolumn = "auto:5" -- how many fold levels are included in the gutter
 vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal" -- setting session options
 
 -- window options
