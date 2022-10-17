@@ -3,12 +3,15 @@ local packer = require("packer")
 packer.use({
 	"nvim-neotest/neotest",
 	requires = {
+		-- General
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
 		"antoinemadec/FixCursorHold.nvim",
+		-- Languages
 		"nvim-neotest/neotest-go",
 		"nvim-neotest/neotest-plenary",
 		"rouge8/neotest-rust",
+		"stevanmilic/neotest-scala",
 	},
 	config = function()
 		local wk = require("which-key")
@@ -17,8 +20,9 @@ packer.use({
 		nt.setup({
 			adapters = {
 				require("neotest-go"),
-				require("neotest-rust"),
 				require("neotest-plenary"),
+				require("neotest-rust"),
+				require("neotest-scala"),
 			},
 		})
 
