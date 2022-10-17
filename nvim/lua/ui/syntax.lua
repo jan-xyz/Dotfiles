@@ -8,10 +8,6 @@ packer.use({
 
 		tree_sitter.setup({
 			ensure_installed = "all",
-
-			-- phpdoc is a language that is not supported on arm64.
-			-- See: https://github.com/claytonrcarter/tree-sitter-phpdoc/issues/15
-			ignore_install = { "phpdoc" },
 			highlight = {
 				enable = true,
 			},
