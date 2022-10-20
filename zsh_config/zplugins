@@ -8,7 +8,6 @@ zplug "plugins/kubectl",            from:oh-my-zsh
 zplug "plugins/kubectx",            from:oh-my-zsh
 zplug "plugins/pyenv",              from:oh-my-zsh
 zplug "plugins/ripgrep",            from:oh-my-zsh
-zplug "plugins/rust",               from:oh-my-zsh
 zplug "plugins/zsh-interactive-cd", from:oh-my-zsh
 
 zplug "zsh-users/zsh-autosuggestions"
