@@ -108,11 +108,16 @@ vim.api.nvim_set_hl(0, "VisualNOS", { bg = nord2_gui, ctermbg = nord1_term })
 --   call s:hi("CursorLineNr", s:nord4_gui, s:nord1_gui, "NONE", s:nord1_term, "NONE", "")
 -- endif
 -- call s:hi("Folded", s:nord3_gui, s:nord1_gui, s:nord3_term, s:nord1_term, s:bold, "")
+vim.api.nvim_set_hl(0, "Folded",
+	{ fg = nord3_gui, bg = nord1_gui, ctermfg = nord3_term, ctermbg = nord1_term, bold = true, cterm = { bold = true } })
 -- call s:hi("FoldColumn", s:nord3_gui, s:nord0_gui, s:nord3_term, "NONE", "", "")
+vim.api.nvim_set_hl(0, "FoldColumn", { fg = nord3_gui, bg = nord0_gui, ctermfg = nord3_term, ctermbg = "NONE" })
 -- call s:hi("SignColumn", s:nord1_gui, s:nord0_gui, s:nord1_term, "NONE", "", "")
+vim.api.nvim_set_hl(0, "SignColumn", { fg = nord1_gui, bg = nord0_gui, ctermfg = nord1_term, ctermbg = "NONE" })
 --
 -- "+--- Navigation ---+
 -- call s:hi("Directory", s:nord8_gui, "", s:nord8_term, "NONE", "", "")
+vim.api.nvim_set_hl(0, "Directory", { fg = nord8_gui, ctermfg = nord8_term, ctermbg = "NONE" })
 
 -- "+--- Prompt/Status ---+
 -- call s:hi("EndOfBuffer", s:nord1_gui, "", s:nord1_term, "NONE", "", "")
