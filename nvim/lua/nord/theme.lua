@@ -55,9 +55,9 @@ vim.g.terminal_color_15 = nord6_gui
 local bold = true
 local italic = true
 local underline = true
--- local cursor_line_number_background = true
+local cursor_line_number_background = true
 local uniform_status_lines = true
-local bold_vertical_split_line = true
+local bold_vertical_split_line = false
 
 --"+---------------+
 --"+ UI Components +
@@ -123,12 +123,12 @@ vim.api.nvim_set_hl(0, "Visual", { bg = nord2_gui, ctermbg = nord1_term })
 vim.api.nvim_set_hl(0, "VisualNOS", { bg = nord2_gui, ctermbg = nord1_term })
 
 -- "+--- Gutter ---+
--- call s:hi("CursorColumn", "", s:nord1_gui, "NONE", s:nord1_term, "", "")
--- if g:nord_cursor_line_number_background == 0
---   call s:hi("CursorLineNr", s:nord4_gui, "", "NONE", "", "NONE", "")
--- else
---   call s:hi("CursorLineNr", s:nord4_gui, s:nord1_gui, "NONE", s:nord1_term, "NONE", "")
--- endif
+vim.api.nvim_set_hl(0, "CursorColumn", { bg = nord1_gui, ctermbg = nord1_term })
+if cursor_line_number_background then
+	vim.api.nvim_set_hl(0, "CursorLineNr", { fg = nord4_gui, bg = nord1_gui, ctermbg = nord1_term })
+else
+	vim.api.nvim_set_hl(0, "CursorLineNr", { fg = nord4_gui })
+end
 vim.api.nvim_set_hl(
 	0,
 	"Folded",
@@ -136,7 +136,7 @@ vim.api.nvim_set_hl(
 )
 vim.api.nvim_set_hl(0, "FoldColumn", { fg = nord3_gui, bg = nord0_gui, ctermfg = nord3_term, ctermbg = "NONE" })
 vim.api.nvim_set_hl(0, "SignColumn", { fg = nord1_gui, bg = nord0_gui, ctermfg = nord1_term, ctermbg = "NONE" })
---
+
 -- "+--- Navigation ---+
 vim.api.nvim_set_hl(0, "Directory", { fg = nord8_gui, ctermfg = nord8_term, ctermbg = "NONE" })
 
@@ -148,19 +148,6 @@ vim.api.nvim_set_hl(0, "Directory", { fg = nord8_gui, ctermfg = nord8_term, cter
 -- call s:hi("Question", s:nord4_gui, "", "NONE", "", "", "")
 if uniform_status_lines then
 	vim.api.nvim_set_hl(0, "StatusLine", { fg = nord8_gui, bg = nord3_gui, ctermfg = nord8_term, ctermbg = nord3_term })
-	vim.api.nvim_set_hl(0, "StatusLineNC", { fg = nord4_gui, bg = nord1_gui, ctermfg = "NONE", ctermbg = nord1_term })
-	vim.api.nvim_set_hl(
-		0,
-		"StatusLineTerm",
-		{ fg = nord8_gui, bg = nord3_gui, ctermfg = nord8_term, ctermbg = nord3_term }
-	)
-	vim.api.nvim_set_hl(
-		0,
-		"StatusLineTermNC",
-		{ fg = nord4_gui, bg = nord1_gui, ctermfg = "NONE", ctermbg = nord1_term }
-	)
-else
-	vim.api.nvim_set_hl(0, "StatusLine", { fg = nord8_gui, bg = nord3_gui, ctermfg = nord8_term, ctermbg = nord3_term })
 	vim.api.nvim_set_hl(0, "StatusLineNC", { fg = nord4_gui, bg = nord3_gui, ctermfg = "NONE", ctermbg = nord3_term })
 	vim.api.nvim_set_hl(
 		0,
@@ -171,6 +158,19 @@ else
 		0,
 		"StatusLineTermNC",
 		{ fg = nord4_gui, bg = nord3_gui, ctermfg = "NONE", ctermbg = nord3_term }
+	)
+else
+	vim.api.nvim_set_hl(0, "StatusLine", { fg = nord8_gui, bg = nord3_gui, ctermfg = nord8_term, ctermbg = nord3_term })
+	vim.api.nvim_set_hl(0, "StatusLineNC", { fg = nord4_gui, bg = nord1_gui, ctermfg = "NONE", ctermbg = nord1_term })
+	vim.api.nvim_set_hl(
+		0,
+		"StatusLineTerm",
+		{ fg = nord8_gui, bg = nord3_gui, ctermfg = nord8_term, ctermbg = nord3_term }
+	)
+	vim.api.nvim_set_hl(
+		0,
+		"StatusLineTermNC",
+		{ fg = nord4_gui, bg = nord1_gui, ctermfg = "NONE", ctermbg = nord1_term }
 	)
 end
 -- call s:hi("WarningMsg", s:nord0_gui, s:nord13_gui, s:nord1_term, s:nord13_term, "", "")
@@ -195,9 +195,9 @@ vim.api.nvim_set_hl(0, "Search", { fg = nord1_gui, bg = nord8_gui, ctermfg = nor
 -- "+--- Window ---+
 vim.api.nvim_set_hl(0, "Title", { fg = nord4_gui })
 if bold_vertical_split_line then
-	vim.api.nvim_set_hl(0, "VertSplit", { fg = nord2_gui, bg = nord0_gui, ctermfg = nord3_term })
-else
 	vim.api.nvim_set_hl(0, "VertSplit", { fg = nord2_gui, bg = nord1_gui, ctermfg = nord3_term, ctermbg = nord1_term })
+else
+	vim.api.nvim_set_hl(0, "VertSplit", { fg = nord2_gui, bg = nord0_gui, ctermfg = nord3_term })
 end
 
 -- "+- Diagnostics -+
