@@ -30,6 +30,23 @@ local nord13_term = 3
 local nord14_term = 2
 local nord15_term = 5
 
+vim.g.terminal_color_0 = nord1_gui
+vim.g.terminal_color_1 = nord11_gui
+vim.g.terminal_color_2 = nord14_gui
+vim.g.terminal_color_3 = nord13_gui
+vim.g.terminal_color_4 = nord9_gui
+vim.g.terminal_color_5 = nord15_gui
+vim.g.terminal_color_6 = nord8_gui
+vim.g.terminal_color_7 = nord5_gui
+vim.g.terminal_color_8 = nord3_gui
+vim.g.terminal_color_9 = nord11_gui
+vim.g.terminal_color_10 = nord14_gui
+vim.g.terminal_color_11 = nord13_gui
+vim.g.terminal_color_12 = nord9_gui
+vim.g.terminal_color_13 = nord15_gui
+vim.g.terminal_color_14 = nord7_gui
+vim.g.terminal_color_15 = nord6_gui
+
 -- +---------------+
 -- +    Config     +
 -- +---------------+
