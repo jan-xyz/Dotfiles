@@ -97,61 +97,45 @@ vim.api.nvim_set_hl(0, "PmenuThumb", { fg = nord8_gui, bg = nord3_gui, ctermfg =
 --call s:hi("SpecialKey", s:nord3_gui, "", s:nord3_gui, "", "", "")
 vim.api.nvim_set_hl(0, "SpecialKey", { fg = nord3_gui, ctermfg = nord3_term })
 --call s:hi("SpellBad", s:nord11_gui, s:nord0_gui, s:nord11_gui, "NONE", "undercurl", s:nord11_gui)
-vim.api.nvim_set_hl(
-	0,
-	"SpellBad",
-	{
-		fg = nord11_gui,
-		bg = nord0_gui,
-		ctermfg = nord11_term,
-		ctermbg = "NONE",
-		undercurl = true,
-		cterm = { undercurl = true },
-		sp = nord11_gui,
-	}
-)
+vim.api.nvim_set_hl(0, "SpellBad", {
+	fg = nord11_gui,
+	bg = nord0_gui,
+	ctermfg = nord11_term,
+	ctermbg = "NONE",
+	undercurl = true,
+	cterm = { undercurl = true },
+	sp = nord11_gui,
+})
 --call s:hi("SpellCap", s:nord13_gui, s:nord0_gui, s:nord13_gui, "NONE", "undercurl", s:nord13_gui)
-vim.api.nvim_set_hl(
-	0,
-	"SpellCap",
-	{
-		fg = nord13_gui,
-		bg = nord0_gui,
-		ctermfg = nord13_term,
-		ctermbg = "NONE",
-		undercurl = true,
-		cterm = { undercurl = true },
-		sp = nord13_gui,
-	}
-)
+vim.api.nvim_set_hl(0, "SpellCap", {
+	fg = nord13_gui,
+	bg = nord0_gui,
+	ctermfg = nord13_term,
+	ctermbg = "NONE",
+	undercurl = true,
+	cterm = { undercurl = true },
+	sp = nord13_gui,
+})
 --call s:hi("SpellLocal", s:nord5_gui, s:nord0_gui, s:nord5_gui, "NONE", "undercurl", s:nord5_gui)
-vim.api.nvim_set_hl(
-	0,
-	"SpellLocal",
-	{
-		fg = nord5_gui,
-		bg = nord0_gui,
-		ctermfg = nord5_term,
-		ctermbg = "NONE",
-		undercurl = true,
-		cterm = { undercurl = true },
-		sp = nord5_gui,
-	}
-)
+vim.api.nvim_set_hl(0, "SpellLocal", {
+	fg = nord5_gui,
+	bg = nord0_gui,
+	ctermfg = nord5_term,
+	ctermbg = "NONE",
+	undercurl = true,
+	cterm = { undercurl = true },
+	sp = nord5_gui,
+})
 --call s:hi("SpellRare", s:nord6_gui, s:nord0_gui, s:nord6_gui, "NONE", "undercurl", s:nord6_gui)
-vim.api.nvim_set_hl(
-	0,
-	"SpellRare",
-	{
-		fg = nord6_gui,
-		bg = nord0_gui,
-		ctermfg = nord6_term,
-		ctermbg = "NONE",
-		undercurl = true,
-		cterm = { undercurl = true },
-		sp = nord6_gui,
-	}
-)
+vim.api.nvim_set_hl(0, "SpellRare", {
+	fg = nord6_gui,
+	bg = nord0_gui,
+	ctermfg = nord6_term,
+	ctermbg = "NONE",
+	undercurl = true,
+	cterm = { undercurl = true },
+	sp = nord6_gui,
+})
 --call s:hi("Visual", "", s:nord2_gui, "", s:nord1_gui, "", "")
 vim.api.nvim_set_hl(0, "Visual", { bg = nord2_gui, ctermbg = nord1_term })
 --call s:hi("VisualNOS", "", s:nord2_gui, "", s:nord1_gui, "", "")
@@ -259,8 +243,11 @@ vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = nord3_gui, ctermbg = nord3_ter
 --   call s:hi("LspReferenceWrite", "", s:nord3_gui, "", s:nord3_term, "", "")
 vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg = nord3_gui, ctermbg = nord3_term })
 --   call s:hi("LspSignatureActiveParameter", s:nord8_gui, "", s:nord8_term, "", s:underline, "")
-vim.api.nvim_set_hl(0, "LspSignatureActiveParameter",
-	{ fg = nord8_gui, ctermfg = nord8_term, underline = true, cterm = { underline = true } })
+vim.api.nvim_set_hl(
+	0,
+	"LspSignatureActiveParameter",
+	{ fg = nord8_gui, ctermfg = nord8_term, underline = true, cterm = { underline = true } }
+)
 --   call s:hi("LspCodeLens", s:nord3_gui_bright, "", s:nord3_term, "", "", "")
 vim.api.nvim_set_hl(0, "LspCodeLens", { fg = nord3_gui_bright, ctermfg = nord3_term })
 
