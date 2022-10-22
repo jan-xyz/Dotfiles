@@ -70,8 +70,7 @@ vim.api.nvim_set_hl(0, "NonText", { fg = nord2_gui, ctermfg = nord3_term })
 --call s:hi("Normal", s:nord4_gui, s:nord0_gui, "NONE", "NONE", "", "")
 vim.api.nvim_set_hl(0, "Normal", { fg = nord4_gui, bg = nord0_gui, ctermfg = "NONE", ctermbg = "NONE" })
 --call s:hi("Pmenu", s:nord4_gui, s:nord2_gui, "NONE", s:nord1_gui, "NONE", "")
-vim.api.nvim_set_hl(0, "Pmenu",
-	{ fg = nord4_gui, bg = nord2_gui, ctermfg = "NONE", ctermbg = nord1_term })
+vim.api.nvim_set_hl(0, "Pmenu", { fg = nord4_gui, bg = nord2_gui, ctermfg = "NONE", ctermbg = nord1_term })
 --call s:hi("PmenuSbar", s:nord4_gui, s:nord2_gui, "NONE", s:nord1_gui, "", "")
 vim.api.nvim_set_hl(0, "PmenuSbar", { fg = nord4_gui, bg = nord2_gui, ctermfg = "NONE", ctermbg = nord1_term })
 --call s:hi("PmenuSel", s:nord8_gui, s:nord3_gui, s:nord8_gui, s:nord3_gui, "", "")
@@ -81,20 +80,61 @@ vim.api.nvim_set_hl(0, "PmenuThumb", { fg = nord8_gui, bg = nord3_gui, ctermfg =
 --call s:hi("SpecialKey", s:nord3_gui, "", s:nord3_gui, "", "", "")
 vim.api.nvim_set_hl(0, "SpecialKey", { fg = nord3_gui, ctermfg = nord3_term })
 --call s:hi("SpellBad", s:nord11_gui, s:nord0_gui, s:nord11_gui, "NONE", "undercurl", s:nord11_gui)
-vim.api.nvim_set_hl(0, "SpellBad",
-	{ fg = nord11_gui, bg = nord0_gui, ctermfg = nord11_term, ctermbg = "NONE", undercurl = true,
+vim.api.nvim_set_hl(
+	0,
+	"SpellBad",
+	{
+		fg = nord11_gui,
+		bg = nord0_gui,
+		ctermfg = nord11_term,
+		ctermbg = "NONE",
+		undercurl = true,
 		cterm = { undercurl = true },
-		sp = nord11_gui })
+		sp = nord11_gui,
+	}
+)
 --call s:hi("SpellCap", s:nord13_gui, s:nord0_gui, s:nord13_gui, "NONE", "undercurl", s:nord13_gui)
-vim.api.nvim_set_hl(0, "SpellCap",
-	{ fg = nord13_gui, bg = nord0_gui, ctermfg = nord13_term, ctermbg = "NONE", undercurl = true,
-		cterm = { undercurl = true }, sp = nord13_gui })
+vim.api.nvim_set_hl(
+	0,
+	"SpellCap",
+	{
+		fg = nord13_gui,
+		bg = nord0_gui,
+		ctermfg = nord13_term,
+		ctermbg = "NONE",
+		undercurl = true,
+		cterm = { undercurl = true },
+		sp = nord13_gui,
+	}
+)
 --call s:hi("SpellLocal", s:nord5_gui, s:nord0_gui, s:nord5_gui, "NONE", "undercurl", s:nord5_gui)
-vim.api.nvim_set_hl(0, "SpellLocal", { fg = nord5_gui, bg = nord0_gui, ctermfg = nord5_term, ctermbg = "NONE",
-	undercurl = true, cterm = { undercurl = true }, sp = nord5_gui })
+vim.api.nvim_set_hl(
+	0,
+	"SpellLocal",
+	{
+		fg = nord5_gui,
+		bg = nord0_gui,
+		ctermfg = nord5_term,
+		ctermbg = "NONE",
+		undercurl = true,
+		cterm = { undercurl = true },
+		sp = nord5_gui,
+	}
+)
 --call s:hi("SpellRare", s:nord6_gui, s:nord0_gui, s:nord6_gui, "NONE", "undercurl", s:nord6_gui)
-vim.api.nvim_set_hl(0, "SpellRare", { fg = nord6_gui, bg = nord0_gui, ctermfg = nord6_term, ctermbg = "NONE",
-	undercurl = true, cterm = { undercurl = true }, sp = nord6_gui })
+vim.api.nvim_set_hl(
+	0,
+	"SpellRare",
+	{
+		fg = nord6_gui,
+		bg = nord0_gui,
+		ctermfg = nord6_term,
+		ctermbg = "NONE",
+		undercurl = true,
+		cterm = { undercurl = true },
+		sp = nord6_gui,
+	}
+)
 --call s:hi("Visual", "", s:nord2_gui, "", s:nord1_gui, "", "")
 vim.api.nvim_set_hl(0, "Visual", { bg = nord2_gui, ctermbg = nord1_term })
 --call s:hi("VisualNOS", "", s:nord2_gui, "", s:nord1_gui, "", "")
@@ -108,8 +148,11 @@ vim.api.nvim_set_hl(0, "VisualNOS", { bg = nord2_gui, ctermbg = nord1_term })
 --   call s:hi("CursorLineNr", s:nord4_gui, s:nord1_gui, "NONE", s:nord1_term, "NONE", "")
 -- endif
 -- call s:hi("Folded", s:nord3_gui, s:nord1_gui, s:nord3_term, s:nord1_term, s:bold, "")
-vim.api.nvim_set_hl(0, "Folded",
-	{ fg = nord3_gui, bg = nord1_gui, ctermfg = nord3_term, ctermbg = nord1_term, bold = true, cterm = { bold = true } })
+vim.api.nvim_set_hl(
+	0,
+	"Folded",
+	{ fg = nord3_gui, bg = nord1_gui, ctermfg = nord3_term, ctermbg = nord1_term, bold = true, cterm = { bold = true } }
+)
 -- call s:hi("FoldColumn", s:nord3_gui, s:nord0_gui, s:nord3_term, "NONE", "", "")
 vim.api.nvim_set_hl(0, "FoldColumn", { fg = nord3_gui, bg = nord0_gui, ctermfg = nord3_term, ctermbg = "NONE" })
 -- call s:hi("SignColumn", s:nord1_gui, s:nord0_gui, s:nord1_term, "NONE", "", "")
@@ -167,17 +210,29 @@ vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = nord8_gui, ctermfg = nord8_term 
 --   call s:hi("DiagnosticHint" , s:nord10_gui, "", s:nord10_term, "", "", "")
 vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = nord10_gui, ctermfg = nord10_term })
 --   call s:hi("DiagnosticUnderlineWarn" , s:nord13_gui, "", s:nord13_term, "", "undercurl", "")
-vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn",
-	{ fg = nord13_gui, ctermfg = nord13_term, undercurl = true, cterm = { undercurl = true } })
+vim.api.nvim_set_hl(
+	0,
+	"DiagnosticUnderlineWarn",
+	{ fg = nord13_gui, ctermfg = nord13_term, undercurl = true, cterm = { undercurl = true } }
+)
 --   call s:hi("DiagnosticUnderlineError" , s:nord11_gui, "", s:nord11_term, "", "undercurl", "")
-vim.api.nvim_set_hl(0, "DiagnosticUnderlineError",
-	{ fg = nord11_gui, ctermfg = nord11_term, undercurl = true, cterm = { undercurl = true } })
+vim.api.nvim_set_hl(
+	0,
+	"DiagnosticUnderlineError",
+	{ fg = nord11_gui, ctermfg = nord11_term, undercurl = true, cterm = { undercurl = true } }
+)
 --   call s:hi("DiagnosticUnderlineInfo" , s:nord8_gui, "", s:nord8_term, "", "undercurl", "")
-vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo",
-	{ fg = nord8_gui, ctermfg = nord8_term, undercurl = true, cterm = { undercurl = true } })
+vim.api.nvim_set_hl(
+	0,
+	"DiagnosticUnderlineInfo",
+	{ fg = nord8_gui, ctermfg = nord8_term, undercurl = true, cterm = { undercurl = true } }
+)
 --   call s:hi("DiagnosticUnderlineHint" , s:nord10_gui, "", s:nord10_term, "", "undercurl", "")
-vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint",
-	{ fg = nord10_gui, ctermfg = nord10_term, undercurl = true, cterm = { undercurl = true } })
+vim.api.nvim_set_hl(
+	0,
+	"DiagnosticUnderlineHint",
+	{ fg = nord10_gui, ctermfg = nord10_term, undercurl = true, cterm = { undercurl = true } }
+)
 
 -- "+- Lsp -+
 --   call s:hi("LspReferenceText", "", s:nord3_gui, "", s:nord3_term, "", "")
@@ -194,8 +249,11 @@ vim.api.nvim_set_hl(0, "Boolean", { fg = nord9_gui, ctermfg = nord9_term })
 -- call s:hi("Character", s:nord14_gui, "", s:nord14_gui, "", "", "")
 vim.api.nvim_set_hl(0, "Character", { fg = nord14_gui, ctermfg = nord14_term })
 -- call s:hi("Comment", s:nord3_gui_bright, "", s:nord3_gui, "", s:italicize_comments, "")
-vim.api.nvim_set_hl(0, "Comment",
-	{ fg = nord3_gui_bright, ctermfg = nord3_term, italic = true, cterm = { italic = true } })
+vim.api.nvim_set_hl(
+	0,
+	"Comment",
+	{ fg = nord3_gui_bright, ctermfg = nord3_term, italic = true, cterm = { italic = true } }
+)
 -- call s:hi("Conceal", "", "NONE", "", "NONE", "", "")
 vim.api.nvim_set_hl(0, "Conceal", { bg = "NONE", ctermbg = "NONE" })
 -- call s:hi("Conditional", s:nord9_gui, "", s:nord9_gui, "", "", "")
@@ -239,8 +297,11 @@ vim.api.nvim_set_hl(0, "Special", { fg = nord4_gui, ctermfg = "NONE" })
 -- call s:hi("SpecialChar", s:nord13_gui, "", s:nord13_gui, "", "", "")
 vim.api.nvim_set_hl(0, "SpecialChar", { fg = nord13_gui, ctermfg = nord13_term })
 -- call s:hi("SpecialComment", s:nord8_gui, "", s:nord8_gui, "", s:italicize_comments, "")
-vim.api.nvim_set_hl(0, "SpecialComment",
-	{ fg = nord8_gui, ctermfg = nord8_term, italic = true, cterm = { italic = true } })
+vim.api.nvim_set_hl(
+	0,
+	"SpecialComment",
+	{ fg = nord8_gui, ctermfg = nord8_term, italic = true, cterm = { italic = true } }
+)
 -- call s:hi("Statement", s:nord9_gui, "", s:nord9_gui, "", "", "")
 vim.api.nvim_set_hl(0, "Statement", { fg = nord9_gui, ctermfg = nord9_term })
 -- call s:hi("StorageClass", s:nord9_gui, "", s:nord9_gui, "", "", "")
