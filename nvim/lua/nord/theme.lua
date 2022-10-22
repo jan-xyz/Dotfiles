@@ -141,11 +141,11 @@ vim.api.nvim_set_hl(0, "SignColumn", { fg = nord1_gui, bg = nord0_gui, ctermfg =
 vim.api.nvim_set_hl(0, "Directory", { fg = nord8_gui, ctermfg = nord8_term, ctermbg = "NONE" })
 
 -- "+--- Prompt/Status ---+
--- call s:hi("EndOfBuffer", s:nord1_gui, "", s:nord1_term, "NONE", "", "")
--- call s:hi("ErrorMsg", s:nord4_gui, s:nord11_gui, "NONE", s:nord11_term, "", "")
--- call s:hi("ModeMsg", s:nord4_gui, "", "", "", "", "")
--- call s:hi("MoreMsg", s:nord8_gui, "", s:nord8_term, "", "", "")
--- call s:hi("Question", s:nord4_gui, "", "NONE", "", "", "")
+vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = nord1_gui, ctermfg = nord1_term, ctermbg = "NONE" })
+vim.api.nvim_set_hl(0, "ErrorMsg", { fg = nord4_gui, bg = nord11_gui, ctermfg = "NONE", ctermbg = nord11_term })
+vim.api.nvim_set_hl(0, "ModeMsg", { fg = nord4_gui })
+vim.api.nvim_set_hl(0, "MoreMsg", { fg = nord8_gui, ctermfg = nord8_term })
+vim.api.nvim_set_hl(0, "Question", { fg = nord4_gui, ctermfg = "NONE" })
 if uniform_status_lines then
 	vim.api.nvim_set_hl(0, "StatusLine", { fg = nord8_gui, bg = nord3_gui, ctermfg = nord8_term, ctermbg = nord3_term })
 	vim.api.nvim_set_hl(0, "StatusLineNC", { fg = nord4_gui, bg = nord3_gui, ctermfg = "NONE", ctermbg = nord3_term })
@@ -173,8 +173,8 @@ else
 		{ fg = nord4_gui, bg = nord1_gui, ctermfg = "NONE", ctermbg = nord1_term }
 	)
 end
--- call s:hi("WarningMsg", s:nord0_gui, s:nord13_gui, s:nord1_term, s:nord13_term, "", "")
--- call s:hi("WildMenu", s:nord8_gui, s:nord1_gui, s:nord8_term, s:nord1_term, "", "")
+vim.api.nvim_set_hl(0, "WarningMsg", { fg = nord0_gui, bg = nord13_gui, ctermfg = nord1_term, ctermbg = nord13_term })
+vim.api.nvim_set_hl(0, "WildMenu", { fg = nord8_gui, bg = nord1_gui, ctermfg = nord8_term, ctermbg = nord1_term })
 --
 -- "+--- Search ---+
 vim.api.nvim_set_hl(0, "IncSearch", {
@@ -189,8 +189,11 @@ vim.api.nvim_set_hl(0, "Search", { fg = nord1_gui, bg = nord8_gui, ctermfg = nor
 --
 -- "+--- Tabs ---+
 -- call s:hi("TabLine", s:nord4_gui, s:nord1_gui, "NONE", s:nord1_term, "NONE", "")
+vim.api.nvim_set_hl(0, "TabLine", { fg = nord4_gui, bg = nord1_gui, ctermfg = "NONE", ctermbg = "NONE" })
 -- call s:hi("TabLineFill", s:nord4_gui, s:nord1_gui, "NONE", s:nord1_term, "NONE", "")
+vim.api.nvim_set_hl(0, "TabLineFill", { fg = nord4_gui, bg = nord1_gui, ctermfg = "NONE", ctermbg = "NONE" })
 -- call s:hi("TabLineSel", s:nord8_gui, s:nord3_gui, s:nord8_term, s:nord3_term, "NONE", "")
+vim.api.nvim_set_hl(0, "TabLineSel", { fg = nord8_gui, bg = nord3_gui, ctermfg = nord8_term, ctermbg = nord3_term })
 --
 -- "+--- Window ---+
 vim.api.nvim_set_hl(0, "Title", { fg = nord4_gui })
