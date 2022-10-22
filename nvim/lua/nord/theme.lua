@@ -59,16 +59,16 @@ local cursor_line_number_background = true
 local uniform_status_lines = true
 local bold_vertical_split_line = false
 
---"+---------------+
---"+ UI Components +
---"+---------------+
+-- +---------------+
+-- + UI Components +
+-- +---------------+
 
---"+--- Attributes ---+
+-- +--- Attributes ---+
 vim.api.nvim_set_hl(0, "Bold", { bold = bold })
 vim.api.nvim_set_hl(0, "Italic", { italic = italic })
 vim.api.nvim_set_hl(0, "Underline", { underline = underline })
 
---"+--- Editor ---+
+-- +--- Editor ---+
 vim.api.nvim_set_hl(0, "ColorColumn", { bg = nord1_gui, ctermfg = "NONE", ctermbg = nord1_term })
 vim.api.nvim_set_hl(0, "Cursor", { fg = nord0_gui, ctermfg = "NONE" })
 vim.api.nvim_set_hl(0, "CursorLine", { bg = nord1_gui, ctermfg = "NONE", ctermbg = nord9_term })
@@ -122,7 +122,7 @@ vim.api.nvim_set_hl(0, "SpellRare", {
 vim.api.nvim_set_hl(0, "Visual", { bg = nord2_gui, ctermbg = nord1_term })
 vim.api.nvim_set_hl(0, "VisualNOS", { bg = nord2_gui, ctermbg = nord1_term })
 
--- "+--- Gutter ---+
+-- +--- Gutter ---+
 vim.api.nvim_set_hl(0, "CursorColumn", { bg = nord1_gui, ctermbg = nord1_term })
 if cursor_line_number_background then
 	vim.api.nvim_set_hl(0, "CursorLineNr", { fg = nord4_gui, bg = nord1_gui, ctermbg = nord1_term })
@@ -137,10 +137,10 @@ vim.api.nvim_set_hl(
 vim.api.nvim_set_hl(0, "FoldColumn", { fg = nord3_gui, bg = nord0_gui, ctermfg = nord3_term, ctermbg = "NONE" })
 vim.api.nvim_set_hl(0, "SignColumn", { fg = nord1_gui, bg = nord0_gui, ctermfg = nord1_term, ctermbg = "NONE" })
 
--- "+--- Navigation ---+
+-- +--- Navigation ---+
 vim.api.nvim_set_hl(0, "Directory", { fg = nord8_gui, ctermfg = nord8_term, ctermbg = "NONE" })
 
--- "+--- Prompt/Status ---+
+-- +--- Prompt/Status ---+
 vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = nord1_gui, ctermfg = nord1_term, ctermbg = "NONE" })
 vim.api.nvim_set_hl(0, "ErrorMsg", { fg = nord4_gui, bg = nord11_gui, ctermfg = "NONE", ctermbg = nord11_term })
 vim.api.nvim_set_hl(0, "ModeMsg", { fg = nord4_gui })
@@ -175,8 +175,8 @@ else
 end
 vim.api.nvim_set_hl(0, "WarningMsg", { fg = nord0_gui, bg = nord13_gui, ctermfg = nord1_term, ctermbg = nord13_term })
 vim.api.nvim_set_hl(0, "WildMenu", { fg = nord8_gui, bg = nord1_gui, ctermfg = nord8_term, ctermbg = nord1_term })
---
--- "+--- Search ---+
+
+-- +--- Search ---+
 vim.api.nvim_set_hl(0, "IncSearch", {
 	fg = nord6_gui,
 	bg = nord10_gui,
@@ -186,16 +186,13 @@ vim.api.nvim_set_hl(0, "IncSearch", {
 	cterm = { underline = true },
 })
 vim.api.nvim_set_hl(0, "Search", { fg = nord1_gui, bg = nord8_gui, ctermfg = nord1_term, ctermbg = nord8_term })
---
--- "+--- Tabs ---+
--- call s:hi("TabLine", s:nord4_gui, s:nord1_gui, "NONE", s:nord1_term, "NONE", "")
+
+-- +--- Tabs ---+
 vim.api.nvim_set_hl(0, "TabLine", { fg = nord4_gui, bg = nord1_gui, ctermfg = "NONE", ctermbg = "NONE" })
--- call s:hi("TabLineFill", s:nord4_gui, s:nord1_gui, "NONE", s:nord1_term, "NONE", "")
 vim.api.nvim_set_hl(0, "TabLineFill", { fg = nord4_gui, bg = nord1_gui, ctermfg = "NONE", ctermbg = "NONE" })
--- call s:hi("TabLineSel", s:nord8_gui, s:nord3_gui, s:nord8_term, s:nord3_term, "NONE", "")
 vim.api.nvim_set_hl(0, "TabLineSel", { fg = nord8_gui, bg = nord3_gui, ctermfg = nord8_term, ctermbg = nord3_term })
---
--- "+--- Window ---+
+
+-- +--- Window ---+
 vim.api.nvim_set_hl(0, "Title", { fg = nord4_gui })
 if bold_vertical_split_line then
 	vim.api.nvim_set_hl(0, "VertSplit", { fg = nord2_gui, bg = nord1_gui, ctermfg = nord3_term, ctermbg = nord1_term })
@@ -203,7 +200,7 @@ else
 	vim.api.nvim_set_hl(0, "VertSplit", { fg = nord2_gui, bg = nord0_gui, ctermfg = nord3_term })
 end
 
--- "+- Diagnostics -+
+-- +- Diagnostics -+
 vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = nord13_gui, ctermfg = nord13_term })
 vim.api.nvim_set_hl(0, "DiagnosticError", { fg = nord11_gui, ctermfg = nord11_term })
 vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = nord8_gui, ctermfg = nord8_term })
@@ -235,7 +232,7 @@ vim.api.nvim_set_hl(0, "DiffChange", { fg = nord13_gui, ctermfg = nord13_term })
 vim.api.nvim_set_hl(0, "DiffText", { fg = nord11_gui, ctermfg = nord11_term })
 vim.api.nvim_set_hl(0, "DiffDelete", { fg = nord11_gui, ctermfg = nord11_term })
 
--- "+- Lsp -+
+-- +- Lsp -+
 vim.api.nvim_set_hl(0, "LspReferenceText", { bg = nord3_gui, ctermbg = nord3_term })
 vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = nord3_gui, ctermbg = nord3_term })
 vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg = nord3_gui, ctermbg = nord3_term })
