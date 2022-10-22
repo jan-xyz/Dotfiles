@@ -185,7 +185,20 @@ vim.api.nvim_set_hl(0, "Directory", { fg = nord8_gui, ctermfg = nord8_term, cter
 --
 -- "+--- Search ---+
 -- call s:hi("IncSearch", s:nord6_gui, s:nord10_gui, s:nord6_term, s:nord10_term, s:underline, "")
+vim.api.nvim_set_hl(
+	0,
+	"IncSearch",
+	{
+		fg = nord6_gui,
+		bg = nord10_gui,
+		ctermfg = nord6_term,
+		ctermbg = nord10_term,
+		underline = true,
+		cterm = { underline = true },
+	}
+)
 -- call s:hi("Search", s:nord1_gui, s:nord8_gui, s:nord1_term, s:nord8_term, "NONE", "")
+vim.api.nvim_set_hl(0, "Search", { fg = nord1_gui, bg = nord8_gui, ctermfg = nord1_term, ctermbg = nord8_term })
 --
 -- "+--- Tabs ---+
 -- call s:hi("TabLine", s:nord4_gui, s:nord1_gui, "NONE", s:nord1_term, "NONE", "")
