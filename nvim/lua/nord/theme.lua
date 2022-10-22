@@ -207,6 +207,7 @@ vim.api.nvim_set_hl(0, "Search", { fg = nord1_gui, bg = nord8_gui, ctermfg = nor
 --
 -- "+--- Window ---+
 -- call s:hi("Title", s:nord4_gui, "", "NONE", "", "NONE", "")
+vim.api.nvim_set_hl(0, "Title", { fg = nord4_gui })
 --
 -- if g:nord_bold_vertical_split_line == 0
 --   call s:hi("VertSplit", s:nord2_gui, s:nord0_gui, s:nord3_term, "NONE", "NONE", "")
