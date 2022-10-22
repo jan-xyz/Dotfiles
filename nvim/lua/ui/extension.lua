@@ -1,5 +1,13 @@
 local packer = require("packer")
 
+-- preview colors
+packer.use({
+	"NvChad/nvim-colorizer.lua",
+	config = function()
+		require("colorizer").setup()
+	end,
+})
+
 -- rename and other input boxes
 packer.use({ "stevearc/dressing.nvim" })
 
