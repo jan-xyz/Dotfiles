@@ -2,18 +2,13 @@
 package appstore
 
 import (
-	"errors"
 	"strings"
 
 	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/sirupsen/logrus"
 )
 
-var (
-	masExe = "mas"
-
-	errNotSignedIntoAppStore = errors.New("please sign into app store")
-)
+var masExe = "mas"
 
 // App holds the configuration of an application from the Mac App Store.
 type App struct {
