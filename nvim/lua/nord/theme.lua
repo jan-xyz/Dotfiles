@@ -1,3 +1,5 @@
+-- Port of https://github.com/arcticicestudio/nord-vim
+
 local nord0_gui = "#2E3440"
 local nord1_gui = "#3B4252"
 local nord2_gui = "#434C5E"
