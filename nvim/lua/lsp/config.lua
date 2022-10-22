@@ -57,7 +57,10 @@ function M.on_attach(client, bufnr)
 	end
 	-- Goto Implementations
 	if client.server_capabilities.implementationProvider then
-		wk.register({ i = { telescope_builtin.lsp_implementations, "Implementation", noremap = true } }, { prefix = "g" })
+		wk.register(
+			{ i = { telescope_builtin.lsp_implementations, "Implementation", noremap = true } },
+			{ prefix = "g" }
+		)
 	end
 	-- Find References
 	if client.server_capabilities.referencesProvider then

@@ -56,5 +56,5 @@ packer.use({
 	config = function()
 		local dap_go = require("dap-go")
 		dap_go.setup()
-	end
+	end,
 })

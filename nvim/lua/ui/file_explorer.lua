@@ -21,6 +21,5 @@ packer.use({
 		}, {
 			prefix = "f",
 		})
-	end
-	,
+	end,
 })
