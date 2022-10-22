@@ -253,10 +253,16 @@ vim.api.nvim_set_hl(
 
 -- "+- Lsp -+
 --   call s:hi("LspReferenceText", "", s:nord3_gui, "", s:nord3_term, "", "")
+vim.api.nvim_set_hl(0, "LspReferenceText", { bg = nord3_gui, ctermbg = nord3_term })
 --   call s:hi("LspReferenceRead", "", s:nord3_gui, "", s:nord3_term, "", "")
+vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = nord3_gui, ctermbg = nord3_term })
 --   call s:hi("LspReferenceWrite", "", s:nord3_gui, "", s:nord3_term, "", "")
+vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg = nord3_gui, ctermbg = nord3_term })
 --   call s:hi("LspSignatureActiveParameter", s:nord8_gui, "", s:nord8_term, "", s:underline, "")
+vim.api.nvim_set_hl(0, "LspSignatureActiveParameter",
+	{ fg = nord8_gui, ctermfg = nord8_term, underline = true, cterm = { underline = true } })
 --   call s:hi("LspCodeLens", s:nord3_gui_bright, "", s:nord3_term, "", "", "")
+vim.api.nvim_set_hl(0, "LspCodeLens", { fg = nord3_gui_bright, ctermfg = nord3_term })
 
 -- +----------------------+
 -- + Language Base Groups +
