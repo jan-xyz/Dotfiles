@@ -33,15 +33,6 @@ type Plugin struct {
 // but not yet installed on the system. It returns an error if the current
 // app store profile does not match the configured profile.
 func (a Plugin) GetMissingPackages() ([]string, error) {
-	profile, err := a.Commander("mas", "account")
-	if err != nil {
-		return nil, err
-	}
-	if a.Profile != strings.TrimSpace(string(profile)) {
-		logrus.WithField("current_user", string(profile)).Error("wrong signin")
-		// TODO: login to app store [#4]
-		return nil, errNotSignedIntoAppStore
-	}
 	cmd := "mas list | awk '{print $1;}'"
 	stdout, err := a.Commander("bash", "-c", cmd)
 	if err != nil {

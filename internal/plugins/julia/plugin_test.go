@@ -10,12 +10,9 @@ import (
 func TestGetMissingJuliaModules(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput(
-		"julia",
-		[]string{"-e", "import Pkg;Pkg.status()"},
-		[]byte("Status `~/.julia/environments/v1.6/Project.toml`\n [2b0e0bc5] bar v4.1.0\n [c3e4b0f8] Pluto v0.15.1Pkg\n"),
-		nil,
-	)
+	commander.
+		OnOutput("julia", []string{"-e", "import Pkg;Pkg.status()"}).
+		Return([]byte("Status `~/.julia/environments/v1.6/Project.toml`\n [2b0e0bc5] bar v4.1.0\n [c3e4b0f8] Pluto v0.15.1Pkg\n"), nil)
 	b := Plugin{
 		Modules:   []string{"bar", "foo"},
 		Commander: commander.Output,
@@ -28,9 +25,9 @@ func TestGetMissingJuliaModules(t *testing.T) {
 func TestInstallingJuliaModules(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput(
+	commander.OnOutput(
 		"julia",
-		[]string{"-e", "import Pkg;Pkg.add.([\"bar\",\"foo\"])"},
+		[]string{"-e", "import Pkg;Pkg.add.([\"bar\",\"foo\"])"}).Return(
 		nil,
 		nil,
 	)
@@ -54,7 +51,7 @@ func TestTryingToInstallJuliaModulesWithEmptyListDoesNotCallCode(t *testing.T) {
 func TestUpdatingJulaModules(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput("julia", []string{"-e", "import Pkg;Pkg.update()"}, nil, nil)
+	commander.OnOutput("julia", []string{"-e", "import Pkg;Pkg.update()"}).Return(nil, nil)
 	b := Plugin{
 		Commander: commander.Output,
 	}

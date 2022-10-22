@@ -17,7 +17,15 @@ func (c *MockCommander) Output(command string, arguments ...string) ([]byte, err
 	return args[0].([]byte), args.Error(1)
 }
 
-// ExpectOutput is a helper function to specify epxectations on the mock.
-func (c *MockCommander) ExpectOutput(command string, arguments []string, mockReturn []byte, err error) {
-	c.On("Output", command, arguments).Return(mockReturn, err).Once()
+// OnOutput is a helper function to specify epxectations on the mock.
+func (c *MockCommander) OnOutput(command string, arguments []string) *OutputCall {
+	return &OutputCall{c.On("Output", command, arguments)}
+}
+
+type OutputCall struct {
+	*mock.Call
+}
+
+func (o *OutputCall) Return(output []byte, err error) {
+	o.Call.Return(output, err)
 }

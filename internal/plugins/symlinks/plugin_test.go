@@ -12,9 +12,9 @@ import (
 func TestGetMissingSymlinks(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput("readlink", []string{"fooLinkName"}, nil, errors.New("not-there"))
-	commander.ExpectOutput("readlink", []string{"barLinkName"}, []byte("barSourceFile"), nil)
-	commander.ExpectOutput("readlink", []string{"bazLinkName"}, []byte("wrong-symlink"), nil)
+	commander.OnOutput("readlink", []string{"fooLinkName"}).Return(nil, errors.New("not-there"))
+	commander.OnOutput("readlink", []string{"barLinkName"}).Return([]byte("barSourceFile"), nil)
+	commander.OnOutput("readlink", []string{"bazLinkName"}).Return([]byte("wrong-symlink"), nil)
 	b := Plugin{
 		Links: []Link{
 			{LinkName: "fooLinkName", SourceFile: "fooSourceFile"},
@@ -33,7 +33,7 @@ func TestGetMissingSymlinksExpandsSymLinks(t *testing.T) {
 	defer commander.AssertExpectations(t)
 	os.Setenv("FOO", "FooBarBaz")
 	defer os.Unsetenv("FOO")
-	commander.ExpectOutput("readlink", []string{"barLinkName"}, []byte("FooBarBaz"), nil)
+	commander.OnOutput("readlink", []string{"barLinkName"}).Return([]byte("FooBarBaz"), nil)
 	b := Plugin{
 		Links: []Link{
 			{LinkName: "barLinkName", SourceFile: "${FOO}"},
@@ -48,8 +48,8 @@ func TestGetMissingSymlinksExpandsSymLinks(t *testing.T) {
 func TestInstallingSymlinks(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput("mkdir", []string{"-p", "."}, nil, nil)
-	commander.ExpectOutput("ln", []string{"-sf", "barSourceFile", "barLinkName"}, nil, nil)
+	commander.OnOutput("mkdir", []string{"-p", "."}).Return(nil, nil)
+	commander.OnOutput("ln", []string{"-sf", "barSourceFile", "barLinkName"}).Return(nil, nil)
 	b := Plugin{
 		Links: []Link{
 			{SourceFile: "barSourceFile", LinkName: "barLinkName"},
@@ -66,8 +66,8 @@ func TestInstallingSymlinksExpandsEnvironmentVariables(t *testing.T) {
 	defer commander.AssertExpectations(t)
 	os.Setenv("FOO", "FooBarBaz")
 	defer os.Unsetenv("FOO")
-	commander.ExpectOutput("mkdir", []string{"-p", "."}, nil, nil)
-	commander.ExpectOutput("ln", []string{"-sf", "barSourceFile", "FooBarBaz"}, nil, nil)
+	commander.OnOutput("mkdir", []string{"-p", "."}).Return(nil, nil)
+	commander.OnOutput("ln", []string{"-sf", "barSourceFile", "FooBarBaz"}).Return(nil, nil)
 	b := Plugin{
 		Links: []Link{
 			{SourceFile: "barSourceFile", LinkName: "${FOO}"},

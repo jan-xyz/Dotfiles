@@ -10,12 +10,9 @@ import (
 func TestGetMissingPythonPackage(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput(
-		"/opt/homebrew/bin/python3",
-		[]string{"-m", "pip", "freeze"},
-		[]byte("bar==1.0.0"),
-		nil,
-	)
+	commander.
+		OnOutput("/opt/homebrew/bin/python3", []string{"-m", "pip", "freeze"}).
+		Return([]byte("bar==1.0.0"), nil)
 	p := Python{
 		Packages:  []string{"bar", "foo"},
 		Commander: commander.Output,
@@ -28,12 +25,9 @@ func TestGetMissingPythonPackage(t *testing.T) {
 func TestInstallingPythonPackage(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput(
-		"/opt/homebrew/bin/python3",
-		[]string{"-m", "pip", "install", "bar", "foo"},
-		nil,
-		nil,
-	)
+	commander.
+		OnOutput("/opt/homebrew/bin/python3", []string{"-m", "pip", "install", "bar", "foo"}).
+		Return(nil, nil)
 	b := Python{
 		Commander: commander.Output,
 	}
@@ -54,12 +48,9 @@ func TestTryingToInstallPythonPackageWithEmptyListDoesNotCallBrew(t *testing.T) 
 func TestUpdatingPythonPackage(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput(
-		"/opt/homebrew/bin/python3",
-		[]string{"-m", "pip", "install", "--upgrade", "bar", "foo"},
-		nil,
-		nil,
-	)
+	commander.
+		OnOutput("/opt/homebrew/bin/python3", []string{"-m", "pip", "install", "--upgrade", "bar", "foo"}).
+		Return(nil, nil)
 	b := Python{
 		Packages:  []string{"bar", "foo"},
 		Commander: commander.Output,

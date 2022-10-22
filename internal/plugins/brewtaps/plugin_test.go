@@ -10,7 +10,7 @@ import (
 func TestGetMissingTaps(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput("brew", []string{"tap"}, []byte("bar"), nil)
+	commander.OnOutput("brew", []string{"tap"}).Return([]byte("bar"), nil)
 	b := Plugin{
 		Taps:      []string{"bar", "foo"},
 		Commander: commander.Output,
@@ -23,7 +23,7 @@ func TestGetMissingTaps(t *testing.T) {
 func TestInstallingTaps(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput("brew", []string{"tap", "bar", "foo"}, nil, nil)
+	commander.OnOutput("brew", []string{"tap", "bar", "foo"}).Return(nil, nil)
 	b := Plugin{
 		Commander: commander.Output,
 	}

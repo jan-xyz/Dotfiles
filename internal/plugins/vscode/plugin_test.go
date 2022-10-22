@@ -44,7 +44,7 @@ func TestGetMissingVSCodeExtension(t *testing.T) {
 
 		commander := dotfiles.MockCommander{}
 		defer commander.AssertExpectations(t)
-		commander.ExpectOutput("code", []string{"--list-extensions"}, testCase.applicationOutput, nil)
+		commander.OnOutput("code", []string{"--list-extensions"}).Return(testCase.applicationOutput, nil)
 		b := Plugin{
 			Extensions: testCase.input,
 			Commander:  commander.Output,
@@ -58,8 +58,8 @@ func TestGetMissingVSCodeExtension(t *testing.T) {
 func TestInstallingVSCodeExtension(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput("code", []string{"--install-extension", "bar"}, nil, nil)
-	commander.ExpectOutput("code", []string{"--install-extension", "foo"}, nil, nil)
+	commander.OnOutput("code", []string{"--install-extension", "bar"}).Return(nil, nil)
+	commander.OnOutput("code", []string{"--install-extension", "foo"}).Return(nil, nil)
 	b := Plugin{
 		Commander: commander.Output,
 	}

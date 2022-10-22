@@ -10,8 +10,7 @@ import (
 func TestGetMissingApps(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput("mas", []string{"account"}, []byte("foo@example.com\n"), nil)
-	commander.ExpectOutput("bash", []string{"-c", "mas list | awk '{print $1;}'"}, []byte("1482454543\n1463400445"), nil)
+	commander.OnOutput("bash", []string{"-c", "mas list | awk '{print $1;}'"}).Return([]byte("1482454543\n1463400445"), nil)
 	b := Plugin{
 		Profile: "foo@example.com",
 		Apps: []App{
@@ -35,22 +34,10 @@ func TestGetMissingApps(t *testing.T) {
 	assert.Equal(t, []string{"1460715987"}, missingPackages)
 }
 
-func TestGetMissingAppsReturnsErrorWhenWrongSignIn(t *testing.T) {
-	commander := dotfiles.MockCommander{}
-	defer commander.AssertExpectations(t)
-	commander.ExpectOutput("mas", []string{"account"}, []byte("foo@example.com"), nil)
-	b := Plugin{
-		Profile:   "bar@example.com",
-		Commander: commander.Output,
-	}
-	_, err := b.GetMissingPackages()
-	assert.Error(t, err)
-}
-
 func TestInstallingApps(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput("mas", []string{"install", "1482454543", "1463400445"}, nil, nil)
+	commander.OnOutput("mas", []string{"install", "1482454543", "1463400445"}).Return(nil, nil)
 	b := Plugin{
 		Apps: []App{
 			{

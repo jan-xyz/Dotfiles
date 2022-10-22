@@ -10,8 +10,8 @@ import (
 func TestGetMissingBrewPackage(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput("brew", []string{"list", "--formula"}, []byte("foo"), nil)
-	commander.ExpectOutput("brew", []string{"list", "--casks"}, []byte("bar"), nil)
+	commander.OnOutput("brew", []string{"list", "--formula"}).Return([]byte("foo"), nil)
+	commander.OnOutput("brew", []string{"list", "--casks"}).Return([]byte("bar"), nil)
 	b := Plugin{
 		Bottles:   []string{"bar", "foo", "baz"},
 		Commander: commander.Output,
@@ -24,7 +24,7 @@ func TestGetMissingBrewPackage(t *testing.T) {
 func TestInstallingBrewPackage(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput("brew", []string{"install", "bar", "foo"}, nil, nil)
+	commander.OnOutput("brew", []string{"install", "bar", "foo"}).Return(nil, nil)
 	b := Plugin{
 		Commander: commander.Output,
 	}

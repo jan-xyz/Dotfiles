@@ -11,8 +11,8 @@ import (
 func TestGetMissingNPMPackage(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput("npm", []string{"ls", "--global", "bar"}, nil, nil)
-	commander.ExpectOutput("npm", []string{"ls", "--global", "foo"}, nil, errors.New("some error"))
+	commander.OnOutput("npm", []string{"ls", "--global", "bar"}).Return(nil, nil)
+	commander.OnOutput("npm", []string{"ls", "--global", "foo"}).Return(nil, errors.New("some error"))
 	b := Plugin{
 		Packages:  []string{"bar", "foo"},
 		Commander: commander.Output,
@@ -25,7 +25,7 @@ func TestGetMissingNPMPackage(t *testing.T) {
 func TestInstallingNPMPackage(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput("npm", []string{"install", "--global", "bar", "foo"}, nil, nil)
+	commander.OnOutput("npm", []string{"install", "--global", "bar", "foo"}).Return(nil, nil)
 	b := Plugin{
 		Commander: commander.Output,
 	}
@@ -46,7 +46,7 @@ func TestTryingToInstallNPMPackageWithEmptyListDoesNotCallCode(t *testing.T) {
 func TestUpdatingNPMPackage(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput("npm", []string{"update", "--global"}, nil, nil)
+	commander.OnOutput("npm", []string{"update", "--global"}).Return(nil, nil)
 	b := Plugin{
 		Commander: commander.Output,
 	}

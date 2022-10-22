@@ -11,8 +11,8 @@ import (
 func TestGetPreferenceDrift(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput("defaults", []string{"read", "foo", "bar"}, []byte("0\n"), nil)
-	commander.ExpectOutput("defaults", []string{"read", "baz", "fuu"}, []byte("1\n"), nil)
+	commander.OnOutput("defaults", []string{"read", "foo", "bar"}).Return([]byte("0\n"), nil)
+	commander.OnOutput("defaults", []string{"read", "baz", "fuu"}).Return([]byte("1\n"), nil)
 	b := Plugin{
 		Preferences: []Preference{
 			{
@@ -38,7 +38,7 @@ func TestGetPreferenceDriftExpandsEnvironmentVariables(t *testing.T) {
 	defer commander.AssertExpectations(t)
 	os.Setenv("FOO", "FooBarBaz")
 	defer os.Unsetenv("FOO")
-	commander.ExpectOutput("defaults", []string{"read", "foo", "bar"}, []byte("FooBarBaz\n"), nil)
+	commander.OnOutput("defaults", []string{"read", "foo", "bar"}).Return([]byte("FooBarBaz\n"), nil)
 	b := Plugin{
 		Preferences: []Preference{
 			{
@@ -57,7 +57,7 @@ func TestGetPreferenceDriftExpandsEnvironmentVariables(t *testing.T) {
 func TestSettingPreferences(t *testing.T) {
 	commander := dotfiles.MockCommander{}
 	defer commander.AssertExpectations(t)
-	commander.ExpectOutput("defaults", []string{"write", "foo", "bar", "-int", "1"}, nil, nil)
+	commander.OnOutput("defaults", []string{"write", "foo", "bar", "-int", "1"}).Return(nil, nil)
 	b := Plugin{
 		Preferences: []Preference{
 			{
@@ -77,7 +77,7 @@ func TestSettingPreferencesExpandsEnvironmentVariables(t *testing.T) {
 	defer commander.AssertExpectations(t)
 	os.Setenv("FOO", "FooBarBaz")
 	defer os.Unsetenv("FOO")
-	commander.ExpectOutput("defaults", []string{"write", "foo", "bar", "-int", "FooBarBaz"}, nil, nil)
+	commander.OnOutput("defaults", []string{"write", "foo", "bar", "-int", "FooBarBaz"}).Return(nil, nil)
 	b := Plugin{
 		Preferences: []Preference{
 			{
