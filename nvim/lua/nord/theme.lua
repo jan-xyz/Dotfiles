@@ -54,16 +54,18 @@ local bold = true
 local italic = true
 local underline = true
 -- local cursor_line_number_background = true
--- local bold_vertical_split_line = true
+-- local uniform_status_lines = true
+local bold_vertical_split_line = true
 
 --"+---------------+
 --"+ UI Components +
 --"+---------------+
+
 --"+--- Attributes ---+
 vim.api.nvim_set_hl(0, "Bold", { bold = bold })
 vim.api.nvim_set_hl(0, "Italic", { italic = italic })
 vim.api.nvim_set_hl(0, "Underline", { underline = underline })
---
+
 --"+--- Editor ---+
 vim.api.nvim_set_hl(0, "ColorColumn", { bg = nord1_gui, ctermfg = "NONE", ctermbg = nord1_term })
 vim.api.nvim_set_hl(0, "Cursor", { fg = nord0_gui, ctermfg = "NONE" })
@@ -177,14 +179,12 @@ vim.api.nvim_set_hl(0, "Search", { fg = nord1_gui, bg = nord8_gui, ctermfg = nor
 -- call s:hi("TabLineSel", s:nord8_gui, s:nord3_gui, s:nord8_term, s:nord3_term, "NONE", "")
 --
 -- "+--- Window ---+
--- call s:hi("Title", s:nord4_gui, "", "NONE", "", "NONE", "")
 vim.api.nvim_set_hl(0, "Title", { fg = nord4_gui })
---
--- if g:nord_bold_vertical_split_line == 0
---   call s:hi("VertSplit", s:nord2_gui, s:nord0_gui, s:nord3_term, "NONE", "NONE", "")
--- else
---   call s:hi("VertSplit", s:nord2_gui, s:nord1_gui, s:nord3_term, s:nord1_term, "NONE", "")
--- endif
+if bold_vertical_split_line then
+	vim.api.nvim_set_hl(0, "VertSplit", { fg = nord2_gui, bg = nord0_gui, ctermfg = nord3_term })
+else
+	vim.api.nvim_set_hl(0, "VertSplit", { fg = nord2_gui, bg = nord1_gui, ctermfg = nord3_term, ctermbg = nord1_term })
+end
 
 -- "+- Diagnostics -+
 vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = nord13_gui, ctermfg = nord13_term })
