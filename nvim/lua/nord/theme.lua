@@ -229,6 +229,12 @@ vim.api.nvim_set_hl(
 	{ fg = nord10_gui, ctermfg = nord10_term, undercurl = true, cterm = { undercurl = true } }
 )
 
+-- +- Git -+
+vim.api.nvim_set_hl(0, "DiffAdd", { fg = nord14_gui, ctermfg = nord14_term })
+vim.api.nvim_set_hl(0, "DiffChange", { fg = nord13_gui, ctermfg = nord13_term })
+vim.api.nvim_set_hl(0, "DiffText", { fg = nord11_gui, ctermfg = nord11_term })
+vim.api.nvim_set_hl(0, "DiffDelete", { fg = nord11_gui, ctermfg = nord11_term })
+
 -- "+- Lsp -+
 vim.api.nvim_set_hl(0, "LspReferenceText", { bg = nord3_gui, ctermbg = nord3_term })
 vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = nord3_gui, ctermbg = nord3_term })
