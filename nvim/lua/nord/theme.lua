@@ -54,7 +54,7 @@ local bold = true
 local italic = true
 local underline = true
 -- local cursor_line_number_background = true
--- local uniform_status_lines = true
+local uniform_status_lines = true
 local bold_vertical_split_line = true
 
 --"+---------------+
@@ -144,33 +144,45 @@ vim.api.nvim_set_hl(0, "Directory", { fg = nord8_gui, ctermfg = nord8_term, cter
 -- call s:hi("ModeMsg", s:nord4_gui, "", "", "", "", "")
 -- call s:hi("MoreMsg", s:nord8_gui, "", s:nord8_term, "", "", "")
 -- call s:hi("Question", s:nord4_gui, "", "NONE", "", "", "")
--- if g:nord_uniform_status_lines == 0
---   call s:hi("StatusLine", s:nord8_gui, s:nord3_gui, s:nord8_term, s:nord3_term, "NONE", "")
---   call s:hi("StatusLineNC", s:nord4_gui, s:nord1_gui, "NONE", s:nord1_term, "NONE", "")
---   call s:hi("StatusLineTerm", s:nord8_gui, s:nord3_gui, s:nord8_term, s:nord3_term, "NONE", "")
---   call s:hi("StatusLineTermNC", s:nord4_gui, s:nord1_gui, "NONE", s:nord1_term, "NONE", "")
--- else
---   call s:hi("StatusLine", s:nord8_gui, s:nord3_gui, s:nord8_term, s:nord3_term, "NONE", "")
---   call s:hi("StatusLineNC", s:nord4_gui, s:nord3_gui, "NONE", s:nord3_term, "NONE", "")
---   call s:hi("StatusLineTerm", s:nord8_gui, s:nord3_gui, s:nord8_term, s:nord3_term, "NONE", "")
---   call s:hi("StatusLineTermNC", s:nord4_gui, s:nord3_gui, "NONE", s:nord3_term, "NONE", "")
--- endif
+if uniform_status_lines then
+	vim.api.nvim_set_hl(0, "StatusLine", { fg = nord8_gui, bg = nord3_gui, ctermfg = nord8_term, ctermbg = nord3_term })
+	vim.api.nvim_set_hl(0, "StatusLineNC", { fg = nord4_gui, bg = nord1_gui, ctermfg = "NONE", ctermbg = nord1_term })
+	vim.api.nvim_set_hl(
+		0,
+		"StatusLineTerm",
+		{ fg = nord8_gui, bg = nord3_gui, ctermfg = nord8_term, ctermbg = nord3_term }
+	)
+	vim.api.nvim_set_hl(
+		0,
+		"StatusLineTermNC",
+		{ fg = nord4_gui, bg = nord1_gui, ctermfg = "NONE", ctermbg = nord1_term }
+	)
+else
+	vim.api.nvim_set_hl(0, "StatusLine", { fg = nord8_gui, bg = nord3_gui, ctermfg = nord8_term, ctermbg = nord3_term })
+	vim.api.nvim_set_hl(0, "StatusLineNC", { fg = nord4_gui, bg = nord3_gui, ctermfg = "NONE", ctermbg = nord3_term })
+	vim.api.nvim_set_hl(
+		0,
+		"StatusLineTerm",
+		{ fg = nord8_gui, bg = nord3_gui, ctermfg = nord8_term, ctermbg = nord3_term }
+	)
+	vim.api.nvim_set_hl(
+		0,
+		"StatusLineTermNC",
+		{ fg = nord4_gui, bg = nord3_gui, ctermfg = "NONE", ctermbg = nord3_term }
+	)
+end
 -- call s:hi("WarningMsg", s:nord0_gui, s:nord13_gui, s:nord1_term, s:nord13_term, "", "")
 -- call s:hi("WildMenu", s:nord8_gui, s:nord1_gui, s:nord8_term, s:nord1_term, "", "")
 --
 -- "+--- Search ---+
-vim.api.nvim_set_hl(
-	0,
-	"IncSearch",
-	{
-		fg = nord6_gui,
-		bg = nord10_gui,
-		ctermfg = nord6_term,
-		ctermbg = nord10_term,
-		underline = true,
-		cterm = { underline = true },
-	}
-)
+vim.api.nvim_set_hl(0, "IncSearch", {
+	fg = nord6_gui,
+	bg = nord10_gui,
+	ctermfg = nord6_term,
+	ctermbg = nord10_term,
+	underline = true,
+	cterm = { underline = true },
+})
 vim.api.nvim_set_hl(0, "Search", { fg = nord1_gui, bg = nord8_gui, ctermfg = nord1_term, ctermbg = nord8_term })
 --
 -- "+--- Tabs ---+
