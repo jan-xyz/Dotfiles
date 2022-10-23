@@ -43,3 +43,6 @@ vim.api.nvim_set_keymap("v", "j", "gj", { noremap = true })
 vim.api.nvim_set_keymap("v", "<down>", "gj", { noremap = true })
 vim.api.nvim_set_keymap("v", "k", "gk", { noremap = true })
 vim.api.nvim_set_keymap("v", "<up>", "gk", { noremap = true })
+
+-- colorscheme
+vim.cmd("colorscheme nord")

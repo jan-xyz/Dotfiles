@@ -20,7 +20,6 @@ require("ui.test")
 -- require("ui.theme")
 require("ui.title")
 require("ui.treesitter_context")
-require("nord.theme")
 
 -- LSP
 require("lsp.dap")
