@@ -19,7 +19,12 @@ packer.use({
 
 		nt.setup({
 			adapters = {
-				require("neotest-go"),
+				require("neotest-go")({
+					experimental = {
+						test_table = true,
+					},
+					args = { "-race", "-coverprofile=coverage.out" }
+				}),
 				require("neotest-plenary"),
 				require("neotest-rust"),
 				require("neotest-scala"),
@@ -72,5 +77,13 @@ packer.use({
 		}, {
 			prefix = "t",
 		})
+	end,
+})
+
+packer.use({
+	"andythigpen/nvim-coverage",
+	requires = "nvim-lua/plenary.nvim",
+	config = function()
+		require("coverage").setup()
 	end,
 })
