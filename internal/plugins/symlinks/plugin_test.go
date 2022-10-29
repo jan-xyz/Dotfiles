@@ -9,77 +9,207 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestGetMissingSymlinks(t *testing.T) {
-	commander := dotfiles.MockCommander{}
-	defer commander.AssertExpectations(t)
-	commander.OnOutput("readlink", []string{"fooLinkName"}).Return(nil, errors.New("not-there"))
-	commander.OnOutput("readlink", []string{"barLinkName"}).Return([]byte("barSourceFile"), nil)
-	commander.OnOutput("readlink", []string{"bazLinkName"}).Return([]byte("wrong-symlink"), nil)
-	b := Plugin{
-		Links: []Link{
-			{LinkName: "fooLinkName", SourceFile: "fooSourceFile"},
-			{LinkName: "barLinkName", SourceFile: "barSourceFile"},
-			{LinkName: "bazLinkName", SourceFile: "bazSourceFile"},
+func TestGetMissingBrewPackage(t *testing.T) {
+	type prepareCommander = func(c *dotfiles.MockCommander)
+	tests := []struct {
+		name             string
+		configuredLinks  []Link
+		prepareCommander prepareCommander
+		prepareEnv       func() (unsetEnv func())
+		expectedLinks    []string
+		wantErr          bool
+	}{
+		{
+			name: "succesfully get symlinks",
+			configuredLinks: []Link{
+				{LinkName: "fooLinkName", SourceFile: "fooSourceFile"},
+				{LinkName: "barLinkName", SourceFile: "barSourceFile"},
+				{LinkName: "bazLinkName", SourceFile: "bazSourceFile"},
+			},
+			prepareCommander: func(c *dotfiles.MockCommander) {
+				c.OnOutput("readlink", []string{"fooLinkName"}).Return(nil, errors.New("not-there"))
+				c.OnOutput("readlink", []string{"barLinkName"}).Return([]byte("barSourceFile"), nil)
+				c.OnOutput("readlink", []string{"bazLinkName"}).Return([]byte("wrong-symlink"), nil)
+			},
+			prepareEnv:    func() (unsetEnv func()) { return func() {} },
+			expectedLinks: []string{"fooLinkName", "bazLinkName"},
+			wantErr:       false,
 		},
-		Commander: commander.Output,
+		{
+			name: "succesfully get symlinks on expanding env",
+			configuredLinks: []Link{
+				{LinkName: "fuzLinkName", SourceFile: "${FOO}"},
+			},
+			prepareCommander: func(c *dotfiles.MockCommander) {
+				c.OnOutput("readlink", []string{"fuzLinkName"}).Return([]byte("FooBarBaz"), nil)
+			},
+			prepareEnv: func() (unsetEnv func()) {
+				os.Setenv("FOO", "FooBarBaz")
+				return func() {
+					os.Unsetenv("FOO")
+				}
+			},
+			expectedLinks: []string{},
+			wantErr:       false,
+		},
 	}
-	missingPackages, err := b.GetMissingPackages()
-	assert.NoError(t, err)
-	assert.Equal(t, []string{"fooLinkName", "bazLinkName"}, missingPackages)
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			commander := dotfiles.MockCommander{}
+			defer commander.AssertExpectations(t)
+			tt.prepareCommander(&commander)
+
+			defer tt.prepareEnv()()
+
+			b := Plugin{
+				Links:     tt.configuredLinks,
+				Commander: commander.Output,
+			}
+			actualLinks, err := b.GetMissingPackages()
+			if tt.wantErr {
+				assert.Error(t, err)
+			} else {
+				assert.NoError(t, err)
+				assert.ElementsMatch(t, tt.expectedLinks, actualLinks)
+			}
+		})
+	}
 }
 
-func TestGetMissingSymlinksExpandsSymLinks(t *testing.T) {
-	commander := dotfiles.MockCommander{}
-	defer commander.AssertExpectations(t)
-	os.Setenv("FOO", "FooBarBaz")
-	defer os.Unsetenv("FOO")
-	commander.OnOutput("readlink", []string{"barLinkName"}).Return([]byte("FooBarBaz"), nil)
-	b := Plugin{
-		Links: []Link{
-			{LinkName: "barLinkName", SourceFile: "${FOO}"},
+func TestAdd(t *testing.T) {
+	tests := []struct {
+		name             string
+		input            []string
+		configuredLinks  []Link
+		prepareCommander func(c *dotfiles.MockCommander)
+		prepareEnv       func() (unsetEnv func())
+		wantErr          bool
+	}{
+		{
+			name:  "succefully set symlinks",
+			input: []string{"barLinkName"},
+			configuredLinks: []Link{
+				{SourceFile: "barSourceFile", LinkName: "barLinkName"},
+				{SourceFile: "fooSourceFile", LinkName: "fooLinkName"},
+			},
+			prepareCommander: func(c *dotfiles.MockCommander) {
+				c.OnOutput("mkdir", []string{"-p", "."}).Return(nil, nil)
+				c.OnOutput("ln", []string{"-sf", "barSourceFile", "barLinkName"}).Return(nil, nil)
+			},
+			prepareEnv: func() (unsetEnv func()) { return func() {} },
+			wantErr:    false,
 		},
-		Commander: commander.Output,
+		{
+			name:            "sucessfully set symlinks for env variable",
+			input:           []string{"${FOO}"},
+			configuredLinks: []Link{{SourceFile: "barSourceFile", LinkName: "${FOO}"}},
+			prepareCommander: func(c *dotfiles.MockCommander) {
+				c.OnOutput("mkdir", []string{"-p", "."}).Return(nil, nil)
+				c.OnOutput("ln", []string{"-sf", "barSourceFile", "FooBarBaz"}).Return(nil, nil)
+			},
+			prepareEnv: func() (unsetEnv func()) {
+				os.Setenv("FOO", "FooBarBaz")
+				return func() {
+					os.Unsetenv("FOO")
+				}
+			},
+			wantErr: false,
+		},
+		{
+			name:  "fails if directory creatin fails",
+			input: []string{"barLinkName"},
+			configuredLinks: []Link{
+				{SourceFile: "barSourceFile", LinkName: "barLinkName"},
+				{SourceFile: "fooSourceFile", LinkName: "fooLinkName"},
+			},
+			prepareCommander: func(c *dotfiles.MockCommander) {
+				c.OnOutput("mkdir", []string{"-p", "."}).Return(nil, errors.New("boom"))
+			},
+			prepareEnv: func() (unsetEnv func()) { return func() {} },
+			wantErr:    true,
+		},
+		{
+			name:  "fails if symlink creation fails",
+			input: []string{"barLinkName"},
+			configuredLinks: []Link{
+				{SourceFile: "barSourceFile", LinkName: "barLinkName"},
+				{SourceFile: "fooSourceFile", LinkName: "fooLinkName"},
+			},
+			prepareCommander: func(c *dotfiles.MockCommander) {
+				c.OnOutput("mkdir", []string{"-p", "."}).Return(nil, nil)
+				c.OnOutput("ln", []string{"-sf", "barSourceFile", "barLinkName"}).Return(nil, errors.New("boom"))
+			},
+			prepareEnv: func() (unsetEnv func()) { return func() {} },
+			wantErr:    true,
+		},
+		{
+			name:            "ignores calling with symlink that is not configured",
+			input:           []string{"not-configured"},
+			configuredLinks: []Link{},
+			prepareCommander: func(c *dotfiles.MockCommander) {
+			},
+			prepareEnv: func() func() { return func() {} },
+			wantErr:    false,
+		},
+		{
+			name:            "ignores calling with empty list",
+			input:           []string{},
+			configuredLinks: []Link{},
+			prepareCommander: func(c *dotfiles.MockCommander) {
+			},
+			prepareEnv: func() func() { return func() {} },
+			wantErr:    false,
+		},
 	}
-	missingPackages, err := b.GetMissingPackages()
-	assert.NoError(t, err)
-	assert.Equal(t, []string{}, missingPackages)
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			commander := dotfiles.MockCommander{}
+			defer commander.AssertExpectations(t)
+			tt.prepareCommander(&commander)
+
+			defer tt.prepareEnv()()
+
+			b := Plugin{
+				Links:     tt.configuredLinks,
+				Commander: commander.Output,
+			}
+			err := b.Add(tt.input)
+			if tt.wantErr {
+				assert.Error(t, err)
+			} else {
+				assert.NoError(t, err)
+			}
+		})
+	}
 }
 
-func TestInstallingSymlinks(t *testing.T) {
-	commander := dotfiles.MockCommander{}
-	defer commander.AssertExpectations(t)
-	commander.OnOutput("mkdir", []string{"-p", "."}).Return(nil, nil)
-	commander.OnOutput("ln", []string{"-sf", "barSourceFile", "barLinkName"}).Return(nil, nil)
-	b := Plugin{
-		Links: []Link{
-			{SourceFile: "barSourceFile", LinkName: "barLinkName"},
-			{SourceFile: "fooSourceFile", LinkName: "fooLinkName"},
+func TestUpdate(t *testing.T) {
+	tests := []struct {
+		name    string
+		wantErr bool
+	}{
+		{
+			name:    "not implemented",
+			wantErr: false,
 		},
-		Commander: commander.Output,
 	}
-	err := b.Add([]string{"barLinkName"})
-	assert.NoError(t, err)
-}
 
-func TestInstallingSymlinksExpandsEnvironmentVariables(t *testing.T) {
-	commander := dotfiles.MockCommander{}
-	defer commander.AssertExpectations(t)
-	os.Setenv("FOO", "FooBarBaz")
-	defer os.Unsetenv("FOO")
-	commander.OnOutput("mkdir", []string{"-p", "."}).Return(nil, nil)
-	commander.OnOutput("ln", []string{"-sf", "barSourceFile", "FooBarBaz"}).Return(nil, nil)
-	b := Plugin{
-		Links: []Link{
-			{SourceFile: "barSourceFile", LinkName: "${FOO}"},
-		},
-		Commander: commander.Output,
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			commander := dotfiles.MockCommander{}
+			defer commander.AssertExpectations(t)
+
+			b := Plugin{
+				Commander: commander.Output,
+			}
+			err := b.Update()
+			if tt.wantErr {
+				assert.Error(t, err)
+			} else {
+				assert.NoError(t, err)
+			}
+		})
 	}
-	err := b.Add([]string{"${FOO}"})
-	assert.NoError(t, err)
-}
-
-func TestTryingToLinkSymlinksWithEmptyListDoesNotCallLink(t *testing.T) {
-	b := Plugin{}
-	err := b.Add([]string{})
-	assert.NoError(t, err)
 }
