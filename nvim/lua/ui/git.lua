@@ -5,6 +5,7 @@ packer.use({
 	requires = { "nvim-lua/plenary.nvim" },
 	config = function()
 		require("gitsigns").setup({
+			signcolumn = false,
 			numhl = true,
 			word_diff = false,
 			keymaps = {},
