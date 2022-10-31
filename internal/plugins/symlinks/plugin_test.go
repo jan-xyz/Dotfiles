@@ -9,7 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestGetMissingBrewPackage(t *testing.T) {
+func TestGetMissingPackage(t *testing.T) {
 	type prepareCommander = func(c *dotfiles.MockCommander)
 	tests := []struct {
 		name             string
