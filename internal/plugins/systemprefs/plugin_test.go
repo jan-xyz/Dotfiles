@@ -42,9 +42,14 @@ func TestGetMissingPackage(t *testing.T) {
 				c.OnOutput("defaults", []string{"read", "foo", "bar"}).Return([]byte("FooBarBaz\n"), nil)
 			},
 			prepareEnv: func() func() {
+				val, ok := os.LookupEnv("FOO")
 				os.Setenv("FOO", "FooBarBaz")
 				return func() {
-					defer os.Unsetenv("FOO")
+					if ok {
+						os.Setenv("FOO", val)
+					} else {
+						os.Unsetenv("FOO")
+					}
 				}
 			},
 			expectedPackages: []string{},
@@ -106,9 +111,14 @@ func TestAdd(t *testing.T) {
 				c.OnOutput("defaults", []string{"write", "foo", "bar", "-int", "FooBarBaz"}).Return(nil, nil)
 			},
 			prepareEnv: func() func() {
+				val, ok := os.LookupEnv("FOO")
 				os.Setenv("FOO", "FooBarBaz")
 				return func() {
-					defer os.Unsetenv("FOO")
+					if ok {
+						os.Setenv("FOO", val)
+					} else {
+						os.Unsetenv("FOO")
+					}
 				}
 			},
 			wantErr: false,

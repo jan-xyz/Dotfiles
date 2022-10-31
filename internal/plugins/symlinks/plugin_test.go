@@ -44,9 +44,14 @@ func TestGetMissingPackage(t *testing.T) {
 				c.OnOutput("readlink", []string{"fuzLinkName"}).Return([]byte("FooBarBaz"), nil)
 			},
 			prepareEnv: func() (unsetEnv func()) {
+				val, ok := os.LookupEnv("FOO")
 				os.Setenv("FOO", "FooBarBaz")
 				return func() {
-					os.Unsetenv("FOO")
+					if ok {
+						os.Setenv("FOO", val)
+					} else {
+						os.Unsetenv("FOO")
+					}
 				}
 			},
 			expectedLinks: []string{},
@@ -109,9 +114,14 @@ func TestAdd(t *testing.T) {
 				c.OnOutput("ln", []string{"-sf", "barSourceFile", "FooBarBaz"}).Return(nil, nil)
 			},
 			prepareEnv: func() (unsetEnv func()) {
+				val, ok := os.LookupEnv("FOO")
 				os.Setenv("FOO", "FooBarBaz")
 				return func() {
-					os.Unsetenv("FOO")
+					if ok {
+						os.Setenv("FOO", val)
+					} else {
+						os.Unsetenv("FOO")
+					}
 				}
 			},
 			wantErr: false,
