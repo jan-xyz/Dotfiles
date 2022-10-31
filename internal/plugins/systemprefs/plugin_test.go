@@ -1,6 +1,7 @@
 package systemprefs
 
 import (
+	"errors"
 	"os"
 	"testing"
 
@@ -8,96 +9,192 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestGetPreferenceDrift(t *testing.T) {
-	commander := dotfiles.MockCommander{}
-	defer commander.AssertExpectations(t)
-	commander.OnOutput("defaults", []string{"read", "foo", "bar"}).Return([]byte("0\n"), nil)
-	commander.OnOutput("defaults", []string{"read", "baz", "fuu"}).Return([]byte("1\n"), nil)
-	b := Plugin{
-		Preferences: []Preference{
-			{
-				Name:  "foo.bar",
-				Type:  "int",
-				Value: "1",
+func TestGetMissingPackage(t *testing.T) {
+	type prepareCommander = func(c *dotfiles.MockCommander)
+	tests := []struct {
+		name               string
+		configuredPackages []Preference
+		prepareCommander   prepareCommander
+		prepareEnv         func() (unsetEnv func())
+		expectedPackages   []string
+		wantErr            bool
+	}{
+		{
+			name: "succesfully get packages",
+			configuredPackages: []Preference{
+				{Name: "foo.bar", Type: "int", Value: "1"},
+				{Name: "baz.fuu", Type: "int", Value: "1"},
 			},
-			{
-				Name:  "baz.fuu",
-				Type:  "int",
-				Value: "1",
+			prepareCommander: func(c *dotfiles.MockCommander) {
+				c.OnOutput("defaults", []string{"read", "foo", "bar"}).Return([]byte("0\n"), nil)
+				c.OnOutput("defaults", []string{"read", "baz", "fuu"}).Return([]byte("1\n"), nil)
 			},
+			prepareEnv:       func() func() { return func() {} },
+			expectedPackages: []string{"foo.bar"},
+			wantErr:          false,
 		},
-		Commander: commander.Output,
+		{
+			name: "expands env variables",
+			configuredPackages: []Preference{
+				{Name: "foo.bar", Type: "int", Value: "${FOO}"},
+			},
+			prepareCommander: func(c *dotfiles.MockCommander) {
+				c.OnOutput("defaults", []string{"read", "foo", "bar"}).Return([]byte("FooBarBaz\n"), nil)
+			},
+			prepareEnv: func() func() {
+				os.Setenv("FOO", "FooBarBaz")
+				return func() {
+					defer os.Unsetenv("FOO")
+				}
+			},
+			expectedPackages: []string{},
+			wantErr:          false,
+		},
 	}
-	missingPackages, err := b.GetMissingPackages()
-	assert.NoError(t, err)
-	assert.Equal(t, []string{"foo.bar"}, missingPackages)
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			commander := dotfiles.MockCommander{}
+			defer commander.AssertExpectations(t)
+			tt.prepareCommander(&commander)
+
+			defer tt.prepareEnv()()
+
+			b := Plugin{
+				Preferences: tt.configuredPackages,
+				Commander:   commander.Output,
+			}
+			actualLinks, err := b.GetMissingPackages()
+			if tt.wantErr {
+				assert.Error(t, err)
+			} else {
+				assert.NoError(t, err)
+				assert.ElementsMatch(t, tt.expectedPackages, actualLinks)
+			}
+		})
+	}
 }
 
-func TestGetPreferenceDriftExpandsEnvironmentVariables(t *testing.T) {
-	commander := dotfiles.MockCommander{}
-	defer commander.AssertExpectations(t)
-	os.Setenv("FOO", "FooBarBaz")
-	defer os.Unsetenv("FOO")
-	commander.OnOutput("defaults", []string{"read", "foo", "bar"}).Return([]byte("FooBarBaz\n"), nil)
-	b := Plugin{
-		Preferences: []Preference{
-			{
-				Name:  "foo.bar",
-				Type:  "int",
-				Value: "${FOO}",
+func TestAdd(t *testing.T) {
+	tests := []struct {
+		name               string
+		input              []string
+		configuredPackages []Preference
+		prepareCommander   func(c *dotfiles.MockCommander)
+		prepareEnv         func() (unsetEnv func())
+		wantErr            bool
+	}{
+		{
+			name:  "succefully setting preference",
+			input: []string{"foo.bar"},
+			configuredPackages: []Preference{
+				{Name: "foo.bar", Type: "int", Value: "1"},
 			},
+			prepareCommander: func(c *dotfiles.MockCommander) {
+				c.OnOutput("defaults", []string{"write", "foo", "bar", "-int", "1"}).Return(nil, nil)
+			},
+			prepareEnv: func() func() { return func() {} },
+			wantErr:    false,
 		},
-		Commander: commander.Output,
+		{
+			name:  "expands env variables",
+			input: []string{"foo.bar"},
+			configuredPackages: []Preference{
+				{Name: "foo.bar", Type: "int", Value: "${FOO}"},
+			},
+			prepareCommander: func(c *dotfiles.MockCommander) {
+				c.OnOutput("defaults", []string{"write", "foo", "bar", "-int", "FooBarBaz"}).Return(nil, nil)
+			},
+			prepareEnv: func() func() {
+				os.Setenv("FOO", "FooBarBaz")
+				return func() {
+					defer os.Unsetenv("FOO")
+				}
+			},
+			wantErr: false,
+		},
+		{
+			name:               "ignore empty input",
+			input:              []string{},
+			configuredPackages: []Preference{},
+			prepareCommander: func(c *dotfiles.MockCommander) {
+			},
+			prepareEnv: func() func() { return func() {} },
+			wantErr:    false,
+		},
+		{
+			name:  "fails if setting preference fails",
+			input: []string{"foo.bar"},
+			configuredPackages: []Preference{
+				{Name: "foo.bar", Type: "int", Value: "1"},
+			},
+			prepareCommander: func(c *dotfiles.MockCommander) {
+				c.OnOutput("defaults", []string{"write", "foo", "bar", "-int", "1"}).Return(nil, errors.New("boom"))
+			},
+			prepareEnv: func() func() { return func() {} },
+			wantErr:    true,
+		},
 	}
-	missingPackages, err := b.GetMissingPackages()
-	assert.NoError(t, err)
-	assert.Equal(t, []string{}, missingPackages)
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			commander := dotfiles.MockCommander{}
+			defer commander.AssertExpectations(t)
+			tt.prepareCommander(&commander)
+
+			defer tt.prepareEnv()()
+
+			b := Plugin{
+				Preferences: tt.configuredPackages,
+				Commander:   commander.Output,
+			}
+			err := b.Add(tt.input)
+			if tt.wantErr {
+				assert.Error(t, err)
+			} else {
+				assert.NoError(t, err)
+			}
+		})
+	}
 }
 
-func TestSettingPreferences(t *testing.T) {
-	commander := dotfiles.MockCommander{}
-	defer commander.AssertExpectations(t)
-	commander.OnOutput("defaults", []string{"write", "foo", "bar", "-int", "1"}).Return(nil, nil)
-	b := Plugin{
-		Preferences: []Preference{
-			{
-				Name:  "foo.bar",
-				Type:  "int",
-				Value: "1",
+func TestUpdate(t *testing.T) {
+	tests := []struct {
+		name             string
+		prepareCommander func(c *dotfiles.MockCommander)
+		wantErr          bool
+	}{
+		{
+			name: "succesfully update packages",
+			prepareCommander: func(c *dotfiles.MockCommander) {
+				c.OnOutput("julia", []string{"-e", "import Pkg;Pkg.update()"}).Return(nil, nil)
 			},
+			wantErr: false,
 		},
-		Commander: commander.Output,
-	}
-	err := b.Add([]string{"foo.bar"})
-	assert.NoError(t, err)
-}
-
-func TestSettingPreferencesExpandsEnvironmentVariables(t *testing.T) {
-	commander := dotfiles.MockCommander{}
-	defer commander.AssertExpectations(t)
-	os.Setenv("FOO", "FooBarBaz")
-	defer os.Unsetenv("FOO")
-	commander.OnOutput("defaults", []string{"write", "foo", "bar", "-int", "FooBarBaz"}).Return(nil, nil)
-	b := Plugin{
-		Preferences: []Preference{
-			{
-				Name:  "foo.bar",
-				Type:  "int",
-				Value: "${FOO}",
+		{
+			name: "fails if calling julia fails",
+			prepareCommander: func(c *dotfiles.MockCommander) {
+				c.OnOutput("julia", []string{"-e", "import Pkg;Pkg.update()"}).Return(nil, errors.New("boom"))
 			},
+			wantErr: true,
 		},
-		Commander: commander.Output,
 	}
-	err := b.Add([]string{"foo.bar"})
-	assert.NoError(t, err)
-}
 
-func TestTryingToSetPreferencesWithEmptyListDoesNotCallDefaults(t *testing.T) {
-	commander := dotfiles.MockCommander{}
-	defer commander.AssertExpectations(t)
-	b := Plugin{
-		Commander: commander.Output,
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			commander := dotfiles.MockCommander{}
+			defer commander.AssertExpectations(t)
+			tt.prepareCommander(&commander)
+
+			b := Plugin{
+				Commander: commander.Output,
+			}
+			err := b.Update()
+			if tt.wantErr {
+				assert.Error(t, err)
+			} else {
+				assert.NoError(t, err)
+			}
+		})
 	}
-	err := b.Add([]string{})
-	assert.NoError(t, err)
 }
