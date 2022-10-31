@@ -18,9 +18,9 @@ type Plugin struct {
 }
 
 // GetMissingPackages returns a list of modules which are configured but not installed.
-func (b Plugin) GetMissingPackages() ([]string, error) {
-	missingBottles := []string{}
-	stdout, err := b.Commander(juliaExe, "-e", "import Pkg;Pkg.status()")
+func (p Plugin) GetMissingPackages() ([]string, error) {
+	missingModules := []string{}
+	stdout, err := p.Commander(juliaExe, "-e", "import Pkg;Pkg.status()")
 	if err != nil {
 		return nil, err
 	}
@@ -34,17 +34,17 @@ func (b Plugin) GetMissingPackages() ([]string, error) {
 		installedMap[words[1]] = true
 	}
 
-	for _, bottle := range b.Modules {
-		if ok := installedMap[bottle]; !ok {
-			missingBottles = append(missingBottles, bottle)
+	for _, module := range p.Modules {
+		if ok := installedMap[module]; !ok {
+			missingModules = append(missingModules, module)
 		}
 	}
 
-	return missingBottles, nil
+	return missingModules, nil
 }
 
 // Add takes a list of modules for installation.
-func (b Plugin) Add(packages []string) error {
+func (p Plugin) Add(packages []string) error {
 	if len(packages) == 0 {
 		logrus.Info("no julia modules to install")
 		return nil
@@ -53,7 +53,7 @@ func (b Plugin) Add(packages []string) error {
 
 	pkgCommand := fmt.Sprintf("import Pkg;Pkg.add.([\"%s\"])", strings.Join(packages[:], "\",\""))
 
-	_, err := b.Commander(juliaExe, "-e", pkgCommand)
+	_, err := p.Commander(juliaExe, "-e", pkgCommand)
 	if err != nil {
 		logrus.Error("Failed installing julia modules:", err)
 	}
@@ -61,9 +61,9 @@ func (b Plugin) Add(packages []string) error {
 }
 
 // Update updates all installed Julia modules.
-func (b Plugin) Update() error {
+func (p Plugin) Update() error {
 	logrus.Info("Upgrading julia modules")
-	_, err := b.Commander(juliaExe, "-e", "import Pkg;Pkg.update()")
+	_, err := p.Commander(juliaExe, "-e", "import Pkg;Pkg.update()")
 	if err != nil {
 		logrus.Error("Failed update npm packages:", err)
 		return err
