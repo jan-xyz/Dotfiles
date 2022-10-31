@@ -13,15 +13,15 @@ var (
 	pythonArgs = []string{"-m", "pip"}
 )
 
-// Python holds the information to automatically install python packages
-type Python struct {
+// Plugin holds the information to install python packages
+type Plugin struct {
 	Packages  []string
 	Commander dotfiles.Commander
 }
 
 // GetMissingPackages returns a list of Python packages which are configured
 // but not installed.
-func (p Python) GetMissingPackages() ([]string, error) {
+func (p Plugin) GetMissingPackages() ([]string, error) {
 	args := append(pythonArgs, "freeze")
 	stdout, err := p.Commander(pythonExe, args...)
 	if err != nil {
@@ -46,7 +46,7 @@ func (p Python) GetMissingPackages() ([]string, error) {
 }
 
 // Add takes a list of packages for installation.
-func (p Python) Add(packages []string) error {
+func (p Plugin) Add(packages []string) error {
 	if len(packages) == 0 {
 		logrus.Info("no Python packages to install")
 		return nil
@@ -63,7 +63,7 @@ func (p Python) Add(packages []string) error {
 }
 
 // Update is currently not implemented.
-func (p Python) Update() error {
+func (p Plugin) Update() error {
 	logrus.Info("Upgrading Python packages")
 	args := append(pythonArgs, "install", "--upgrade")
 	args = append(args, p.Packages...)

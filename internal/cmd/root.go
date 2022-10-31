@@ -90,7 +90,7 @@ func initConfig() {
 		brewtaps.Plugin{Taps: taps, Commander: execCommander},
 		brewbottles.Plugin{Bottles: bottles, Commander: execCommander},
 		appstore.Plugin{Apps: apps, Profile: appStoreProfile, Commander: execCommander},
-		python.Python{Packages: pythonPackages, Commander: execCommander},
+		python.Plugin{Packages: pythonPackages, Commander: execCommander},
 		vscode.Plugin{Extensions: vscodeExt, Commander: execCommander},
 		npm.Plugin{Packages: npmPackages, Commander: execCommander},
 		golang.Plugin{Modules: goModules, Commander: execCommander},
