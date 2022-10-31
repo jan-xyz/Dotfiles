@@ -22,10 +22,12 @@ func (c *MockCommander) OnOutput(command string, arguments []string) *OutputCall
 	return &OutputCall{c.On("Output", command, arguments)}
 }
 
+// OutputCall is the type to specify the mocked output
 type OutputCall struct {
 	*mock.Call
 }
 
+// Return is a helper function to specify the mocked return values
 func (o *OutputCall) Return(output []byte, err error) {
 	o.Call.Return(output, err)
 }
