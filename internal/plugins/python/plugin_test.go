@@ -8,18 +8,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestUpdatingPythonPackage(t *testing.T) {
-	c := dotfiles.MockCommander{}
-	defer c.AssertExpectations(t)
-	c.OnOutput("/opt/homebrew/bin/python3", []string{"-m", "pip", "install", "--upgrade", "bar", "foo"}).Return(nil, nil)
-	b := Plugin{
-		Packages:  []string{"bar", "foo"},
-		Commander: c.Output,
-	}
-	err := b.Update()
-	assert.NoError(t, err)
-}
-
 func TestGetMissingPackage(t *testing.T) {
 	type prepareCommander = func(c *dotfiles.MockCommander)
 	tests := []struct {
