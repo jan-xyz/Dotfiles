@@ -23,7 +23,7 @@ packer.use({
 					experimental = {
 						test_table = true,
 					},
-					args = { "-race", "-coverprofile=coverage.out" }
+					args = { "-race", "-coverprofile=coverage.out" },
 				}),
 				require("neotest-plenary"),
 				require("neotest-rust"),
