@@ -1,78 +1,166 @@
 package vscode
 
 import (
+	"errors"
 	"testing"
 
 	dotfiles "github.com/jan-xyz/dotfiles/internal"
 	"github.com/stretchr/testify/assert"
 )
 
-func TestGetMissingVSCodeExtension(t *testing.T) {
-	testCases := []struct {
-		name              string
-		input             []string
-		applicationOutput []byte
-		expected          []string
+func TestGetMissingPackage(t *testing.T) {
+	type prepareCommander = func(c *dotfiles.MockCommander)
+	tests := []struct {
+		name             string
+		configuredApps   []string
+		prepareCommander prepareCommander
+		expectedApps     []string
+		wantErr          bool
 	}{
 		{
-			name:              "normal case",
-			input:             []string{"bar", "foo"},
-			applicationOutput: []byte("bar"),
-			expected:          []string{"foo"},
+			name:           "succesfully get taps",
+			configuredApps: []string{"bar", "foo"},
+			prepareCommander: func(c *dotfiles.MockCommander) {
+				c.OnOutput("code", []string{"--list-extensions"}).Return([]byte("bar"), nil)
+			},
+			expectedApps: []string{"foo"},
+			wantErr:      false,
 		},
 		{
-			name:              "multiple in output",
-			input:             []string{"bar", "foo"},
-			applicationOutput: []byte("bar\nbaz"),
-			expected:          []string{"foo"},
+			name:           "succesfully splits new lines",
+			configuredApps: []string{"bar", "foo"},
+			prepareCommander: func(c *dotfiles.MockCommander) {
+				c.OnOutput("code", []string{"--list-extensions"}).Return([]byte("bar\nbaz"), nil)
+			},
+			expectedApps: []string{"foo"},
+			wantErr:      false,
 		},
 		{
-			name:              "upper-case in input",
-			input:             []string{"Bar", "foo"},
-			applicationOutput: []byte("bar"),
-			expected:          []string{"foo"},
+			name:           "succesfully lower cases input",
+			configuredApps: []string{"Bar", "foo"},
+			prepareCommander: func(c *dotfiles.MockCommander) {
+				c.OnOutput("code", []string{"--list-extensions"}).Return([]byte("bar"), nil)
+			},
+			expectedApps: []string{"foo"},
+			wantErr:      false,
 		},
 		{
-			name:              "upper-case in output",
-			input:             []string{"bar", "foo"},
-			applicationOutput: []byte("Bar"),
-			expected:          []string{"foo"},
+			name:           "succesfully lower cases output",
+			configuredApps: []string{"bar", "foo"},
+			prepareCommander: func(c *dotfiles.MockCommander) {
+				c.OnOutput("code", []string{"--list-extensions"}).Return([]byte("Bar"), nil)
+			},
+			expectedApps: []string{"foo"},
+			wantErr:      false,
+		},
+		{
+			name:           "fails when calling vscode fails",
+			configuredApps: []string{"bar", "foo"},
+			prepareCommander: func(c *dotfiles.MockCommander) {
+				c.OnOutput("code", []string{"--list-extensions"}).Return([]byte("Bar"), errors.New("boom"))
+			},
+			wantErr: true,
 		},
 	}
 
-	for _, testCase := range testCases {
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			commander := dotfiles.MockCommander{}
+			defer commander.AssertExpectations(t)
+			tt.prepareCommander(&commander)
 
-		commander := dotfiles.MockCommander{}
-		defer commander.AssertExpectations(t)
-		commander.OnOutput("code", []string{"--list-extensions"}).Return(testCase.applicationOutput, nil)
-		b := Plugin{
-			Extensions: testCase.input,
-			Commander:  commander.Output,
-		}
-		missingPackages, err := b.GetMissingPackages()
-		assert.NoError(t, err)
-		assert.Equal(t, testCase.expected, missingPackages, testCase.name)
+			b := Plugin{
+				Extensions: tt.configuredApps,
+				Commander:  commander.Output,
+			}
+			actualLinks, err := b.GetMissingPackages()
+			if tt.wantErr {
+				assert.Error(t, err)
+			} else {
+				assert.NoError(t, err)
+				assert.ElementsMatch(t, tt.expectedApps, actualLinks)
+			}
+		})
 	}
 }
 
-func TestInstallingVSCodeExtension(t *testing.T) {
-	commander := dotfiles.MockCommander{}
-	defer commander.AssertExpectations(t)
-	commander.OnOutput("code", []string{"--install-extension", "bar"}).Return(nil, nil)
-	commander.OnOutput("code", []string{"--install-extension", "foo"}).Return(nil, nil)
-	b := Plugin{
-		Commander: commander.Output,
+func TestAdd(t *testing.T) {
+	tests := []struct {
+		name             string
+		input            []string
+		prepareCommander func(c *dotfiles.MockCommander)
+		wantErr          bool
+	}{
+		{
+			name:  "succefully install taps",
+			input: []string{"bar", "foo"},
+			prepareCommander: func(c *dotfiles.MockCommander) {
+				c.OnOutput("code", []string{"--install-extension", "bar"}).Return(nil, nil)
+				c.OnOutput("code", []string{"--install-extension", "foo"}).Return(nil, nil)
+			},
+			wantErr: false,
+		},
+		{
+			name:  "fail if calling vscode ignores error",
+			input: []string{"bar", "foo"},
+			prepareCommander: func(c *dotfiles.MockCommander) {
+				c.OnOutput("code", []string{"--install-extension", "bar"}).Return(nil, errors.New("boom"))
+				c.OnOutput("code", []string{"--install-extension", "foo"}).Return(nil, errors.New("boom"))
+			},
+			wantErr: false,
+		},
+		{
+			name:             "ignore empty input",
+			input:            []string{},
+			prepareCommander: func(c *dotfiles.MockCommander) {},
+			wantErr:          false,
+		},
 	}
-	err := b.Add([]string{"bar", "foo"})
-	assert.NoError(t, err)
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			commander := dotfiles.MockCommander{}
+			defer commander.AssertExpectations(t)
+			tt.prepareCommander(&commander)
+
+			b := Plugin{
+				Commander: commander.Output,
+			}
+			err := b.Add(tt.input)
+			if tt.wantErr {
+				assert.Error(t, err)
+			} else {
+				assert.NoError(t, err)
+			}
+		})
+	}
 }
 
-func TestTryingToInstallVSCodeExtensionWithEmptyListDoesNotCallCode(t *testing.T) {
-	commander := dotfiles.MockCommander{}
-	defer commander.AssertExpectations(t)
-	b := Plugin{
-		Commander: commander.Output,
+func TestUpdate(t *testing.T) {
+	tests := []struct {
+		name    string
+		wantErr bool
+	}{
+		{
+			name:    "not implemented",
+			wantErr: false,
+		},
 	}
-	err := b.Add([]string{})
-	assert.NoError(t, err)
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			commander := dotfiles.MockCommander{}
+			defer commander.AssertExpectations(t)
+
+			b := Plugin{
+				Commander: commander.Output,
+			}
+			err := b.Update()
+			if tt.wantErr {
+				assert.Error(t, err)
+			} else {
+				assert.NoError(t, err)
+			}
+		})
+	}
 }
