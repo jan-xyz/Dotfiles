@@ -170,23 +170,11 @@ func TestAdd(t *testing.T) {
 
 func TestUpdate(t *testing.T) {
 	tests := []struct {
-		name             string
-		prepareCommander func(c *dotfiles.MockCommander)
-		wantErr          bool
+		name    string
+		wantErr bool
 	}{
 		{
-			name: "succesfully update packages",
-			prepareCommander: func(c *dotfiles.MockCommander) {
-				c.OnOutput("julia", []string{"-e", "import Pkg;Pkg.update()"}).Return(nil, nil)
-			},
-			wantErr: false,
-		},
-		{
-			name: "fails if calling julia fails",
-			prepareCommander: func(c *dotfiles.MockCommander) {
-				c.OnOutput("julia", []string{"-e", "import Pkg;Pkg.update()"}).Return(nil, errors.New("boom"))
-			},
-			wantErr: true,
+			name: "not implemented",
 		},
 	}
 
@@ -194,7 +182,6 @@ func TestUpdate(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			commander := dotfiles.MockCommander{}
 			defer commander.AssertExpectations(t)
-			tt.prepareCommander(&commander)
 
 			b := Plugin{
 				Commander: commander.Output,
