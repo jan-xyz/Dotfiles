@@ -9,32 +9,32 @@ packer.use({
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-cmdline",
-		"hrsh7th/cmp-vsnip",
-		"hrsh7th/vim-vsnip",
+		"L3MON4D3/LuaSnip",
+		"saadparwaiz1/cmp_luasnip",
+		"rafamadriz/friendly-snippets"
 	},
 	config = function()
+		require("luasnip.loaders.from_vscode").lazy_load()
+
 		-- helpers for jumping between snippet fields
 		-- based on nvim-cmp wiki
 		local has_words_before = function()
 			local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 			return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 		end
-
-		local feedkey = function(key, mode)
-			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-		end
 		-- end
 
 		local cmp = require("cmp")
+		local luasnip = require("luasnip")
 		cmp.setup({
 			snippet = {
 				expand = function(args)
-					vim.fn["vsnip#anonymous"](args.body)
+					require("luasnip").lsp_expand(args.body)
 				end,
 			},
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
-				{ name = "vsnip" },
+				{ name = "luasnip" },
 			}, {
 				{ name = "buffer" },
 			}),
@@ -47,20 +47,22 @@ packer.use({
 				["<Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
-					elseif vim.fn["vsnip#available"](1) == 1 then
-						feedkey("<Plug>(vsnip-expand-or-jump)", "")
+					elseif luasnip.expand_or_jumpable() then
+						luasnip.expand_or_jump()
 					elseif has_words_before() then
 						cmp.complete()
 					else
-						fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+						fallback()
 					end
 				end, { "i", "s" }),
 
-				["<S-Tab>"] = cmp.mapping(function()
+				["<S-Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()
-					elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-						feedkey("<Plug>(vsnip-jump-prev)", "")
+					elseif luasnip.jumpable(-1) then
+						luasnip.jump(-1)
+					else
+						fallback()
 					end
 				end, { "i", "s" }),
 				-- end
