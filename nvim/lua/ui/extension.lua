@@ -4,12 +4,23 @@ local packer = require("packer")
 packer.use({
 	"NvChad/nvim-colorizer.lua",
 	config = function()
-		require("colorizer").setup()
+		require("colorizer").setup({})
 	end,
 })
 
 -- rename and other input boxes
-packer.use({ "stevearc/dressing.nvim" })
+packer.use({
+	"stevearc/dressing.nvim",
+	config = function()
+		require("dressing").setup({
+			input = {
+				win_options = {
+					sidescrolloff = 4,
+				},
+			},
+		})
+	end
+})
 
 -- setup (un-)commenting lines and selection
 packer.use({
