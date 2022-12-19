@@ -16,6 +16,7 @@ bottles = [
   "coconutbattery",
   "colordiff",
   "coursier",
+  "dart-sdk",
   "ddate",
   "delve",
   "dozer",

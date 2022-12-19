@@ -13,6 +13,7 @@ packer.use({
 		require("lsp-inlayhints").setup()
 		-- Language configs
 		require("languages.cpp")
+		require("languages.dart")
 		require("languages.docker")
 		require("languages.go")
 		require("languages.julia")
