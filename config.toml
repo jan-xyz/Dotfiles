@@ -133,6 +133,7 @@ packages = [
 modules = [
   { exe = "staticcheck", path = "honnef.co/go/tools/cmd/staticcheck"},
   { exe = "revive", path = "github.com/mgechev/revive"},
+  { exe = "bufls", path = "github.com/bufbuild/buf-language-server/cmd/bufls"},
 ]
 
 [mac]

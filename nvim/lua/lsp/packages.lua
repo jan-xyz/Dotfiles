@@ -20,6 +20,7 @@ packer.use({
 		require("languages.kotlin")
 		require("languages.lua")
 		require("languages.misc")
+		require("languages.proto")
 		require("languages.python")
 		require("languages.r")
 		require("languages.rust")
