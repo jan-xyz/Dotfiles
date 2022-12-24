@@ -19,7 +19,7 @@ packer.use({
 				},
 			},
 		})
-	end
+	end,
 })
 
 -- setup (un-)commenting lines and selection

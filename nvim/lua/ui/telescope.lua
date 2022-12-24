@@ -1,7 +1,13 @@
 local packer = require("packer")
 packer.use({
 	"nvim-telescope/telescope.nvim",
-	requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" }, { "folke/which-key.nvim" } },
+	requires = {
+		"nvim-lua/popup.nvim",
+		"nvim-lua/plenary.nvim",
+		"folke/which-key.nvim",
+		"nvim-lua/plenary.nvim",
+		"nvim-telescope/telescope-file-browser.nvim"
+	},
 	config = function()
 		require("telescope").setup({
 			defaults = {
@@ -24,9 +30,24 @@ packer.use({
 					"%.history/.*",
 				},
 			},
+			extensions = {
+				file_browser = {
+					-- theme = "ivy",
+					-- disables netrw and use telescope-file-browser in its place
+					hijack_netrw = true,
+				},
+			},
 		})
+		require("telescope").load_extension("file_browser")
+
 		local wk = require("which-key")
 		local telescope_builtin = require("telescope.builtin")
+
+		local file_browser = require "telescope".extensions.file_browser.file_browser
+		local find_file = function()
+			file_browser({ path = "%:p:h" })
+
+		end
 		wk.register({
 			f = {
 				name = "File", -- optional group name
@@ -45,6 +66,12 @@ packer.use({
 			},
 		}, {
 			prefix = "<leader>",
+		})
+		wk.register({
+			e = { file_browser, "Toggle file explorer", noremap = true },
+			f = { find_file, "Find file in file explorer", noremap = true },
+		}, {
+			prefix = "f",
 		})
 	end,
 })
