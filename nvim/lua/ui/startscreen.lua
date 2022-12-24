@@ -57,5 +57,6 @@ packer.use({
 		}
 		db.session_directory = "~/.sessions" -- string type the directory to store the session file
 		db.session_auto_save_on_exit = true -- boolean default is false.it will auto-save the current session on neovim exit if a session exists and more than one buffer is loaded
+		vim.api.nvim_set_hl(0, "DashboardHeader", { fg = "#A3BE8C", ctermfg = 2 })
 	end
 })

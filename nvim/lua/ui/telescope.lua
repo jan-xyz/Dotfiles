@@ -43,21 +43,21 @@ packer.use({
 		local wk = require("which-key")
 		local telescope_builtin = require("telescope.builtin")
 
-		local file_browser = require "telescope".extensions.file_browser.file_browser
-		local find_file = function()
-			file_browser({ path = "%:p:h" })
+		local file_browser = function()
+			require "telescope".extensions.file_browser.file_browser({ hidden = true })
+		end
 
+		local current_file = function()
+			require "telescope".extensions.file_browser.file_browser({ hidden = true, path = "%:p:h" })
+		end
+
+		local find_file = function()
+			telescope_builtin.find_files({ hidden = true })
 		end
 		wk.register({
 			f = {
 				name = "File", -- optional group name
-				f = {
-					function()
-						telescope_builtin.find_files({ hidden = true })
-					end,
-					"Find File",
-					noremap = true,
-				},
+				f = { find_file, "Find File", noremap = true },
 				g = { telescope_builtin.live_grep, "Find in File", noremap = true },
 				o = { telescope_builtin.oldfiles, "Open Recent File", noremap = true },
 				r = { telescope_builtin.resume, "Resume last picker", noremap = true },
@@ -68,8 +68,8 @@ packer.use({
 			prefix = "<leader>",
 		})
 		wk.register({
-			e = { file_browser, "Toggle file explorer", noremap = true },
-			f = { find_file, "Find file in file explorer", noremap = true },
+			e = { file_browser, "File explorer", noremap = true },
+			f = { current_file, "Current file in file explorer", noremap = true },
 		}, {
 			prefix = "f",
 		})
