@@ -3,7 +3,6 @@ local packer = require("packer")
 packer.use({
 	"glepnir/dashboard-nvim",
 	config = function()
-		local home = os.getenv("HOME")
 		local db = require("dashboard")
 		db.custom_header = {
 			"",
@@ -56,6 +55,7 @@ packer.use({
 				action = "Telescope live_grep",
 			},
 		}
-
+		db.session_directory = "~/.sessions" -- string type the directory to store the session file
+		db.session_auto_save_on_exit = true -- boolean default is false.it will auto-save the current session on neovim exit if a session exists and more than one buffer is loaded
 	end
 })

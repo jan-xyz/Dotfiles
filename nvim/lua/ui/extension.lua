@@ -60,20 +60,6 @@ packer.use({
 	end,
 })
 
--- setup session management
-packer.use({
-	"rmagatti/auto-session",
-	config = function()
-		require("auto-session").setup({
-			log_level = "error",
-			auto_session_suppress_dirs = { "~/" },
-			auto_session_use_git_branch = true,
-			bypass_session_save_file_types = {},
-			pre_save_cmds = {},
-		})
-	end,
-})
-
 -- changing the default notification boxes
 packer.use({
 	"rcarriga/nvim-notify",
