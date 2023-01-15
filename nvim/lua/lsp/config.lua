@@ -22,6 +22,7 @@ function M.on_attach(client, bufnr)
 	local visual_mode_keymap = {}
 	-- Code Lens
 	if client.server_capabilities.codeLensProvider then
+		vim.lsp.codelens.refresh()
 		vim.api.nvim_create_autocmd(
 			"CursorHold,CursorHoldI,InsertLeave",
 			{ callback = vim.lsp.codelens.refresh, buffer = 0 }
