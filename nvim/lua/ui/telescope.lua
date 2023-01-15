@@ -10,6 +10,11 @@ packer.use({
 	},
 	config = function()
 		require("telescope").setup({
+			pickers = {
+				diagnostics = {
+					theme = "ivy",
+				}
+			},
 			defaults = {
 				vimgrep_arguments = {
 					"rg",

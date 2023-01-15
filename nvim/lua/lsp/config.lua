@@ -16,18 +16,8 @@ function M.on_attach(client, bufnr)
 
 	-- Workspace diagnostics
 	local normal_mode_keymap = {
-		w = {
-			function()
-				telescope_builtin.diagnostics(require("telescope.themes").get_ivy({}))
-			end,
-			"Workspace Diagnostics",
-			noremap = true,
-		},
-		l = {
-			vim.diagnostic.open_float,
-			"Line Diagnostics",
-			noremap = true,
-		},
+		w = { telescope_builtin.diagnostics, "Workspace Diagnostics", noremap = true },
+		l = { vim.diagnostic.open_float, "Line Diagnostics", noremap = true },
 	}
 	local visual_mode_keymap = {}
 	-- Code Lens
@@ -36,20 +26,14 @@ function M.on_attach(client, bufnr)
 			"CursorHold,CursorHoldI,InsertLeave",
 			{ callback = vim.lsp.codelens.refresh, buffer = 0 }
 		)
-		normal_mode_keymap["c"] = {
-			vim.lsp.codelens.run,
-			"Codelens",
-			noremap = true,
-		}
+		normal_mode_keymap["c"] = { vim.lsp.codelens.run, "Codelens", noremap = true }
 	end
 	-- Format document
 	if client.server_capabilities.documentFormattingProvider then
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			callback = function()
-				vim.lsp.buf.format()
-			end,
-			buffer = 0,
-		})
+		vim.api.nvim_create_autocmd(
+			"BufWritePre",
+			{ callback = vim.lsp.buf.format, buffer = 0 }
+		)
 	end
 	-- Goto Defintion
 	if client.server_capabilities.definitionProvider then
