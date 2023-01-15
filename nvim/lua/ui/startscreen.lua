@@ -37,7 +37,7 @@ packer.use({
 			{
 				icon = "  ",
 				desc = "Recently opened files                   ",
-				action = "Telescope oldfiles",
+				action = "Telescope oldfiles cwd_only=true",
 			},
 			{
 				icon = "  ",
@@ -47,7 +47,7 @@ packer.use({
 			{
 				icon = "  ",
 				desc = "File Browser                            ",
-				action = "Telescope file_browser",
+				action = "Telescope file_browser hidden=true",
 			},
 			{
 				icon = "  ",
