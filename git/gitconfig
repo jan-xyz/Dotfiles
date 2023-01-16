@@ -30,6 +30,7 @@
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 	prune-local = "!f() { git branch -d $(git for-each-ref --format '%(upstream:track) %(refname:lstrip=2)' | perl -ane 'print$F[1].\" \"if(scalar@F==2.)'); }; f"
 	prune-local-with-force = "!f() { git branch -D $(git for-each-ref --format '%(upstream:track) %(refname:lstrip=2)' | perl -ane 'print$F[1].\" \"if(scalar@F==2.)'); }; f"
+	default = !git switch $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
 
 [submodule]
 	recurse = true
