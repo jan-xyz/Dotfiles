@@ -15,6 +15,7 @@ nvim_lsp.yamlls.setup({
 				["https://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
 				["https://json.schemastore.org/github-action"] = ".github/**/action.{yml,yaml}",
 				["https://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
+				["https://raw.githubusercontent.com/lalcebo/json-schema/master/serverless/reference.json"] = "serverless.{yml,yaml}",
 				["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.22.2-standalone-strict/all.json"] = "**/*.k8s.{yml,yaml}",
 			},
 			customTags = {
