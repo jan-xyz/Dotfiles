@@ -14,6 +14,7 @@ vim.opt.foldenable = true -- set wether folding is enabled on buffer opening
 vim.opt.foldlevelstart = 99 -- set the initial fold level of a new buffer (0=all,99=none)
 vim.opt.foldcolumn = "auto:5" -- how many fold levels are included in the gutter
 vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal" -- setting session options
+vim.opt.scrolloff = 4 -- Minimum number of screen lines to keep above and below the cursor
 
 -- window options
 vim.wo.number = true -- Add line numbers
