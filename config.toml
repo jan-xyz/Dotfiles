@@ -7,6 +7,7 @@ taps = [
 ]
 bottles = [
   "aerial",
+  "asix-ax88179",
   "awscli",
   "aws-cdk",
   "brooklyn",
