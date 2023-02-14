@@ -10,7 +10,7 @@ packer.use({
 		-- IMPORTANT: make sure to setup neodev BEFORE lspconfig
 		require("neodev").setup({})
 
-		nvim_lsp.sumneko_lua.setup({
+		nvim_lsp.lua_ls.setup({
 			cmd = { "lua-language-server" },
 			capabilities = completion.capabilities,
 			on_attach = lsp.on_attach,
