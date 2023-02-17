@@ -29,6 +29,9 @@ packer.use({
 				require("neotest-rust"),
 				require("neotest-scala"),
 			},
+			quickfix = {
+				enabled = false,
+			},
 		})
 
 		wk.register({
