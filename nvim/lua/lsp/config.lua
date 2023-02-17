@@ -33,7 +33,7 @@ function M.on_attach(client, bufnr)
 	if client.server_capabilities.documentFormattingProvider then
 		vim.api.nvim_create_autocmd(
 			"BufWritePre",
-			{ callback = vim.lsp.buf.format, buffer = 0 }
+			{ callback = function() vim.lsp.buf.format({ async = false }) end, buffer = 0 }
 		)
 	end
 	-- Goto Defintion
