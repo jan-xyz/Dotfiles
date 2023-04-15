@@ -29,7 +29,7 @@ export PATH="$PATH:/usr/local/opt/llvm/bin/"
 #
 # Scala
 #
-export PATH="$PATH:/Users/jan.steinke/Library/Application Support/Coursier/bin"
+export PATH="$PATH:$HOME/Library/Application Support/Coursier/bin"
 
 #
 # Browser
