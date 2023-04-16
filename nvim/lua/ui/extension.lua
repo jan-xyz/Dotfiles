@@ -8,7 +8,7 @@ packer.use({
 	end,
 })
 
--- rename and other input boxes
+-- moden take on `vim.ui.select` and `vim.ui.input`
 packer.use({
 	"stevearc/dressing.nvim",
 	config = function()
