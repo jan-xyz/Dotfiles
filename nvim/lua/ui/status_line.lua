@@ -22,7 +22,7 @@ packer.use({
 
 
 		local function set_filetype()
-			vim.ui.input({ prompt = "set filetype" }, function(input)
+			vim.ui.input({ prompt = "set filetype", relative = "win" }, function(input)
 				if not input or input == "" then
 					return
 				end
