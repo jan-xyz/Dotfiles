@@ -20,7 +20,6 @@ packer.use({
 				-- make it possible to override options for `input` from the call side
 				get_config = function(extra_opts)
 					local opts = require("dressing.config").input
-					vim.print(vim.inspect(opts))
 					return vim.tbl_deep_extend("force", opts, extra_opts or {})
 				end,
 			},
@@ -28,7 +27,6 @@ packer.use({
 				-- make it possible to override options for `select` from the call side
 				get_config = function(extra_opts)
 					local opts = require("dressing.config").select
-					vim.print(vim.inspect(opts))
 					return vim.tbl_deep_extend("force", opts, extra_opts or {})
 				end,
 			}
