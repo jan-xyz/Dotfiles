@@ -7,12 +7,12 @@ packer.use({
 		require("neorg").setup({
 			load = {
 				["core.defaults"] = {}, -- core modules
-				["core.norg.completion"] = { -- completion support
+				["core.completion"] = { -- completion support
 					config = {
 						engine = "nvim-cmp",
 					},
 				},
-				["core.norg.concealer"] = {}, -- icon support
+				["core.concealer"] = {}, -- icon support
 				["core.presenter"] = {
 					config = {
 						zen_mode = "zen-mode",
