@@ -51,8 +51,8 @@ packer.use({
 						key = "w",
 					},
 				},
-			}
+			},
 		})
 		vim.api.nvim_set_hl(0, "DashboardHeader", { fg = "#A3BE8C", ctermfg = 2 })
-	end
+	end,
 })

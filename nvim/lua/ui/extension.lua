@@ -29,7 +29,7 @@ packer.use({
 					local opts = require("dressing.config").select
 					return vim.tbl_deep_extend("force", opts, extra_opts or {})
 				end,
-			}
+			},
 		})
 	end,
 })

@@ -7,16 +7,21 @@ packer.use({
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
 		"antoinemadec/FixCursorHold.nvim",
+		"nvim-neotest/neotest-plenary",
 		-- Languages
 		"nvim-neotest/neotest-go",
-		"nvim-neotest/neotest-plenary",
 		"rouge8/neotest-rust",
 		"stevanmilic/neotest-scala",
+		-- UX
+		"andythigpen/nvim-coverage",
+		"folke/which-key.nvim",
 	},
 	config = function()
 		local wk = require("which-key")
 		local nt = require("neotest")
+		local cov = require("coverage")
 
+		cov.setup()
 		nt.setup({
 			adapters = {
 				require("neotest-go")({
@@ -34,52 +39,24 @@ packer.use({
 			},
 		})
 
-		wk.register({
-			name = "Run Tests",
-			n = {
-				nt.run.run,
-				"Nearest",
-				noremap = true,
-			},
-			l = {
-				nt.run.run_last,
-				"Last",
-				noremap = true,
-			},
-			a = {
-				function()
-					nt.run.run(vim.fn.getcwd())
-				end,
-				"All",
-				noremap = true,
-			},
-			o = {
-				nt.output.open,
-				"Show output",
-				noremap = true,
-			},
-			f = {
-				function()
-					nt.run.run(vim.fn.expand("%"))
-				end,
-				"All in file",
-				noremap = true,
-			},
-			d = {
-				function()
-					nt.run.run({ strategy = "dap" })
-				end,
-				"Debug test",
-				noremap = true,
-			},
-			s = {
-				nt.summary.toggle,
-				"Test summary",
-				noremap = true,
-			},
-		}, {
-			prefix = "t",
-		})
+		wk.register({ t = { name = "Run Test(s)" } })
+		vim.keymap.set("n", "tn", nt.run.run, { desc = "Nearest", noremap = true })
+		vim.keymap.set("n", "tl", nt.run.run_last, { desc = "Last", noremap = true })
+		vim.keymap.set("n", "to", nt.output.open, { desc = "Show output", noremap = true })
+		vim.keymap.set("n", "ts", nt.summary.toggle, { desc = "Test summary", noremap = true })
+
+		vim.keymap.set("n", "ta", function()
+			nt.run.run(vim.fn.getcwd())
+			cov.load(true)
+		end, { desc = "All", noremap = true })
+
+		vim.keymap.set("n", "tf", function()
+			nt.run.run(vim.fn.expand("%"))
+		end, { desc = "All in file", noremap = true })
+
+		vim.keymap.set("n", "td", function()
+			nt.run.run({ strategy = "dap" })
+		end, { desc = "Debug", noremap = true })
 	end,
 })
 

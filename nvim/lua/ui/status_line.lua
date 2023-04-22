@@ -20,7 +20,6 @@ packer.use({
 			telescope_builtin.diagnostics()
 		end
 
-
 		local function set_filetype()
 			vim.ui.input({ prompt = "set filetype", relative = "win" }, function(input)
 				if not input or input == "" then

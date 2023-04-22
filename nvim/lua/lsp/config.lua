@@ -31,10 +31,12 @@ function M.on_attach(client, bufnr)
 	end
 	-- Format document
 	if client.server_capabilities.documentFormattingProvider then
-		vim.api.nvim_create_autocmd(
-			"BufWritePre",
-			{ callback = function() vim.lsp.buf.format({ async = false }) end, buffer = 0 }
-		)
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			callback = function()
+				vim.lsp.buf.format({ async = false })
+			end,
+			buffer = 0,
+		})
 	end
 	-- Goto Defintion
 	if client.server_capabilities.definitionProvider then

@@ -8,12 +8,12 @@ packer.use({
 			relculright = true,
 			segments = {
 				{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-				{ text = { builtin.lnumfunc }, click = "v:lua.ScLa", },
+				{ text = { builtin.lnumfunc }, click = "v:lua.ScLa" },
 				{
 					sign = { name = { ".*" }, maxwidth = 2, colwidth = 1 },
-					click = "v:lua.ScSa"
+					click = "v:lua.ScSa",
 				},
-			}
+			},
 		})
 	end,
 })

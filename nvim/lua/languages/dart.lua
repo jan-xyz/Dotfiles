@@ -6,6 +6,5 @@ local completion = require("ui.completion")
 nvim_lsp.dartls.setup({
 	capabilities = completion.capabilities,
 	on_attach = lsp.on_attach,
-	settings = {
-	},
+	settings = {},
 })
