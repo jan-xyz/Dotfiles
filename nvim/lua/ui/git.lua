@@ -8,7 +8,6 @@ packer.use({
 			signcolumn = false,
 			numhl = true,
 			word_diff = false,
-			keymaps = {},
 		})
 		local wk = require("which-key")
 		local gitsigns = require("gitsigns")
