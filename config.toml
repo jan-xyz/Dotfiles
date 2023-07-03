@@ -28,6 +28,7 @@ bottles = [
   "font-meslo-for-powerline",
   "font-source-code-pro-for-powerline",
   "fzf",
+  "gh",
   "git",
   "git-lfs",
   "github",
