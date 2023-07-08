@@ -1,6 +1,18 @@
 local packer = require("packer")
 
 packer.use({
+	"pwntester/octo.nvim",
+	requires = {
+		"nvim-lua/plenary.nvim",
+		"nvim-telescope/telescope.nvim",
+		"nvim-tree/nvim-web-devicons",
+	},
+	config = function()
+		require("octo").setup()
+	end,
+})
+
+packer.use({
 	"lewis6991/gitsigns.nvim",
 	requires = { "nvim-lua/plenary.nvim" },
 	config = function()
@@ -8,7 +20,6 @@ packer.use({
 			signcolumn = false,
 			numhl = true,
 			word_diff = false,
-			keymaps = {},
 		})
 		local wk = require("which-key")
 		local gitsigns = require("gitsigns")
