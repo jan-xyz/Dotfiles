@@ -11,6 +11,6 @@ updates:
       interval: "monthly"
 
   - package-ecosystem: "gitsubmodule"
-    directory: "/submodules/"
+    directory: "/"
     schedule:
       interval: "monthly"
