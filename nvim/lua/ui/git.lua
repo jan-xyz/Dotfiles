@@ -1,6 +1,6 @@
 local packer = require("packer")
 
-packer.use {
+packer.use({
 	"pwntester/octo.nvim",
 	requires = {
 		"nvim-lua/plenary.nvim",
@@ -8,9 +8,9 @@ packer.use {
 		"nvim-tree/nvim-web-devicons",
 	},
 	config = function()
-		require "octo".setup()
-	end
-}
+		require("octo").setup()
+	end,
+})
 
 packer.use({
 	"lewis6991/gitsigns.nvim",
