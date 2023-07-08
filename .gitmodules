@@ -1,3 +1,0 @@
-[submodule "submodules/packer"]
-	path = submodules/packer
-	url = git@github.com:wbthomason/packer.nvim.git

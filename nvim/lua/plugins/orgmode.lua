@@ -1,10 +1,14 @@
-local packer = require("packer")
-
-packer.use({
-	"nvim-neorg/neorg",
-	requires = { "nvim-lua/plenary.nvim", "folke/zen-mode.nvim" },
-	config = function()
-		require("neorg").setup({
+return {
+	{
+		"nvim-neorg/neorg",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"folke/zen-mode.nvim",
+			"hrsh7th/nvim-cmp",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		build = ":Neorg sync-parsers",
+		opts = {
 			load = {
 				["core.defaults"] = {}, -- core modules
 				["core.completion"] = { -- completion support
@@ -19,6 +23,6 @@ packer.use({
 					},
 				}, -- presentation mode
 			},
-		})
-	end,
-})
+		},
+	},
+}

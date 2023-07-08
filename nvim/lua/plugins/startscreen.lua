@@ -1,10 +1,8 @@
-local packer = require("packer")
-
-packer.use({
-	"glepnir/dashboard-nvim",
-	requires = { "nvim-tree/nvim-web-devicons" },
-	config = function()
-		require("dashboard").setup({
+return {
+	{
+		"glepnir/dashboard-nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {
 			theme = "doom",
 			config = {
 				header = {
@@ -52,7 +50,9 @@ packer.use({
 					},
 				},
 			},
-		})
-		vim.api.nvim_set_hl(0, "DashboardHeader", { fg = "#A3BE8C", ctermfg = 2 })
-	end,
-})
+		},
+		config = function()
+			vim.api.nvim_set_hl(0, "DashboardHeader", { fg = "#A3BE8C", ctermfg = 2 })
+		end,
+	},
+}
