@@ -1,9 +1,13 @@
 return {
 	{
-		"arcticicestudio/nord-vim",
+		"jan-xyz/nord.nvim",
 	},
+	-- {
+	-- 	"nordtheme/vim",
+	-- 	name = "nord-vim"
+	-- },
 	{
 		"catppuccin/nvim",
-		as = "catppuccin",
+		name = "catppuccin",
 	},
 }
