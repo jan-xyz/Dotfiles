@@ -2,7 +2,7 @@ return {
 	{
 		"pwntester/octo.nvim",
 		opts = {},
-		requires = {
+		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
 			"nvim-tree/nvim-web-devicons",
@@ -10,7 +10,7 @@ return {
 	},
 	{
 		"lewis6991/gitsigns.nvim",
-		requires = {
+		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"folke/which-key.nvim",
 		},
