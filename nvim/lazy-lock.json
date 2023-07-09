@@ -26,6 +26,7 @@
   "neotest-rust": { "branch": "main", "commit": "6dce8963e5395adf079bf22e931dfce65d3fed25" },
   "neotest-scala": { "branch": "main", "commit": "685f0fac6196862b47025c6b91513af6a406501a" },
   "nord-vim": { "branch": "main", "commit": "f13f5dfbb784deddbc1d8195f34dfd9ec73e2295" },
+  "null-ls.nvim": { "branch": "main", "commit": "db09b6c691def0038c456551e4e2772186449f35" },
   "nvim": { "branch": "main", "commit": "278bfeb61bd627dc2a8885180a0441a1ebe65a41" },
   "nvim-cmp": { "branch": "main", "commit": "2743dd989e9b932e1b4813a4927d7b84272a14e2" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "dde3084106a70b9a79d48f426f6d6fec6fd203f7" },

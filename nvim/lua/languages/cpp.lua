@@ -6,7 +6,7 @@ function M.setup()
 	local completion = require("cmp_nvim_lsp")
 
 	nvim_lsp.ccls.setup({
-		capabilities = completion.capabilities,
+		capabilities = completion.default_capabilities(),
 		on_attach = lsp.on_attach,
 	})
 end

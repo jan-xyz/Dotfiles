@@ -7,7 +7,7 @@ function M.setup()
 
 	-- Docker
 	nvim_lsp.dockerls.setup({
-		capabilities = completion.capabilities,
+		capabilities = completion.default_capabilities(),
 		on_attach = lsp.on_attach,
 	})
 end

@@ -25,7 +25,7 @@ function M.setup()
 
 	-- LSP config
 	nvim_lsp.gopls.setup({
-		capabilities = completion.capabilities,
+		capabilities = completion.default_capabilities(),
 		on_attach = lsp.on_attach,
 		settings = {
 			gopls = {

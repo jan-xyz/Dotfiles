@@ -1,74 +1,30 @@
-local nvim_lsp = require("lspconfig")
-local lsp = require("lsp.config")
-local dap = require("dap")
-local completion = require("ui.completion")
+local M = {}
 
--- LSP config
-nvim_lsp.rust_analyzer.setup({
-	capabilities = completion.capabilities,
-	on_attach = lsp.on_attach,
-	settings = {
-		["rust-analyzer"] = {
-			cargo = {
-				unsetTest = { "core", "derivative" },
-			},
-			imports = {
-				prefix = "crate",
-				granularity = {
-					enforce = true,
-					group = "item",
+function M.setup()
+	local nvim_lsp = require("lspconfig")
+	local lsp = require("lsp.config")
+	local completion = require("cmp_nvim_lsp")
+
+	-- LSP config
+	nvim_lsp.rust_analyzer.setup({
+		capabilities = completion.capabilities,
+		on_attach = lsp.on_attach,
+		settings = {
+			["rust-analyzer"] = {
+				cargo = {
+					unsetTest = { "core", "derivative" },
 				},
-				allowMergingIntoGlobImports = false,
+				imports = {
+					prefix = "crate",
+					granularity = {
+						enforce = true,
+						group = "item",
+					},
+					allowMergingIntoGlobImports = false,
+				},
 			},
 		},
-	},
-})
+	})
+end
 
--- DAP config
-dap.adapters.lldb = {
-	type = "executable",
-	command = "/opt/homebrew/opt/llvm/bin/lldb-vscode",
-	name = "lldb",
-}
-dap.configurations.rust = {
-	{
-		name = "Debug binary",
-		type = "lldb",
-		request = "launch",
-		program = function()
-			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
-		end,
-		cwd = "${workspaceFolder}",
-		stopOnEntry = false,
-		args = {},
-
-		-- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-		--
-		--    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-		--
-		-- Otherwise you might get the following error:
-		--
-		--    Error on launch: Failed to attach to the target process
-		--
-		-- But you should be aware of the implications:
-		-- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-		runInTerminal = false,
-	},
-	{
-		type = "lldb",
-		request = "launch",
-		name = "Debug unit test",
-		cargo = {
-			args = {
-				"test",
-				"--no-run",
-			},
-			filter = {
-				name = "libthat",
-				kind = "lib",
-			},
-		},
-		args = {},
-		cwd = "${workspaceFolder}",
-	},
-}
+return M
