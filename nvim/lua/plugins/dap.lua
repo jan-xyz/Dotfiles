@@ -127,6 +127,6 @@ return {
 		dependencies = {
 			"rcarriga/nvim-dap-ui",
 		},
-		opts = {}
+		opts = {},
 	},
 }

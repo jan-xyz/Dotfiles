@@ -8,7 +8,7 @@ return {
 			{ "lvimuser/lsp-inlayhints.nvim", opts = {} },
 
 			-- Language dependencies
-			{ "folke/neodev.nvim",            opts = {} },
+			{ "folke/neodev.nvim", opts = {} },
 		},
 		config = function()
 			require("languages.bash").setup()
@@ -47,5 +47,5 @@ return {
 				},
 			})
 		end,
-	}
+	},
 }
