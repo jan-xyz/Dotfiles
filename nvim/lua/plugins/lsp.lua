@@ -19,7 +19,6 @@ return {
 			require("languages.julia").setup()
 			require("languages.kotlin").setup()
 			require("languages.lua").setup()
-			require("languages.misc")
 			require("languages.proto").setup()
 			require("languages.python").setup()
 			require("languages.r").setup()
