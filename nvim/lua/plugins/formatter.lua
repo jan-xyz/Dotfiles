@@ -5,7 +5,7 @@ return { {
 		require("formatter").setup({
 			filetype = {
 				proto = { { exe = "buf", args = { "format" }, stdin = true } },
-				sh = { require("formatter.filetypes.lua").shfmt },
+				sh = { require("formatter.filetypes.sh").shfmt },
 				markdown = { { exe = "markdownlint", args = { "--fix" }, ignore_exitcode = true } },
 			}
 
