@@ -8,7 +8,12 @@ return {
 			{ "lvimuser/lsp-inlayhints.nvim", opts = {} },
 
 			-- Language dependencies
-			{ "folke/neodev.nvim",            opts = {} },
+			{
+				"folke/neodev.nvim",
+				opts = {
+					library = { plugins = { "neotest" }, types = true },
+				}
+			},
 		},
 		config = function()
 			require("languages.bash").setup()
@@ -28,24 +33,6 @@ return {
 			require("languages.ts").setup()
 			require("languages.vim").setup()
 			require("languages.yaml").setup()
-		end,
-	},
-	{
-		"jose-elias-alvarez/null-ls.nvim",
-		config = function()
-			local lsp = require("lsp.config")
-			require("null-ls").setup({
-				on_attach = lsp.on_attach,
-				sources = {
-
-					-- Diagnostics
-					require("null-ls").builtins.diagnostics.buf,
-					require("null-ls").builtins.diagnostics.markdownlint,
-					-- Formatting
-					require("null-ls").builtins.formatting.shfmt,
-					require("null-ls").builtins.formatting.markdownlint,
-				},
-			})
 		end,
 	},
 }
