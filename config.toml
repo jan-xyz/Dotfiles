@@ -48,6 +48,7 @@ bottles = [
   "llvm",
   "lua-language-server",
   "markdownlint-cli",
+  "monitorcontrol",
   "mas",
   "neovim",
   "node",
@@ -116,7 +117,6 @@ extensions = [
   "ms-python.vscode-pylance",
   "LittleFoxTeam.vscode-python-test-adapter",
   "golang.go",
-  "ethan-reesor.vscode-go-test-adapter",
   "fwcd.kotlin",
   "rust-lang.rust-analyzer",
   "swellaby.vscode-rust-test-adapter",
@@ -138,6 +138,7 @@ modules = [
   { exe = "staticcheck", path = "honnef.co/go/tools/cmd/staticcheck"},
   { exe = "revive", path = "github.com/mgechev/revive"},
   { exe = "bufls", path = "github.com/bufbuild/buf-language-server/cmd/bufls"},
+  { exe = "jsonnet-language-server", path = "github.com/grafana/jsonnet-language-server"},
 ]
 
 [mac]
