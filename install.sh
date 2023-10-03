@@ -45,7 +45,7 @@ sudo ln -sfn "$(brew --prefix)/opt/openjdk@8/libexec/openjdk.jdk" "/Library/Java
 # Install Neovim extensions
 #==============
 echo -e "${YELLOW}Installing neovim plugins${NOCOLOR}"
-nvim --headless "+Lazy! sync" +qall >/dev/null 2>&1
+nvim --headless "+Lazy! install" +qall >/dev/null 2>&1
 
 #==============
 # Set zsh as the default shell
