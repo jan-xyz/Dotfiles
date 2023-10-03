@@ -21,6 +21,8 @@ function M.setup()
 						quote_style = "double",
 						indent_style = "tab",
 						indent_size = "1",
+						table_separator_style = "comma",
+						trailing_table_separator = "smart",
 						keep_line_after_if_statement = "maxLine:1",
 						keep_line_after_do_statement = "maxLine:1",
 						keep_line_after_while_statement = "maxLine:1",

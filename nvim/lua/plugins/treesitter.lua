@@ -13,9 +13,9 @@ return {
 				highlight = {
 					enable = true,
 					additional_vim_regex_highlighting = false,
-				}
+				},
 			})
-		end
+		end,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-context",
@@ -23,6 +23,6 @@ return {
 		opts = {
 			enbaled = true,
 			mode = "topline",
-		}
+		},
 	},
 }
