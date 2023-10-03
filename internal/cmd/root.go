@@ -63,7 +63,7 @@ func initConfig() {
 	viper.SetConfigName("config")
 	viper.SetConfigType("toml")
 
-	viper.AddConfigPath("$HOME/Dotfiles/")
+	viper.AddConfigPath("$PWD")
 	err := viper.ReadInConfig()
 	if err != nil {
 		logrus.Fatalf("Fatal error config file: %s \n", err)
