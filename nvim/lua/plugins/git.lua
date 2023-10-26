@@ -14,13 +14,12 @@ return {
 			"nvim-lua/plenary.nvim",
 			"folke/which-key.nvim",
 		},
-		opts = {
-			signcolumn = false,
-			numhl = true,
-			word_diff = false,
-		},
 		config = function()
-			require("gitsigns").setup({})
+			require("gitsigns").setup({
+				signcolumn = false,
+				numhl = true,
+				word_diff = false,
+			})
 			local wk = require("which-key")
 			local gitsigns = require("gitsigns")
 			-- normal mode
