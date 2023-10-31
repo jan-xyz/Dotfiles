@@ -90,11 +90,11 @@ function M.on_attach(client, bufnr)
 	-- Code Action
 	if client.server_capabilities.codeActionProvider then
 		wk.register(
-			{ r = { vim.lsp.buf.code_action, "Preform code action", noremap = true } },
+			{ a = { vim.lsp.buf.code_action, "Preform code action", noremap = true } },
 			{ prefix = "<leader>" }
 		)
 		wk.register(
-			{ r = { vim.lsp.buf.code_action, "Preform code action", noremap = true } },
+			{ a = { vim.lsp.buf.code_action, "Preform code action", noremap = true } },
 			{ prefix = "<leader>", mode = "v" }
 		)
 	end
