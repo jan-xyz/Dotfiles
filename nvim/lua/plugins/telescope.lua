@@ -48,7 +48,7 @@ return {
 					},
 					["telescope-alternate"] = {
 						mappings = {
-							{ "(.*).go", { { "[1]_test.go", "Test", true } } },
+							{ "(.*).go",      { { "[1]_test.go", "Test", true } } },
 							{ "(.*)_test.go", { { "[1].go", "Original", true } } },
 						},
 					},
@@ -77,31 +77,29 @@ return {
 				require("telescope-alternate.telescope").alternate({})
 			end
 
+			local recent_files = function()
+				telescope_builtin.oldfiles({ cwd_only = true })
+			end
+
+			-- inspired by helix mapping: https://docs.helix-editor.com/keymap.html#space-mode
 			wk.register({
-				f = {
-					name = "File", -- optional group name
-					f = { find_file, "Find File", noremap = true },
-					g = { telescope_builtin.live_grep, "Find in File", noremap = true },
-					o = {
-						function()
-							telescope_builtin.oldfiles({ cwd_only = true })
-						end,
-						"Open Recent File",
-						noremap = true,
-					},
-					r = { telescope_builtin.resume, "Resume last picker", noremap = true },
-					p = { telescope_builtin.pickers, "List all pickers", noremap = true },
-					b = { telescope_builtin.buffers, "List open buffers", noremap = true },
-				},
+				f = { find_file, "Open File Picker", noremap = true },
+				e = { file_browser, "Toggle or focus explorer", noremap = true },
+				E = { current_file, "Focus current file in explorer", noremap = true },
+				b = { telescope_builtin.buffers, "Open buffer picker", noremap = true },
+				j = { telescope_builtin.jumplist, "Open jumplist picker", noremap = true },
+				["'"] = { telescope_builtin.resume, "Resume last picker", noremap = true },
+				["/"] = { telescope_builtin.live_grep, "Global search in workspace folder", noremap = true },
+
+				-- additional pickers
+				o = { recent_files, "Open Recent File picker", noremap = true },
 			}, {
 				prefix = "<leader>",
 			})
 			wk.register({
-				e = { file_browser, "File explorer", noremap = true },
-				f = { current_file, "Current file in file explorer", noremap = true },
-				t = { alternate, "Alternate Test/File", noremap = true },
+				a = { alternate, "Go to alternate file", noremap = true },
 			}, {
-				prefix = "f",
+				prefix = "g",
 			})
 		end,
 	},

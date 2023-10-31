@@ -17,7 +17,7 @@ return {
 			local dap = require("dap")
 			local dapui = require("dapui")
 			wk.register({
-				d = {
+				p = {
 					name = "Debugger", -- optional group name
 					b = { dap.toggle_breakpoint, "Toggle breakpoint", noremap = true },
 					c = { dap.continue, "Start/continue", noremap = true },
