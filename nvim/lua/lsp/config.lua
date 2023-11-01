@@ -11,20 +11,15 @@ function M.on_attach(client, bufnr)
 
 	require("lsp-inlayhints").on_attach(client, bufnr, false)
 
-	local wk = require("which-key")
 	local telescope_builtin = require("telescope.builtin")
 
 	-- Workspace diagnostics
 	local current_file_diagnostics = function()
 		telescope_builtin.diagnostics({ bufnr = 0 })
 	end
-	wk.register(
-		{
-			d = { current_file_diagnostics, "Open diagnostics picker", noremap = true },
-			D = { telescope_builtin.diagnostics, "Open workspace diagnostics picker", noremap = true },
-		},
-		{ prefix = "<leader>" }
-	)
+	vim.keymap.set("n", "<leader>d", current_file_diagnostics, { noremap = true, desc = "Open diagnostics picker" })
+	vim.keymap.set("n", "<leader>D", telescope_builtin.diagnostics,
+		{ noremap = true, desc = "Open workspace diagnostics picker" })
 
 	-- Code Lens
 	if client.server_capabilities.codeLensProvider then
@@ -32,85 +27,54 @@ function M.on_attach(client, bufnr)
 			{ "BufEnter", "CursorHold", "InsertLeave" },
 			{ callback = vim.lsp.codelens.refresh, buffer = bufnr }
 		)
-		wk.register(
-			{ c = { vim.lsp.codelens.run, "Codelens", noremap = true } },
-			{ prefix = "<leader>" }
-		)
+		vim.keymap.set("n", "<leader>c", vim.lsp.codelens.run, { noremap = true, desc = "Peform codelens" })
 	end
 
 	-- Format document
 	if client.server_capabilities.documentFormattingProvider then
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			callback = function()
-				vim.lsp.buf.format({ async = false })
-			end,
-			buffer = bufnr,
-		})
+		local format = function()
+			vim.lsp.buf.format({ async = false })
+		end
+		vim.api.nvim_create_autocmd("BufWritePre", { callback = format, buffer = bufnr })
 	end
 
 	-- Goto Defintion
 	if client.server_capabilities.definitionProvider then
-		wk.register(
-			{ d = { telescope_builtin.lsp_definitions, "Goto Definition", noremap = true } },
-			{ prefix = "g" }
-		)
+		vim.keymap.set("n", "gd", telescope_builtin.lsp_implementations, { noremap = true, desc = "Goto definition" })
 	end
 	-- Goto Implementations
 	if client.server_capabilities.implementationProvider then
-		wk.register(
-			{ i = { telescope_builtin.lsp_implementations, "Goto Implementation", noremap = true } },
-			{ prefix = "g" }
-		)
+		vim.keymap.set("n", "gi", telescope_builtin.lsp_implementations, { noremap = true, desc = "Goto Implementations" })
 	end
 
 	-- Find References
 	if client.server_capabilities.referencesProvider then
-		wk.register(
-			{ r = { telescope_builtin.lsp_references, "Goto References", noremap = true } },
-			{ prefix = "g" }
-		)
+		vim.keymap.set("n", "gr", telescope_builtin.lsp_references, { noremap = true, desc = "Goto references" })
 	end
 
 	-- Hover
 	if client.server_capabilities.hoverProvider then
-		wk.register(
-			{ k = { vim.lsp.buf.hover, "Show docs for item under cursor", noremap = true } },
-			{ prefix = "<leader>" }
-		)
+		vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover, { noremap = true, desc = "Show docs for item under cursor" })
 	end
 
 	-- Rename
 	if client.server_capabilities.renameProvider then
-		wk.register(
-			{ r = { vim.lsp.buf.rename, "Rename symbol", noremap = true } },
-			{ prefix = "<leader>" }
-		)
+		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { noremap = true, desc = "Rename symbol" })
 	end
 
 	-- Code Action
 	if client.server_capabilities.codeActionProvider then
-		wk.register(
-			{ a = { vim.lsp.buf.code_action, "Preform code action", noremap = true } },
-			{ prefix = "<leader>" }
-		)
-		wk.register(
-			{ a = { vim.lsp.buf.code_action, "Preform code action", noremap = true } },
-			{ prefix = "<leader>", mode = "v" }
-		)
+		vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, { noremap = true, desc = "Perform code action" })
 	end
 
 	-- Symbols
 	if client.server_capabilities.workspaceSymbolProvider then
-		wk.register(
-			{ S = { telescope_builtin.lsp_dynamic_workspace_symbols, "Open workspace symbol picker", noremap = true } },
-			{ prefix = "<leader>" }
-		)
+		vim.keymap.set("n", "<leader>S", telescope_builtin.lsp_dynamic_workspace_symbols,
+			{ noremap = true, desc = "Open workspace symbol picker" })
 	end
 	if client.server_capabilities.documentSymbolProvider then
-		wk.register(
-			{ s = { telescope_builtin.lsp_document_symbols, "Open symbol picker", noremap = true } },
-			{ prefix = "<leader>" }
-		)
+		vim.keymap.set("n", "<leader>s", telescope_builtin.lsp_document_symbols,
+			{ noremap = true, desc = "Open symbol picker" })
 	end
 end
 

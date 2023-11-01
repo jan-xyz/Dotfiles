@@ -82,25 +82,18 @@ return {
 			end
 
 			-- inspired by helix mapping: https://docs.helix-editor.com/keymap.html#space-mode
-			wk.register({
-				f = { find_file, "Open File Picker", noremap = true },
-				e = { file_browser, "Toggle or focus explorer", noremap = true },
-				E = { current_file, "Focus current file in explorer", noremap = true },
-				b = { telescope_builtin.buffers, "Open buffer picker", noremap = true },
-				j = { telescope_builtin.jumplist, "Open jumplist picker", noremap = true },
-				["'"] = { telescope_builtin.resume, "Resume last picker", noremap = true },
-				["/"] = { telescope_builtin.live_grep, "Global search in workspace folder", noremap = true },
+			vim.keymap.set("n", "<leader>f", find_file, { noremap = true, desc = "Open File Picker" })
+			vim.keymap.set("n", "<leader>e", file_browser, { noremap = true, desc = "Toggle or focus explorer" })
+			vim.keymap.set("n", "<leader>E", current_file, { noremap = true, desc = "Focus current file in explorer" })
+			vim.keymap.set("n", "<leader>b", telescope_builtin.buffers, { noremap = true, desc = "Open buffer picker" })
+			vim.keymap.set("n", "<leader>j", telescope_builtin.jumplist, { noremap = true, desc = "Open jumplist picker" })
+			vim.keymap.set("n", "<leader>'", telescope_builtin.resume, { noremap = true, desc = "Resume last picker" })
+			vim.keymap.set("n", "<leader>/", telescope_builtin.live_grep, { noremap = true, desc = "Global search" })
+			-- additional pickers
+			vim.keymap.set("n", "<leader>o", recent_files, { noremap = true, desc = "Open recent file picker" })
 
-				-- additional pickers
-				o = { recent_files, "Open Recent File picker", noremap = true },
-			}, {
-				prefix = "<leader>",
-			})
-			wk.register({
-				a = { alternate, "Go to alternate file", noremap = true },
-			}, {
-				prefix = "g",
-			})
+
+			vim.keymap.set("n", "ga", alternate, { noremap = true, desc = "Goto alternate file" })
 		end,
 	},
 }

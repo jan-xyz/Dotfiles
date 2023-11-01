@@ -13,39 +13,18 @@ return {
 			-- setup
 			require("dapui").setup()
 			-- keymap
-			local wk = require("which-key")
 			local dap = require("dap")
 			local dapui = require("dapui")
-			wk.register({
-				p = {
-					name = "Debugger", -- optional group name
-					b = { dap.toggle_breakpoint, "Toggle breakpoint", noremap = true },
-					c = { dap.continue, "Start/continue", noremap = true },
-					i = { dap.step_into, "Step into", noremap = true },
-					u = { dap.step_out, "Step out", noremap = true },
-					o = { dap.step_over, "Step over", noremap = true },
-					r = { dap.repl.open, "REPL", noremap = true },
-					t = { dapui.toggle, "Toggle UI", noremap = true },
-					p = {
-						function()
-							dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-						end,
-						"Set log point",
-						noremap = true,
-					},
-					e = {
-						function()
-							dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
-						end,
-						"set conditional break point",
-						noremap = true,
-					},
-					l = { dap.list_breakpoints, "List breakpoints", noremap = true },
-				},
-			}, {
-				mode = "n",
-				prefix = "<leader>",
-			})
+			require("which-key").register({ p = { name = "Perform debug actions" } })
+			vim.keymap.set("n", "pb", dap.toggle_breakpoint, { desc = "Toggle breakpoint", noremap = true })
+			vim.keymap.set("n", "pc", dap.continue, { desc = "Start/Continue debugger", noremap = true })
+			vim.keymap.set("n", "pi", dap.step_into, { desc = "Step into", noremap = true })
+			vim.keymap.set("n", "po", dap.step_out, { desc = "Step out", noremap = true })
+			vim.keymap.set("n", "pn", dap.step_over, { desc = "Step over", noremap = true })
+			vim.keymap.set("n", "pr", dap.restart, { desc = "Restart debugger", noremap = true })
+			vim.keymap.set("n", "px", dap.terminate, { desc = "Terminate debugger", noremap = true })
+			vim.keymap.set("n", "pt", dapui.toggle, { desc = "Toggle debugger UI", noremap = true })
+			vim.keymap.set("n", "pl", dap.list_breakpoints, { desc = "List breakpoints", noremap = true })
 
 			-- Support launch.json (Do after setting the default values)
 			require("dap.ext.vscode").load_launchjs()

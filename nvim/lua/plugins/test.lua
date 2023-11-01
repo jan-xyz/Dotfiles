@@ -12,11 +12,13 @@ return {
 			"rouge8/neotest-rust",
 			"stevanmilic/neotest-scala",
 			-- UX
-			"andythigpen/nvim-coverage",
+			{
+				"andythigpen/nvim-coverage",
+				dependencies = "nvim-lua/plenary.nvim",
+			},
 			"folke/which-key.nvim",
 		},
 		config = function()
-			local wk = require("which-key")
 			local nt = require("neotest")
 			local cov = require("coverage")
 
@@ -38,31 +40,27 @@ return {
 				},
 			})
 
-			wk.register({ t = { name = "Run Test(s)" } })
-			vim.keymap.set("n", "tn", nt.run.run, { desc = "Nearest", noremap = true })
-			vim.keymap.set("n", "tl", nt.run.run_last, { desc = "Last", noremap = true })
-			vim.keymap.set("n", "to", nt.output.open, { desc = "Show output", noremap = true })
-			vim.keymap.set("n", "ts", nt.summary.toggle, { desc = "Test summary", noremap = true })
-
-			vim.keymap.set("n", "ta", function()
+			local run_all = function()
 				nt.run.run(vim.fn.getcwd())
 				cov.load(true)
-			end, { desc = "All", noremap = true })
+			end
 
-			vim.keymap.set("n", "tf", function()
+			local run_all_in_file = function()
 				nt.run.run(vim.fn.expand("%"))
-			end, { desc = "All in file", noremap = true })
+			end
 
-			vim.keymap.set("n", "td", function()
+			local debug_nearest_test = function()
 				nt.run.run({ strategy = "dap" })
-			end, { desc = "Debug", noremap = true })
-		end,
-	},
-	{
-		"andythigpen/nvim-coverage",
-		dependencies = "nvim-lua/plenary.nvim",
-		config = function()
-			require("coverage").setup()
+			end
+
+			require("which-key").register({ t = { name = "Perform test actions" } })
+			vim.keymap.set("n", "tn", nt.run.run, { desc = "Run nearest test", noremap = true })
+			vim.keymap.set("n", "tl", nt.run.run_last, { desc = "Run last test", noremap = true })
+			vim.keymap.set("n", "to", nt.output.open, { desc = "Show output from closest test", noremap = true })
+			vim.keymap.set("n", "ts", nt.summary.toggle, { desc = "Toggle or focus the test summary", noremap = true })
+			vim.keymap.set("n", "ta", run_all, { desc = "Run all tests", noremap = true })
+			vim.keymap.set("n", "tf", run_all_in_file, { desc = "Run all tests in the current file", noremap = true })
+			vim.keymap.set("n", "td", debug_nearest_test, { desc = "Run nearest test with debugger", noremap = true })
 		end,
 	},
 }

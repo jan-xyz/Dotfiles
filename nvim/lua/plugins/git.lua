@@ -20,45 +20,13 @@ return {
 				numhl = true,
 				word_diff = false,
 			})
-			local wk = require("which-key")
 			local gitsigns = require("gitsigns")
-			-- normal mode
-			wk.register({
-				g = {
-					name = "Git",
-					b = { gitsigns.blame_line, "Blame", noremap = true },
-					d = { gitsigns.preview_hunk, "Diff", noremap = true },
-					r = { gitsigns.reset_hunk, "Reset Hunk", noremap = true },
-					s = { gitsigns.stage_hunk, "Stage Hunk", noremap = true },
-					u = { gitsigns.undo_stage_hunk, "Undo Stage Hunk", noremap = true },
-				},
-			}, {
-				mode = "n",
-				prefix = "<leader>",
-			})
-			-- visual mode
-			wk.register({
-				g = {
-					name = "Git",
-					r = {
-						function()
-							gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-						end,
-						"Reset Hunk",
-						noremap = true,
-					},
-					s = {
-						function()
-							gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-						end,
-						"Stage Hunk",
-						noremap = true,
-					},
-				},
-			}, {
-				mode = "v",
-				prefix = "<leader>",
-			})
+			require("which-key").register({ g = { name = "Perform Git operations" } }, { prefix = "<leader>" })
+			vim.keymap.set("n", "<leader>gb", gitsigns.blame_line, { noremap = true, desc = "Open blame" })
+			vim.keymap.set("n", "<leader>gd", gitsigns.preview_hunk, { noremap = true, desc = "Preview diff" })
+			vim.keymap.set({ "n", "v" }, "<leader>gr", gitsigns.reset_hunk, { noremap = true, desc = "Reset hunk" })
+			vim.keymap.set({ "n", "v" }, "<leader>gs", gitsigns.stage_hunk, { noremap = true, desc = "Stage hunk" })
+			vim.keymap.set("n", "<leader>gu", gitsigns.undo_stage_hunk, { noremap = true, desc = "Unstage hunk" })
 		end,
 	},
 }
