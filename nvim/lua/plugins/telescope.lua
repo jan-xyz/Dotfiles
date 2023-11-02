@@ -89,6 +89,7 @@ return {
 			vim.keymap.set("n", "<leader>j", telescope_builtin.jumplist, { noremap = true, desc = "Open jumplist picker" })
 			vim.keymap.set("n", "<leader>'", telescope_builtin.resume, { noremap = true, desc = "Resume last picker" })
 			vim.keymap.set("n", "<leader>/", telescope_builtin.live_grep, { noremap = true, desc = "Global search" })
+			vim.keymap.set("n", "<leader>?", telescope_builtin.keymaps, { noremap = true, desc = "Open command palette" })
 			-- additional pickers
 			vim.keymap.set("n", "<leader>o", recent_files, { noremap = true, desc = "Open recent file picker" })
 
