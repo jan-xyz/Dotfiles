@@ -40,7 +40,7 @@ function M.on_attach(client, bufnr)
 
 	-- Goto Defintion
 	if client.server_capabilities.definitionProvider then
-		vim.keymap.set("n", "gd", telescope_builtin.definition, { noremap = true, desc = "Goto definition" })
+		vim.keymap.set("n", "gd", telescope_builtin.lsp_definitions, { noremap = true, desc = "Goto definition" })
 	end
 	-- Goto Implementations
 	if client.server_capabilities.implementationProvider then
