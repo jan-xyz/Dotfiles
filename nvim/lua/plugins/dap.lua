@@ -15,7 +15,7 @@ return {
 			-- keymap
 			local dap = require("dap")
 			local dapui = require("dapui")
-			require("which-key").register({ p = { name = "Perform debug actions" } })
+			require("which-key").register({ p = { name = "Perform debug actions" } }, { prefix = "<leader>" })
 			vim.keymap.set("n", "<leader>pb", dap.toggle_breakpoint, { desc = "Toggle breakpoint", noremap = true })
 			vim.keymap.set("n", "<leader>pc", dap.continue, { desc = "Start/Continue debugger", noremap = true })
 			vim.keymap.set("n", "<leader>pi", dap.step_into, { desc = "Step into", noremap = true })
