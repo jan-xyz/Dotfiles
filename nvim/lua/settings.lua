@@ -37,15 +37,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- move with j and k wrapped lines
-vim.api.nvim_set_keymap("n", "j", "gj", { noremap = true })
-vim.api.nvim_set_keymap("n", "<down>", "gj", { noremap = true })
-vim.api.nvim_set_keymap("n", "k", "gk", { noremap = true })
-vim.api.nvim_set_keymap("n", "<up>", "gk", { noremap = true })
+vim.keymap.set({ "n", "v" }, "j", "gj", { noremap = true })
+vim.keymap.set({ "n", "v" }, "<down>", "gj", { noremap = true })
+vim.keymap.set({ "n", "v" }, "k", "gk", { noremap = true })
+vim.keymap.set({ "n", "v" }, "k", "gk", { noremap = true })
+vim.keymap.set({ "n", "v" }, "<up>", "gk", { noremap = true })
 
-vim.api.nvim_set_keymap("v", "j", "gj", { noremap = true })
-vim.api.nvim_set_keymap("v", "<down>", "gj", { noremap = true })
-vim.api.nvim_set_keymap("v", "k", "gk", { noremap = true })
-vim.api.nvim_set_keymap("v", "<up>", "gk", { noremap = true })
 
 -- set the title string
 local function title_string()
