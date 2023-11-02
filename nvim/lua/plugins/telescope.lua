@@ -48,7 +48,7 @@ return {
 					},
 					["telescope-alternate"] = {
 						mappings = {
-							{ "(.*).go",      { { "[1]_test.go", "Test", true } } },
+							{ "(.*).go",      { { "[1]_test.go", "Test" } } },
 							{ "(.*)_test.go", { { "[1].go", "Original", true } } },
 						},
 					},
