@@ -8,7 +8,7 @@ return {
 				direction = "float",
 			})
 
-			vim.keymap.set({ "n", "t" }, "<leader>t", "<cmd>ToggleTerm<CR>",
+			vim.keymap.set({ "n", "t" }, "<C-n>", "<cmd>ToggleTerm<CR>",
 				{ noremap = true, desc = "Focus or toggle Terminal" })
 		end,
 	},
