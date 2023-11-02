@@ -58,7 +58,6 @@ return {
 			require("telescope").load_extension("file_browser")
 			require("telescope").load_extension("telescope-alternate")
 
-			local wk = require("which-key")
 			local telescope_builtin = require("telescope.builtin")
 
 			local file_browser = function()
