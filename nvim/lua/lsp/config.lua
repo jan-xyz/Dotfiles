@@ -18,8 +18,12 @@ function M.on_attach(client, bufnr)
 		telescope_builtin.diagnostics({ bufnr = 0 })
 	end
 	vim.keymap.set("n", "<leader>d", current_file_diagnostics, { noremap = true, desc = "Open diagnostics picker" })
-	vim.keymap.set("n", "<leader>D", telescope_builtin.diagnostics,
-		{ noremap = true, desc = "Open workspace diagnostics picker" })
+	vim.keymap.set(
+		"n",
+		"<leader>D",
+		telescope_builtin.diagnostics,
+		{ noremap = true, desc = "Open workspace diagnostics picker" }
+	)
 
 	-- Code Lens
 	if client.server_capabilities.codeLensProvider then
@@ -44,7 +48,12 @@ function M.on_attach(client, bufnr)
 	end
 	-- Goto Implementations
 	if client.server_capabilities.implementationProvider then
-		vim.keymap.set("n", "gi", telescope_builtin.lsp_implementations, { noremap = true, desc = "Goto Implementations" })
+		vim.keymap.set(
+			"n",
+			"gi",
+			telescope_builtin.lsp_implementations,
+			{ noremap = true, desc = "Goto Implementations" }
+		)
 	end
 
 	-- Find References
@@ -54,7 +63,12 @@ function M.on_attach(client, bufnr)
 
 	-- Hover
 	if client.server_capabilities.hoverProvider then
-		vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover, { noremap = true, desc = "Show docs for item under cursor" })
+		vim.keymap.set(
+			"n",
+			"<leader>k",
+			vim.lsp.buf.hover,
+			{ noremap = true, desc = "Show docs for item under cursor" }
+		)
 	end
 
 	-- Rename
@@ -64,17 +78,30 @@ function M.on_attach(client, bufnr)
 
 	-- Code Action
 	if client.server_capabilities.codeActionProvider then
-		vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, { noremap = true, desc = "Perform code action" })
+		vim.keymap.set(
+			{ "n", "v" },
+			"<leader>a",
+			vim.lsp.buf.code_action,
+			{ noremap = true, desc = "Perform code action" }
+		)
 	end
 
 	-- Symbols
 	if client.server_capabilities.workspaceSymbolProvider then
-		vim.keymap.set("n", "<leader>S", telescope_builtin.lsp_dynamic_workspace_symbols,
-			{ noremap = true, desc = "Open workspace symbol picker" })
+		vim.keymap.set(
+			"n",
+			"<leader>S",
+			telescope_builtin.lsp_dynamic_workspace_symbols,
+			{ noremap = true, desc = "Open workspace symbol picker" }
+		)
 	end
 	if client.server_capabilities.documentSymbolProvider then
-		vim.keymap.set("n", "<leader>s", telescope_builtin.lsp_document_symbols,
-			{ noremap = true, desc = "Open symbol picker" })
+		vim.keymap.set(
+			"n",
+			"<leader>s",
+			telescope_builtin.lsp_document_symbols,
+			{ noremap = true, desc = "Open symbol picker" }
+		)
 	end
 end
 

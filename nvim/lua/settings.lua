@@ -43,7 +43,6 @@ vim.keymap.set({ "n", "v" }, "k", "gk", { noremap = true })
 vim.keymap.set({ "n", "v" }, "k", "gk", { noremap = true })
 vim.keymap.set({ "n", "v" }, "<up>", "gk", { noremap = true })
 
-
 -- set the title string
 local function title_string()
 	if vim.fn.getcwd() == vim.env.HOME then
@@ -52,5 +51,5 @@ local function title_string()
 		return vim.fn.fnamemodify(vim.fn.getcwd(), ":tail") .. " (nvim)"
 	end
 end
-vim.o.title = true                 -- activate title string
+vim.o.title = true -- activate title string
 vim.o.titlestring = title_string() -- titlestring template

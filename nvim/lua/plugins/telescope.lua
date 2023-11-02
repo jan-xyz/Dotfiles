@@ -48,7 +48,7 @@ return {
 					},
 					["telescope-alternate"] = {
 						mappings = {
-							{ "(.*).go",      { { "[1]_test.go", "Test" } } },
+							{ "(.*).go", { { "[1]_test.go", "Test" } } },
 							{ "(.*)_test.go", { { "[1].go", "Original", true } } },
 						},
 					},
@@ -86,13 +86,22 @@ return {
 			vim.keymap.set("n", "<leader>e", file_browser, { noremap = true, desc = "Toggle or focus explorer" })
 			vim.keymap.set("n", "<leader>E", current_file, { noremap = true, desc = "Focus current file in explorer" })
 			vim.keymap.set("n", "<leader>b", telescope_builtin.buffers, { noremap = true, desc = "Open buffer picker" })
-			vim.keymap.set("n", "<leader>j", telescope_builtin.jumplist, { noremap = true, desc = "Open jumplist picker" })
+			vim.keymap.set(
+				"n",
+				"<leader>j",
+				telescope_builtin.jumplist,
+				{ noremap = true, desc = "Open jumplist picker" }
+			)
 			vim.keymap.set("n", "<leader>'", telescope_builtin.resume, { noremap = true, desc = "Resume last picker" })
 			vim.keymap.set("n", "<leader>/", telescope_builtin.live_grep, { noremap = true, desc = "Global search" })
-			vim.keymap.set("n", "<leader>?", telescope_builtin.keymaps, { noremap = true, desc = "Open command palette" })
+			vim.keymap.set(
+				"n",
+				"<leader>?",
+				telescope_builtin.keymaps,
+				{ noremap = true, desc = "Open command palette" }
+			)
 			-- additional pickers
 			vim.keymap.set("n", "<leader>o", recent_files, { noremap = true, desc = "Open recent file picker" })
-
 
 			vim.keymap.set("n", "ga", alternate, { noremap = true, desc = "Goto alternate file" })
 		end,
