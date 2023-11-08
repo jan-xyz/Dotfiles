@@ -12,7 +12,6 @@ return {
 		"lewis6991/gitsigns.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"folke/which-key.nvim",
 		},
 		config = function()
 			require("gitsigns").setup({
@@ -21,7 +20,6 @@ return {
 				word_diff = false,
 			})
 			local gitsigns = require("gitsigns")
-			require("which-key").register({ g = { name = "Perform Git operations" } }, { prefix = "<leader>" })
 			vim.keymap.set("n", "<leader>gb", gitsigns.blame_line, { noremap = true, desc = "Open blame" })
 			vim.keymap.set("n", "<leader>gd", gitsigns.preview_hunk, { noremap = true, desc = "Preview diff" })
 			vim.keymap.set({ "n", "v" }, "<leader>gr", gitsigns.reset_hunk, { noremap = true, desc = "Reset hunk" })

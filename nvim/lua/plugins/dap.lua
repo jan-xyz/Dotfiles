@@ -3,7 +3,6 @@ return {
 		"rcarriga/nvim-dap-ui",
 		dependencies = {
 			"mfussenegger/nvim-dap",
-			"folke/which-key.nvim",
 		},
 		config = function()
 			vim.fn.sign_define("DapBreakpoint", { text = "⏺", texthl = "", linehl = "", numhl = "" })
@@ -15,16 +14,15 @@ return {
 			-- keymap
 			local dap = require("dap")
 			local dapui = require("dapui")
-			require("which-key").register({ p = { name = "Perform debug actions" } }, { prefix = "<leader>" })
-			vim.keymap.set("n", "<leader>pb", dap.toggle_breakpoint, { desc = "Toggle breakpoint", noremap = true })
-			vim.keymap.set("n", "<leader>pc", dap.continue, { desc = "Start/Continue debugger", noremap = true })
-			vim.keymap.set("n", "<leader>pi", dap.step_into, { desc = "Step into", noremap = true })
-			vim.keymap.set("n", "<leader>po", dap.step_out, { desc = "Step out", noremap = true })
-			vim.keymap.set("n", "<leader>pn", dap.step_over, { desc = "Step over", noremap = true })
-			vim.keymap.set("n", "<leader>pr", dap.restart, { desc = "Restart debugger", noremap = true })
-			vim.keymap.set("n", "<leader>px", dap.terminate, { desc = "Terminate debugger", noremap = true })
-			vim.keymap.set("n", "<leader>pt", dapui.toggle, { desc = "Toggle debugger UI", noremap = true })
-			vim.keymap.set("n", "<leader>pl", dap.list_breakpoints, { desc = "List breakpoints", noremap = true })
+			vim.keymap.set("n", "<leader>zb", dap.toggle_breakpoint, { desc = "Toggle breakpoint", noremap = true })
+			vim.keymap.set("n", "<leader>zc", dap.continue, { desc = "Start/Continue debugger", noremap = true })
+			vim.keymap.set("n", "<leader>zi", dap.step_into, { desc = "Step into", noremap = true })
+			vim.keymap.set("n", "<leader>zo", dap.step_out, { desc = "Step out", noremap = true })
+			vim.keymap.set("n", "<leader>zn", dap.step_over, { desc = "Step over", noremap = true })
+			vim.keymap.set("n", "<leader>zr", dap.restart, { desc = "Restart debugger", noremap = true })
+			vim.keymap.set("n", "<leader>zx", dap.terminate, { desc = "Terminate debugger", noremap = true })
+			vim.keymap.set("n", "<leader>zt", dapui.toggle, { desc = "Toggle debugger UI", noremap = true })
+			vim.keymap.set("n", "<leader>zl", dap.list_breakpoints, { desc = "List breakpoints", noremap = true })
 
 			-- Support launch.json (Do after setting the default values)
 			require("dap.ext.vscode").load_launchjs()

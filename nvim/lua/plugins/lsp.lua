@@ -3,7 +3,6 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"nvim-telescope/telescope.nvim",
-			"folke/which-key.nvim",
 			"nvim-lua/plenary.nvim",
 			{ "lvimuser/lsp-inlayhints.nvim", opts = {} },
 

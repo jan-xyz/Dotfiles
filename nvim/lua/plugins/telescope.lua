@@ -4,7 +4,6 @@ return {
 		dependencies = {
 			"nvim-lua/popup.nvim",
 			"nvim-lua/plenary.nvim",
-			"folke/which-key.nvim",
 			"nvim-lua/plenary.nvim",
 
 			-- Plugins
@@ -101,6 +100,7 @@ return {
 			)
 			-- additional pickers
 			vim.keymap.set("n", "<leader>o", recent_files, { noremap = true, desc = "Open recent file picker" })
+			vim.keymap.set("n", "<leader>g?", telescope_builtin.git_status, { noremap = true, desc = "status" })
 
 			vim.keymap.set("n", "ga", alternate, { noremap = true, desc = "Goto alternate file" })
 		end,

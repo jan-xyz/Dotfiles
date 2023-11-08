@@ -16,7 +16,6 @@ return {
 				"andythigpen/nvim-coverage",
 				dependencies = "nvim-lua/plenary.nvim",
 			},
-			"folke/which-key.nvim",
 		},
 		config = function()
 			local nt = require("neotest")
@@ -53,7 +52,6 @@ return {
 				nt.run.run({ strategy = "dap" })
 			end
 
-			require("which-key").register({ t = { name = "Perform test actions" } })
 			vim.keymap.set("n", "tn", nt.run.run, { desc = "Run nearest test", noremap = true })
 			vim.keymap.set("n", "tl", nt.run.run_last, { desc = "Run last test", noremap = true })
 			vim.keymap.set("n", "to", nt.output.open, { desc = "Show output from closest test", noremap = true })
