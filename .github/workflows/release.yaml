@@ -21,7 +21,7 @@ jobs:
           make test build
           gzip dotfiles
           mv dotfiles.gz dotfiles-$(uname -s)-$(uname -m).gz
-          echo "::set-output name=archive_name::dotfiles-$(uname -s)-$(uname -m).gz"
+          echo "archive_name=dotfiles-$(uname -s)-$(uname -m).gz" >> "$GITHUB_OUTPUT"
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
