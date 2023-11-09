@@ -33,7 +33,12 @@ vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
 
 -- highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = vim.highlight.on_yank,
+	group = vim.api.nvim_create_augroup("highlight_yank", {}),
+	desc = "Hightlight selection on yank",
+	pattern = "*",
+	callback = function()
+		vim.highlight.on_yank { higroup = "IncSearch", timeout = 300 }
+	end,
 })
 
 -- move with j and k wrapped lines
