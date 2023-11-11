@@ -35,6 +35,8 @@ bottles = [
   "gopls",
   "gradle",
   "gradle-completion",
+  "haskell-language-server",
+  "haskell-stack",
   "htop",
   "iterm2",
   "jq",
@@ -98,6 +100,9 @@ packages = [
   "pyls-black",
   "yapf",
   "python-lsp-server",
+  "pylsp-mypy",
+  "python-lsp-black",
+  "python-lsp-isort",
   "virtualenvwrapper",
 ]
 
