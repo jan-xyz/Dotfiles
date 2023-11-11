@@ -16,6 +16,7 @@ vim.opt.foldcolumn = "1"
 vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 vim.opt.scrolloff = 4
+vim.opt.undofile = true
 vim.g.smoothscroll = true
 vim.g.mapleader = " "
 
