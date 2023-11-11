@@ -20,6 +20,7 @@ return {
 			require("languages.dart").setup()
 			require("languages.docker").setup()
 			require("languages.go").setup()
+			require("languages.haskell").setup()
 			require("languages.jsonnet").setup()
 			require("languages.julia").setup()
 			require("languages.kotlin").setup()
