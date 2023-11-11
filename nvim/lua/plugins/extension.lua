@@ -22,6 +22,13 @@ return {
 		},
 	},
 
+	{
+		"j-hui/fidget.nvim",
+		opts = {
+			-- options
+		},
+	},
+
 	-- modern take on `vim.ui.select` and `vim.ui.input`
 	{
 		"stevearc/dressing.nvim",

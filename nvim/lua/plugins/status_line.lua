@@ -3,7 +3,6 @@ return {
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
-			"arkav/lualine-lsp-progress",
 		},
 		config = function()
 			local telescope_builtin = require("telescope.builtin")
@@ -39,7 +38,7 @@ return {
 					lualine_a = { "mode" },
 					lualine_b = { { "filename", path = 1, on_click = copy_path_to_clipboard } },
 					lualine_c = { { "branch", on_click = switch_branch } },
-					lualine_x = { "lsp_progress" },
+					lualine_x = {},
 					lualine_y = { { "diagnostics", on_click = show_diagnostics } },
 					lualine_z = { { "filetype", draw_empty = true, on_click = set_filetype } },
 				},
