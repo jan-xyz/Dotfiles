@@ -8,10 +8,12 @@ return {
 	},
 	-- {
 	-- 	"nordtheme/vim",
-	-- 	name = "nord-vim"
+	-- 	priority = 100,
+	-- 	name = "nord-vim",
 	-- },
 	{
 		"catppuccin/nvim",
+		priority = 100,
 		name = "catppuccin",
 	},
 }
