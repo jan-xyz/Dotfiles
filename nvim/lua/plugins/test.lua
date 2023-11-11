@@ -39,6 +39,26 @@ return {
 				quickfix = {
 					enabled = false,
 				},
+				highlights = {
+					adapter_name = "Title",
+					border = "VertSplit",
+					dir = "Directory",
+					expand_marker = "Normal",
+					failed = "DiagnosticError",
+					file = "Normal",
+					focused = "Underline",
+					indent = "Normal",
+					marked = "Bold",
+					namespace = "Title",
+					passed = "DiagnosticOK",
+					running = "DiagnosticInfo",
+					select_win = "Title",
+					skipped = "DiagnosticWarn",
+					target = "NeotestTarget",
+					test = "String",
+					unknown = "Normal",
+					watching = "DiagnosticWarn",
+				},
 			})
 
 			local run_all = function()
@@ -54,6 +74,10 @@ return {
 				nt.run.run({ strategy = "dap" })
 			end
 
+			local watch_current_file = function()
+				require("neotest").watch.toggle(vim.fn.expand("%"))
+			end
+
 			vim.keymap.set("n", "tn", nt.run.run, { desc = "Run nearest test", noremap = true })
 			vim.keymap.set("n", "tl", nt.run.run_last, { desc = "Run last test", noremap = true })
 			vim.keymap.set("n", "to", nt.output.open, { desc = "Show output from closest test", noremap = true })
@@ -61,6 +85,7 @@ return {
 			vim.keymap.set("n", "ta", run_all, { desc = "Run all tests", noremap = true })
 			vim.keymap.set("n", "tf", run_all_in_file, { desc = "Run all tests in the current file", noremap = true })
 			vim.keymap.set("n", "td", debug_nearest_test, { desc = "Run nearest test with debugger", noremap = true })
+			vim.keymap.set("n", "tw", watch_current_file, { desc = "Toggle watching the current file", noremap = true })
 		end,
 	},
 }
