@@ -29,6 +29,18 @@ function M.on_attach(client, bufnr)
 		telescope_builtin.diagnostics,
 		{ noremap = true, buffer = bufnr, desc = "Open workspace diagnostics picker" }
 	)
+	vim.keymap.set(
+		"n",
+		"[d",
+		function() vim.diagnostic.goto_prev({ float = false, wrap = false }) end,
+		{ noremap = true, buffer = bufnr, desc = "Goto previous diagnostic in buffer" }
+	)
+	vim.keymap.set(
+		"n",
+		"]d",
+		function() vim.diagnostic.goto_next({ float = false, wrap = false }) end,
+		{ noremap = true, buffer = bufnr, desc = "Goto next diagnostic in buffer" }
+	)
 
 	-- Code Lens
 	if client.server_capabilities.codeLensProvider then
