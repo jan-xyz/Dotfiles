@@ -9,6 +9,7 @@ return {
 			"nvim-neotest/neotest-plenary",
 			-- Languages
 			"nvim-neotest/neotest-go",
+			"nvim-neotest/neotest-python",
 			"rouge8/neotest-rust",
 			"stevanmilic/neotest-scala",
 			-- UX
@@ -33,6 +34,7 @@ return {
 					require("neotest-plenary"),
 					require("neotest-rust"),
 					require("neotest-scala"),
+					require("neotest-python"),
 				},
 				quickfix = {
 					enabled = false,
