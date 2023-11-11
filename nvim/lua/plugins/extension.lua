@@ -6,7 +6,23 @@ return {
 		end,
 	},
 
-	-- moden take on `vim.ui.select` and `vim.ui.input`
+	-- Add indentation guides even on blank lines
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {
+			scope = {
+				highlight = "Keyword",
+			},
+			exclude = {
+				filetypes = {
+					"dashboard",
+				},
+			},
+		},
+	},
+
+	-- modern take on `vim.ui.select` and `vim.ui.input`
 	{
 		"stevearc/dressing.nvim",
 		config = function()
