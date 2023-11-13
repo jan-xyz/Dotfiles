@@ -12,6 +12,7 @@ return {
 			"nvim-neotest/neotest-python",
 			"rouge8/neotest-rust",
 			"stevanmilic/neotest-scala",
+			"mrcjkb/neotest-haskell",
 			-- UX
 			{
 				"andythigpen/nvim-coverage",
@@ -35,6 +36,16 @@ return {
 					require("neotest-rust"),
 					require("neotest-scala"),
 					require("neotest-python"),
+					require("neotest-haskell")({
+						build_tools = { "stack", "cabal" },
+						frameworks = {
+							"hspec",
+							-- The other two are disabled because it kept running tests with
+							-- tasty and the tests crashed.
+							-- "tasty",
+							-- "sydtest",
+						},
+					}),
 				},
 				quickfix = {
 					enabled = false,
