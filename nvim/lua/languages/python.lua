@@ -15,7 +15,10 @@ function M.setup()
 	local possible_environments = {
 		cwd .. "/venv/bin/python",
 		cwd .. "/.venv/bin/python",
+		cwd .. "/env/bin/python",
+		cwd .. "/.env/bin/python",
 		cwd .. "/virtualenv/bin/python",
+		cwd .. "/.virtualenv/bin/python",
 	}
 	for _, environment in ipairs(possible_environments) do
 		-- determine if the file is readable
