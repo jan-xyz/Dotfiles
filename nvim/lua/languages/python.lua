@@ -25,7 +25,14 @@ function M.setup()
 		local f = io.open(environment, "r")
 		if f ~= nil and io.close(f) then
 			vim.notify("setting python environment for lsp to: " .. environment, vim.log.levels.DEBUG)
-			config["settings"] = { pylsp = { plugins = { jedi = { environment = environment } } } }
+			config["settings"] = {
+				pylsp = {
+					plugins = {
+						jedi = { environment = environment },
+						pylsp_mypy = { overrides = { "--python-executable", environment, true } },
+					},
+				},
+			}
 			break
 		end
 	end
