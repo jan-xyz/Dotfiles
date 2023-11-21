@@ -18,6 +18,7 @@ function M.setup()
 		cwd .. "/virtualenv/bin/python",
 	}
 	for _, environment in ipairs(possible_environments) do
+		-- determine if the file is readable
 		local f = io.open(environment, "r")
 		if f ~= nil and io.close(f) then
 			vim.notify("setting python environment for lsp to: " .. environment, vim.log.levels.DEBUG)
