@@ -15,3 +15,4 @@ target
 metals.sbt
 .bloop
 .npmrc
+venv
