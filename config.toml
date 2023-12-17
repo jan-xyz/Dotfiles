@@ -90,6 +90,7 @@ packages = [
   "autopep8",
   "flake8",
   "jedi",
+  "lookatme",
   "mccabe",
   "mypy",
   "neovim-remote",
