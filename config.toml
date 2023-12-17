@@ -88,22 +88,22 @@ modules =[
 [python]
 packages = [
   "autopep8",
-  "pylint",
   "flake8",
-  "rope",
+  "jedi",
   "mccabe",
+  "mypy",
   "neovim-remote",
   "pyflakes",
-  "jedi",
-  "pynvim",
-  "mypy",
+  "pylint",
   "pyls-black",
-  "yapf",
-  "python-lsp-server",
   "pylsp-mypy",
+  "pynvim",
   "python-lsp-black",
   "python-lsp-isort",
+  "python-lsp-server",
+  "rope",
   "virtualenvwrapper",
+  "yapf",
 ]
 
 [vscode]
