@@ -113,6 +113,7 @@ extensions = [
   "vscodevim.vim",
   "hbenl.vscode-test-explorer-liveshare",
   "arcticicestudio.nord-visual-studio-code",
+  "mhutchie.git-graph",
   # tools
   "ms-azuretools.vscode-docker",
   "ms-kubernetes-tools.vscode-kubernetes-tools",
