@@ -65,5 +65,10 @@
     "rust-analyzer.imports.granularity.enforce": true,
     "rust-analyzer.imports.granularity.group": "item",
     "rust-analyzer.imports.prefix": "crate",
-    "go.inlayHints.rangeVariableTypes": true
+    "go.inlayHints.rangeVariableTypes": true,
+    "[go][rust]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
+    }
 }
