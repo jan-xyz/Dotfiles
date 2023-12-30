@@ -7,6 +7,9 @@ return {
 			vim.diagnostic.config({
 				virtual_text = false,
 			})
+
+			-- https://github.com/folke/lazy.nvim/issues/620
+			vim.diagnostic.config({ virtual_lines = false }, require("lazy.core.config").ns)
 		end,
 	},
 }
