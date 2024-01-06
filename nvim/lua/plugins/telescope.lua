@@ -1,3 +1,23 @@
+-- this auto command and the local function work together
+-- to format and color a path output in Telescope.
+-- See: https://github.com/nvim-telescope/telescope.nvim/issues/2014#issuecomment-1873229658
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "TelescopeResults",
+	callback = function(ctx)
+		vim.api.nvim_buf_call(ctx.buf, function()
+			vim.fn.matchadd("TelescopeParent", "\t\t.*$")
+			vim.api.nvim_set_hl(0, "TelescopeParent", { link = "Comment" })
+		end)
+	end,
+})
+
+local function filenameFirst(_, path)
+	local tail = vim.fs.basename(path)
+	local parent = vim.fs.dirname(path)
+	if parent == "." then return tail end
+	return string.format("%s\t\t%s", tail, parent)
+end
+
 return {
 	{
 		"nvim-telescope/telescope.nvim",
@@ -15,6 +35,11 @@ return {
 				pickers = {
 					diagnostics = {
 						theme = "ivy",
+						path_display = filenameFirst,
+						line_width = "full",
+					},
+					find_files = {
+						path_display = filenameFirst,
 					},
 				},
 				defaults = {
@@ -39,7 +64,6 @@ return {
 				},
 				extensions = {
 					file_browser = {
-						-- theme = "ivy",
 						-- disables netrw and use telescope-file-browser in its place
 						hijack_netrw = true,
 						git_status = true,
@@ -47,7 +71,7 @@ return {
 					},
 					["telescope-alternate"] = {
 						mappings = {
-							{ "(.*).go", { { "[1]_test.go", "Test" } } },
+							{ "(.*).go",      { { "[1]_test.go", "Test" } } },
 							{ "(.*)_test.go", { { "[1].go", "Original", true } } },
 						},
 					},
