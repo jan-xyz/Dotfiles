@@ -1,6 +1,7 @@
 return {
 	{
 		"Cassin01/wf.nvim",
+		priority = 999,
 		config = function()
 			-- Which Key
 			local groups = {
