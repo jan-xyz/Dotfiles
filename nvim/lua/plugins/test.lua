@@ -24,6 +24,7 @@ return {
 			local cov = require("coverage")
 
 			cov.setup()
+			---@diagnostic disable-next-line: missing-fields
 			nt.setup({
 				adapters = {
 					require("neotest-go")({
@@ -47,6 +48,7 @@ return {
 						},
 					}),
 				},
+				---@diagnostic disable-next-line: missing-fields
 				quickfix = {
 					enabled = false,
 				},
@@ -82,6 +84,7 @@ return {
 			end
 
 			local debug_nearest_test = function()
+				---@diagnostic disable-next-line: missing-fields
 				nt.run.run({ strategy = "dap" })
 			end
 
