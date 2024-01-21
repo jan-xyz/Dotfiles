@@ -32,7 +32,7 @@ return {
 					},
 					center = {
 						{
-							icon = "  ",
+							icon = "  ",
 							desc = "Recently opened files                   ",
 							action = "Telescope oldfiles cwd_only=true",
 							key = "o",
@@ -44,13 +44,13 @@ return {
 							key = "e",
 						},
 						{
-							icon = "  ",
-							desc = "Find  word                              ",
+							icon = "  ",
+							desc = "Find word                               ",
 							action = "Telescope live_grep",
 							key = "/",
 						},
 						{
-							icon = "󰚰  ",
+							icon = "⬆  ",
 							desc = "Update Center                           ",
 							action = "Lazy home",
 							key = "u",
