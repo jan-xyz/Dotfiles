@@ -8,6 +8,7 @@ return {
 			"nvim-treesitter/nvim-treesitter",
 		},
 		build = ":Neorg sync-parsers",
+		version = "*",
 		opts = {
 			load = {
 				["core.defaults"] = {}, -- core modules
