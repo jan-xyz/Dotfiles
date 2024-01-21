@@ -24,7 +24,7 @@
   "lualine.nvim": { "branch": "master", "commit": "566b7036f717f3d676362742630518a47f132fff" },
   "markdown-preview.nvim": { "branch": "master", "commit": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee" },
   "neodev.nvim": { "branch": "main", "commit": "7cb4f7f29c6bf6f1d21a37f6dd6d12ba64266b09" },
-  "neorg": { "branch": "main", "commit": "a489e7c4f9d7edb3caa04250d07bb6c6a5b9b890" },
+  "neorg": { "branch": "main", "commit": "4cbedbbdd4ccb6f45a2045477f5658a1311dffa3" },
   "neotest": { "branch": "master", "commit": "6aa6e4529a4a125b49c48541b97ba146ceee2441" },
   "neotest-go": { "branch": "main", "commit": "d29d20d912aca81a07c50022d880cc66f0d26542" },
   "neotest-haskell": { "branch": "master", "commit": "b1e23c611bca5bd9bddf00546c62042ff057f0ac" },
