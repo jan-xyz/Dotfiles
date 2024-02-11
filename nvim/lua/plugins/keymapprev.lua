@@ -1,27 +1,28 @@
 return {
 	{
-		"Cassin01/wf.nvim",
+		"folke/which-key.nvim",
+		event = "VeryLazy",
 		priority = 999,
-		config = function()
-			-- Which Key
-			local groups = {
-				["<Space>g"] = "Perform Git operations",
-				["<Space>z"] = "Perform Debug operations",
-			}
-			local which_key = require("wf.builtin.which_key")
+		init = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+		end,
 
-			vim.keymap.set(
-				"n",
-				"<Leader>",
-				which_key({ text_insert_in_advance = "<Leader>", key_group_dict = groups }),
-				{ noremap = true, silent = true, desc = "/" }
-			)
-			vim.keymap.set(
-				"n",
-				"t",
-				which_key({ text_insert_in_advance = "t" }),
-				{ noremap = true, silent = true, desc = "Perform tests" }
-			)
+		config = function()
+			require("which-key").setup({
+				-- [top, right, bottom, left]
+				window = {
+					border = "single",
+					margin = { 1, 0, 0, 0.6 },
+				},
+				layout = { height = { min = 4, max = 75 } },
+			})
+			local wk = require("which-key")
+			wk.register({
+				["<leader>g"] = { name = "Perform Git operations" },
+				["<leader>z"] = { name = "Perform Debug operations" },
+				["t"] = { name = "Perform tests" },
+			})
 		end,
 	},
 }
