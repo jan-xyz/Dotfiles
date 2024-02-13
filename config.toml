@@ -61,6 +61,7 @@ bottles = [
   "pyenv",
   "pyenv-virtualenv",
   "r",
+  "revive",
   "ripgrep",
   "rustup-init",
   "rust-analyzer",
