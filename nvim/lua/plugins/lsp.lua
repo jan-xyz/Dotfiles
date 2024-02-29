@@ -4,6 +4,8 @@ return {
 		dependencies = {
 			"nvim-telescope/telescope.nvim",
 			"nvim-lua/plenary.nvim",
+			{ "aznhe21/actions-preview.nvim", opts = {} },
+			{ "kosayoda/nvim-lightbulb", opts = { sign = { text = "" }, autocmd = { enabled = true } } },
 			{ "lvimuser/lsp-inlayhints.nvim", opts = {} },
 
 			-- Language dependencies

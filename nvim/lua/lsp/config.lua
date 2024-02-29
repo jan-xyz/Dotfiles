@@ -104,10 +104,14 @@ function M.on_attach(client, bufnr)
 
 	-- Code Action
 	if client.server_capabilities.codeActionProvider then
+		local codeAction = vim.lsp.buf.code_action
+		if client.server_capabilities.codeActionProvider.resolveProvider then
+			codeAction = require("actions-preview").code_actions
+		end
 		vim.keymap.set(
 			{ "n", "v" },
 			"<leader>a",
-			vim.lsp.buf.code_action,
+			codeAction,
 			{ noremap = true, buffer = bufnr, desc = "Perform code action" }
 		)
 	end
