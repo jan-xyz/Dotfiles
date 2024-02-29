@@ -76,6 +76,7 @@ bottles = [
   "visual-studio-code",
   "watch",
   "wget",
+  "zoxide",
   "zplug",
   "zsh",
 ]

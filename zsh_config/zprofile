@@ -19,6 +19,12 @@ path=(
 )
 
 #
+# cd
+#
+eval "$(zoxide init zsh)"
+alias cd=z
+
+#
 # Pyenv
 #
 export PYENV_ROOT="${HOME}/.pyenv"
