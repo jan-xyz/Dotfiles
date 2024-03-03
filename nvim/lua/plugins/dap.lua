@@ -42,8 +42,7 @@ return {
 						return vim.fn.input({
 							prompt = "Path to executable: ",
 							default = vim.fn.getcwd() .. "/target/debug/",
-							completion =
-							"file",
+							completion = "file",
 						})
 					end,
 					cwd = "${workspaceFolder}",

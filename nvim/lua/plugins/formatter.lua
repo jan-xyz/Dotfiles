@@ -12,7 +12,6 @@ return {
 				},
 			})
 
-
 			-- autoformat on save
 			local id = vim.api.nvim_create_autocmd("BufWritePost", {
 				callback = function()
@@ -38,12 +37,7 @@ return {
 				vim.notify("enabled formmatting", vim.log.levels.INFO)
 			end
 
-			vim.keymap.set(
-				{ "n" },
-				"<leader>F",
-				format_toggle,
-				{ noremap = true, desc = "Toggle Formatting" }
-			)
+			vim.keymap.set({ "n" }, "<leader>F", format_toggle, { noremap = true, desc = "Toggle Formatting" })
 		end,
 	},
 }

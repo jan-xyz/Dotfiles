@@ -14,7 +14,9 @@ vim.api.nvim_create_autocmd("FileType", {
 local function filenameFirst(_, path)
 	local tail = vim.fs.basename(path)
 	local parent = vim.fs.dirname(path)
-	if parent == "." then return tail end
+	if parent == "." then
+		return tail
+	end
 	return string.format("%s\t\t%s", tail, parent)
 end
 
@@ -71,7 +73,7 @@ return {
 					},
 					["telescope-alternate"] = {
 						mappings = {
-							{ "(.*).go",      { { "[1]_test.go", "Test" } } },
+							{ "(.*).go", { { "[1]_test.go", "Test" } } },
 							{ "(.*)_test.go", { { "[1].go", "Original", true } } },
 						},
 					},
