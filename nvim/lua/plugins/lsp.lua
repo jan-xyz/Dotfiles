@@ -34,6 +34,7 @@ return {
 			},
 		},
 		config = function()
+			require("languages.ansible").setup()
 			require("languages.bash").setup()
 			require("languages.cpp").setup()
 			require("languages.dart").setup()

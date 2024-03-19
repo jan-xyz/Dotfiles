@@ -2,14 +2,17 @@
 [homebrew]
 taps = [
   "homebrew/cask-fonts",
-  "homebrew/cask-drivers",
-  "bufbuild/buf",
 ]
 bottles = [
   "aerial",
+  "ansible",
+  "ansible-language-server",
+  "ansible-lint",
+  "autopep8",
   "awscli",
   "aws-cdk",
   "bash",
+  "bash-language-server",
   "brooklyn",
   "buf",
   "ccls",
@@ -19,15 +22,17 @@ bottles = [
   "colordiff",
   "corsair-icue",
   "dart-sdk",
-  "ddate",
+  "dockerfile-language-server",
   "delve",
   "firefox",
+  "flake8",
   "font-fira-code-nerd-font",
   "font-meslo-for-powerline",
   "font-source-code-pro-for-powerline",
   "fzf",
   "gh",
   "git",
+  "git-delta",
   "git-lfs",
   "github",
   "go",
@@ -52,12 +57,14 @@ bottles = [
   "monitorcontrol",
   "mas",
   "neovim",
+  "neovim-remote",
   "node",
   "openjdk",
   "openjdk@11",
   "postman",
   "podman",
   "python",
+  "python-lsp-server",
   "pyenv",
   "pyenv-virtualenv",
   "r",
@@ -69,13 +76,17 @@ bottles = [
   "shfmt",
   "signal",
   "slack",
+  "staticcheck",
   "stern",
   "stylua",
   "subversion",
   "telegram",
+  "typescript",
+  "typescript-language-server",
   "visual-studio-code",
   "watch",
   "wget",
+  "yaml-language-server",
   "zoxide",
   "zplug",
   "zsh",
@@ -85,28 +96,6 @@ bottles = [
 modules =[
   "LanguageServer",
   "Pluto"
-]
-
-[python]
-packages = [
-  "autopep8",
-  "flake8",
-  "jedi",
-  "lookatme",
-  "mccabe",
-  "mypy",
-  "neovim-remote",
-  "pyflakes",
-  "pylint",
-  "pyls-black",
-  "pylsp-mypy",
-  "pynvim",
-  "python-lsp-black",
-  "python-lsp-isort",
-  "python-lsp-server",
-  "rope",
-  "virtualenvwrapper",
-  "yapf",
 ]
 
 [vscode]
@@ -133,19 +122,11 @@ extensions = [
 
 [npm]
 packages = [
-  "bash-language-server",
-  "dockerfile-language-server-nodejs",
   "vim-language-server",
-  "yaml-language-server",
-  "typescript",
-  "typescript-language-server",
 ]
 
 [go]
 modules = [
-  { exe = "staticcheck", path = "honnef.co/go/tools/cmd/staticcheck"},
-  { exe = "revive", path = "github.com/mgechev/revive"},
-  { exe = "bufls", path = "github.com/bufbuild/buf-language-server/cmd/bufls"},
   { exe = "jsonnet-language-server", path = "github.com/grafana/jsonnet-language-server"},
 ]
 
