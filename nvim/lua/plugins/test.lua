@@ -1,14 +1,16 @@
 return {
 	{
 		"nvim-neotest/neotest",
+		version = "*",
 		dependencies = {
 			-- General
+			"nvim-neotest/nvim-nio",
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
 			"antoinemadec/FixCursorHold.nvim",
-			"nvim-neotest/neotest-plenary",
 			-- Languages
 			"nvim-neotest/neotest-go",
+			"nvim-neotest/neotest-plenary",
 			"nvim-neotest/neotest-python",
 			"rouge8/neotest-rust",
 			"stevanmilic/neotest-scala",
