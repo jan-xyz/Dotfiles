@@ -99,20 +99,19 @@ function M.on_attach(client, bufnr)
 
 	-- Rename
 	if client.server_capabilities.renameProvider then
-		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { noremap = true, buffer = bufnr, desc = "Rename symbol" })
+		vim.keymap.set("n", "<leader>r", require("lsp-preview").rename,
+			{ noremap = true, buffer = bufnr, desc = "Rename symbol" })
+		vim.keymap.set("n", "<leader>R", require("lsp-preview").rename_preview,
+			{ noremap = true, buffer = bufnr, desc = "Rename symbol" })
 	end
 
 	-- Code Action
 	if client.server_capabilities.codeActionProvider then
-		local codeAction = vim.lsp.buf.code_action
-		if client.server_capabilities.codeActionProvider.resolveProvider then
-			codeAction = require("actions-preview").code_actions
-		end
-		vim.keymap.set(
-			{ "n", "v" },
-			"<leader>a",
-			codeAction,
+		vim.keymap.set({ "n", "v" }, "<leader>a", require("lsp-preview").code_action,
 			{ noremap = true, buffer = bufnr, desc = "Perform code action" }
+		)
+		vim.keymap.set({ "n", "v" }, "<leader>A", require("lsp-preview").code_action_preview,
+			{ noremap = true, buffer = bufnr, desc = "Perform code action (preview changes)" }
 		)
 	end
 

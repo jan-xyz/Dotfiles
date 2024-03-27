@@ -5,21 +5,10 @@ return {
 			"nvim-telescope/telescope.nvim",
 			"nvim-lua/plenary.nvim",
 			{
-				"aznhe21/actions-preview.nvim",
+				"jan-xyz/lsp-preview.nvim",
 				opts = {
-					telescope = {
-						sorting_strategy = "ascending",
-						layout_strategy = "vertical",
-						layout_config = {
-							width = 0.8,
-							height = 0.9,
-							prompt_position = "top",
-							preview_cutoff = 20,
-							preview_height = function(_, _, max_lines)
-								return max_lines - 15
-							end,
-						},
-					},
+					apply = false,
+					diff = { ctxlen = 20 },
 				},
 			},
 			{ "kosayoda/nvim-lightbulb", opts = { sign = { text = "" }, autocmd = { enabled = true } } },
