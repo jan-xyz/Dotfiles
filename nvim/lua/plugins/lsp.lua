@@ -10,6 +10,10 @@ return {
 					apply = false,
 					diff = { ctxlen = 20 },
 				},
+				dependencies = {
+					"nvim-telescope/telescope.nvim",
+					"nvim-lua/plenary.nvim",
+				},
 			},
 			{ "kosayoda/nvim-lightbulb", opts = { sign = { text = "" }, autocmd = { enabled = true } } },
 			{ "lvimuser/lsp-inlayhints.nvim", opts = {} },
