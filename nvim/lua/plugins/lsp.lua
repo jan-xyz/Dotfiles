@@ -13,6 +13,12 @@ return {
 				dependencies = {
 					"nvim-telescope/telescope.nvim",
 					"nvim-lua/plenary.nvim",
+					{
+						"echasnovski/mini.diff",
+						config = function()
+							require("mini.diff").setup({ source = require("mini.diff").gen_source.none() })
+						end,
+					},
 				},
 			},
 			{ "kosayoda/nvim-lightbulb", opts = { sign = { text = "" }, autocmd = { enabled = true } } },
