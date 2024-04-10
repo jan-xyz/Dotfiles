@@ -6,8 +6,8 @@ return {
 			"folke/zen-mode.nvim",
 			"hrsh7th/nvim-cmp",
 			"nvim-treesitter/nvim-treesitter",
+			"vhyrro/luarocks.nvim",
 		},
-		build = ":Neorg sync-parsers",
 		version = "*",
 		opts = {
 			load = {
