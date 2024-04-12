@@ -44,6 +44,12 @@ return {
 							key = "e",
 						},
 						{
+							icon = "  ",
+							desc = "Find File                               ",
+							action = "Telescope find_files hidden=true",
+							key = "f",
+						},
+						{
 							icon = "  ",
 							desc = "Find word                               ",
 							action = "Telescope live_grep",
