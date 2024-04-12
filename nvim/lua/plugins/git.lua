@@ -1,3 +1,15 @@
+-- set neovim-remote as git editor to open git commits from the builtin terminal inside neovim
+vim.env.GIT_EDITOR = "nvr -cc split --remote-wait"
+
+-- delete git buffers directly when done with writing a commit to not make nvr wait on close.
+-- if removed you need to manually delete the buffer.
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "gitcommit", "gitrebase", "gitconfig" },
+	callback = function()
+		vim.bo.bufhidden = "delete"
+	end,
+})
+
 return {
 	{
 		"pwntester/octo.nvim",

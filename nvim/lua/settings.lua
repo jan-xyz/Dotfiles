@@ -5,7 +5,7 @@ vim.opt.list = true
 vim.opt.listchars = "tab:⟶ "
 vim.opt.mouse = "a"
 vim.opt.termguicolors = true
-vim.opt.splitbelow = true
+vim.opt.splitbelow = false
 vim.opt.splitright = true
 vim.opt.completeopt = "menuone,noinsert,noselect"
 vim.opt.foldmethod = "expr"
@@ -58,5 +58,5 @@ local function title_string()
 		return vim.fn.fnamemodify(vim.fn.getcwd(), ":tail") .. " (nvim)"
 	end
 end
-vim.o.title = true -- activate title string
+vim.o.title = true                 -- activate title string
 vim.o.titlestring = title_string() -- titlestring template

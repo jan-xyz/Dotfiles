@@ -4,7 +4,7 @@ return {
 		branch = "main",
 		config = function()
 			require("toggleterm").setup({
-				direction = "float",
+				shading_factor = 0,
 			})
 
 			vim.keymap.set(
