@@ -33,6 +33,9 @@ return {
 			},
 		},
 		config = function()
+			vim.api.nvim_create_autocmd("LspAttach", {
+				callback = require("lsp.config").on_attach,
+			})
 			require("languages.ansible").setup()
 			require("languages.bash").setup()
 			require("languages.cpp").setup()

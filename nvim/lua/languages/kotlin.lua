@@ -2,13 +2,11 @@ local M = {}
 
 function M.setup()
 	local nvim_lsp = require("lspconfig")
-	local lsp = require("lsp.config")
 	local completion = require("cmp_nvim_lsp")
 
 	-- Kotlin
 	nvim_lsp.kotlin_language_server.setup({
 		capabilities = completion.default_capabilities(),
-		on_attach = lsp.on_attach,
 		cmd = { "kotlin-language-server" },
 	})
 end

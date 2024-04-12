@@ -2,10 +2,11 @@
 
 local M = {}
 
--- Global callback functions for LSP shortcuts
--- @param client
--- @param bufnr number
-function M.on_attach(client, bufnr)
+-- See `:h LspAttach`
+function M.on_attach(args)
+	local bufnr = args.buf
+	local client = vim.lsp.get_client_by_id(args.data.client_id)
+
 	vim.notify("connecting '" .. client.name .. "' to buffer " .. bufnr, vim.log.levels.DEBUG)
 	-- vim.notify(vim.inspect(client.server_capabilities), vim.log.levels.DEBUG)
 
@@ -99,7 +100,7 @@ function M.on_attach(client, bufnr)
 
 	-- Rename
 	if client.server_capabilities.renameProvider then
-		vim.keymap.set("n", "<leader>r", require("lsp-preview").rename,
+		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename,
 			{ noremap = true, buffer = bufnr, desc = "Rename symbol" })
 		vim.keymap.set("n", "<leader>R", require("lsp-preview").rename_preview,
 			{ noremap = true, buffer = bufnr, desc = "Rename symbol" })
@@ -107,7 +108,7 @@ function M.on_attach(client, bufnr)
 
 	-- Code Action
 	if client.server_capabilities.codeActionProvider then
-		vim.keymap.set({ "n", "v" }, "<leader>a", require("lsp-preview").code_action,
+		vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action,
 			{ noremap = true, buffer = bufnr, desc = "Perform code action" }
 		)
 		vim.keymap.set({ "n", "v" }, "<leader>A", require("lsp-preview").code_action_preview,

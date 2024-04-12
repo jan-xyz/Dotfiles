@@ -2,7 +2,6 @@ local M = {}
 
 function M.setup()
 	local nvim_lsp = require("lspconfig")
-	local lsp = require("lsp.config")
 	local completion = require("cmp_nvim_lsp")
 	-- organise imports on safe
 	vim.api.nvim_create_autocmd("BufWritePre", {
@@ -18,7 +17,6 @@ function M.setup()
 	-- LSP config
 	nvim_lsp.gopls.setup({
 		capabilities = completion.default_capabilities(),
-		on_attach = lsp.on_attach,
 		settings = {
 			gopls = {
 				usePlaceholders = true,
