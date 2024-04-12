@@ -56,7 +56,7 @@ return {
 							key = "/",
 						},
 						{
-							icon = "⬆  ",
+							icon = "󰇚  ",
 							desc = "Update Center                           ",
 							action = "Lazy home",
 							key = "u",
