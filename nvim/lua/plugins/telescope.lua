@@ -73,7 +73,9 @@ return {
 					},
 					["telescope-alternate"] = {
 						mappings = {
-							{ "(.*).go", { { "[1]_test.go", "Test" } } },
+							{ "(.*).go", { { "[1]_test.go", "Test", function()
+								return not string.match(vim.api.nvim_buf_get_name(0), ".*_test.go")
+							end } } },
 							{ "(.*)_test.go", { { "[1].go", "Original", true } } },
 						},
 					},
