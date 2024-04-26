@@ -1,13 +1,7 @@
 return {
 	{
 		"nvim-neorg/neorg",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"folke/zen-mode.nvim",
-			"hrsh7th/nvim-cmp",
-			"nvim-treesitter/nvim-treesitter",
-			"vhyrro/luarocks.nvim",
-		},
+		dependencies = { "vhyrro/luarocks.nvim", priority = 1000, config = true },
 		version = "*",
 		opts = {
 			load = {
