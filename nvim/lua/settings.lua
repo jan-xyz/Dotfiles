@@ -60,3 +60,9 @@ local function title_string()
 end
 vim.o.title = true                 -- activate title string
 vim.o.titlestring = title_string() -- titlestring template
+
+-- Disable arrow keys
+vim.keymap.set({ "i", "n", "v" }, "<Up>", "<Nop>", { noremap = true, silent = true })
+vim.keymap.set({ "i", "n", "v" }, "<Down>", "<Nop>", { noremap = true, silent = true })
+vim.keymap.set({ "i", "n", "v" }, "<Left>", "<Nop>", { noremap = true, silent = true })
+vim.keymap.set({ "i", "n", "v" }, "<Right>", "<Nop>", { noremap = true, silent = true })
