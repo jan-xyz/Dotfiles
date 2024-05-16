@@ -13,7 +13,11 @@ vim.api.nvim_create_autocmd("FileType", {
 return {
 	{
 		"pwntester/octo.nvim",
-		opts = {},
+		opts = {
+			suppress_missing_scope = {
+				projects_v2 = true,
+			},
+		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",

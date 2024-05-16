@@ -10,8 +10,6 @@ function M.on_attach(args)
 	vim.notify("connecting '" .. client.name .. "' to buffer " .. bufnr, vim.log.levels.DEBUG)
 	-- vim.notify(vim.inspect(client.server_capabilities), vim.log.levels.DEBUG)
 
-	require("lsp-inlayhints").on_attach(client, bufnr, false)
-
 	local telescope_builtin = require("telescope.builtin")
 
 	-- Workspace diagnostics
@@ -100,18 +98,27 @@ function M.on_attach(args)
 
 	-- Rename
 	if client.server_capabilities.renameProvider then
-		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename,
-			{ noremap = true, buffer = bufnr, desc = "Rename symbol" })
-		vim.keymap.set("n", "<leader>R", require("lsp-preview").rename_preview,
-			{ noremap = true, buffer = bufnr, desc = "Rename symbol" })
+		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { noremap = true, buffer = bufnr, desc = "Rename symbol" })
+		vim.keymap.set(
+			"n",
+			"<leader>R",
+			require("lsp-preview").rename_preview,
+			{ noremap = true, buffer = bufnr, desc = "Rename symbol" }
+		)
 	end
 
 	-- Code Action
 	if client.server_capabilities.codeActionProvider then
-		vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action,
+		vim.keymap.set(
+			{ "n", "v" },
+			"<leader>a",
+			vim.lsp.buf.code_action,
 			{ noremap = true, buffer = bufnr, desc = "Perform code action" }
 		)
-		vim.keymap.set({ "n", "v" }, "<leader>A", require("lsp-preview").code_action_preview,
+		vim.keymap.set(
+			{ "n", "v" },
+			"<leader>A",
+			require("lsp-preview").code_action_preview,
 			{ noremap = true, buffer = bufnr, desc = "Perform code action (preview changes)" }
 		)
 	end

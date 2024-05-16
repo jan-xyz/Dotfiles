@@ -22,7 +22,14 @@ return {
 				},
 			},
 			{ "kosayoda/nvim-lightbulb", opts = { sign = { text = "" }, autocmd = { enabled = true } } },
-			{ "lvimuser/lsp-inlayhints.nvim", opts = {} },
+			{
+				"MysticalDevil/inlay-hints.nvim",
+				event = "LspAttach",
+				dependencies = { "neovim/nvim-lspconfig" },
+				config = function()
+					require("inlay-hints").setup()
+				end,
+			},
 
 			-- Language dependencies
 			{

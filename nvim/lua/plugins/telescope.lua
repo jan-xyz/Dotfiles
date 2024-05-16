@@ -43,6 +43,16 @@ return {
 					find_files = {
 						path_display = filenameFirst,
 					},
+					buffers = {
+						mappings = {
+							i = {
+								["<c-d>"] = "delete_buffer",
+							},
+							n = {
+								["D"] = "delete_buffer",
+							},
+						},
+					},
 				},
 				defaults = {
 					vimgrep_arguments = {
@@ -72,14 +82,10 @@ return {
 						hidden = true,
 					},
 					["telescope-alternate"] = {
+						presets = { "go" },
 						mappings = {
-							-- Go
-							{ "(.*).go", { { "[1]_test.go", "Test", function()
-								return not string.match(vim.api.nvim_buf_get_name(0), ".*_test.go")
-							end } } },
-							{ "(.*)_test.go",        { { "[1].go", "Original", true } } },
 							-- Lua
-							{ "lua/(.*).lua",        { { "tests/[1]_spec.lua", "Test", true } } },
+							{ "lua/(.*).lua", { { "tests/[1]_spec.lua", "Test", true } } },
 							{ "tests/(.*)_spec.lua", { { "lua/[1].lua", "Original", true } } },
 						},
 					},

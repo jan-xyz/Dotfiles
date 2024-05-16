@@ -28,7 +28,21 @@ return {
 			-- options
 		},
 	},
-
+	-- show the keys being pressed in a popup window
+	{
+		"NStefan002/screenkey.nvim",
+		cmd = "Screenkey",
+		version = "*",
+		config = true,
+	},
+	-- alternative window bar
+	{
+		"b0o/incline.nvim",
+		config = function()
+			require("incline").setup()
+		end,
+		event = "VeryLazy",
+	},
 	-- modern take on `vim.ui.select` and `vim.ui.input`
 	{
 		"stevearc/dressing.nvim",
