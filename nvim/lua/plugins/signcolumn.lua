@@ -14,9 +14,9 @@ return {
 			require("statuscol").setup({
 				segments = {
 					-- fold column
-					{ text = { builtin.foldfunc },                                             click = "v:lua.ScFa" },
+					{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
 					-- number column
-					{ text = { relnumfunc },                                                   click = "v:lua.ScLa" },
+					{ text = { relnumfunc }, click = "v:lua.ScLa" },
 					-- anything else
 					{ sign = { name = { ".*" }, text = { ".*" }, maxwidth = 2, colwidth = 1 }, click = "v:lua.ScSa" },
 				},
