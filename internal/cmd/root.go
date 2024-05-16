@@ -11,7 +11,6 @@ import (
 	"github.com/jan-xyz/dotfiles/internal/plugins/golang"
 	"github.com/jan-xyz/dotfiles/internal/plugins/julia"
 	"github.com/jan-xyz/dotfiles/internal/plugins/npm"
-	"github.com/jan-xyz/dotfiles/internal/plugins/python"
 	"github.com/jan-xyz/dotfiles/internal/plugins/symlinks"
 	"github.com/jan-xyz/dotfiles/internal/plugins/systemprefs"
 	"github.com/jan-xyz/dotfiles/internal/plugins/vscode"
@@ -69,7 +68,6 @@ func initConfig() {
 		logrus.Fatalf("Fatal error config file: %s \n", err)
 	}
 
-	pythonPackages := viper.GetStringSlice("python.packages")
 	bottles := viper.GetStringSlice("homebrew.bottles")
 	taps := viper.GetStringSlice("homebrew.taps")
 	vscodeExt := viper.GetStringSlice("vscode.extensions")
@@ -90,7 +88,6 @@ func initConfig() {
 		brewtaps.Plugin{Taps: taps, Commander: execCommander},
 		brewbottles.Plugin{Bottles: bottles, Commander: execCommander},
 		appstore.Plugin{Apps: apps, Profile: appStoreProfile, Commander: execCommander},
-		python.Plugin{Packages: pythonPackages, Commander: execCommander},
 		vscode.Plugin{Extensions: vscodeExt, Commander: execCommander},
 		npm.Plugin{Packages: npmPackages, Commander: execCommander},
 		golang.Plugin{Modules: goModules, Commander: execCommander},
