@@ -39,6 +39,7 @@ bottles = [
   "gopls",
   "gradle",
   "gradle-completion",
+  "hammerspoon",
   "haskell-language-server",
   "haskell-stack",
   "htop",
@@ -176,4 +177,5 @@ links = [
   { sourceFile ="${PWD}/zsh", linkName="${HOME}/.zsh" },
   { sourceFile ="${PWD}/R/RProfile", linkName="${HOME}/.RProfile" },
   { sourceFile ="${PWD}/vscode/settings.json", linkName="${HOME}/Library/Application Support/Code/User/settings.json" },
+  { sourceFile ="${PWD}/hammerspoon/", linkName="${HOME}/.hammerspoon" },
 ]
