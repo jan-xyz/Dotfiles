@@ -4,7 +4,7 @@
 --  - layer 3: <not yet set>
 
 -- global mute
-hs.hotkey.bind({ "shift", "ctrl", "alt" }, "0", nil, function()
+local global_mute = function()
 	local audio = hs.audiodevice.defaultInputDevice()
 	if audio then
 		local muted = audio:inputMuted()
@@ -17,36 +17,53 @@ hs.hotkey.bind({ "shift", "ctrl", "alt" }, "0", nil, function()
 	else
 		hs.alert.show("no audio input device")
 	end
-end)
-
--- focus apps
-local apps = {
-	"Kitty",
-	"Safari",
-	"Music",
-	"Steam",
-}
-for index, item in ipairs(apps) do
-	local shortcut = tostring(index)
-	local name = item
-	hs.hotkey.bind({ "shift", "ctrl", "alt" }, shortcut, name, function()
-		hs.application.launchOrFocus(name)
-	end)
 end
 
+local app_launcher = function(name)
+	return function()
+		hs.application.launchOrFocus(name)
+	end
+end
+
+-- focus apps
+local layer_1 = {
+	-- main key
+	global_mute,
+	-- row 1
+	app_launcher("Kitty"),
+	app_launcher("Safari"),
+	app_launcher("Music"),
+	-- row 2
+	app_launcher("Activity Monitor"),
+	app_launcher("Mail"),
+	app_launcher("Calendar"),
+	-- row 3
+	app_launcher("Steam"),
+	app_launcher("Maps"),
+	app_launcher("Weather"),
+}
+for index, keypressfn in ipairs(layer_1) do
+	local shortcut = tostring(index - 1)
+	hs.hotkey.bind({ "shift", "ctrl", "alt" }, shortcut, nil, keypressfn)
+end
+
+
 -- audio playback
-hs.hotkey.bind({ "shift", "ctrl", "alt" }, "a", nil, function()
-	hs.itunes.displayCurrentTrack()
-end)
-hs.hotkey.bind({ "shift", "ctrl", "alt" }, "b", nil, function()
-	hs.itunes.previous()
-end)
-hs.hotkey.bind({ "shift", "ctrl", "alt" }, "c", nil, function()
-	hs.itunes.playpause()
-end)
-hs.hotkey.bind({ "shift", "ctrl", "alt" }, "d", nil, function()
-	hs.itunes.next()
-end)
+local layer_2 = {
+	-- main key
+	hs.itunes.displayCurrentTrack,
+	-- row 1
+	hs.itunes.previous,
+	hs.itunes.playpause,
+	hs.itunes.next,
+	-- row 2
+	-- row 3
+}
+for index, keypressfn in ipairs(layer_2) do
+	-- this starts with the letter 'a' and iterates through it
+	local shortcut = string.char(96 + index)
+	hs.hotkey.bind({ "shift", "ctrl", "alt" }, shortcut, nil, keypressfn)
+end
 
 -- Reload the Hammerspoon configuration
 local reloadConfig = function(files)
