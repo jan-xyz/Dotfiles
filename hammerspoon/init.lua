@@ -1,15 +1,30 @@
+-- global mute
+hs.hotkey.bind({ "shift", "ctrl", "alt" }, "0", nil, function()
+	local audio = hs.audiodevice.defaultInputDevice()
+	if audio then
+		local muted = audio:inputMuted()
+		if muted then
+			hs.alert.show("unmuting " .. audio:name())
+		else
+			hs.alert.show("muting " .. audio:name())
+		end
+		audio:setInputMuted(not muted)
+	end
+end)
+
 -- focus apps
 local apps = {
-	{ "k", "Kitty" },
-	{ "s", "Safari" },
+	"Kitty", -- 1
+	"Safari", -- 2
 }
-for _, item in ipairs(apps) do
-	local shortcut = item[1]
-	local name = item[2]
-	hs.hotkey.bind({ "cmd", "ctrl", "alt" }, shortcut, name, function()
+for index, item in ipairs(apps) do
+	local shortcut = tostring(index)
+	local name = item
+	hs.hotkey.bind({ "shift", "ctrl", "alt" }, shortcut, name, function()
 		hs.application.launchOrFocus(name)
 	end)
 end
+
 
 -- Reload the Hammerspoon configuration
 local reloadConfig = function(files)
