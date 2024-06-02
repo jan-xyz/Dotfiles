@@ -1,7 +1,16 @@
 -- macro keys:
---  - layer 1: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
---  - layer 2: a, b, c, d, e, f, g, h, i, j
---  - layer 3: <not yet set>
+--  - layer 0: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 (ASCII 48 - 57)
+--  - layer 1: a, b, c, d, e, f, g, h, i, j (ASCII 97 - 106)
+--  - layer 2: k, l, m, n, o, p, q, r, s, t (ASCII 107 - 116)
+--  - layer 3: <not set>
+--
+--  layer buttons:
+--  - layer 0: no key
+--  - layer 1: left
+--  - layer 2: right
+--  - layer 3: left + right
+
+local modifier = { "shift", "ctrl", "alt" }
 
 -- global mute
 local global_mute = function()
@@ -25,8 +34,8 @@ local app_launcher = function(name)
 	end
 end
 
--- focus apps
-local layer_1 = {
+-- base layer
+local layer_0 = {
 	-- main key
 	global_mute,
 	-- row 1
@@ -42,14 +51,14 @@ local layer_1 = {
 	app_launcher("Maps"),
 	app_launcher("Weather"),
 }
-for index, keypressfn in ipairs(layer_1) do
+for index, keypressfn in ipairs(layer_0) do
 	local shortcut = tostring(index - 1)
-	hs.hotkey.bind({ "shift", "ctrl", "alt" }, shortcut, nil, keypressfn)
+	hs.hotkey.bind(modifier, shortcut, nil, keypressfn)
 end
 
 
--- audio playback
-local layer_2 = {
+-- first layer
+local layer_1 = {
 	-- main key
 	hs.itunes.playpause,
 	-- row 1
@@ -57,12 +66,55 @@ local layer_2 = {
 	hs.itunes.displayCurrentTrack,
 	hs.itunes.next,
 	-- row 2
+	-- vol down, vol up,
 	-- row 3
+}
+for index, keypressfn in ipairs(layer_1) do
+	-- this starts with the letter 'a' and iterates through it
+	local shortcut = string.char(96 + index)
+	hs.hotkey.bind(modifier, shortcut, nil, keypressfn)
+end
+
+ScreenProfiles = {
+	["LG HDR 4K"] = { h = 1710, w = 1112, scale = 2, freq = 60, depth = 8 },
+	["Built-in Retina Display"] = { h = 3008, w = 1692, scale = 2, freq = 60, depth = 8 },
+}
+
+
+local screen_setup = function()
+	local all_screens = hs.screen.allScreens()
+	for _, screen in ipairs(all_screens) do
+		hs.alert.show("setting mode...")
+		local newMode = ScreenProfiles[screen:name()]
+		if newMode ~= nil then
+			local set = screen:setMode(newMode.w, newMode.h, newMode.scale, newMode.freq, newMode.depth)
+			if not set then
+				hs.dialog.alert(200, 200, function()
+
+				end, "Failed to set mode", screen:name() .. ": " .. screen:currentMode().desc)
+			end
+		end
+	end
+	if string.match(hs.screen.primaryScreen():name(), "Built%-in") and #all_screens > 1 then
+		hs.alert.show("setting primary...")
+		for _, screen in ipairs(all_screens) do
+			hs.alert.show(screen:name() .. ": " .. tostring(screen:id()))
+			if not string.match(screen:name(), "Built%-in") then
+				screen:setPrimary()
+			end
+		end
+	end
+end
+
+
+-- second layer
+local layer_2 = {
+	screen_setup,
 }
 for index, keypressfn in ipairs(layer_2) do
 	-- this starts with the letter 'a' and iterates through it
-	local shortcut = string.char(96 + index)
-	hs.hotkey.bind({ "shift", "ctrl", "alt" }, shortcut, nil, keypressfn)
+	local shortcut = string.char(106 + index)
+	hs.hotkey.bind(modifier, shortcut, nil, keypressfn)
 end
 
 -- Reload the Hammerspoon configuration
