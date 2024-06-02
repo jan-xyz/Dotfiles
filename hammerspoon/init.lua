@@ -32,11 +32,11 @@ local layer_1 = {
 	-- row 1
 	app_launcher("Kitty"),
 	app_launcher("Safari"),
-	app_launcher("Music"),
-	-- row 2
 	app_launcher("Activity Monitor"),
+	-- row 2
 	app_launcher("Mail"),
 	app_launcher("Calendar"),
+	app_launcher("Music"),
 	-- row 3
 	app_launcher("Steam"),
 	app_launcher("Maps"),
@@ -51,10 +51,10 @@ end
 -- audio playback
 local layer_2 = {
 	-- main key
-	hs.itunes.displayCurrentTrack,
+	hs.itunes.playpause,
 	-- row 1
 	hs.itunes.previous,
-	hs.itunes.playpause,
+	hs.itunes.displayCurrentTrack,
 	hs.itunes.next,
 	-- row 2
 	-- row 3
