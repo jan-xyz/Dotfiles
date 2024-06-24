@@ -12,25 +12,14 @@ vim.api.nvim_create_autocmd("FileType", {
 
 return {
 	{
-		"pwntester/octo.nvim",
-		opts = {
-			suppress_missing_scope = {
-				projects_v2 = true,
-			},
-		},
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-			"nvim-tree/nvim-web-devicons",
-		},
-	},
-	{
 		"akinsho/git-conflict.nvim",
+		event = { "BufReadPost", "BufNewFile" },
 		version = "*",
 		config = true,
 	},
 	{
 		"lewis6991/gitsigns.nvim",
+		event = { "BufReadPost", "BufNewFile" },
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},

@@ -2,10 +2,7 @@ return {
 	{
 		"jan-xyz/nord.nvim",
 		priority = 1000,
-		lazy = false,
-		config = function()
-			vim.cmd("colorscheme nord")
-		end,
+		lazy = true,
 	},
 	-- {
 	-- 	"nordtheme/vim",
@@ -15,26 +12,29 @@ return {
 	{
 		"catppuccin/nvim",
 		priority = 1000,
+		lazy = true,
 		name = "catppuccin",
 	},
 	{
 		"rose-pine/neovim",
+		priority = 1000,
+		lazy = true,
 		name = "rose-pine",
 	},
 	{
 		"projekt0n/github-nvim-theme",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 	},
 	{
 		"neanias/everforest-nvim",
 		version = false,
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 	},
 	{
 		"folke/tokyonight.nvim",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 		opts = {},
 	},

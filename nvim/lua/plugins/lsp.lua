@@ -1,11 +1,14 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
+		event = { "BufReadPost", "BufNewFile" },
 		dependencies = {
 			"nvim-telescope/telescope.nvim",
 			"nvim-lua/plenary.nvim",
 			{
 				"jan-xyz/lsp-preview.nvim",
+				version = "*",
+				dev = true,
 				opts = {
 					apply = false,
 					diff = { ctxlen = 20 },
@@ -34,6 +37,7 @@ return {
 			-- Language dependencies
 			{
 				"folke/neodev.nvim",
+				ft = "lua",
 				opts = {
 					library = { plugins = { "neotest" }, types = true },
 				},

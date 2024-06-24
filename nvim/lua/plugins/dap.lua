@@ -1,19 +1,40 @@
 return {
 	{
 		"rcarriga/nvim-dap-ui",
+		keys = {
+			{ "<leader>zb", desc = "Toggle breakpoint" },
+			{ "<leader>zc", desc = "Start/Continue debugger" },
+			{ "<leader>zi", desc = "Step into" },
+			{ "<leader>zo", desc = "Step out" },
+			{ "<leader>zn", desc = "Step over" },
+			{ "<leader>zr", desc = "Restart debugger" },
+			{ "<leader>zx", desc = "Terminate debugger" },
+			{ "<leader>zt", desc = "Toggle debugger UI" },
+			{ "<leader>zl", desc = "List breakpoints" },
+		},
 		dependencies = {
+			"leoluz/nvim-dap-go",
 			"mfussenegger/nvim-dap",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+			"nvim-telescope/telescope-dap.nvim",
+			"theHamsta/nvim-dap-virtual-text",
 		},
 		config = function()
+			require("telescope").load_extension("dap")
+			require("nvim-dap-virtual-text").setup({
+				virt_text_win_col = 90,
+				highlight_changed_variables = true,
+			})
+			local dap = require("dap")
+			local dapui = require("dapui")
+
 			vim.fn.sign_define("DapBreakpoint", { text = "⏺", texthl = "", linehl = "", numhl = "" })
 			vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "", linehl = "", numhl = "" })
 			vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "", linehl = "", numhl = "" })
 			vim.fn.sign_define("DapLogPoint", { text = "", texthl = "", linehl = "", numhl = "" })
 			-- setup
 			require("dapui").setup()
-			-- keymap
-			local dap = require("dap")
-			local dapui = require("dapui")
 			vim.keymap.set("n", "<leader>zb", dap.toggle_breakpoint, { desc = "Toggle breakpoint", noremap = true })
 			vim.keymap.set("n", "<leader>zc", dap.continue, { desc = "Start/Continue debugger", noremap = true })
 			vim.keymap.set("n", "<leader>zi", dap.step_into, { desc = "Step into", noremap = true })
@@ -80,34 +101,5 @@ return {
 				},
 			}
 		end,
-	},
-	{
-		"theHamsta/nvim-dap-virtual-text",
-		dependencies = { "mfussenegger/nvim-dap" },
-		config = function()
-			require("nvim-dap-virtual-text").setup({
-				virt_text_win_col = 90,
-				highlight_changed_variables = true,
-			})
-		end,
-	},
-	{
-		"nvim-telescope/telescope-dap.nvim",
-		dependencies = {
-			"mfussenegger/nvim-dap",
-			"nvim-telescope/telescope.nvim",
-			"nvim-lua/plenary.nvim",
-		},
-		config = function()
-			-- Telescop integration
-			require("telescope").load_extension("dap")
-		end,
-	},
-	{
-		"leoluz/nvim-dap-go",
-		dependencies = {
-			"rcarriga/nvim-dap-ui",
-		},
-		opts = {},
 	},
 }

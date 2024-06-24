@@ -1,6 +1,8 @@
 return {
 	{
 		"mhartington/formatter.nvim",
+		event = { "BufWritePost" },
+		kyes = { "<leaver>F" },
 		config = function()
 			-- Utilities for creating configurations
 			require("formatter").setup({

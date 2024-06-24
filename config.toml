@@ -52,6 +52,7 @@ bottles = [
   "kube-ps1",
   "libgit2",
   "llvm",
+  "luarocks",
   "lua-language-server",
   "markdownlint-cli",
   "metals",

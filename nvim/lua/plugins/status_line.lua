@@ -1,7 +1,9 @@
 return {
 	{
 		"nvim-lualine/lualine.nvim",
+		event = { "BufReadPost", "BufNewFile" },
 		dependencies = {
+			"nvim-telescope/telescope.nvim",
 			"nvim-tree/nvim-web-devicons",
 		},
 		config = function()

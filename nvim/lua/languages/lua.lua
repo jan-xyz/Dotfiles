@@ -12,7 +12,7 @@ function M.setup()
 					neededFileStatus = {
 						["codestyle-check"] = "Any",
 					},
-					globals = { "describe", "it", "assert" },
+					globals = { "describe", "it", "assert", "vim", "hs" },
 				},
 				hint = {
 					enable = true,

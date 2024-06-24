@@ -32,6 +32,20 @@ return {
 			"nvim-telescope/telescope-file-browser.nvim",
 			"otavioschwanck/telescope-alternate",
 		},
+		cmd = { "Telescope" },
+		keys = {
+			{ "<leader>f" },
+			{ "<leader>e" },
+			{ "<leader>E" },
+			{ "<leader>b" },
+			{ "<leader>j" },
+			{ "<leader>'" },
+			{ "<leader>/" },
+			{ "<leader>?" },
+			{ "<leader>o" },
+			{ "<leader>g?" },
+			{ "ga" },
+		},
 		config = function()
 			require("telescope").setup({
 				pickers = {
@@ -85,7 +99,7 @@ return {
 						presets = { "go" },
 						mappings = {
 							-- Lua
-							{ "lua/(.*).lua", { { "tests/[1]_spec.lua", "Test", true } } },
+							{ "lua/(.*).lua",        { { "tests/[1]_spec.lua", "Test", true } } },
 							{ "tests/(.*)_spec.lua", { { "lua/[1].lua", "Original", true } } },
 						},
 					},
@@ -117,30 +131,21 @@ return {
 				telescope_builtin.oldfiles({ cwd_only = true })
 			end
 
-			-- inspired by helix mapping: https://docs.helix-editor.com/keymap.html#space-mode
-			vim.keymap.set("n", "<leader>f", find_file, { noremap = true, desc = "Open File Picker" })
-			vim.keymap.set("n", "<leader>e", file_browser, { noremap = true, desc = "Toggle or focus explorer" })
-			vim.keymap.set("n", "<leader>E", current_file, { noremap = true, desc = "Focus current file in explorer" })
-			vim.keymap.set("n", "<leader>b", telescope_builtin.buffers, { noremap = true, desc = "Open buffer picker" })
-			vim.keymap.set(
-				"n",
-				"<leader>j",
-				telescope_builtin.jumplist,
-				{ noremap = true, desc = "Open jumplist picker" }
-			)
-			vim.keymap.set("n", "<leader>'", telescope_builtin.resume, { noremap = true, desc = "Resume last picker" })
-			vim.keymap.set("n", "<leader>/", telescope_builtin.live_grep, { noremap = true, desc = "Global search" })
-			vim.keymap.set(
-				"n",
-				"<leader>?",
-				telescope_builtin.keymaps,
-				{ noremap = true, desc = "Open command palette" }
-			)
-			-- additional pickers
-			vim.keymap.set("n", "<leader>o", recent_files, { noremap = true, desc = "Open recent file picker" })
-			vim.keymap.set("n", "<leader>g?", telescope_builtin.git_status, { noremap = true, desc = "status" })
+			local km = vim.keymap
 
-			vim.keymap.set("n", "ga", alternate, { noremap = true, desc = "Goto alternate file" })
+			-- inspired by helix mapping: https://docs.helix-editor.com/keymap.html#space-mode
+			km.set("n", "<leader>f", find_file, { noremap = true, desc = "Open File Picker" })
+			km.set("n", "<leader>e", file_browser, { noremap = true, desc = "Toggle or focus explorer" })
+			km.set("n", "<leader>E", current_file, { noremap = true, desc = "Focus current file in explorer" })
+			km.set("n", "<leader>b", telescope_builtin.buffers, { noremap = true, desc = "Open buffer picker" })
+			km.set("n", "<leader>j", telescope_builtin.jumplist, { noremap = true, desc = "Open jumplist picker" })
+			km.set("n", "<leader>'", telescope_builtin.resume, { noremap = true, desc = "Resume last picker" })
+			km.set("n", "<leader>/", telescope_builtin.live_grep, { noremap = true, desc = "Global search" })
+			km.set("n", "<leader>?", telescope_builtin.keymaps, { noremap = true, desc = "Open command palette" })
+			-- additional pickers
+			km.set("n", "<leader>o", recent_files, { noremap = true, desc = "Open recent file picker" })
+			km.set("n", "<leader>g?", telescope_builtin.git_status, { noremap = true, desc = "status" })
+			km.set("n", "ga", alternate, { noremap = true, desc = "Goto alternate file" })
 		end,
 	},
 }

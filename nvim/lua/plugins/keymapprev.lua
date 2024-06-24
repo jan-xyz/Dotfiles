@@ -16,6 +16,9 @@ return {
 					margin = { 1, 0, 0, 0.6 },
 				},
 				layout = { height = { min = 4, max = 75 } },
+				icons = {
+					separator = ">",
+				},
 			})
 			local wk = require("which-key")
 			wk.register({
