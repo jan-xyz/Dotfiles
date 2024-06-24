@@ -21,7 +21,7 @@ return {
 
 			-- Languages
 			{ "julianolf/nvim-dap-lldb", opts = { codelldb_path = "/opt/homebrew/opt/llvm/bin/lldb-dap" } },
-			{ "leoluz/nvim-dap-go",      opts = {} },
+			{ "leoluz/nvim-dap-go", opts = {} },
 		},
 		config = function()
 			require("telescope").load_extension("dap")

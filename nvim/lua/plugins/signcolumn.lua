@@ -1,6 +1,7 @@
 return {
 	{
 		"luukvbaal/statuscol.nvim",
+		event = { "BufReadPost", "BufNewFile" },
 		branch = "0.10",
 		config = function()
 			-- custom config

@@ -41,10 +41,10 @@ return {
 	-- alternative window bar
 	{
 		"b0o/incline.nvim",
+		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			require("incline").setup()
 		end,
-		event = "VeryLazy",
 	},
 	-- modern take on `vim.ui.select` and `vim.ui.input`
 	{
@@ -75,6 +75,7 @@ return {
 	-- setup (un-)commenting lines and selection
 	{
 		"numToStr/Comment.nvim",
+		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			require("Comment").setup()
 		end,
