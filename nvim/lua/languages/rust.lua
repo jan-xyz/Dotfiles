@@ -18,7 +18,7 @@ function M.setup()
 						enforce = true,
 						group = "item",
 					},
-					allowMergingIntoGlobImports = false,
+					merge = { glob = false },
 				},
 			},
 		},
