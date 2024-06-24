@@ -19,6 +19,7 @@ return {
 			"nvim-telescope/telescope.nvim",
 			"nvim-telescope/telescope-dap.nvim",
 			"theHamsta/nvim-dap-virtual-text",
+			{ "julianolf/nvim-dap-lldb", opts = { codelldb_path = "/opt/homebrew/opt/llvm/bin/lldb-dap" } },
 		},
 		config = function()
 			require("telescope").load_extension("dap")
@@ -47,59 +48,6 @@ return {
 
 			-- Support launch.json (Do after setting the default values)
 			require("dap.ext.vscode").load_launchjs()
-
-			-- rust/lldb config
-			dap.adapters.lldb = {
-				type = "executable",
-				command = "/opt/homebrew/opt/llvm/bin/lldb-vscode",
-				name = "lldb",
-			}
-			dap.configurations.rust = {
-				{
-					name = "Debug binary",
-					type = "lldb",
-					request = "launch",
-					program = function()
-						return vim.fn.input({
-							prompt = "Path to executable: ",
-							default = vim.fn.getcwd() .. "/target/debug/",
-							completion = "file",
-						})
-					end,
-					cwd = "${workspaceFolder}",
-					stopOnEntry = false,
-					args = {},
-
-					-- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-					--
-					--    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-					--
-					-- Otherwise you might get the following error:
-					--
-					--    Error on launch: Failed to attach to the target process
-					--
-					-- But you should be aware of the implications:
-					-- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-					runInTerminal = false,
-				},
-				{
-					type = "lldb",
-					request = "launch",
-					name = "Debug unit test",
-					cargo = {
-						args = {
-							"test",
-							"--no-run",
-						},
-						filter = {
-							name = "libthat",
-							kind = "lib",
-						},
-					},
-					args = {},
-					cwd = "${workspaceFolder}",
-				},
-			}
 		end,
 	},
 }
