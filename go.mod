@@ -10,6 +10,7 @@ require (
 	github.com/stretchr/testify v1.9.0
 	golang.org/x/vuln v1.1.2
 	honnef.co/go/tools v0.4.7
+	mvdan.cc/gofumpt v0.6.0
 )
 
 require (
@@ -19,6 +20,7 @@ require (
 	github.com/fatih/color v1.14.1 // indirect
 	github.com/fatih/structtag v1.2.0 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
+	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect

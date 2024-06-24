@@ -22,6 +22,10 @@ lint:
 	go run honnef.co/go/tools/cmd/staticcheck ./...
 	go run github.com/mgechev/revive -set_exit_status ./...
 	go run golang.org/x/vuln/cmd/govulncheck ./...
+	go run mvdan.cc/gofumpt -d -e .
+
+fmt:
+	go run mvdan.cc/gofumpt -w .
 
 .PHONY: stylua
 stylua:
