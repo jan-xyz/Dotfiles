@@ -13,13 +13,15 @@ return {
 			{ "<leader>zl", desc = "List breakpoints" },
 		},
 		dependencies = {
-			"leoluz/nvim-dap-go",
 			"mfussenegger/nvim-dap",
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
 			"nvim-telescope/telescope-dap.nvim",
 			"theHamsta/nvim-dap-virtual-text",
+
+			-- Languages
 			{ "julianolf/nvim-dap-lldb", opts = { codelldb_path = "/opt/homebrew/opt/llvm/bin/lldb-dap" } },
+			{ "leoluz/nvim-dap-go",      opts = {} },
 		},
 		config = function()
 			require("telescope").load_extension("dap")
