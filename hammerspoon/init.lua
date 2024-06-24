@@ -56,7 +56,6 @@ for index, keypressfn in ipairs(layer_0) do
 	hs.hotkey.bind(modifier, shortcut, nil, keypressfn)
 end
 
-
 -- first layer
 local layer_1 = {
 	-- main key
@@ -80,7 +79,6 @@ ScreenProfiles = {
 	["Built-in Retina Display"] = { h = 3008, w = 1692, scale = 2, freq = 60, depth = 8 },
 }
 
-
 local screen_setup = function()
 	local all_screens = hs.screen.allScreens()
 	for _, screen in ipairs(all_screens) do
@@ -89,9 +87,13 @@ local screen_setup = function()
 		if newMode ~= nil then
 			local set = screen:setMode(newMode.w, newMode.h, newMode.scale, newMode.freq, newMode.depth)
 			if not set then
-				hs.dialog.alert(200, 200, function()
-
-				end, "Failed to set mode", screen:name() .. ": " .. screen:currentMode().desc)
+				hs.dialog.alert(
+					200,
+					200,
+					function() end,
+					"Failed to set mode",
+					screen:name() .. ": " .. screen:currentMode().desc
+				)
 			end
 		end
 	end
@@ -105,7 +107,6 @@ local screen_setup = function()
 		end
 	end
 end
-
 
 -- second layer
 local layer_2 = {
