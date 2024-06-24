@@ -1,6 +1,7 @@
 return {
 	{
 		"NvChad/nvim-colorizer.lua",
+		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			require("colorizer").setup({})
 		end,
@@ -9,6 +10,7 @@ return {
 	-- Add indentation guides even on blank lines
 	{
 		"lukas-reineke/indent-blankline.nvim",
+		event = { "BufReadPost", "BufNewFile" },
 		main = "ibl",
 		opts = {
 			scope = {
