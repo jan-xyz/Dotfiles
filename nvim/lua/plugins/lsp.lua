@@ -8,7 +8,6 @@ return {
 			{
 				"jan-xyz/lsp-preview.nvim",
 				version = "*",
-				dev = true,
 				opts = {
 					apply = false,
 					diff = { ctxlen = 20 },
