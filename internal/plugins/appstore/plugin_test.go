@@ -83,12 +83,11 @@ func TestAdd(t *testing.T) {
 			wantErr: false,
 		},
 		{
-			name:            "ignore empty input",
-			input:           []string{},
-			configuredLinks: []App{},
-			prepareCommander: func(c *dotfiles.MockCommander) {
-			},
-			wantErr: false,
+			name:             "ignore empty input",
+			input:            []string{},
+			configuredLinks:  []App{},
+			prepareCommander: func(_ *dotfiles.MockCommander) {},
+			wantErr:          false,
 		},
 		{
 			name:  "fails if calling mas app fails",

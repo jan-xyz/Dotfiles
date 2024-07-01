@@ -154,22 +154,20 @@ func TestAdd(t *testing.T) {
 			wantErr:    true,
 		},
 		{
-			name:            "ignores calling with symlink that is not configured",
-			input:           []string{"not-configured"},
-			configuredLinks: []Link{},
-			prepareCommander: func(c *dotfiles.MockCommander) {
-			},
-			prepareEnv: func() func() { return func() {} },
-			wantErr:    false,
+			name:             "ignores calling with symlink that is not configured",
+			input:            []string{"not-configured"},
+			configuredLinks:  []Link{},
+			prepareCommander: func(_ *dotfiles.MockCommander) {},
+			prepareEnv:       func() func() { return func() {} },
+			wantErr:          false,
 		},
 		{
-			name:            "ignores calling with empty list",
-			input:           []string{},
-			configuredLinks: []Link{},
-			prepareCommander: func(c *dotfiles.MockCommander) {
-			},
-			prepareEnv: func() func() { return func() {} },
-			wantErr:    false,
+			name:             "ignores calling with empty list",
+			input:            []string{},
+			configuredLinks:  []Link{},
+			prepareCommander: func(_ *dotfiles.MockCommander) {},
+			prepareEnv:       func() func() { return func() {} },
+			wantErr:          false,
 		},
 	}
 

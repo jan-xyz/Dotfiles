@@ -83,7 +83,7 @@ func TestAdd(t *testing.T) {
 		{
 			name:             "ignore empty input",
 			input:            []string{},
-			prepareCommander: func(c *dotfiles.MockCommander) {},
+			prepareCommander: func(_ *dotfiles.MockCommander) {},
 			wantErr:          false,
 		},
 	}

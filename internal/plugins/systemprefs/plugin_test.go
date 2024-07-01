@@ -127,10 +127,9 @@ func TestAdd(t *testing.T) {
 			name:               "ignore empty input",
 			input:              []string{},
 			configuredPackages: []Preference{},
-			prepareCommander: func(c *dotfiles.MockCommander) {
-			},
-			prepareEnv: func() func() { return func() {} },
-			wantErr:    false,
+			prepareCommander:   func(_ *dotfiles.MockCommander) {},
+			prepareEnv:         func() func() { return func() {} },
+			wantErr:            false,
 		},
 		{
 			name:  "fails if setting preference fails",
