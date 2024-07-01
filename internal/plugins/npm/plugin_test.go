@@ -66,11 +66,10 @@ func TestAdd(t *testing.T) {
 			wantErr: false,
 		},
 		{
-			name:  "ignore empty input",
-			input: []string{},
-			prepareCommander: func(c *dotfiles.MockCommander) {
-			},
-			wantErr: false,
+			name:             "ignore empty input",
+			input:            []string{},
+			prepareCommander: func(_ *dotfiles.MockCommander) {},
+			wantErr:          false,
 		},
 		{
 			name:  "fail installing packages if calling NPM fails",

@@ -75,18 +75,16 @@ func TestAdd(t *testing.T) {
 			wantErr: false,
 		},
 		{
-			name:  "ignore empty input",
-			input: []string{},
-			prepareCommander: func(c *dotfiles.MockCommander) {
-			},
-			wantErr: false,
+			name:             "ignore empty input",
+			input:            []string{},
+			prepareCommander: func(_ *dotfiles.MockCommander) {},
+			wantErr:          false,
 		},
 		{
-			name:  "ignore not configured binaries",
-			input: []string{"foo"},
-			prepareCommander: func(c *dotfiles.MockCommander) {
-			},
-			wantErr: false,
+			name:             "ignore not configured binaries",
+			input:            []string{"foo"},
+			prepareCommander: func(_ *dotfiles.MockCommander) {},
+			wantErr:          false,
 		},
 		{
 			name:  "fails if calling python fails",

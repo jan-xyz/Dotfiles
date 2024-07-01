@@ -79,11 +79,10 @@ func TestAdd(t *testing.T) {
 			wantErr: false,
 		},
 		{
-			name:  "ignores call if list of installable packages is empty",
-			input: []string{},
-			prepareCommander: func(c *dotfiles.MockCommander) {
-			},
-			wantErr: false,
+			name:             "ignores call if list of installable packages is empty",
+			input:            []string{},
+			prepareCommander: func(_ *dotfiles.MockCommander) {},
+			wantErr:          false,
 		},
 		{
 			name:  "fails if installing packages fails",
