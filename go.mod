@@ -1,6 +1,6 @@
 module github.com/jan-xyz/dotfiles
 
-go 1.20
+go 1.22
 
 require (
 	github.com/mgechev/revive v1.3.7
