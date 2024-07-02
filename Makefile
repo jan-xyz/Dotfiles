@@ -23,9 +23,14 @@ lint:
 	go run github.com/mgechev/revive -set_exit_status ./...
 	go run golang.org/x/vuln/cmd/govulncheck ./...
 	go run mvdan.cc/gofumpt -d -e .
+	go run github.com/princjef/gomarkdoc/cmd/gomarkdoc --check --output "{{.Dir}}/README.md" ./internal/... 
 
 fmt:
 	go run mvdan.cc/gofumpt -w .
+
+docs:
+	go run github.com/princjef/gomarkdoc/cmd/gomarkdoc --output "{{.Dir}}/README.md" ./internal/... 
+
 
 .PHONY: stylua
 stylua:
