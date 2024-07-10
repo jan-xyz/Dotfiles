@@ -37,4 +37,11 @@ return {
 			vim.keymap.set("n", "<leader>gu", gitsigns.undo_stage_hunk, { noremap = true, desc = "Unstage hunk" })
 		end,
 	},
+	{
+		"SuperBo/fugit2.nvim",
+		opts = {
+			width = 100,
+		},
+		cmd = { "Fugit2", "Fugit2Diff", "Fugit2Graph" },
+	},
 }
