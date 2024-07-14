@@ -8,6 +8,7 @@ bottles = [
   "ansible",
   "ansible-language-server",
   "ansible-lint",
+  "antidote",
   "autopep8",
   "awscli",
   "aws-cdk",

@@ -13,10 +13,10 @@ fi
 WORDCHARS=${WORDCHARS/\/}
 
 # Load Package Manager configurations
-export ZPLUG_HOME=$(brew --prefix)/opt/zplug
-source $ZPLUG_HOME/init.zsh
+source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
+antidote load ${ZDOTDIR:-$HOME}/.zplugins
 
-source ~/.zplugins
+autoload -Uz promptinit && promptinit && prompt powerlevel10k
 
 alias vim=nvim
 alias diff=colordiff

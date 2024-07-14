@@ -1,26 +1,21 @@
-zplug "plugins/docker",             from:oh-my-zsh
-zplug "plugins/docker-compose",     from:oh-my-zsh
-zplug "plugins/git",                from:oh-my-zsh
-zplug "plugins/golang",             from:oh-my-zsh
-zplug "plugins/gradle",             from:oh-my-zsh
-zplug "plugins/helm",               from:oh-my-zsh
-zplug "plugins/kubectl",            from:oh-my-zsh
-zplug "plugins/kubectx",            from:oh-my-zsh
-zplug "plugins/pyenv",              from:oh-my-zsh
-zplug "plugins/ripgrep",            from:oh-my-zsh
-zplug "plugins/zsh-interactive-cd", from:oh-my-zsh
+# frameworks like oh-my-zsh are supported
+getantidote/use-omz        # handle OMZ dependencies
+ohmyzsh/ohmyzsh path:lib   # load OMZ's library
+ohmyzsh/ohmyzsh path:plugins/docker
+ohmyzsh/ohmyzsh path:plugins/docker-compose
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/golang
+ohmyzsh/ohmyzsh path:plugins/gradle
+ohmyzsh/ohmyzsh path:plugins/helm
+ohmyzsh/ohmyzsh path:plugins/kubectl
+ohmyzsh/ohmyzsh path:plugins/kubectx
+ohmyzsh/ohmyzsh path:plugins/pyenv
+ohmyzsh/ohmyzsh path:plugins/zsh-interactive-cd
 
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-completions"
-zplug "jeffreytse/zsh-vi-mode"
+romkatv/powerlevel10k kind:fpath
 
-zplug romkatv/powerlevel10k, as:theme, depth:1
-
-# zplug check returns true if all packages are installed
-# Therefore, when it returns false, run zplug install
-if ! zplug check; then
-    zplug install
-fi
-
-# Then, source plugins and add commands to $PATH
-zplug load
+# popular fish-like plugins
+mattmc3/zfunctions
+zsh-users/zsh-autosuggestions
+zdharma-continuum/fast-syntax-highlighting kind:defer
+zsh-users/zsh-history-substring-search
