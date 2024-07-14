@@ -1,0 +1,4 @@
+repository:
+  url: https://github.com/jan-xyz/dotfiles
+  defaultBranch: main
+  path: /
