@@ -1,0 +1,57 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[◖](fg:nord3 bg:none)\
+[$directory](fg:nord4 bg:nord3)\
+[](fg:nord3 bg:nord1)\
+[ $git_branch $git_status](fg:nord4 bg:nord1)\
+[](fg:nord1 bg:nord3)\
+[ $time $aws$kubernetes $golang](fg:nord4 bg:nord3)\
+[](fg:nord3 bg:nord1)\
+[$fill](fg:nord3 bg:nord3)\
+[◗ ](fg:nord1 bg:none)\
+$all$character """
+
+
+# Inserts a blank line between shell prompts
+add_newline = false
+
+palette = 'nord'
+
+[directory]
+format="$path$read_only"
+truncation_length = 8
+truncation_symbol = '…/'
+
+[git_branch]
+format="$symbol$branch(:$remote_branch)"
+
+[git_status]
+format='\[$all_status$ahead_behind\]'
+
+[aws]
+format='$symbol($profile )(\($region\) )(\[$duration\] )'
+symbol="󰸏 "
+
+[golang]
+format='$symbol($version )'
+symbol=" "
+
+[kubernetes]
+format='$symbol$context( \($namespace\))'
+symbol="󱃾 "
+disabled=false
+
+[fill]
+symbol="█"
+
+[palettes.nord]
+nord0 = '#2E3440'
+nord1 = '#3B4252'
+nord2 = '#434C5E'
+nord3 = '#4C566A'
+nord4 = '#D8DEE9'
+nord11 = '#BF616A'
+nord13 = '#EBCB8B'
+nord14 = '#A2BE8A'

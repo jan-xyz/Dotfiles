@@ -61,7 +61,7 @@ func (s Plugin) Add(links []string) error {
 				errs = append(errs, err)
 				continue
 			}
-			_, err = s.Commander("ln", "-sf", os.ExpandEnv(sourceFile), os.ExpandEnv(linkName))
+			_, err = s.Commander("ln", "-snf", os.ExpandEnv(sourceFile), os.ExpandEnv(linkName))
 			if err != nil {
 				logrus.Error("Failed configuring symlink:", err)
 				errs = append(errs, err)
