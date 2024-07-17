@@ -183,4 +183,5 @@ links = [
   { sourceFile ="${PWD}/R/RProfile", linkName="${HOME}/.RProfile" },
   { sourceFile ="${PWD}/vscode/settings.json", linkName="${HOME}/Library/Application Support/Code/User/settings.json" },
   { sourceFile ="${PWD}/hammerspoon/", linkName="${HOME}/.hammerspoon" },
+  { sourceFile ="${PWD}/starship.toml", linkName="${HOME}/.config/starship.toml" },
 ]
