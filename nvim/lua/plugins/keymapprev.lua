@@ -7,24 +7,21 @@ return {
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
 		end,
-
+		dependencies = {
+			{ "nvim-tree/nvim-web-devicons" },
+		},
 		config = function()
 			require("which-key").setup({
-				-- [top, right, bottom, left]
-				window = {
-					border = "single",
-					margin = { 1, 0, 0, 0.6 },
-				},
-				layout = { height = { min = 4, max = 75 } },
+				preset = "helix",
 				icons = {
 					separator = ">",
 				},
 			})
 			local wk = require("which-key")
-			wk.register({
-				["<leader>g"] = { name = "Perform Git operations" },
-				["<leader>z"] = { name = "Perform Debug operations" },
-				["t"] = { name = "Perform tests" },
+			wk.add({
+				{ "<leader>g", desc = "Perform Git operations" },
+				{ "<leader>z", desc = "Perform Debug operations" },
+				{ "t",         desc = "Perform tests" },
 			})
 		end,
 	},
