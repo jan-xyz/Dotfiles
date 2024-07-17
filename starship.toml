@@ -7,7 +7,7 @@ format = """
 [](fg:nord3 bg:nord1)\
 [ $git_branch $git_status](fg:nord4 bg:nord1)\
 [](fg:nord1 bg:nord3)\
-[ $time $aws$kubernetes $golang](fg:nord4 bg:nord3)\
+[ $time$aws$kubernetes$golang](fg:nord4 bg:nord3)\
 [](fg:nord3 bg:nord1)\
 [$fill](fg:nord3 bg:nord3)\
 [◗ ](fg:nord1 bg:none)\
@@ -28,7 +28,7 @@ truncation_symbol = '…/'
 format="$symbol$branch(:$remote_branch)"
 
 [git_status]
-format='\[$all_status$ahead_behind\]'
+format='$all_status$ahead_behind'
 
 [aws]
 format='$symbol($profile )(\($region\) )(\[$duration\] )'
