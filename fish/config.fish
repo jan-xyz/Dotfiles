@@ -43,3 +43,8 @@ set fish_greeting
 # cd
 #
 zoxide init --cmd cd fish | source
+
+#
+# Prompt
+#
+starship init fish | source
