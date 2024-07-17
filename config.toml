@@ -26,6 +26,7 @@ bottles = [
   "dockerfile-language-server",
   "delve",
   "firefox",
+  "fish",
   "flake8",
   "font-fira-code-nerd-font",
   "font-meslo-for-powerline",
@@ -165,6 +166,7 @@ preferences = [
 
 [symlink]
 links = [
+  { sourceFile ="${PWD}/fish", linkName="${HOME}/.config/fish" },
   { sourceFile ="${PWD}/nvim", linkName="${HOME}/.config/nvim" },
   { sourceFile ="${PWD}/kitty", linkName="${HOME}/.config/kitty" },
   { sourceFile ="${PWD}/git/gitconfig", linkName="${HOME}/.gitconfig" },
