@@ -100,7 +100,7 @@ func TestAdd(t *testing.T) {
 			},
 			prepareCommander: func(c *dotfiles.MockCommander) {
 				c.OnOutput("mkdir", []string{"-p", "."}).Return(nil, nil)
-				c.OnOutput("ln", []string{"-sf", "barSourceFile", "barLinkName"}).Return(nil, nil)
+				c.OnOutput("ln", []string{"-snf", "barSourceFile", "barLinkName"}).Return(nil, nil)
 			},
 			prepareEnv: func() (unsetEnv func()) { return func() {} },
 			wantErr:    false,
@@ -111,7 +111,7 @@ func TestAdd(t *testing.T) {
 			configuredLinks: []Link{{SourceFile: "barSourceFile", LinkName: "${FOO}"}},
 			prepareCommander: func(c *dotfiles.MockCommander) {
 				c.OnOutput("mkdir", []string{"-p", "."}).Return(nil, nil)
-				c.OnOutput("ln", []string{"-sf", "barSourceFile", "FooBarBaz"}).Return(nil, nil)
+				c.OnOutput("ln", []string{"-snf", "barSourceFile", "FooBarBaz"}).Return(nil, nil)
 			},
 			prepareEnv: func() (unsetEnv func()) {
 				val, ok := os.LookupEnv("FOO")
@@ -148,7 +148,7 @@ func TestAdd(t *testing.T) {
 			},
 			prepareCommander: func(c *dotfiles.MockCommander) {
 				c.OnOutput("mkdir", []string{"-p", "."}).Return(nil, nil)
-				c.OnOutput("ln", []string{"-sf", "barSourceFile", "barLinkName"}).Return(nil, errors.New("boom"))
+				c.OnOutput("ln", []string{"-snf", "barSourceFile", "barLinkName"}).Return(nil, errors.New("boom"))
 			},
 			prepareEnv: func() (unsetEnv func()) { return func() {} },
 			wantErr:    true,
