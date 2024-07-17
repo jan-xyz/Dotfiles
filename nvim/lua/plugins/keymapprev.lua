@@ -21,7 +21,7 @@ return {
 			wk.add({
 				{ "<leader>g", desc = "Perform Git operations" },
 				{ "<leader>z", desc = "Perform Debug operations" },
-				{ "t",         desc = "Perform tests" },
+				{ "t", desc = "Perform tests" },
 			})
 		end,
 	},
