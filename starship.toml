@@ -39,6 +39,9 @@ format='$symbol($version )'
 symbol=" "
 
 [kubernetes]
+format='$symbol$context( \($namespace\))'
+symbol="󱃾 "
+disabled=false
 
 [fill]
 symbol="█"
