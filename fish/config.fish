@@ -1,8 +1,7 @@
 #
-# Homebrew/local
+# Homebrew
 #
 set --export PATH /opt/homebrew/bin /opt/homebrew/sbin $PATH
-set --export PATH /usr/local/bin /usr/local/sbin $PATH
 
 #
 # Pyenv
