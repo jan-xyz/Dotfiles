@@ -7,16 +7,16 @@ format = """
 [](fg:nord3 bg:nord1)\
 [ $git_branch $git_status](fg:nord4 bg:nord1)\
 [](fg:nord1 bg:nord3)\
-[ $time$aws$kubernetes$golang](fg:nord4 bg:nord3)\
+[ $aws$kubernetes$golang](fg:nord4 bg:nord3)\
 [](fg:nord3 bg:nord1)\
 [$fill](fg:nord3 bg:nord3)\
+[$time](fg:nord4 bg:nord1)\
 [◗ ](fg:nord1 bg:none)\
 $all$character """
 
 
 # Inserts a blank line between shell prompts
 add_newline = false
-
 palette = 'nord'
 
 [directory]
@@ -31,17 +31,25 @@ format="$symbol$branch(:$remote_branch)"
 format='$all_status$ahead_behind'
 
 [aws]
-format='$symbol($profile )(\($region\) )(\[$duration\] )'
+format=' $symbol($profile )(\($region\) )(\[$duration\] )'
 symbol="󰸏 "
 
 [golang]
-format='$symbol($version )'
+format=' $symbol($version )'
 symbol=" "
 
 [kubernetes]
-format='$symbol$context( \($namespace\))'
+format=' $symbol$context( \($namespace\))'
 symbol="󱃾 "
 disabled=false
+
+[time]
+format="$time"
+disabled=false
+
+[character]
+success_symbol="[ ](bold nord14)"
+error_symbol="[ ](bold nord11)"
 
 [fill]
 symbol="█"
