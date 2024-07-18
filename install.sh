@@ -22,10 +22,10 @@ git submodule update --init --recursive >/dev/null 2>&1
 #==============
 echo -e "${YELLOW}Checking homebrew${NOCOLOR}"
 if ! command -v brew >/dev/null 2>&1; then
-	echo -e "${RED}Homebrew is not installed${NOCOLOR}"
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo -e "${RED}Homebrew is not installed${NOCOLOR}"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
-	echo -e "${GREEN}Homebrew is installed.${NOCOLOR}"
+  echo -e "${GREEN}Homebrew is installed.${NOCOLOR}"
 fi
 
 #==============
@@ -50,17 +50,17 @@ nvim --headless "+Lazy! install" +qall >/dev/null 2>&1
 #==============
 # Set zsh as the default shell
 #==============
-shell_path=$(brew --prefix)/bin/zsh
+shell_path=$(brew --prefix)/bin/fish
 echo -e "${YELLOW}Setting shell${NOCOLOR}"
 if [[ ${SHELL} != "${shell_path}" ]]; then
-	if ! grep "${shell_path}" /etc/shells >/dev/null 2>&1; then
-		echo -e "${RED}Appending ${shell_path} to /etc/shells${NOCOLOR}"
-		echo "${shell_path}" | sudo tee -a /etc/shells
-	fi
-	echo -e "${RED}you're shell is not ${shell_path} and I'm attempting to change that!${NOCOLOR}"
-	chsh -s "${shell_path}"
+  if ! grep "${shell_path}" /etc/shells >/dev/null 2>&1; then
+    echo -e "${RED}Appending ${shell_path} to /etc/shells${NOCOLOR}"
+    echo "${shell_path}" | sudo tee -a /etc/shells
+  fi
+  echo -e "${RED}you're shell is not ${shell_path} and I'm attempting to change that!${NOCOLOR}"
+  chsh -s "${shell_path}"
 else
-	echo -e "${GREEN}shell is ${shell_path}${NOCOLOR}"
+  echo -e "${GREEN}shell is ${shell_path}${NOCOLOR}"
 fi
 
 #==============
