@@ -1,4 +1,4 @@
-version := 0.3.3
+version := 0.3.4
 
 # build tools
 
@@ -47,7 +47,7 @@ download: dotfiles-$(version)
 
 dotfiles-$(version):
 	rm -f dotfiles-*
-	curl -L https://github.com/jan-xyz/Dotfiles/releases/download/v$(version)/dotfiles-Darwin-x86_64.gz | gzip -N -d > dotfiles-$(version)
+	curl -L https://github.com/jan-xyz/Dotfiles/releases/download/v$(version)/dotfiles-Darwin-arm64.gz | gzip -N -d > dotfiles-$(version)
 	chmod +x ./dotfiles-$(version)
 
 .PHONY: run
