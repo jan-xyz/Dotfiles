@@ -94,12 +94,14 @@ return {
 						hijack_netrw = true,
 						git_status = true,
 						hidden = true,
+						-- group by type
+						grouped = true,
 					},
 					["telescope-alternate"] = {
 						presets = { "go" },
 						mappings = {
 							-- Lua
-							{ "lua/(.*).lua", { { "tests/[1]_spec.lua", "Test", true } } },
+							{ "lua/(.*).lua",        { { "tests/[1]_spec.lua", "Test", true } } },
 							{ "tests/(.*)_spec.lua", { { "lua/[1].lua", "Original", true } } },
 						},
 					},
