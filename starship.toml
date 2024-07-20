@@ -5,11 +5,12 @@ format = """
 [◖](fg:nord3 bg:none)\
 [$directory](fg:nord4 bg:nord3)\
 [](fg:nord3 bg:nord1)\
-[ $git_branch $git_status](fg:nord4 bg:nord1)\
+[ $git_branch$git_status](fg:nord4 bg:nord1)\
 [](fg:nord1 bg:nord3)\
 [ $aws$kubernetes$golang](fg:nord4 bg:nord3)\
 [](fg:nord3 bg:nord1)\
-[$fill](fg:nord3 bg:nord3)\
+$fill\
+[$battery](fg:nord11 bg:nord1)\
 [$time](fg:nord4 bg:nord1)\
 [◗ ](fg:nord1 bg:none)\
 $all$character """
@@ -24,11 +25,18 @@ format="$path$read_only"
 truncation_length = 8
 truncation_symbol = '…/'
 
+[battery]
+format="$symbol$percentage "
+
+[[battery.display]]
+threshold = 10
+style = 'bold red'
+
 [git_branch]
 format="$symbol$branch(:$remote_branch)"
 
 [git_status]
-format='$all_status$ahead_behind'
+format=' $all_status$ahead_behind'
 
 [aws]
 format=' $symbol($profile )(\($region\) )(\[$duration\] )'
@@ -53,6 +61,7 @@ error_symbol="[ ](bold nord11)"
 
 [fill]
 symbol="█"
+style="bold nord1"
 
 [palettes.nord]
 nord0 = '#2E3440'
