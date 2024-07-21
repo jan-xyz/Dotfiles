@@ -43,7 +43,8 @@ return {
 		"b0o/incline.nvim",
 		event = { "BufReadPost", "BufNewFile" },
 		config = function()
-			local devicons = require "nvim-web-devicons"
+			local devicons = require("nvim-web-devicons")
+			local utils = require("telescope.utils")
 			require("incline").setup({
 				render = function(props)
 					local fname = vim.api.nvim_buf_get_name(props.buf)
@@ -55,7 +56,9 @@ return {
 					end
 
 					-- directory
-					local dirname = vim.fn.fnamemodify(fname, ":p:.")
+					local dirname = vim.fn.fnamemodify(fname, ":h")
+					local shortdir, _ = utils.transform_path({ path_display = { shorten = { len = 1, exclude = { 1, -1 } } } },
+						dirname)
 
 					-- icon
 					local ft_icon, ft_color = devicons.get_icon_color(filename)
@@ -68,7 +71,7 @@ return {
 						" ",
 						{ filename },
 						" ",
-						{ dirname, group = "Comment" },
+						{ shortdir, group = "Comment" },
 						" ",
 						modified and { "●", group = "DiagnosticWarn" } or "",
 						" ",

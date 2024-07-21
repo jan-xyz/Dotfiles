@@ -11,15 +11,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-local function filenameFirst(_, path)
-	local tail = vim.fs.basename(path)
-	local parent = vim.fs.dirname(path)
-	if parent == "." then
-		return tail
-	end
-	return string.format("%s\t\t%s", tail, parent)
-end
-
 return {
 	{
 		"nvim-telescope/telescope.nvim",
@@ -50,12 +41,8 @@ return {
 			require("telescope").setup({
 				pickers = {
 					diagnostics = {
-						theme = "ivy",
-						path_display = filenameFirst,
+						layout_strategy = "vertical",
 						line_width = "full",
-					},
-					find_files = {
-						path_display = filenameFirst,
 					},
 					buffers = {
 						mappings = {
@@ -69,6 +56,18 @@ return {
 					},
 				},
 				defaults = {
+					path_display = { "filename_first" },
+					wrap_results = true,
+					layout_config = {
+						vertical = {
+							height = 0.9,
+							width = 0.9,
+						},
+						center = {
+							height = 0.9,
+							width = 0.9,
+						},
+					},
 					vimgrep_arguments = {
 						"rg",
 						"--color=never",

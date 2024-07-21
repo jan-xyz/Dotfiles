@@ -9,12 +9,6 @@ return {
 		config = function()
 			local telescope_builtin = require("telescope.builtin")
 
-			local function copy_path_to_clipboard()
-				local filename = vim.fn.getreg("%")
-				vim.fn.setreg("*", filename)
-				vim.notify("copied filename to system clipboard", vim.log.levels.INFO)
-			end
-
 			local function switch_branch()
 				telescope_builtin.git_branches()
 			end
@@ -38,8 +32,8 @@ return {
 				},
 				sections = {
 					lualine_a = { "mode" },
-					lualine_b = { { "filename", path = 1, on_click = copy_path_to_clipboard } },
-					lualine_c = { { "branch", on_click = switch_branch } },
+					lualine_b = { { "branch", on_click = switch_branch } },
+					lualine_c = {},
 					lualine_x = {},
 					lualine_y = { { "diagnostics", on_click = show_diagnostics } },
 					lualine_z = { { "filetype", draw_empty = true, on_click = set_filetype } },
