@@ -40,7 +40,7 @@ format=' $all_status$ahead_behind'
 
 [aws]
 format=' $symbol($profile )(\($region\) )(\[$duration\] )'
-symbol="󰸏 "
+symbol=" "
 
 [golang]
 format=' $symbol($version )'
