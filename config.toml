@@ -141,7 +141,6 @@ apps = [
   { name="Ecosia", id="1463400445" },
   { name="Ghostery Lite", id="6504861501" },
   { name="Pixelmator Pro", id="1289583905" },
-  { name="Twitter", id="1482454543" },
   { name="Wipr", id="1320666476" },
 ]
 preferences = [
