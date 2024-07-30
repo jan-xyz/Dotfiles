@@ -27,7 +27,7 @@ set --export PATH $PATH $GOPATH/bin
 #
 set --export CARGO_NET_GIT_FETCH_WITH_CLI true
 set --export PATH $PATH /usr/local/opt/llvm/bin/
-set --export PATH $PATH $HOME/.cargo/bin
+source "$HOME/.cargo/env.fish"
 
 #
 # Scala
