@@ -7,7 +7,7 @@ format = """
 [](fg:nord3 bg:nord1)\
 [ $git_branch$git_status](fg:nord4 bg:nord1)\
 [](fg:nord1 bg:nord3)\
-[ $aws$kubernetes$golang](fg:nord4 bg:nord3)\
+[ $aws$kubernetes$golang$rust](fg:nord4 bg:nord3)\
 [](fg:nord3 bg:nord1)\
 $fill\
 [$battery](fg:nord11 bg:nord1)\
@@ -45,6 +45,10 @@ symbol=" "
 [golang]
 format=' $symbol($version )'
 symbol=" "
+
+[rust]
+format=' $symbol($version )'
+symbol=" "
 
 [kubernetes]
 format=' $symbol$context( \($namespace\))'
