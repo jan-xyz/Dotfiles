@@ -65,7 +65,6 @@ bottles = [
   "node",
   "openjdk",
   "openjdk@11",
-  "postman",
   "podman",
   "python",
   "python-lsp-server",
