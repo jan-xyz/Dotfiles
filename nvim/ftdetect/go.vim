@@ -1,4 +1,4 @@
-autocmd BufRead,BufNewFile * if search('{{.\+}}', 'nw') | setlocal filetype=gotmpl | endif
+autocmd BufNewFile,BufRead *.gotmpl set filetype=gotmpl
 autocmd BufRead,BufNewFile go.sum set filetype=gosum
 
 " remove the autocommands for modsim3, and lprolog files so that their
