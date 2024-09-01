@@ -14,7 +14,7 @@ require (
 	github.com/stretchr/testify v1.9.0
 	golang.org/x/vuln v1.1.3
 	honnef.co/go/tools v0.5.1
-	mvdan.cc/gofumpt v0.6.0
+	mvdan.cc/gofumpt v0.7.0
 )
 
 require (
