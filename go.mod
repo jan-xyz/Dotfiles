@@ -2,6 +2,8 @@ module github.com/jan-xyz/dotfiles
 
 go 1.23
 
+toolchain go1.23.0
+
 require (
 	github.com/mgechev/revive v1.3.9
 	github.com/princjef/gomarkdoc v1.1.0
