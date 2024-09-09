@@ -6,7 +6,6 @@ function M.setup()
 
 	nvim_lsp.sourcekit.setup({
 		capabilities = completion.default_capabilities(),
-		cmd = { "xcrun", "sourcekit-lsp" },
 	})
 end
 
