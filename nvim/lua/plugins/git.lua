@@ -38,6 +38,31 @@ return {
 		end,
 	},
 	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim", -- required
+			"sindrets/diffview.nvim", -- optional - Diff integration
+
+			-- Only one of these is needed.
+			"nvim-telescope/telescope.nvim", -- optional
+			-- "ibhagwan/fzf-lua",            -- optional
+			-- "echasnovski/mini.pick",       -- optional
+		},
+		cmd = { "Neogit" },
+		keys = {
+			{ "<leader>gg", desc = "Open Git tool" },
+		},
+		config = function()
+			local neogit = require("neogit")
+			neogit.setup({})
+
+			local openGit = function()
+				neogit.open({ kind = "split" })
+			end
+			vim.keymap.set("n", "<leader>gg", openGit, { noremap = true, desc = "Open Git tool" })
+		end,
+	},
+	{
 		"SuperBo/fugit2.nvim",
 		opts = {
 			width = 100,
