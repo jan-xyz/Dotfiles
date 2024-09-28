@@ -100,8 +100,11 @@ return {
 						presets = { "go" },
 						mappings = {
 							-- Lua
-							{ "lua/(.*).lua", { { "tests/[1]_spec.lua", "Test", true } } },
+							{ "lua/(.*).lua",        { { "tests/[1]_spec.lua", "Test", true } } },
 							{ "tests/(.*)_spec.lua", { { "lua/[1].lua", "Original", true } } },
+							-- Gomod
+							{ "go.mod",              { { "go.sum", "Sum file", false } } },
+							{ "go.sum",              { { "go.mod", "Module file", false } } },
 						},
 					},
 				},
