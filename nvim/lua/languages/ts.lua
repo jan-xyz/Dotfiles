@@ -4,7 +4,7 @@ function M.setup()
 	local nvim_lsp = require("lspconfig")
 	local completion = require("cmp_nvim_lsp")
 
-	nvim_lsp.tsserver.setup({
+	nvim_lsp.ts_ls.setup({
 		capabilities = completion.default_capabilities(),
 		settings = {
 			typescript = {
