@@ -7,6 +7,11 @@ function M.on_attach(args)
 	local bufnr = args.buf
 	local client = vim.lsp.get_client_by_id(args.data.client_id)
 
+	if not client then
+		vim.notify("no client found for buffer " .. bufnr, vim.log.levels.DEBUG)
+		return
+	end
+
 	vim.notify("connecting '" .. client.name .. "' to buffer " .. bufnr, vim.log.levels.DEBUG)
 	-- vim.notify(vim.inspect(client.server_capabilities), vim.log.levels.DEBUG)
 
