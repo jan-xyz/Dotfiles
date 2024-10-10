@@ -3,7 +3,7 @@
 	editor = nvim
 [user]
 	name = Jan Steinke
-	email = jan.steinke@gmail.com
+	email = me@janxyz.de
 [pull]
 	rebase = true
 [push]
