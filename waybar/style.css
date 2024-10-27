@@ -27,7 +27,7 @@ tooltip label {
     border-bottom: 3px solid transparent;
 }
 
-#workspaces button.focused {
+#workspaces button.active {
     background: #64727D;
     border-bottom: 3px solid white;
 }
@@ -45,29 +45,9 @@ tooltip label {
     background-color: #64727D;
 }
 
-#battery {
-    background-color: #ffffff;
-    color: black;
-}
-
-#battery.charging {
-    color: white;
-    background-color: #26A65B;
-}
-
 @keyframes blink {
     to {
         background-color: #ffffff;
         color: black;
     }
-}
-
-#battery.warning:not(.charging) {
-    background: #f53c3c;
-    color: white;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
 }
