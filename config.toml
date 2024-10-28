@@ -64,7 +64,7 @@ bottles = [
   "neovim-remote",
   "node",
   "openjdk",
-  "openjdk@11",
+  "openjdk@17",
   "podman",
   "python",
   "python-lsp-server",
