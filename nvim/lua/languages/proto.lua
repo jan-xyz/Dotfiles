@@ -5,7 +5,7 @@ function M.setup()
 	local completion = require("cmp_nvim_lsp")
 
 	-- LSP config
-	nvim_lsp.bufls.setup({
+	nvim_lsp.buf_ls.setup({
 		capabilities = completion.default_capabilities(),
 		settings = {},
 	})
