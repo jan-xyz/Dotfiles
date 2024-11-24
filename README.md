@@ -31,9 +31,8 @@ chmod +x ./dotfiles-${version}
 ## configuration for
 
 * neovim
-* zsh
-* iterm2
-* vscode
+* fish
+* kitty
 * homebrew
 * mac app store
 * system preferences
