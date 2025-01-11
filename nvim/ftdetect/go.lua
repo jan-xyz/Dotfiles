@@ -2,7 +2,9 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = { "*" },
 	callback = function()
 		-- ignore lua files to not be self-detecting the pattern.
-		if vim.bo.filetype == "lua" then return end
+		if vim.bo.filetype == "lua" then
+			return
+		end
 
 		if vim.fn.search("{{ .\\+ }}", "nw") ~= 0 then
 			vim.bo.filetype = "gotmpl"

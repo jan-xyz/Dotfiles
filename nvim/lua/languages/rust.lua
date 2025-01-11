@@ -6,6 +6,7 @@ function M.setup()
 
 	-- LSP config
 	nvim_lsp.rust_analyzer.setup({
+		cmd = { "/opt/homebrew/bin/rust-analyzer" },
 		capabilities = completion.default_capabilities(),
 		settings = {
 			["rust-analyzer"] = {

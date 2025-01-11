@@ -24,6 +24,7 @@ return {
 		opts = {
 			enbaled = true,
 			mode = "topline",
+			max_lines = 3,
 		},
 	},
 }
