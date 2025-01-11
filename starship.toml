@@ -2,17 +2,17 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[◖](fg:nord3 bg:none)\
+[](fg:nord3 bg:none)\
 [$directory](fg:nord4 bg:nord3)\
 [](fg:nord3 bg:nord1)\
 [ $git_branch$git_status](fg:nord4 bg:nord1)\
 [](fg:nord1 bg:nord3)\
-[ $aws$kubernetes$golang$rust](fg:nord4 bg:nord3)\
+[ $aws$kubernetes$golang$rust$scala](fg:nord4 bg:nord3)\
 [](fg:nord3 bg:nord1)\
 $fill\
 [$battery](fg:nord11 bg:nord1)\
-[$time](fg:nord4 bg:nord1)\
-[◗ ](fg:nord1 bg:none)\
+[$cmd_duration$time](fg:nord4 bg:nord1)\
+[ ](fg:nord1 bg:none)\
 $all$character """
 
 
@@ -50,6 +50,10 @@ symbol=" "
 format=' $symbol($version )'
 symbol=" "
 
+[scala]
+format=' $symbol($version )'
+symbol=" "
+
 [kubernetes]
 format=' $symbol$context( \($namespace\))'
 symbol="󱃾 "
@@ -58,6 +62,9 @@ disabled=false
 [time]
 format="$time"
 disabled=false
+
+[cmd_duration]
+format='took $duration '
 
 [character]
 success_symbol="[ ](bold nord14)"
