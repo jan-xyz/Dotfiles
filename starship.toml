@@ -19,6 +19,7 @@ $all$character """
 # Inserts a blank line between shell prompts
 add_newline = false
 palette = 'nord'
+command_timeout = 1000
 
 [directory]
 format="$path$read_only"
