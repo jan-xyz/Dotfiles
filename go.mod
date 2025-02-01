@@ -5,7 +5,7 @@ go 1.23
 toolchain go1.23.0
 
 require (
-	github.com/mgechev/revive v1.5.1
+	github.com/mgechev/revive v1.6.0
 	github.com/princjef/gomarkdoc v1.1.0
 	github.com/princjef/termdiff v0.1.0
 	github.com/sirupsen/logrus v1.9.3
@@ -49,7 +49,6 @@ require (
 	github.com/mattn/go-runewidth v0.0.16 // indirect
 	github.com/mgechev/dots v0.0.0-20210922191527-e955255bf517 // indirect
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d // indirect
-	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/mmcloughlin/avo v0.6.0 // indirect
 	github.com/nxadm/tail v1.4.11 // indirect
