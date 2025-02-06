@@ -21,7 +21,7 @@ git submodule update --init --recursive >/dev/null 2>&1
 # install homebrew
 #==============
 echo -e "${YELLOW}Checking homebrew${NOCOLOR}"
-if ! command -v brew >/dev/null 2>&1; then
+if ! command -v /opt/homebrew/bin/brew >/dev/null 2>&1; then
   echo -e "${RED}Homebrew is not installed${NOCOLOR}"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
@@ -37,9 +37,9 @@ make run
 # setup system Java wrappers to find homebrew JDKs
 #==============
 echo -e "${YELLOW}Setting up Java wrappers for homebrew JDK${NOCOLOR}"
-sudo ln -sfn "$(brew --prefix)/opt/openjdk@17/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-17.jdk"
-sudo ln -sfn "$(brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-11.jdk"
-sudo ln -sfn "$(brew --prefix)/opt/openjdk@8/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-8.jdk"
+sudo ln -sfn "$(/opt/homebrew/bin/brew --prefix)/opt/openjdk@17/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-17.jdk"
+sudo ln -sfn "$(/opt/homebrew/bin/brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-11.jdk"
+sudo ln -sfn "$(/opt/homebrew/bin/brew --prefix)/opt/openjdk@8/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-8.jdk"
 
 #==============
 # Install Neovim extensions
@@ -50,7 +50,7 @@ nvim --headless "+Lazy! install" +qall >/dev/null 2>&1
 #==============
 # Set zsh as the default shell
 #==============
-shell_path=$(brew --prefix)/bin/fish
+shell_path=$(/opt/homebrew/bin/brew --prefix)/bin/fish
 echo -e "${YELLOW}Setting shell${NOCOLOR}"
 if [[ ${SHELL} != "${shell_path}" ]]; then
   if ! grep "${shell_path}" /etc/shells >/dev/null 2>&1; then
@@ -68,7 +68,7 @@ fi
 #==============
 echo -e "${YELLOW}run post steps${NOCOLOR}"
 echo -e "${GREEN} fzf ${NOCOLOR}"
-"$(brew --prefix)/opt/fzf/install" --all >/dev/null 2>&1
+"$(/opt/homebrew/bin/brew --prefix)/opt/fzf/install" --all >/dev/null 2>&1
 
 #==============
 # And we are done
