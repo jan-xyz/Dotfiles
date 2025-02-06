@@ -8,7 +8,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-var brewExe = "brew"
+var brewExe = "/opt/homebrew/bin/brew"
 
 // Plugin holds the configuration for all hombrew packages.
 type Plugin struct {
