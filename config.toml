@@ -21,7 +21,6 @@ bottles = [
   "cmake",
   "coconutbattery",
   "colordiff",
-  "corsair-icue",
   "dart-sdk",
   "dockerfile-language-server",
   "delve",
