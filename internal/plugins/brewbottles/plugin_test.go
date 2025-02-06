@@ -19,23 +19,23 @@ func TestGetMissingPackage(t *testing.T) {
 		{
 			name: "successfully get packages",
 			prepareCommander: func(c *dotfiles.MockCommander) {
-				c.OnOutput("brew", []string{"list", "--formula"}).Return([]byte("foo"), nil)
-				c.OnOutput("brew", []string{"list", "--casks"}).Return([]byte("bar"), nil)
+				c.OnOutput("/opt/homebrew/bin/brew", []string{"list", "--formula"}).Return([]byte("foo"), nil)
+				c.OnOutput("/opt/homebrew/bin/brew", []string{"list", "--casks"}).Return([]byte("bar"), nil)
 			},
 			expectedPackages: []string{"baz"},
 		},
 		{
 			name: "fails if list casks fails",
 			prepareCommander: func(c *dotfiles.MockCommander) {
-				c.OnOutput("brew", []string{"list", "--formula"}).Return([]byte("foo"), nil)
-				c.OnOutput("brew", []string{"list", "--casks"}).Return([]byte{}, errors.New("boom"))
+				c.OnOutput("/opt/homebrew/bin/brew", []string{"list", "--formula"}).Return([]byte("foo"), nil)
+				c.OnOutput("/opt/homebrew/bin/brew", []string{"list", "--casks"}).Return([]byte{}, errors.New("boom"))
 			},
 			wantErr: true,
 		},
 		{
 			name: "fails if list forumla fails",
 			prepareCommander: func(c *dotfiles.MockCommander) {
-				c.OnOutput("brew", []string{"list", "--formula"}).Return([]byte{}, errors.New("boom"))
+				c.OnOutput("/opt/homebrew/bin/brew", []string{"list", "--formula"}).Return([]byte{}, errors.New("boom"))
 			},
 			wantErr: true,
 		},
@@ -74,7 +74,7 @@ func TestAdd(t *testing.T) {
 			name:  "successfully install packages",
 			input: []string{"bar", "foo"},
 			prepareCommander: func(c *dotfiles.MockCommander) {
-				c.OnOutput("brew", []string{"install", "bar", "foo"}).Return(nil, nil)
+				c.OnOutput("/opt/homebrew/bin/brew", []string{"install", "bar", "foo"}).Return(nil, nil)
 			},
 			wantErr: false,
 		},
@@ -88,7 +88,7 @@ func TestAdd(t *testing.T) {
 			name:  "fails if installing packages fails",
 			input: []string{"bar", "foo"},
 			prepareCommander: func(c *dotfiles.MockCommander) {
-				c.OnOutput("brew", []string{"install", "bar", "foo"}).Return(nil, errors.New("boom"))
+				c.OnOutput("/opt/homebrew/bin/brew", []string{"install", "bar", "foo"}).Return(nil, errors.New("boom"))
 			},
 			wantErr: true,
 		},
@@ -123,14 +123,14 @@ func TestUpdate(t *testing.T) {
 		{
 			name: "successfully update packages",
 			prepareCommander: func(c *dotfiles.MockCommander) {
-				c.OnOutput("brew", []string{"upgrade"}).Return(nil, nil)
+				c.OnOutput("/opt/homebrew/bin/brew", []string{"upgrade"}).Return(nil, nil)
 			},
 			wantErr: false,
 		},
 		{
 			name: "fails if update packages fails",
 			prepareCommander: func(c *dotfiles.MockCommander) {
-				c.OnOutput("brew", []string{"upgrade"}).Return(nil, errors.New("boom"))
+				c.OnOutput("/opt/homebrew/bin/brew", []string{"upgrade"}).Return(nil, errors.New("boom"))
 			},
 			wantErr: true,
 		},

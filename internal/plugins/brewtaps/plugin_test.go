@@ -21,7 +21,7 @@ func TestGetMissingPackage(t *testing.T) {
 			name:           "succesfully get taps",
 			configuredApps: []string{"bar", "foo"},
 			prepareCommander: func(c *dotfiles.MockCommander) {
-				c.OnOutput("brew", []string{"tap"}).Return([]byte("bar"), nil)
+				c.OnOutput("/opt/homebrew/bin/brew", []string{"tap"}).Return([]byte("bar"), nil)
 			},
 			expectedApps: []string{"foo"},
 			wantErr:      false,
@@ -30,7 +30,7 @@ func TestGetMissingPackage(t *testing.T) {
 			name:           "fail if calling brew fails",
 			configuredApps: []string{"bar", "foo"},
 			prepareCommander: func(c *dotfiles.MockCommander) {
-				c.OnOutput("brew", []string{"tap"}).Return([]byte{}, errors.New("boom"))
+				c.OnOutput("/opt/homebrew/bin/brew", []string{"tap"}).Return([]byte{}, errors.New("boom"))
 			},
 			wantErr: true,
 		},
@@ -68,7 +68,7 @@ func TestAdd(t *testing.T) {
 			name:  "succefully install taps",
 			input: []string{"bar", "foo"},
 			prepareCommander: func(c *dotfiles.MockCommander) {
-				c.OnOutput("brew", []string{"tap", "bar", "foo"}).Return(nil, nil)
+				c.OnOutput("/opt/homebrew/bin/brew", []string{"tap", "bar", "foo"}).Return(nil, nil)
 			},
 			wantErr: false,
 		},
@@ -76,7 +76,7 @@ func TestAdd(t *testing.T) {
 			name:  "fail if calling brew fails",
 			input: []string{"bar", "foo"},
 			prepareCommander: func(c *dotfiles.MockCommander) {
-				c.OnOutput("brew", []string{"tap", "bar", "foo"}).Return(nil, errors.New("boom"))
+				c.OnOutput("/opt/homebrew/bin/brew", []string{"tap", "bar", "foo"}).Return(nil, errors.New("boom"))
 			},
 			wantErr: true,
 		},
