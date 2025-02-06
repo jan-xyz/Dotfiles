@@ -58,7 +58,7 @@ return {
 					-- directory
 					local dirname = vim.fn.fnamemodify(fname, ":h")
 					local shortdir, _ =
-							utils.transform_path({ path_display = { shorten = { len = 1, exclude = { 1, -1 } } } }, dirname)
+						utils.transform_path({ path_display = { shorten = { len = 1, exclude = { 1, -1 } } } }, dirname)
 
 					-- icon
 					local ft_icon, ft_color = devicons.get_icon_color(filename)
