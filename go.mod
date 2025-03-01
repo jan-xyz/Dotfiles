@@ -13,7 +13,7 @@ require (
 	github.com/spf13/viper v1.19.0
 	github.com/stretchr/testify v1.10.0
 	golang.org/x/vuln v1.1.4
-	honnef.co/go/tools v0.5.1
+	honnef.co/go/tools v0.6.0
 	mvdan.cc/gofumpt v0.7.0
 )
 
