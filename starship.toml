@@ -2,23 +2,39 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[](fg:nord3 bg:none)\
-[$directory](fg:nord4 bg:nord3)\
-[](fg:nord3 bg:nord1)\
-[ $git_branch$git_status](fg:nord4 bg:nord1)\
-[](fg:nord1 bg:nord3)\
-[ $aws$kubernetes$golang$rust$scala](fg:nord4 bg:nord3)\
-[](fg:nord3 bg:nord1)\
+[](fg:7 bg:none)\
+[$directory](fg:8 bg:7)\
+[](fg:7 bg:15)\
+[ $git_branch$git_status](fg:8 bg:15)\
+[](fg:15 bg:7)\
+[ $aws$kubernetes$golang$rust$scala](fg:8 bg:7)\
+[](fg:7 bg:15)\
 $fill\
-[$battery](fg:nord11 bg:nord1)\
-[$cmd_duration$time](fg:nord4 bg:nord1)\
-[ ](fg:nord1 bg:none)\
+[$battery](fg:1 bg:15)\
+[$cmd_duration$time](fg:8 bg:15)\
+[ ](fg:15 bg:none)\
 $all$character """
+
+# palette = 0=#5c5f77
+#palette = 1=#d20f39
+#palette = 2=#40a02b
+#palette = 3=#df8e1d
+#palette = 4=#1e66f5
+#palette = 5=#ea76cb
+#palette = 6=#179299
+#palette = 7=#acb0be
+#palette = 8=#6c6f85
+#palette = 9=#d20f39
+#palette = 10=#40a02b
+#palette = 11=#df8e1d
+#palette = 12=#1e66f5
+#palette = 13=#ea76cb
+#palette = 14=#179299
+#palette = 15=#bcc0cc
 
 
 # Inserts a blank line between shell prompts
 add_newline = false
-palette = 'nord'
 command_timeout = 1000
 
 [directory]
@@ -68,19 +84,9 @@ disabled=false
 format='took $duration '
 
 [character]
-success_symbol="[ ](bold nord14)"
-error_symbol="[ ](bold nord11)"
+success_symbol="[ ](bold green)"
+error_symbol="[ ](bold red)"
 
 [fill]
 symbol="█"
-style="bold nord1"
-
-[palettes.nord]
-nord0 = '#2E3440'
-nord1 = '#3B4252'
-nord2 = '#434C5E'
-nord3 = '#4C566A'
-nord4 = '#D8DEE9'
-nord11 = '#BF616A'
-nord13 = '#EBCB8B'
-nord14 = '#A2BE8A'
+style="bold fg:15"
