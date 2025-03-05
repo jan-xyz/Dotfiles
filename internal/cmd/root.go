@@ -42,7 +42,11 @@ func execCommander(command string, args ...string) ([]byte, error) {
 	cmd.Env = append(os.Environ(), "GO111MODULE=on")
 	b, err := cmd.CombinedOutput()
 	if err != nil {
-		logrus.Error("output: ", string(b))
+		logrus.WithFields(logrus.Fields{
+			"command": command,
+			"args":    args,
+			"output":  string(b),
+		}).WithError(err).Error("Error executing command.")
 		return nil, err
 	}
 	return b, nil

@@ -65,7 +65,7 @@ bottles = [
   "openjdk",
   "openjdk@17",
   "podman",
-  "python",
+  "python@3.13",
   "python-lsp-server",
   "pyenv",
   "pyenv-virtualenv",
