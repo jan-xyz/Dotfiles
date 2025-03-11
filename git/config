@@ -1,7 +1,7 @@
 [user]
   name = Jan Steinke
   email = me@janxyz.de
-[includeIf "hasconfig:remote.*.url:https://github.com/moia-dev/**"]
+[includeIf "hasconfig:remote.*.url:git@github.com:moia-dev/**"]
   path = ~/.config/git/work.config
 
 [column]
@@ -37,7 +37,6 @@
   autoStash = true
   updateRefs = true
 [core]
-  excludesfile = ~/.gitignore_global
   editor = nvim
 [pull]
   rebase = true
