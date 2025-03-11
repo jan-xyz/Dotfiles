@@ -1,0 +1,72 @@
+[user]
+  name = Jan Steinke
+  email = me@janxyz.de
+[includeIf "hasconfig:remote.*.url:https://github.com/moia-dev/**"]
+  path = ~/.config/git/work.config
+
+[column]
+  ui = auto
+[branch]
+  sort = -committerdate
+[tag]
+  sort = version:refname
+[init]
+  defaultBranch = main
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+[push]
+  default = simple
+  autoSetupRemote = true
+  followTags = true
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+[help]
+  autocorrect = prompt
+[commit]
+  verbose = true
+[rerere]
+  enabled = true
+  autoupdate = true
+[rebase]
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
+[core]
+  excludesfile = ~/.gitignore_global
+  editor = nvim
+[pull]
+  rebase = true
+[push]
+  default = simple
+  autoSetupRemote = true
+[commit]
+  template = ~/.config/git/templates/commit
+[merge]
+  tool = nvim
+[mergetool]
+  keepBackup = false
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
+[includeIf "gitdir:~/code/"]
+  path = ~/code/gitconfig
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
+[alias]
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+  prune-local = "!f() { git branch -d $(git for-each-ref --format '%(upstream:track) %(refname:lstrip=2)' | perl -ane 'print$F[1].\" \"if(scalar@F==2.)'); }; f"
+  prune-local-with-force = "!f() { git branch -D $(git for-each-ref --format '%(upstream:track) %(refname:lstrip=2)' | perl -ane 'print$F[1].\" \"if(scalar@F==2.)'); }; f"
+  default = !git switch $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+[submodule]
+  recurse = true
+[init]
+  defaultBranch = main
