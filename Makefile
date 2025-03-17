@@ -27,6 +27,7 @@ lint:
 
 fmt:
 	go run mvdan.cc/gofumpt -w .
+	stylua .
 
 docs:
 	go run github.com/princjef/gomarkdoc/cmd/gomarkdoc --output "{{.Dir}}/README.md" ./internal/... 
