@@ -1,4 +1,5 @@
 // Package systemprefs allows managing system preferences
+// Find out more here: https://macos-defaults.com/
 package systemprefs
 
 import (
