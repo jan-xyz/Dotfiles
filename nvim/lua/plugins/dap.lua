@@ -47,9 +47,6 @@ return {
 			vim.keymap.set("n", "<leader>zx", dap.terminate, { desc = "Terminate debugger", noremap = true })
 			vim.keymap.set("n", "<leader>zt", dapui.toggle, { desc = "Toggle debugger UI", noremap = true })
 			vim.keymap.set("n", "<leader>zl", dap.list_breakpoints, { desc = "List breakpoints", noremap = true })
-
-			-- Support launch.json (Do after setting the default values)
-			require("dap.ext.vscode").load_launchjs()
 		end,
 	},
 }
