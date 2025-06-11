@@ -33,6 +33,9 @@ vim.bo.tabstop = 2
 -- set Python env
 vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
 
+-- diagnostics
+vim.diagnostic.config({ virtual_lines = true })
+
 -- highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("highlight_yank", {}),
@@ -58,7 +61,7 @@ local function title_string()
 		return vim.fn.fnamemodify(vim.fn.getcwd(), ":tail") .. " (nvim)"
 	end
 end
-vim.o.title = true -- activate title string
+vim.o.title = true                 -- activate title string
 vim.o.titlestring = title_string() -- titlestring template
 
 -- Disable arrow keys
