@@ -26,6 +26,7 @@ bottles = [
   "delve",
   "firefox",
   "fish",
+  "fish-lsp",
   "flake8",
   "font-fira-code-nerd-font",
   "font-meslo-for-powerline",
