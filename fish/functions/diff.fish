@@ -1,4 +1,3 @@
 function diff --wraps=colordiff --description 'alias diff=colordiff'
-  colordiff $argv
-        
+    colordiff $argv
 end

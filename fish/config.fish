@@ -38,9 +38,9 @@ set --export PATH $PATH $HOME/Library/Application\ Support/Coursier/bin
 #
 # Editors
 #
-set --export EDITOR '/opt/homebrew/bin/nvim'
-set --export VISUAL '/opt/homebrew/bin/nvim'
-set --export PAGER 'less'
+set --export EDITOR /opt/homebrew/bin/nvim
+set --export VISUAL /opt/homebrew/bin/nvim
+set --export PAGER less
 
 # diable welcome message
 set fish_greeting

@@ -4,8 +4,8 @@ function fish_title
     set -l command (status current-command)
 
     if test $PWD = $HOME
-      echo "~ ($command)"
+        echo "~ ($command)"
     else
-      echo "$(basename $PWD) ($command)"
+        echo "$(basename $PWD) ($command)"
     end
 end

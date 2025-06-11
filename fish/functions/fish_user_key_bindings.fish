@@ -1,3 +1,3 @@
 function fish_user_key_bindings
-  fzf --fish | source
+    fzf --fish | source
 end
