@@ -5,7 +5,8 @@ vim.bo.expandtab = false
 
 -- run code actions on safe
 vim.api.nvim_create_autocmd("BufWritePre", {
-	callback = function(args)
+	buffer = 0,
+	callback = function(_)
 		vim.lsp.buf.format()
 		vim.lsp.buf.code_action { context = { only = { "source.organizeImports" } }, apply = true }
 	end,
