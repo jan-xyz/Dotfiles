@@ -8,8 +8,6 @@ return {
 			require("formatter").setup({
 				filetype = {
 					json = { require("formatter.filetypes.json").jq },
-					markdown = { { exe = "markdownlint", args = { "--fix" }, ignore_exitcode = true } },
-					proto = { require("formatter.filetypes.proto").buf_format },
 					sh = { require("formatter.filetypes.sh").shfmt },
 				},
 			})

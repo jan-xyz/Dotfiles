@@ -8,7 +8,7 @@
 This repository currently holds two different things:
 
 1. the configuration of my personal dotfiles setup
-1. the source code for a general purpose dotfiles management tool written in Go.
+2. the source code for a general purpose dotfiles management tool written in Go.
 
 You can use the the dotfile tool yourself to manage your setup. See the
 `config.toml` on how to use it.
