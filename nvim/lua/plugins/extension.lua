@@ -116,18 +116,4 @@ return {
 			require("Comment").setup()
 		end,
 	},
-
-	-- changing the default notification boxes
-	{
-		"rcarriga/nvim-notify",
-		config = function()
-			local notify = require("notify")
-			notify.setup({
-				level = "info",
-				merge_duplicates = false,
-				background_colour = "#000000",
-			})
-			vim.notify = notify
-		end,
-	},
 }
