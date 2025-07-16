@@ -99,6 +99,9 @@ return {
 					["telescope-alternate"] = {
 						presets = { "go" },
 						mappings = {
+							-- Kotlin
+							{ "(.*)/src/main/(.*).kt", { { "[1]/src/test/[2]Test.kt", "Test", true } } },
+							{ "(.*)/src/test/(.*)Test.kt", { { "[1]/src/main/[2].kt", "Original", true } } },
 							-- Lua
 							{ "lua/(.*).lua", { { "tests/[1]_spec.lua", "Test", true } } },
 							{ "tests/(.*)_spec.lua", { { "lua/[1].lua", "Original", true } } },
