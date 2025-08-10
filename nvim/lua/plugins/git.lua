@@ -33,8 +33,7 @@ return {
 			vim.keymap.set("n", "<leader>gb", gitsigns.blame_line, { noremap = true, desc = "Open blame" })
 			vim.keymap.set("n", "<leader>gd", gitsigns.preview_hunk, { noremap = true, desc = "Preview diff" })
 			vim.keymap.set({ "n", "v" }, "<leader>gr", gitsigns.reset_hunk, { noremap = true, desc = "Reset hunk" })
-			vim.keymap.set({ "n", "v" }, "<leader>gs", gitsigns.stage_hunk, { noremap = true, desc = "Stage hunk" })
-			vim.keymap.set("n", "<leader>gu", gitsigns.undo_stage_hunk, { noremap = true, desc = "Unstage hunk" })
+			vim.keymap.set({ "n", "v" }, "<leader>gs", gitsigns.stage_hunk, { noremap = true, desc = "Un-/Stage hunk" })
 		end,
 	},
 	{
@@ -44,9 +43,9 @@ return {
 			"sindrets/diffview.nvim", -- optional - Diff integration
 
 			-- Only one of these is needed.
-			"nvim-telescope/telescope.nvim", -- optional
+			-- "nvim-telescope/telescope.nvim", -- optional
 			-- "ibhagwan/fzf-lua",            -- optional
-			-- "echasnovski/mini.pick",       -- optional
+			"echasnovski/mini.pick", -- optional
 		},
 		cmd = { "Neogit" },
 		keys = {

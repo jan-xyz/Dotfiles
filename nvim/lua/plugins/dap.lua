@@ -15,16 +15,13 @@ return {
 		dependencies = {
 			"mfussenegger/nvim-dap",
 			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-			"nvim-telescope/telescope-dap.nvim",
 			"theHamsta/nvim-dap-virtual-text",
 
 			-- Languages
 			{ "julianolf/nvim-dap-lldb", opts = { codelldb_path = "/opt/homebrew/opt/llvm/bin/lldb-dap" } },
-			{ "leoluz/nvim-dap-go", opts = {} },
+			{ "leoluz/nvim-dap-go",      opts = {} },
 		},
 		config = function()
-			require("telescope").load_extension("dap")
 			require("nvim-dap-virtual-text").setup({
 				virt_text_win_col = 90,
 				highlight_changed_variables = true,
@@ -47,9 +44,6 @@ return {
 			vim.keymap.set("n", "<leader>zx", dap.terminate, { desc = "Terminate debugger", noremap = true })
 			vim.keymap.set("n", "<leader>zt", dapui.toggle, { desc = "Toggle debugger UI", noremap = true })
 			vim.keymap.set("n", "<leader>zl", dap.list_breakpoints, { desc = "List breakpoints", noremap = true })
-
-			-- Support launch.json (Do after setting the default values)
-			require("dap.ext.vscode").load_launchjs()
 		end,
 	},
 }

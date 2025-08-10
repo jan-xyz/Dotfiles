@@ -37,25 +37,27 @@ return {
 						{
 							icon = "  ",
 							desc = "Recently opened files                   ",
-							action = "Telescope oldfiles cwd_only=true",
+							action = function()
+								require("mini.extra").pickers.oldfiles({ current_dir = true })
+							end,
 							key = "o",
 						},
 						{
 							icon = "  ",
 							desc = "File Browser                            ",
-							action = "Telescope file_browser hidden=true",
+							action = require("mini.files").open,
 							key = "e",
 						},
 						{
 							icon = "  ",
 							desc = "Find File                               ",
-							action = "Telescope find_files hidden=true",
+							action = require("mini.pick").builtin.files,
 							key = "f",
 						},
 						{
 							icon = "  ",
 							desc = "Find word                               ",
-							action = "Telescope live_grep",
+							action = require("mini.pick").builtin.grep_live,
 							key = "/",
 						},
 						{

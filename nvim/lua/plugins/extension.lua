@@ -38,49 +38,6 @@ return {
 		version = "*",
 		config = true,
 	},
-	-- alternative window bar
-	{
-		"b0o/incline.nvim",
-		event = { "BufReadPost", "BufNewFile" },
-		config = function()
-			local devicons = require("nvim-web-devicons")
-			local utils = require("telescope.utils")
-			require("incline").setup({
-				render = function(props)
-					local fname = vim.api.nvim_buf_get_name(props.buf)
-
-					-- filename
-					local filename = vim.fn.fnamemodify(fname, ":t")
-					if filename == "" then
-						filename = "[No Name]"
-					end
-
-					-- directory
-					local dirname = vim.fn.fnamemodify(fname, ":h")
-					local shortdir, _ =
-						utils.transform_path({ path_display = { shorten = { len = 1, exclude = { 1, -1 } } } }, dirname)
-
-					-- icon
-					local ft_icon, ft_color = devicons.get_icon_color(filename)
-
-					-- modified
-					local modified = vim.bo[props.buf].modified
-
-					return {
-						ft_icon and { " ", ft_icon, " ", guifg = ft_color } or "",
-						" ",
-						{ filename },
-						" ",
-						{ shortdir, group = "Comment" },
-						" ",
-						modified and { "●", group = "DiagnosticWarn" } or "",
-						" ",
-						group = "Normal",
-					}
-				end,
-			})
-		end,
-	},
 	-- modern take on `vim.ui.select` and `vim.ui.input`
 	{
 		"stevearc/dressing.nvim",
