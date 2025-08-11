@@ -49,11 +49,18 @@ return {
 					"react",
 					"rust",
 					-- Lua
-					{ pattern = "lua/(.*).lua",        target = "tests/%1_spec.lua", context = "test" },
-					{ pattern = "tests/(.*)_spec.lua", target = "lua/%1.lua",        context = "implementation" },
-					-- Gomod
-					{ pattern = "go.mod",              target = "go.sum" },
-					{ pattern = "go.sum",              target = "go.mod" },
+					{ context = "test",           pattern = "lua/(.*)%.lua",                      target = "tests/%1_spec.lua" },
+					{ context = "implementation", pattern = "tests/(.*)_spec%.lua",               target = "lua/%1.lua" },
+					-- Go
+					{ context = "implementation", pattern = "(.*)_example_test%.go$",             target = "%1.go" },
+					{ context = "test",           pattern = "(.*)_example_test%.go$",             target = "%1_test.go" },
+					{ context = "example",        pattern = "(.*)%.go$",                          target = "%1_example_test.go" },
+					{ context = "example",        pattern = "(.*)_test%.go$",                     target = "%1_example_test.go" },
+					{ context = "sum file",       pattern = "go%.mod",                            target = "go.sum" },
+					{ context = "mod file",       pattern = "go%.sum",                            target = "go.mod" },
+					-- Kotlin/Java/Scala
+					{ context = "test",           pattern = "(.*)/src/main/(.*)/(.*)%.(.*)$",     target = "%1/src/test/%2/%3Test.%4" },
+					{ context = "implementation", pattern = "(.*)/src/test/(.*)/(.*)Test%.(.*)$", target = "%1/src/main/%2/%3.%4" },
 				},
 			})
 			local km = vim.keymap

@@ -16,3 +16,7 @@ metals.sbt
 .bloop
 .npmrc
 venv
+
+**/.claude/settings.local.json
+**/.crush/
+CRUSH.md

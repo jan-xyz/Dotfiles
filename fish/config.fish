@@ -2,6 +2,7 @@
 # Homebrew
 #
 set --export PATH /opt/homebrew/bin /opt/homebrew/sbin $PATH
+set --export PATH $HOME/.local/bin $PATH
 
 #
 # fzf
@@ -15,7 +16,6 @@ set --export PYENV_ROOT $HOME/.pyenv
 set --export PATH $PYENV_ROOT/bin $PATH
 set --export WORKON_HOME $HOME/Envs
 pyenv init - | source
-set --export PATH $PATH /Users/jan/.local/bin
 
 #
 # Go
@@ -54,3 +54,11 @@ zoxide init --cmd cd fish | source
 # Prompt
 #
 starship init fish | source
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH $HOME/.lmstudio/bin
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/jan.steinke/.lmstudio/bin
+# End of LM Studio CLI section
+

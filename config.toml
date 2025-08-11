@@ -1,8 +1,6 @@
 
 [homebrew]
-taps = [
-  "homebrew/cask-fonts",
-]
+taps = []
 bottles = [
   "aerial",
   "ansible",
@@ -64,13 +62,13 @@ bottles = [
   "node",
   "openjdk",
   "openjdk@17",
+  "openjdk@21",
   "podman",
   "pyenv",
   "pyenv-virtualenv",
   "python-lsp-server",
   "python@3.13",
   "r",
-  "remark",
   "revive",
   "ripgrep",
   "rust-analyzer",
@@ -127,6 +125,7 @@ extensions = [
 [npm]
 packages = [
   "vim-language-server",
+  "@anthropic-ai/claude-code",
 ]
 
 [go]

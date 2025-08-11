@@ -34,7 +34,11 @@ vim.bo.tabstop = 2
 vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
 
 -- diagnostics
-vim.diagnostic.config({ virtual_lines = true })
+vim.diagnostic.config({
+	virtual_lines = {
+		severity = { vim.diagnostic.severity.INFO, vim.diagnostic.severity.WARN, vim.diagnostic.severity.ERROR },
+	},
+})
 
 -- highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {

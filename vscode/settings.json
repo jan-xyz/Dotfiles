@@ -70,5 +70,6 @@
         "editor.codeActionsOnSave": {
             "source.organizeImports": "explicit"
         }
-    }
+    },
+    "go.formatTool": "gofumpt"
 }

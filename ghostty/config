@@ -4,3 +4,4 @@ font-size = 12
 macos-titlebar-proxy-icon = "hidden"
 macos-titlebar-style = "native"
 window-inherit-working-directory = false
+keybind = shift+enter=text:\n
