@@ -1,6 +1,9 @@
 
 [homebrew]
-taps = []
+taps = [
+  "charmbracelet/tap/",
+  "JetBrains/utils/",
+]
 bottles = [
   "aerial",
   "ansible",
@@ -18,10 +21,10 @@ bottles = [
   "cmake",
   "coconutbattery",
   "colordiff",
+  "crush",
   "ctags",
   "dart-sdk",
   "delve",
-  "dockerfile-language-server",
   "firefox",
   "fish",
   "fish-lsp",
@@ -47,7 +50,7 @@ bottles = [
   "jq",
   "julia",
   "kitty",
-  "kotlin-language-server",
+  "kotlin-lsp",
   "kube-ps1",
   "kubernetes-cli",
   "libgit2",
@@ -72,7 +75,7 @@ bottles = [
   "revive",
   "ripgrep",
   "rust-analyzer",
-  "rustup-init",
+  "rustup",
   "shellcheck",
   "shfmt",
   "signal",
@@ -131,6 +134,7 @@ packages = [
 [go]
 modules = [
   { exe = "jsonnet-language-server", path = "github.com/grafana/jsonnet-language-server"},
+  { exe = "docker-language-server", path = "github.com/docker/docker-language-server/cmd/docker-language-server"},
 ]
 
 [mac]
