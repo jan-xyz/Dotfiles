@@ -3,16 +3,18 @@ vim.lsp.config("rust_analyzer", {
 	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 	settings = {
 		["rust-analyzer"] = {
-			cargo = {
-				unsetTest = { "core", "derivative" },
+			checkOnSave = true,
+			check = {
+				-- use "clippy" instead of "check"
+				command = "clippy",
+				-- you can pass extra args too, for example:
+				-- extraArgs = { "--no-deps" },
 			},
-			imports = {
-				prefix = "crate",
-				granularity = {
-					enforce = true,
-					group = "item",
+			diagnostics = {
+				enable = true,
+				experimental = {
+					enable = true,
 				},
-				merge = { glob = false },
 			},
 		},
 	},

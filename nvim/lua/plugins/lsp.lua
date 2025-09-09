@@ -42,7 +42,10 @@ function On_attach(args)
 	-- Format document
 	if client.server_capabilities.documentFormattingProvider then
 		local format = function()
-			vim.lsp.buf.format({ async = false })
+			vim.lsp.buf.format({
+				bufnr = bufnr,
+				async = false,
+			})
 		end
 		vim.api.nvim_create_autocmd("BufWritePre", { callback = format, buffer = bufnr })
 	end

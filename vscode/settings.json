@@ -71,5 +71,7 @@
             "source.organizeImports": "explicit"
         }
     },
-    "go.formatTool": "gofumpt"
+    "go.formatTool": "gofumpt",
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "workbench.activityBar.location": "hidden"
 }

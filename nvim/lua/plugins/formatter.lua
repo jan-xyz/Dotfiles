@@ -13,7 +13,8 @@ return {
 			})
 
 			-- autoformat on save
-			local id = vim.api.nvim_create_autocmd("BufWritePost", {
+			local id = vim.api.nvim_create_autocmd("BufWritePre", {
+				pattern = { "*.json", "*.sh" },
 				callback = function()
 					vim.cmd("FormatWrite")
 				end,
@@ -28,7 +29,8 @@ return {
 					return
 				end
 
-				id = vim.api.nvim_create_autocmd("BufWritePost", {
+				id = vim.api.nvim_create_autocmd("BufWritePre", {
+					pattern = { "*.json", "*.sh" },
 					callback = function()
 						vim.cmd("FormatWrite")
 					end,
