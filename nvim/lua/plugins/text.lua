@@ -1,13 +1,13 @@
 return {
 	{
-		"echasnovski/mini.ai",
+		"nvim-mini/mini.ai",
 		version = "*",
 		config = function()
 			require("mini.ai").setup()
 		end,
 	},
 	{
-		"echasnovski/mini.surround",
+		"nvim-mini/mini.surround",
 		version = "*",
 		config = function()
 			require("mini.surround").setup()
