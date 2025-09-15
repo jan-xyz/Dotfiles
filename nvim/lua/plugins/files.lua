@@ -1,6 +1,6 @@
 return {
 	{
-		"nvim-mini/mini.nvim",
+		"echasnovski/mini.nvim",
 		version = "*",
 		config = function()
 			require("mini.icons").setup()
@@ -17,7 +17,6 @@ return {
 
 			local extra = require("mini.extra")
 			extra.setup()
-
 
 			local current_file = function()
 				MiniFiles.open(vim.api.nvim_buf_get_name(0))
@@ -49,18 +48,46 @@ return {
 					"react",
 					"rust",
 					-- Lua
-					{ context = "test",           pattern = "lua/(.*)%.lua",                      target = "tests/%1_spec.lua" },
-					{ context = "implementation", pattern = "tests/(.*)_spec%.lua",               target = "lua/%1.lua" },
+					{
+						context = "test",
+						pattern = "lua/(.*)%.lua",
+						target = "tests/%1_spec.lua",
+					},
+					{
+						context = "implementation",
+						pattern = "tests/(.*)_spec%.lua",
+						target = "lua/%1.lua",
+					},
 					-- Go
-					{ context = "implementation", pattern = "(.*)_example_test%.go$",             target = "%1.go" },
-					{ context = "test",           pattern = "(.*)_example_test%.go$",             target = "%1_test.go" },
-					{ context = "example",        pattern = "(.*)%.go$",                          target = "%1_example_test.go" },
-					{ context = "example",        pattern = "(.*)_test%.go$",                     target = "%1_example_test.go" },
-					{ context = "sum file",       pattern = "go%.mod",                            target = "go.sum" },
-					{ context = "mod file",       pattern = "go%.sum",                            target = "go.mod" },
+					{ context = "implementation", pattern = "(.*)_example_test%.go$", target = "%1.go" },
+					{
+						context = "test",
+						pattern = "(.*)_example_test%.go$",
+						target = "%1_test.go",
+					},
+					{
+						context = "example",
+						pattern = "(.*)%.go$",
+						target = "%1_example_test.go",
+					},
+					{
+						context = "example",
+						pattern = "(.*)_test%.go$",
+						target = "%1_example_test.go",
+					},
+					{ context = "sum file", pattern = "go%.mod", target = "go.sum" },
+					{ context = "mod file", pattern = "go%.sum", target = "go.mod" },
 					-- Kotlin/Java/Scala
-					{ context = "test",           pattern = "(.*)/src/main/(.*)/(.*)%.(.*)$",     target = "%1/src/test/%2/%3Test.%4" },
-					{ context = "implementation", pattern = "(.*)/src/test/(.*)/(.*)Test%.(.*)$", target = "%1/src/main/%2/%3.%4" },
+					{
+						context = "test",
+						pattern = "(.*)/src/main/(.*)/(.*)%.(.*)$",
+						target = "%1/src/test/%2/%3Test.%4",
+					},
+					{
+						context = "implementation",
+						pattern = "(.*)/src/test/(.*)/(.*)Test%.(.*)$",
+						target = "%1/src/main/%2/%3.%4",
+					},
 				},
 			})
 			local km = vim.keymap

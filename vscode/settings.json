@@ -1,77 +1,82 @@
 {
+  "editor.rulers": [
+    80
+  ],
+  "files.associations": {
+    "*.dk": "dockerfile",
+    "*.mk": "makefile"
+  },
+  "git.autofetch": true,
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.colorTheme": "Nord",
+  "python.formatting.provider": "autopep8",
+  "go.useLanguageServer": true,
+  "go.alternateTools": {
+    "gopls": "/usr/local/bin/gopls",
+    "dlv": "/usr/local/bin/dlv"
+  },
+  "gopls": {
+    "staticcheck": true
+  },
+  "[python]": {
+    "editor.formatOnSave": true,
     "editor.rulers": [
-        80
-    ],
-    "files.associations": {
-        "*.dk": "dockerfile",
-        "*.mk": "makefile"
-    },
-    "git.autofetch": true,
-    "workbench.startupEditor": "newUntitledFile",
-    "workbench.colorTheme": "Nord",
-    "python.formatting.provider": "autopep8",
-    "go.useLanguageServer": true,
-    "go.alternateTools": {
-        "gopls": "/usr/local/bin/gopls",
-        "dlv": "/usr/local/bin/dlv"
-    },
-    "gopls": {
-        "staticcheck": true
-    },
-    "[python]": {
-        "editor.formatOnSave": true,
-        "editor.rulers": [
-            80
-        ]
-    },
-    "[go]": {
-        "editor.snippetSuggestions": "none",
-        "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": "explicit"
-        }
-    },
-    "[rust]": {
-        "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": "explicit"
-        }
-    },
-    "files.eol": "\n",
-    "editor.fontFamily": "\"Fira Code\", Menlo, \"DejaVu Sans Mono\", Consolas, \"Lucida Console\", monospace",
-    "editor.fontLigatures": true,
-    "editor.renderWhitespace": "boundary",
-    "editor.minimap.enabled": false,
-    "window.zoomLevel": 0,
-    "editor.suggestSelection": "first",
-    "kotlin.languageServer.path": "/usr/local/bin/kotlin-language-server",
-    "python.languageServer": "Pylance",
-    "editor.accessibilitySupport": "off",
-    "jupyter.askForKernelRestart": false,
-    "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
-    },
-    "redhat.telemetry.enabled": false,
-    "rust-analyzer.cargo.unsetTest": [
-        "core",
-        "derivative"
-    ],
-    "files.autoSave": "afterDelay",
-    "files.watcherExclude": {
-        "**/.bloop": true,
-        "**/.metals": true,
-        "**/.ammonite": true
-    },
-    "rust-analyzer.imports.granularity.enforce": true,
-    "rust-analyzer.imports.granularity.group": "item",
-    "rust-analyzer.imports.prefix": "crate",
-    "go.inlayHints.rangeVariableTypes": true,
-    "[go][rust]": {
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": "explicit"
-        }
-    },
-    "go.formatTool": "gofumpt",
-    "github.copilot.nextEditSuggestions.enabled": true,
-    "workbench.activityBar.location": "hidden"
+      80
+    ]
+  },
+  "[go]": {
+    "editor.snippetSuggestions": "none",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "[rust]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "files.eol": "\n",
+  "editor.fontFamily": "\"Fira Code\", Menlo, \"DejaVu Sans Mono\", Consolas, \"Lucida Console\", monospace",
+  "editor.fontLigatures": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.minimap.enabled": false,
+  "window.zoomLevel": 0,
+  "editor.suggestSelection": "first",
+  "kotlin.languageServer.path": "/usr/local/bin/kotlin-language-server",
+  "python.languageServer": "Pylance",
+  "editor.accessibilitySupport": "off",
+  "jupyter.askForKernelRestart": false,
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "redhat.telemetry.enabled": false,
+  "rust-analyzer.cargo.unsetTest": [
+    "core",
+    "derivative"
+  ],
+  "files.autoSave": "afterDelay",
+  "files.watcherExclude": {
+    "**/.bloop": true,
+    "**/.metals": true,
+    "**/.ammonite": true
+  },
+  "rust-analyzer.imports.granularity.enforce": true,
+  "rust-analyzer.imports.granularity.group": "item",
+  "rust-analyzer.imports.prefix": "crate",
+  "go.inlayHints.rangeVariableTypes": true,
+  "[go][rust]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "go.formatTool": "gofumpt",
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "workbench.activityBar.location": "hidden",
+  "idf.hasWalkthroughBeenShown": true,
+  "idf.espIdfPath": "/Users/jan/esp/v5.0.2/esp-idf",
+  "idf.toolsPath": "/Users/jan/.espressif",
+  "idf.gitPath": "git",
+  "idf.pythonInstallPath": "/opt/homebrew/bin/python3"
 }

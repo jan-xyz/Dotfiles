@@ -10,7 +10,7 @@ vim.lsp.config("lua_ls", {
 		Lua = {
 			diagnostics = {
 				neededFileStatus = {
-					["codestyle-check"] = "Any",
+					["codestyle-check"] = "None",
 				},
 				globals = { "describe", "it", "assert", "vim", "hs" },
 			},
@@ -18,7 +18,7 @@ vim.lsp.config("lua_ls", {
 				enable = true,
 			},
 			format = {
-				enable = true,
+				enable = false,
 				defaultConfig = {
 					quote_style = "double",
 					indent_style = "tab",
@@ -39,3 +39,6 @@ vim.lsp.config("lua_ls", {
 	},
 })
 vim.lsp.enable("lua_ls")
+
+vim.lsp.config("stylua", {})
+vim.lsp.enable("stylua")
