@@ -20,6 +20,7 @@ bottles = [
   "ccls",
   "cmake",
   "coconutbattery",
+  "codebook-lsp",
   "colordiff",
   "crush",
   "ctags",

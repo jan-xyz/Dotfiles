@@ -33,6 +33,9 @@ vim.bo.tabstop = 2
 -- set Python env
 vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
 
+-- spell check
+vim.lsp.enable("codebook")
+
 -- diagnostics
 vim.diagnostic.config({
 	virtual_lines = {
