@@ -132,4 +132,7 @@ local reloadConfig = function(files)
 end
 
 ConfigReloadWatcher = hs.pathwatcher.new(hs.configdir, reloadConfig):start()
+
+hs.ipc.cliInstall()
 hs.alert.show("Config loaded")
+hs.loadSpoon("EmmyLua")

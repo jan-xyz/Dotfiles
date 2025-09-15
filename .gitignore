@@ -4,4 +4,4 @@ dotfiles*
 *.add.spl
 coverage.out
 nvim/plugin/packer_compiled.lua
-.luarc.json
+hammerspoon/Spoons/EmmyLua.spoon/annotations/

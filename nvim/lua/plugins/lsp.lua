@@ -26,7 +26,7 @@ function On_attach(args)
 	)
 
 	-- Code Lens
-	if client.server_capabilities.codeLensProvider then
+	if client.server_capabilities ~= nil and client.server_capabilities.codeLensProvider then
 		vim.api.nvim_create_autocmd(
 			{ "BufEnter", "CursorHold", "InsertLeave" },
 			{ callback = vim.lsp.codelens.refresh, buffer = bufnr }
@@ -40,7 +40,7 @@ function On_attach(args)
 	end
 
 	-- Format document
-	if client.server_capabilities.documentFormattingProvider then
+	if client.server_capabilities ~= nil and client.server_capabilities.documentFormattingProvider then
 		local format = function()
 			vim.lsp.buf.format({
 				bufnr = bufnr,
@@ -51,7 +51,7 @@ function On_attach(args)
 	end
 
 	-- Symbols
-	if client.server_capabilities.workspaceSymbolProvider then
+	if client.server_capabilities ~= nil and client.server_capabilities.workspaceSymbolProvider then
 		vim.keymap.set(
 			"n",
 			"<leader>O",

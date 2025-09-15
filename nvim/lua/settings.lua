@@ -33,7 +33,7 @@ vim.bo.tabstop = 2
 -- set Python env
 vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
 
--- spell check
+-- default LSP support
 vim.lsp.enable("codebook")
 
 -- diagnostics
@@ -68,7 +68,7 @@ local function title_string()
 		return vim.fn.fnamemodify(vim.fn.getcwd(), ":tail") .. " (nvim)"
 	end
 end
-vim.o.title = true -- activate title string
+vim.o.title = true                 -- activate title string
 vim.o.titlestring = title_string() -- titlestring template
 
 -- Disable arrow keys
