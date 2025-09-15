@@ -1,6 +1,6 @@
 module github.com/jan-xyz/dotfiles
 
-go 1.23.0
+go 1.24.0
 
 toolchain go1.24.2
 
@@ -14,7 +14,7 @@ require (
 	github.com/stretchr/testify v1.11.1
 	golang.org/x/vuln v1.1.4
 	honnef.co/go/tools v0.6.1
-	mvdan.cc/gofumpt v0.8.0
+	mvdan.cc/gofumpt v0.9.1
 )
 
 require (
@@ -37,7 +37,7 @@ require (
 	github.com/go-git/go-git/v5 v5.13.1 // indirect
 	github.com/go-viper/mapstructure/v2 v2.4.0 // indirect
 	github.com/golang/groupcache v0.0.0-20241129210726-2c02b8208cf8 // indirect
-	github.com/google/go-cmp v0.6.0 // indirect
+	github.com/google/go-cmp v0.7.0 // indirect
 	github.com/hashicorp/go-version v1.7.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
