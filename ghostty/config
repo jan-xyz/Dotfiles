@@ -1,4 +1,4 @@
-theme = dark:catppuccin-mocha,light:catppuccin-latte
+theme = dark:Catppuccin Frappe,light:Catppuccin Latte
 font-family = "FiraCode Nerd Font Mono"
 font-size = 12
 macos-titlebar-proxy-icon = "hidden"
