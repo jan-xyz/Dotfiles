@@ -5,3 +5,4 @@ macos-titlebar-proxy-icon = "hidden"
 macos-titlebar-style = "native"
 window-inherit-working-directory = false
 keybind = shift+enter=text:\n
+custom-shader = ~/.config/ghostty/shader/cursor_blaze.glsl
