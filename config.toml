@@ -141,10 +141,13 @@ modules = [
 [mac]
 profile = "jansteinke@icloud.com"
 apps = [
-  { name="Ecosia", id="1463400445" },
   { name="Ghostery Lite", id="6504861501" },
   { name="Pixelmator Pro", id="1289583905" },
-  { name="Wipr", id="1320666476" },
+  { name="Wipr", id="1662217862" },
+  { name="StatusClock", id="552792489" },
+  { name="Pages", id="409201541" },
+  { name="Keynote", id="409183694" },
+  { name="Numbers", id="409203825" },
 ]
 preferences = [
   { name="NSGlobalDomain.KeyRepeat", type="int", value="1" },
