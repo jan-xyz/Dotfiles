@@ -75,7 +75,7 @@ vec2 getRectangleCenter(vec4 rectangle) {
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 {
     const vec4 TRAIL_COLOR = iPreviousCursorColor;
-    const vec4 TRAIL_COLOR_ACCENT = iPreviousCursorColor * vec4(.5, .5, .5, 0.8);
+    const vec4 TRAIL_COLOR_ACCENT = iPreviousCursorColor;
     const float DURATION = .5;
     const float OPACITY = .2;
 
