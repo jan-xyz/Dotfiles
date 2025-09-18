@@ -48,7 +48,6 @@ bottles = [
   "haskell-language-server",
   "haskell-stack",
   "htop",
-  "iterm2",
   "jq",
   "julia",
   "kitty",
@@ -164,9 +163,6 @@ preferences = [
   { name="com.apple.AppleMultitouchTrackpad.Clicking", type="int", value="1"},
   { name="com.apple.AppleMultitouchTrackpad.TrackpadThreeFingerDrag", type="int", value="1"},
 
-  { name="com.googlecode.iterm2.plist.PrefsCustomFolder", type="string", value="${HOME}/.iterm2" },
-  { name="com.googlecode.iterm2.plist.LoadPrefsFromCustomFolder", type="int", value="1" },
-
   { name="com.apple.ActivityMonitor.IconType", type="int", value="6" },
 ]
 
@@ -177,7 +173,6 @@ links = [
   { sourceFile ="${PWD}/nvim", linkName="${HOME}/.config/nvim" },
   { sourceFile ="${PWD}/kitty", linkName="${HOME}/.config/kitty" },
   { sourceFile ="${PWD}/git", linkName="${HOME}/.config/git" },
-  { sourceFile ="${PWD}/iterm2", linkName="${HOME}/.iterm2" },
   { sourceFile ="${PWD}/zsh_config/zshrc", linkName="${HOME}/.zshrc" },
   { sourceFile ="${PWD}/zsh_config/zshenv", linkName="${HOME}/.zshenv" },
   { sourceFile ="${PWD}/zsh_config/zprofile", linkName="${HOME}/.zprofile" },
