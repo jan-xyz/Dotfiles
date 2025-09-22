@@ -168,6 +168,7 @@ preferences = [
 
 [symlink]
 links = [
+  { sourceFile ="${PWD}/codebook", linkName="${HOME}/.config/codebook" },
   { sourceFile ="${PWD}/fish", linkName="${HOME}/.config/fish" },
   { sourceFile ="${PWD}/ghostty", linkName="${HOME}/.config/ghostty" },
   { sourceFile ="${PWD}/nvim", linkName="${HOME}/.config/nvim" },

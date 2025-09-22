@@ -20,3 +20,4 @@ venv
 **/.claude/settings.local.json
 **/.crush/
 CRUSH.md
+/codebook.toml
