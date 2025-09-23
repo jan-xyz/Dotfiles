@@ -1,8 +1,8 @@
 
 [homebrew]
 taps = [
-  "charmbracelet/tap/",
-  "JetBrains/utils/",
+  "charmbracelet/tap",
+  "JetBrains/utils",
 ]
 bottles = [
   "aerial",
