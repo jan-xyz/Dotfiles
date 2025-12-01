@@ -19,8 +19,10 @@ words = [
     "ctags",
     "curdir",
     "debuginfo",
+    "dyn",
     "ecosia",
     "emmylua",
+    "envconfig",
     "eob",
     "expandtab",
     "facto",
@@ -116,6 +118,7 @@ words = [
     "winsize",
     "wipr",
     "withf",
+    "xyz",
     "zoxide",
     "zplug",
 ]
