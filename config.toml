@@ -3,6 +3,7 @@
 taps = [
   "charmbracelet/tap",
   "jetbrains/utils",
+  "probe-rs/probe-rs".
 ]
 bottles = [
   "aerial",
@@ -67,6 +68,7 @@ bottles = [
   "openjdk@17",
   "openjdk@21",
   "podman",
+  "probe-rs",
   "pyenv",
   "pyenv-virtualenv",
   "python-lsp-server",

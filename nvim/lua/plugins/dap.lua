@@ -16,6 +16,7 @@ return {
 			"mfussenegger/nvim-dap",
 			"nvim-lua/plenary.nvim",
 			"theHamsta/nvim-dap-virtual-text",
+			"abayomi185/nvim-dap-probe-rs",
 
 			-- Languages
 			{ "julianolf/nvim-dap-lldb", opts = { codelldb_path = "/opt/homebrew/opt/llvm/bin/lldb-dap" } },
