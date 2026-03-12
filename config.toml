@@ -3,7 +3,7 @@
 taps = [
   "charmbracelet/tap",
   "jetbrains/utils",
-  "probe-rs/probe-rs".
+  "probe-rs/probe-rs",
 ]
 bottles = [
   "aerial",
