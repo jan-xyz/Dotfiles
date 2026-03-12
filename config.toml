@@ -50,7 +50,6 @@ bottles = [
   "haskell-stack",
   "htop",
   "jq",
-  "julia",
   "kitty",
   "kotlin-lsp",
   "kube-ps1",
@@ -97,12 +96,6 @@ bottles = [
   "zoxide",
   "zplug",
   "zsh",
-]
-
-[julia]
-modules =[
-  "LanguageServer",
-  "Pluto"
 ]
 
 [vscode]
