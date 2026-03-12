@@ -1,0 +1,69 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "lsp": {
+    "bash-language-server": {},
+    "buf-language-server": {},
+    "gopls": {},
+    "lua-language-server": {},
+    "rust-analyzer": {},
+    "metals": {},
+    "kotlin-lsp": {
+      "command": "kotlin-lsp",
+      "args": [
+        "--stdio"
+      ],
+      "fileTypes": [
+        "kt",
+        "kts"
+      ],
+      "rootMarkers": [
+        ".git",
+        "settings.gradle",
+        "settings.gradle.kts",
+        "pom.xml",
+        "build.gradle",
+        "build.gradle.kts",
+        "workspace.json"
+      ],
+      "enableSnippets": true
+    }
+  },
+  "mcp": {
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "$(echo Bearer $GITHUB_MCP_PAT)"
+      }
+    },
+    "context7": {
+      "type": "stdio",
+      "command": "context7-mcp"
+    },
+    "figma": {
+      "type": "http",
+      "url": "http://127.0.0.1:3845/mcp"
+    }
+  },
+  "permissions": {
+    "allowed_tools": [
+      "grep",
+      "view",
+      "mcp_github_get_issue",
+      "mcp_github_get_issue_comments",
+      "mcp_github_pull_request_read"
+    ]
+  },
+  "options": {
+    "attribution": {
+      "co_authored_by": false,
+      "generated_with": false
+    },
+    "skills_paths": [
+      "~/.config/crush/skills",
+      "~/.claude/skills/",
+      "agent/skills",
+      "claude/skills"
+    ]
+  }
+}
