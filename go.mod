@@ -3,7 +3,7 @@ module github.com/jan-xyz/dotfiles
 go 1.25.0
 
 require (
-	github.com/mgechev/revive v1.14.0
+	github.com/mgechev/revive v1.15.0
 	github.com/princjef/gomarkdoc v1.1.0
 	github.com/princjef/termdiff v0.1.0
 	github.com/sirupsen/logrus v1.9.4
