@@ -72,3 +72,48 @@ error_symbol="[ ](bold red)"
 [fill]
 symbol="█"
 style="bold fg:15"
+
+[profiles]
+claude_code = "[](fg:7 bg:none)$claude_model[](fg:7 bg:15)[ $git_branch ](fg:8 bg:15)[](fg:15 bg:7)$claude_context$claude_cost[](fg:7 bg:none)"
+
+[claude_model]
+format = " $symbol$model "
+style = "fg:8 bg:7"
+symbol = ""
+model_aliases = { "eu.anthropic.claude-sonnet-4-6" = "Sonnet 4.6", "eu.anthropic.claude-opus-4-6-v1" = "Opus 4.6", "eu.anthropic.claude-haiku-4-5-20251001-v1:0" = "Haiku 4.5" }
+
+[claude_context]
+format = " $gauge $percentage "
+style = "fg:8 bg:7"
+
+[[claude_context.display]]
+threshold = 0
+hidden = true
+
+[[claude_context.display]]
+threshold = 30
+style = "bold green bg:7"
+
+[[claude_context.display]]
+threshold = 60
+style = "bold yellow bg:7"
+
+[[claude_context.display]]
+threshold = 80
+style = "bold red bg:7"
+
+[claude_cost]
+format = " \\$$cost "
+style = "fg:8 bg:7"
+
+[[claude_cost.display]]
+threshold = 0
+hidden = true
+
+[[claude_cost.display]]
+threshold = 1
+style = "bold yellow bg:7"
+
+[[claude_cost.display]]
+threshold = 5
+style = "bold red bg:7"
