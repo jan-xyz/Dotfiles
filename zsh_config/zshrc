@@ -20,7 +20,6 @@ autoload -Uz promptinit && promptinit && prompt powerlevel10k
 
 alias vim=nvim
 alias diff=colordiff
-alias docker=podman
 
 # common ls aliases
 alias ls='ls --color=auto'
