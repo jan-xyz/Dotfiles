@@ -1,11 +1,10 @@
-return {
-	{
-		"nvimdev/dashboard-nvim",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-			{ "rubiin/fortune.nvim", opts = { content_type = "tips" } },
-		},
-		config = function()
+vim.pack.add({
+		"https://github.com/nvimdev/dashboard-nvim",
+			"https://github.com/nvim-tree/nvim-web-devicons",
+			"https://github.com/nvim-mini/mini.files",
+			"https://github.com/nvim-mini/mini.pick",
+			"https://github.com/nvim-mini/mini.extra",
+})
 			require("dashboard").setup({
 				theme = "doom",
 				config = {
@@ -63,25 +62,13 @@ return {
 						{
 							icon = "󰇚  ",
 							desc = "Update Center                           ",
-							action = "Lazy home",
+							action = vim.pack.update,
 							key = "u",
 						},
 					},
 					footer = function()
-						local stats = require("lazy").stats()
-						local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-						local footer = {
-							"Startuptime: " .. ms .. "ms",
-							"Plugins: " .. stats.loaded .. " loaded / " .. stats.count .. " installed ",
-						}
-						local fortune = require("fortune").get_fortune()
-						footer = vim.list_extend(footer, fortune)
-
-						return footer
+						return {}
 					end,
 				},
 			})
 			vim.api.nvim_set_hl(0, "DashboardHeader", { fg = "#A3BE8C", ctermfg = 2 })
-		end,
-	},
-}

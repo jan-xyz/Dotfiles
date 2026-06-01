@@ -86,6 +86,7 @@ bottles = [
   "stylua",
   "subversion",
   "telegram",
+  "tree-sitter-cli",
   "typescript",
   "typescript-language-server",
   "visual-studio-code",

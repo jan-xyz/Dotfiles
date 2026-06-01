@@ -8,7 +8,7 @@ function On_attach(args)
 		return
 	end
 
-	vim.notify("connecting '" .. client.name .. "' to buffer " .. bufnr, vim.log.levels.DEBUG)
+	-- vim.notify("connecting '" .. client.name .. "' to buffer " .. bufnr, vim.log.levels.DEBUG)
 	-- vim.notify(vim.inspect(client.server_capabilities), vim.log.levels.DEBUG)
 
 	-- Workspace diagnostics
@@ -27,15 +27,12 @@ function On_attach(args)
 
 	-- Code Lens
 	if client.server_capabilities ~= nil and client.server_capabilities.codeLensProvider then
-		vim.api.nvim_create_autocmd(
-			{ "BufEnter", "CursorHold", "InsertLeave" },
-			{ callback = vim.lsp.codelens.refresh, buffer = bufnr }
-		)
+		vim.lsp.codelens.enable(true, { bufnr = bufnr })
 		vim.keymap.set(
 			"n",
 			"<leader>c",
 			vim.lsp.codelens.run,
-			{ noremap = true, buffer = bufnr, desc = "Peform codelens" }
+			{ noremap = true, buffer = bufnr, desc = "Perform codelens" }
 		)
 	end
 
@@ -61,38 +58,15 @@ function On_attach(args)
 	end
 end
 
-return {
-	{
-		"neovim/nvim-lspconfig",
-		event = { "BufReadPost", "BufNewFile" },
-		dependencies = {
-			{ "kosayoda/nvim-lightbulb", opts = { sign = { text = "" }, autocmd = { enabled = true } } },
-			{
-				"MysticalDevil/inlay-hints.nvim",
-				event = "LspAttach",
-				dependencies = { "neovim/nvim-lspconfig" },
-				config = function()
-					require("inlay-hints").setup()
-				end,
-			},
+vim.pack.add({
+	"https://github.com/neovim/nvim-lspconfig",
+	"https://github.com/kosayoda/nvim-lightbulb",
+	"https://github.com/folke/lazydev.nvim",
+	"https://github.com/MysticalDevil/inlay-hints.nvim",
+})
+require("nvim-lightbulb").setup({ sign = { text = "" }, autocmd = { enabled = true } })
+require("inlay-hints").setup()
 
-			-- Language dependencies
-			{
-				"folke/lazydev.nvim",
-				ft = "lua", -- only load on lua files
-				opts = {
-					library = {
-						-- See the configuration section for more details
-						-- Load luvit types when the `vim.uv` word is found
-						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
-					},
-				},
-			},
-		},
-		config = function()
-			vim.api.nvim_create_autocmd("LspAttach", {
-				callback = On_attach,
-			})
-		end,
-	},
-}
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = On_attach,
+})
