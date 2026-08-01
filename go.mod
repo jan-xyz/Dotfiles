@@ -10,7 +10,7 @@ require (
 	github.com/spf13/cobra v1.10.2
 	github.com/spf13/viper v1.21.0
 	github.com/stretchr/testify v1.11.1
-	golang.org/x/vuln v1.5.0
+	golang.org/x/vuln v1.6.0
 	honnef.co/go/tools v0.7.0
 	mvdan.cc/gofumpt v0.11.0
 )
