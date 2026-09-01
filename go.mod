@@ -1,6 +1,6 @@
 module github.com/jan-xyz/dotfiles
 
-go 1.25.0
+go 1.26.0
 
 require (
 	github.com/mgechev/revive v1.15.0
@@ -11,7 +11,7 @@ require (
 	github.com/spf13/viper v1.21.0
 	github.com/stretchr/testify v1.11.1
 	golang.org/x/vuln v1.6.0
-	honnef.co/go/tools v0.7.0
+	honnef.co/go/tools v0.8.1
 	mvdan.cc/gofumpt v0.11.0
 )
 
