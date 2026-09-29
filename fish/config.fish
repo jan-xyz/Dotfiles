@@ -8,6 +8,7 @@ set -gx VISUAL nvim
 set -gx FZF_DEFAULT_OPTS_FILE $HOME/.config/fzf/fzfrc
 set -gx FZF_CTRL_T_OPTS "--preview 'head -200 {} 2>/dev/null || ls -A {}' --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 set -gx FZF_ALT_C_OPTS "--preview 'ls -A {}'"
+set -gx FZF_CTRL_R_OPTS "--with-nth=1,3.."
 
 fish_add_path -g \
     $HOME/.local/bin \
