@@ -1,71 +1,20 @@
--- set neovim-remote as git editor to open git commits from the builtin terminal inside neovim
+-- neovim-remote opens commits from the built-in terminal in this instance
 vim.env.GIT_EDITOR = "nvr -cc split --remote-wait"
 
--- delete git buffers directly when done with writing a commit to not make nvr wait on close.
--- if removed you need to manually delete the buffer.
+-- nvr waits until the buffer is gone, so it must not stay hidden
 vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("my.git_buffers", {}),
 	pattern = { "gitcommit", "gitrebase", "gitconfig" },
 	callback = function()
 		vim.bo.bufhidden = "delete"
 	end,
 })
 
-return {
-	{
-		"akinsho/git-conflict.nvim",
-		event = { "BufReadPost", "BufNewFile" },
-		version = "*",
-		config = true,
-	},
-	{
-		"lewis6991/gitsigns.nvim",
-		event = { "BufReadPost", "BufNewFile" },
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		config = function()
-			require("gitsigns").setup({
-				signcolumn = false,
-				numhl = true,
-				word_diff = false,
-			})
-			local gitsigns = require("gitsigns")
-			vim.keymap.set("n", "<leader>gb", gitsigns.blame_line, { noremap = true, desc = "Open blame" })
-			vim.keymap.set("n", "<leader>gd", gitsigns.preview_hunk, { noremap = true, desc = "Preview diff" })
-			vim.keymap.set({ "n", "v" }, "<leader>gr", gitsigns.reset_hunk, { noremap = true, desc = "Reset hunk" })
-			vim.keymap.set({ "n", "v" }, "<leader>gs", gitsigns.stage_hunk, { noremap = true, desc = "Un-/Stage hunk" })
-		end,
-	},
-	{
-		"NeogitOrg/neogit",
-		dependencies = {
-			"nvim-lua/plenary.nvim", -- required
-			"sindrets/diffview.nvim", -- optional - Diff integration
+require("mini.git").setup()
+require("mini.diff").setup({ view = { style = "number" } })
 
-			-- Only one of these is needed.
-			-- "nvim-telescope/telescope.nvim", -- optional
-			-- "ibhagwan/fzf-lua",            -- optional
-			"nvim-mini/mini.pick", -- optional
-		},
-		cmd = { "Neogit" },
-		keys = {
-			{ "<leader>gg", desc = "Open Git tool" },
-		},
-		config = function()
-			local neogit = require("neogit")
-			neogit.setup({})
-
-			local openGit = function()
-				neogit.open({ kind = "split" })
-			end
-			vim.keymap.set("n", "<leader>gg", openGit, { noremap = true, desc = "Open Git tool" })
-		end,
-	},
-	{
-		"SuperBo/fugit2.nvim",
-		opts = {
-			width = 100,
-		},
-		cmd = { "Fugit2", "Fugit2Diff", "Fugit2Graph" },
-	},
-}
+vim.keymap.set("n", "<leader>gd", function()
+	MiniDiff.toggle_overlay(0)
+end, { desc = "Toggle diff overlay" })
+vim.keymap.set("n", "<leader>gb", "<Cmd>vertical Git blame -- %<CR>", { desc = "Open blame" })
+vim.keymap.set("n", "<leader>gg", "<Cmd>Git status<CR>", { desc = "Open Git status" })

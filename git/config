@@ -46,11 +46,10 @@
 [commit]
   template = ~/.config/git/templates/commit
 [merge]
-  tool = nvim
+  tool = nvimdiff
+  conflictStyle = zdiff3
 [mergetool]
   keepBackup = false
-[mergetool "nvim"]
-  cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
 [includeIf "gitdir:~/code/"]
   path = ~/code/gitconfig
 [filter "lfs"]
