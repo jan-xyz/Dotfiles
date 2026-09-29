@@ -1,79 +1,70 @@
 #!/usr/bin/env bash
-#===============================================================================
-#
-#             NOTES: For this to work you must have cloned the github
-#                    repo to your home folder as ~/dotfiles/
-#
-#===============================================================================
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-BANNER='\033[32;5;7m'
-NOCOLOR='\033[0m'
+set -euo pipefail
 
-#==============
-# initialize submodules
-#==============
-echo -e "${YELLOW}Updating submodules${NOCOLOR}"
-git submodule update --init --recursive >/dev/null 2>&1
+cd "$(dirname "$0")"
+DOTFILES="$PWD"
+BREW=/opt/homebrew/bin/brew
 
-#==============
-# install homebrew
-#==============
-echo -e "${YELLOW}Checking homebrew${NOCOLOR}"
-if ! command -v /opt/homebrew/bin/brew >/dev/null 2>&1; then
-  echo -e "${RED}Homebrew is not installed${NOCOLOR}"
+yellow() { printf '\033[0;33m%s\033[0m\n' "$1"; }
+green() { printf '\033[0;32m%s\033[0m\n' "$1"; }
+
+yellow "Checking Homebrew"
+if [[ ! -x "$BREW" ]]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-else
-  echo -e "${GREEN}Homebrew is installed.${NOCOLOR}"
 fi
+eval "$("$BREW" shellenv bash)"
 
-#==============
-# run go dotfiles tool
-#==============
-make run
+yellow "Installing Homebrew packages"
+brew bundle --file="$DOTFILES/Brewfile"
 
-#==============
-# setup system Java wrappers to find homebrew JDKs
-#==============
-echo -e "${YELLOW}Setting up Java wrappers for homebrew JDK${NOCOLOR}"
-sudo ln -sfn "$(/opt/homebrew/bin/brew --prefix)/opt/openjdk@17/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-17.jdk"
-sudo ln -sfn "$(/opt/homebrew/bin/brew --prefix)/opt/openjdk@11/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-11.jdk"
-sudo ln -sfn "$(/opt/homebrew/bin/brew --prefix)/opt/openjdk@8/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk-8.jdk"
+yellow "Creating symlinks"
+links=(
+  "codebook:$HOME/.config/codebook"
+  "crush:$HOME/.config/crush"
+  "fish:$HOME/.config/fish"
+  "ghostty:$HOME/.config/ghostty"
+  "git:$HOME/.config/git"
+  "kitty:$HOME/.config/kitty"
+  "nvim:$HOME/.config/nvim"
+  "starship.toml:$HOME/.config/starship.toml"
+  "hammerspoon:$HOME/.hammerspoon"
+  "vscode/settings.json:$HOME/Library/Application Support/Code/User/settings.json"
+)
+for link in "${links[@]}"; do
+  source_file="$DOTFILES/${link%%:*}"
+  link_name="${link#*:}"
+  mkdir -p "$(dirname "$link_name")"
+  ln -snf "$source_file" "$link_name"
+done
 
-#==============
-# Install Neovim extensions
-#==============
-echo -e "${YELLOW}Installing neovim plugins${NOCOLOR}"
-nvim --headless "+Lazy! install" +qall >/dev/null 2>&1
+yellow "Installing npm packages"
+npm install --global vim-language-server @anthropic-ai/claude-code
 
-#==============
-# Set zsh as the default shell
-#==============
-shell_path=$(/opt/homebrew/bin/brew --prefix)/bin/fish
-echo -e "${YELLOW}Setting shell${NOCOLOR}"
-if [[ ${SHELL} != "${shell_path}" ]]; then
-  if ! grep "${shell_path}" /etc/shells >/dev/null 2>&1; then
-    echo -e "${RED}Appending ${shell_path} to /etc/shells${NOCOLOR}"
-    echo "${shell_path}" | sudo tee -a /etc/shells
+yellow "Installing Go tools"
+go install github.com/grafana/jsonnet-language-server@latest
+go install github.com/docker/docker-language-server/cmd/docker-language-server@latest
+
+yellow "Setting macOS preferences"
+"$DOTFILES/macos.sh"
+
+yellow "Linking Homebrew JDKs for the system Java wrappers"
+for jdk in openjdk openjdk@17 openjdk@21; do
+  jdk_home="$(brew --prefix)/opt/$jdk/libexec/openjdk.jdk"
+  if [[ -d "$jdk_home" ]]; then
+    sudo ln -sfn "$jdk_home" "/Library/Java/JavaVirtualMachines/$jdk.jdk"
   fi
-  echo -e "${RED}you're shell is not ${shell_path} and I'm attempting to change that!${NOCOLOR}"
-  chsh -s "${shell_path}"
-else
-  echo -e "${GREEN}shell is ${shell_path}${NOCOLOR}"
+done
+
+yellow "Installing Neovim plugins"
+nvim --headless +qa
+
+yellow "Setting fish as the login shell"
+fish_path="$(brew --prefix)/bin/fish"
+if ! grep -qx "$fish_path" /etc/shells; then
+  echo "$fish_path" | sudo tee -a /etc/shells >/dev/null
+fi
+if [[ "$SHELL" != "$fish_path" ]]; then
+  chsh -s "$fish_path"
 fi
 
-#==============
-# run post steps
-#==============
-echo -e "${YELLOW}run post steps${NOCOLOR}"
-echo -e "${GREEN} fzf ${NOCOLOR}"
-"$(/opt/homebrew/bin/brew --prefix)/opt/fzf/install" --all >/dev/null 2>&1
-
-#==============
-# And we are done
-#==============
-echo
-echo -e "${BANNER}====== All Done!! ======"
-echo "                        "
-echo -e "  Enjoy -Jan            ${NOCOLOR}"
+green "Done"

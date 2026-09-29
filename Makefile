@@ -1,56 +1,17 @@
-version := 0.3.6
+.PHONY: install
+install:
+	./install.sh
 
-# build tools
-
-.PHONY: all
-all: check build
-
-.PHONY: check
-check: vet lint staticcheck test
-
-.PHONY: build
-build:
-	go build .
-
-.PHONY: test
-test:
-	go test ./... -race -coverprofile=coverage.out -covermode=atomic
+.PHONY: fmt
+fmt:
+	stylua .
 
 .PHONY: lint
 lint:
-	go vet ./...
-	go run honnef.co/go/tools/cmd/staticcheck ./...
-	go run github.com/mgechev/revive -set_exit_status ./...
-	go run golang.org/x/vuln/cmd/govulncheck ./...
-	go run mvdan.cc/gofumpt -d -e .
-	go run github.com/princjef/gomarkdoc/cmd/gomarkdoc --check --output "{{.Dir}}/README.md" ./internal/... 
-
-fmt:
-	go run mvdan.cc/gofumpt -w .
-	stylua .
-
-docs:
-	go run github.com/princjef/gomarkdoc/cmd/gomarkdoc --output "{{.Dir}}/README.md" ./internal/... 
-
-
-.PHONY: stylua
-stylua:
 	stylua --check .
+	shellcheck install.sh macos.sh
+	fish --no-execute fish/config.fish fish/functions/*.fish
 
-.PHONY: clean
-clean:
-	go clean
-
-# Dotfiles usage
-
-.PHONY: download
-download: dotfiles-$(version)
-
-dotfiles-$(version):
-	rm -f dotfiles-*
-	curl -L https://github.com/jan-xyz/Dotfiles/releases/download/v$(version)/dotfiles-Darwin-arm64.gz | gzip -N -d > dotfiles-$(version)
-	chmod +x ./dotfiles-$(version)
-
-.PHONY: run
-run: download
-	./dotfiles-$(version) install
+.PHONY: test
+test:
+	nvim --headless +qa

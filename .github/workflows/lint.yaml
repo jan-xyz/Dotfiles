@@ -1,4 +1,4 @@
-name: lua
+name: lint
 
 on:
   push:
@@ -6,14 +6,20 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: read
+
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       - uses: JohnnyMorganz/stylua-action@v5.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: latest
           args: --check .
-
+      - name: shellcheck
+        run: shellcheck install.sh macos.sh
