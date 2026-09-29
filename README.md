@@ -11,6 +11,7 @@ My personal macOS setup.
 * Ghostty and kitty
 * git
 * starship
+* fzf
 * Hammerspoon
 * Homebrew packages, Mac App Store apps, and VS Code extensions (`Brewfile`)
 * macOS system preferences (`macos.sh`)

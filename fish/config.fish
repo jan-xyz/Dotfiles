@@ -5,7 +5,9 @@ set -gx GOPATH $HOME/Go
 set -gx CARGO_NET_GIT_FETCH_WITH_CLI true
 set -gx EDITOR nvim
 set -gx VISUAL nvim
-set -gx FZF_DEFAULT_OPTS --color=16
+set -gx FZF_DEFAULT_OPTS_FILE $HOME/.config/fzf/fzfrc
+set -gx FZF_CTRL_T_OPTS "--preview 'head -200 {} 2>/dev/null || ls -A {}' --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+set -gx FZF_ALT_C_OPTS "--preview 'ls -A {}'"
 
 fish_add_path -g \
     $HOME/.local/bin \

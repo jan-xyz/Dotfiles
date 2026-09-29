@@ -22,6 +22,7 @@ links=(
   "codebook:$HOME/.config/codebook"
   "crush:$HOME/.config/crush"
   "fish:$HOME/.config/fish"
+  "fzf:$HOME/.config/fzf"
   "ghostty:$HOME/.config/ghostty"
   "git:$HOME/.config/git"
   "kitty:$HOME/.config/kitty"

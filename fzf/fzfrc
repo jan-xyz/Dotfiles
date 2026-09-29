@@ -1,0 +1,19 @@
+# Layout: open below the prompt and only as tall as needed
+--height=~50%
+--layout=reverse
+--info=inline-right
+--highlight-line
+--cycle
+
+# Starship look: the current line is a segment with a powerline cap.
+# Only palette indexes are used, so the colours follow the terminal theme.
+--prompt=' '
+--pointer=''
+--marker='+'
+--color=16
+--color=bg+:7,fg+:8,gutter:-1,pointer:7
+--color=hl:4,hl+:0:bold:underline
+--color=prompt:2:bold,marker:2,spinner:7,info:8,border:7,separator:7,scrollbar:7,header:8
+
+# Walker (plain fzf, Ctrl-T, Alt-C): skip generated folders
+--walker-skip=.git,node_modules,target,.venv,.direnv
