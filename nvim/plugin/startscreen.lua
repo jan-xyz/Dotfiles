@@ -59,3 +59,16 @@ starter.setup({
 })
 
 vim.api.nvim_set_hl(0, "MiniStarterHeader", { fg = "#A3BE8C", ctermfg = 2 })
+
+vim.api.nvim_create_autocmd("User", {
+	group = vim.api.nvim_create_augroup("my.starter_keys", {}),
+	pattern = "MiniStarterOpened",
+	callback = function(args)
+		vim.keymap.set("n", "j", function()
+			MiniStarter.update_current_item("next")
+		end, { buffer = args.buf, desc = "Next item" })
+		vim.keymap.set("n", "k", function()
+			MiniStarter.update_current_item("prev")
+		end, { buffer = args.buf, desc = "Previous item" })
+	end,
+})
