@@ -25,7 +25,6 @@ vim.lsp.enable({
 	"sourcekit",
 	"stylua",
 	"ts_ls",
-	"vimls",
 	"yamlls",
 })
 

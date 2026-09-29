@@ -75,6 +75,7 @@ brew "zoxide"
 
 cask "aerial"
 cask "brooklyn"
+cask "claude-code"
 cask "coconutbattery"
 cask "firefox"
 cask "font-fira-code-nerd-font"

@@ -37,9 +37,6 @@ for link in "${links[@]}"; do
   ln -snf "$source_file" "$link_name"
 done
 
-yellow "Installing npm packages"
-npm install --global vim-language-server @anthropic-ai/claude-code
-
 yellow "Installing Go tools"
 go install github.com/grafana/jsonnet-language-server@latest
 go install github.com/docker/docker-language-server/cmd/docker-language-server@latest
