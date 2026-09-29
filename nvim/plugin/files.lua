@@ -68,8 +68,8 @@ require("other-nvim").setup({
 			pattern = "(.*)_test%.go$",
 			target = "%1_example_test.go",
 		},
-		{ context = "sum file",       pattern = "go%.mod",                target = "go.sum" },
-		{ context = "mod file",       pattern = "go%.sum",                target = "go.mod" },
+		{ context = "sum file", pattern = "go%.mod", target = "go.sum" },
+		{ context = "mod file", pattern = "go%.sum", target = "go.mod" },
 		-- Kotlin/Java/Scala
 		{
 			context = "test",

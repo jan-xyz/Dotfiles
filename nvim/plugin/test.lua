@@ -18,8 +18,7 @@ local neotest_ns = vim.api.nvim_create_namespace("neotest")
 vim.diagnostic.config({
 	virtual_text = {
 		format = function(diagnostic)
-			local message =
-				diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+			local message = diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
 			return message
 		end,
 	},
@@ -97,34 +96,9 @@ end
 
 vim.keymap.set("n", "<leader>tn", nt.run.run, { desc = "Run nearest test" })
 vim.keymap.set("n", "<leader>tl", nt.run.run_last, { desc = "Run last test" })
-vim.keymap.set(
-	"n",
-	"<leader>to",
-	nt.output.open,
-	{ desc = "Show output from closest test" }
-)
-vim.keymap.set(
-	"n",
-	"<leader>ts",
-	nt.summary.toggle,
-	{ desc = "Toggle or focus the test summary" }
-)
+vim.keymap.set("n", "<leader>to", nt.output.open, { desc = "Show output from closest test" })
+vim.keymap.set("n", "<leader>ts", nt.summary.toggle, { desc = "Toggle or focus the test summary" })
 vim.keymap.set("n", "<leader>ta", run_all, { desc = "Run all tests" })
-vim.keymap.set(
-	"n",
-	"<leader>tf",
-	run_all_in_file,
-	{ desc = "Run all tests in the current file" }
-)
-vim.keymap.set(
-	"n",
-	"<leader>td",
-	debug_nearest_test,
-	{ desc = "Run nearest test with debugger" }
-)
-vim.keymap.set(
-	"n",
-	"<leader>tw",
-	watch_current_file,
-	{ desc = "Toggle watching the current file" }
-)
+vim.keymap.set("n", "<leader>tf", run_all_in_file, { desc = "Run all tests in the current file" })
+vim.keymap.set("n", "<leader>td", debug_nearest_test, { desc = "Run nearest test with debugger" })
+vim.keymap.set("n", "<leader>tw", watch_current_file, { desc = "Toggle watching the current file" })
