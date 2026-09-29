@@ -1,8 +1,5 @@
-vim.pack.add({
-	"https://github.com/echasnovski/mini.nvim",
-	"https://github.com/rgroli/other.nvim",
-})
-require("mini.icons").setup()
+vim.pack.add({ "https://github.com/rgroli/other.nvim" })
+
 local files = require("mini.files")
 files.setup({
 	-- Customization of explorer windows
@@ -13,6 +10,7 @@ files.setup({
 })
 local pick = require("mini.pick")
 pick.setup()
+vim.ui.select = pick.ui_select
 
 local extra = require("mini.extra")
 extra.setup()
@@ -27,13 +25,13 @@ end
 
 local km = vim.keymap
 -- inspired by helix mapping: https://docs.helix-editor.com/keymap.html#space-mode
-km.set("n", "<leader>f", pick.builtin.files, { noremap = true, desc = "Open File Picker" })
-km.set("n", "<leader>e", files.open, { noremap = true, desc = "Toggle or focus explorer" })
-km.set("n", "<leader>E", current_file, { noremap = true, desc = "Focus current file in explorer" })
-km.set("n", "<leader>b", pick.builtin.buffers, { noremap = true, desc = "Open buffer picker" })
-km.set("n", "<leader>/", pick.builtin.grep_live, { noremap = true, desc = "Global search" })
+km.set("n", "<leader>f", pick.builtin.files, { desc = "Open File Picker" })
+km.set("n", "<leader>e", files.open, { desc = "Toggle or focus explorer" })
+km.set("n", "<leader>E", current_file, { desc = "Focus current file in explorer" })
+km.set("n", "<leader>b", pick.builtin.buffers, { desc = "Open buffer picker" })
+km.set("n", "<leader>/", pick.builtin.grep_live, { desc = "Global search" })
 -- additional pickers
-km.set("n", "<leader>o", old_files, { noremap = true, desc = "Open recent file picker" })
+km.set("n", "<leader>o", old_files, { desc = "Open recent file picker" })
 
 require("other-nvim").setup({
 	mappings = {
@@ -85,5 +83,4 @@ require("other-nvim").setup({
 		},
 	},
 })
-local km = vim.keymap
-km.set("n", "ga", require("other-nvim").open, { noremap = true, desc = "Goto alternate file" })
+km.set("n", "ga", require("other-nvim").open, { desc = "Goto alternate file" })
