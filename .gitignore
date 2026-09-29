@@ -5,3 +5,4 @@ dotfiles*
 coverage.out
 nvim/plugin/packer_compiled.lua
 hammerspoon/Spoons/EmmyLua.spoon/annotations/
+fish/fish_variables

@@ -1,4 +1,0 @@
-# This file contains fish universal variable definitions.
-# VERSION: 3.0
-SETUVAR __fish_initialized:4300
-SETUVAR fish_user_paths:/opt/homebrew/opt/rustup/bin\x1e/Users/jan\x2esteinke/\x2ecargo/bin\x1e/opt/homebrew/opt/curl/bin\x1e/opt/homebrew/opt/fzf/bin\x1e/Applications/Ghostty\x2eapp/Contents/MacOS

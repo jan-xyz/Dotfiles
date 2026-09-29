@@ -1,64 +1,30 @@
-#
-# Homebrew
-#
-set --export PATH /opt/homebrew/bin /opt/homebrew/sbin $PATH
-set --export PATH $HOME/.local/bin $PATH
+/opt/homebrew/bin/brew shellenv fish | source
 
-#
-# fzf
-#
-set --export FZF_DEFAULT_OPTS "--color=fg:#e5e9f0,bg:#3b4252,hl:#81a1c1 --color=fg+:#e5e9f0,bg+:#3b4252,hl+:#81a1c1 --color=info:#eacb8a,prompt:#bf6069,pointer:#b48dac --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b"
+set -gx PYENV_ROOT $HOME/.pyenv
+set -gx GOPATH $HOME/Go
+set -gx CARGO_NET_GIT_FETCH_WITH_CLI true
+set -gx EDITOR nvim
+set -gx VISUAL nvim
+set -gx FZF_DEFAULT_OPTS --color=16
 
-#
-# Python
-#
-set --export PYENV_ROOT $HOME/.pyenv
-set --export PATH $PYENV_ROOT/bin $PATH
-set --export WORKON_HOME $HOME/Envs
-pyenv init - | source
+fish_add_path -g \
+    $HOME/.local/bin \
+    /opt/homebrew/opt/rustup/bin \
+    $HOME/.cargo/bin \
+    /opt/homebrew/opt/curl/bin \
+    /opt/homebrew/opt/llvm/bin \
+    /Applications/Ghostty.app/Contents/MacOS
+fish_add_path -gPa \
+    $GOPATH/bin \
+    "$HOME/Library/Application Support/Coursier/bin" \
+    $HOME/.lmstudio/bin
 
-#
-# Go
-#
-set --export GOPATH $HOME/Go
-set --export PATH $PATH $GOPATH/bin
+if status is-interactive
+    set -g fish_greeting
 
-#
-# Rust
-#
-set --export CARGO_NET_GIT_FETCH_WITH_CLI true
-set --export PATH $PATH /usr/local/opt/llvm/bin/
-source "$HOME/.cargo/env.fish"
+    pyenv init - fish | source
+    zoxide init --cmd cd fish | source
+    starship init fish | source
 
-#
-# Scala
-#
-set --export PATH $PATH $HOME/Library/Application\ Support/Coursier/bin
-
-#
-# Editors
-#
-set --export EDITOR /opt/homebrew/bin/nvim
-set --export VISUAL /opt/homebrew/bin/nvim
-set --export PAGER less
-
-# diable welcome message
-set fish_greeting
-
-#
-# cd
-#
-zoxide init --cmd cd fish | source
-
-#
-# Prompt
-#
-starship init fish | source
-
-# Added by LM Studio CLI (lms)
-set -gx PATH $PATH $HOME/.lmstudio/bin
-
-# Added by LM Studio CLI (lms)
-set -gx PATH $PATH /Users/jan.steinke/.lmstudio/bin
-# End of LM Studio CLI section
-
+    abbr -a vim nvim
+end
