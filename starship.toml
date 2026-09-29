@@ -13,9 +13,9 @@ $fill\
 [$battery](fg:1 bg:15)\
 [$cmd_duration$time](fg:8 bg:15)\
 [ ](fg:15 bg:none)\
-$all$character """
+$line_break$character """
 
-# Inserts a blank line between shell prompts
+# Do not print an empty line between prompts
 add_newline = false
 command_timeout = 1000
 
@@ -29,7 +29,6 @@ format="$symbol$percentage "
 
 [[battery.display]]
 threshold = 10
-style = 'bold red'
 
 [git_branch]
 format="$symbol$branch(:$remote_branch)"
@@ -84,7 +83,6 @@ model_aliases = { "eu.anthropic.claude-sonnet-4-6" = "Sonnet 4.6", "eu.anthropic
 
 [claude_context]
 format = " $gauge $percentage "
-style = "fg:8 bg:7"
 
 [[claude_context.display]]
 threshold = 0
@@ -104,7 +102,6 @@ style = "bold red bg:7"
 
 [claude_cost]
 format = " \\$$cost "
-style = "fg:8 bg:7"
 
 [[claude_cost.display]]
 threshold = 0
