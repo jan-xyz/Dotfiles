@@ -38,6 +38,9 @@ for link in "${links[@]}"; do
   ln -snf "$source_file" "$link_name"
 done
 
+# stops macOS login from printing "Last login" in each new terminal
+touch "$HOME/.hushlogin"
+
 yellow "Installing Go tools"
 go install github.com/grafana/jsonnet-language-server@latest
 go install github.com/docker/docker-language-server/cmd/docker-language-server@latest
