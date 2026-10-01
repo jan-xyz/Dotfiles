@@ -23,8 +23,6 @@ fish_add_path -gPa \
     $HOME/.lmstudio/bin
 
 if status is-interactive
-    set -g fish_greeting
-
     pyenv init - fish | source
     zoxide init --cmd cd fish | source
     starship init fish | source

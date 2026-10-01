@@ -1,0 +1,13 @@
+All we have to decide is what to do with the time that is given us. -- Gandalf
+Not all those who wander are lost. -- J.R.R. Tolkien
+It's a dangerous business, Frodo, going out your door. -- Bilbo Baggins
+Do not meddle in the affairs of wizards, for they are subtle and quick to anger. -- Gildor
+Short cuts make long delays. -- Pippin
+Premature optimization is the root of all evil. -- Donald Knuth
+There are only two hard things in Computer Science: cache invalidation and naming things. -- Phil Karlton
+Simplicity is prerequisite for reliability. -- Edsger W. Dijkstra
+Talk is cheap. Show me the code. -- Linus Torvalds
+Make it work, make it right, make it fast. -- Kent Beck
+Clear is better than clever. -- Rob Pike
+A little copying is better than a little dependency. -- Rob Pike
+The best code is no code at all. -- Jeff Atwood
