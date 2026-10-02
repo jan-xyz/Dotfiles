@@ -29,3 +29,5 @@ if status is-interactive
 
     abbr -a vim nvim
 end
+
+test -f ~/.secrets.fish; and source ~/.secrets.fish
