@@ -29,6 +29,9 @@ vim.lsp.enable({
 })
 
 vim.lsp.inlay_hint.enable(true)
+vim.keymap.set("n", "<leader>ih", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Toggle inlay hints" })
 
 local function organize_imports(client, bufnr)
 	local params = vim.lsp.util.make_range_params(0, client.offset_encoding)

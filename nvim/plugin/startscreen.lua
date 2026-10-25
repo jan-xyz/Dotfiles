@@ -30,32 +30,61 @@ local function item(name, action)
 	return { name = name, action = action, section = "Actions" }
 end
 
+-- plugins still on disk without a matching vim.pack.add() in this session
+local function inactive_plugins()
+	return vim.iter(vim.pack.get(nil, { info = false }))
+		:filter(function(p)
+			return not p.active
+		end)
+		:map(function(p)
+			return p.spec.name
+		end)
+		:totable()
+end
+
+-- only offered when there is something to remove
+local function cleanup_item()
+	local names = inactive_plugins()
+	if #names == 0 then
+		return {}
+	end
+	local plural = #names == 1 and "" or "s"
+	return {
+		item(("Remove %d unused plugin%s"):format(#names, plural), function()
+			vim.pack.del(names)
+			starter.refresh()
+		end),
+	}
+end
+
 starter.setup({
 	evaluate_single = true,
 	header = header,
 	footer = "",
+	-- mini.starter derives each item's query prefix from its name and highlights
+	-- it, so names have to start with distinct letters to stay one keypress
 	items = {
-		item("o  Recently opened files", function()
+		item("Open recent files", function()
 			extra.pickers.oldfiles({ current_dir = true })
 		end),
-		item("e  File browser", function()
+		item("Explore files", function()
 			MiniFiles.open()
 		end),
-		item("f  Find file", function()
+		item("Find file", function()
 			MiniPick.builtin.files()
 		end),
-		item("/  Find word", function()
+		item("Search word", function()
 			MiniPick.builtin.grep_live()
 		end),
-		item("u  Update plugins", function()
+		item("Update plugins", function()
 			vim.pack.update()
 		end),
+		cleanup_item,
 	},
 	content_hooks = {
 		starter.gen_hook.adding_bullet(""),
 		starter.gen_hook.aligning("center", "center"),
 	},
-	query_updaters = "oefu/",
 })
 
 vim.api.nvim_set_hl(0, "MiniStarterHeader", { fg = "#A3BE8C", ctermfg = 2 })
