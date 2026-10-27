@@ -10,7 +10,6 @@ brew "aws-cdk"
 brew "awscli"
 brew "bash"
 brew "bash-language-server"
-brew "buf"
 brew "ccls"
 brew "cmake"
 brew "codebook-lsp"
@@ -74,28 +73,23 @@ brew "yaml-language-server"
 brew "zoxide"
 
 cask "aerial"
-cask "brooklyn"
-cask "claude-code"
 cask "coconutbattery"
 cask "firefox"
 cask "font-fira-code-nerd-font"
 cask "ghostty"
 cask "github"
 cask "hammerspoon"
-cask "kitty"
 cask "monitorcontrol"
 cask "signal"
-cask "slack"
 cask "telegram"
-cask "visual-studio-code"
 
 mas "Ghostery Lite", id: 6504861501
 mas "Pixelmator Pro", id: 1289583905
 mas "Wipr", id: 1662217862
 mas "StatusClock", id: 552792489
-mas "Pages", id: 409201541
-mas "Keynote", id: 409183694
-mas "Numbers", id: 409203825
+mas "Pages: Create Documents", id: 361309726
+mas "Keynote: Design Presentations", id: 361285480
+mas "Numbers: Make Spreadsheets", id: 361304891
 
 vscode "vscodevim.vim"
 vscode "hbenl.vscode-test-explorer-liveshare"
