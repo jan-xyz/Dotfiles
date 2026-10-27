@@ -21,3 +21,4 @@ venv
 **/.crush/
 CRUSH.md
 /codebook.toml
+.ccls-cache/
